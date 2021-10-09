@@ -7,4 +7,4 @@ include_directories(./)
 
 add_executable(ft_containers
         main.cpp
-        ft_containers_tests/functions.hpp Stack.hpp)
+        ft_containers_tests/functions.hpp Stack.hpp Map.hpp)

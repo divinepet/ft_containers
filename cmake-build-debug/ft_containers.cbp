@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/Map.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/Stack.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
