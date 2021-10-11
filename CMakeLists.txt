@@ -5,6 +5,13 @@ set(CMAKE_CXX_STANDARD 98)
 
 include_directories(./)
 
-add_executable(ft_containers
-        main.cpp
-        ft_containers_tests/functions.hpp Stack.hpp Map.hpp)
+add_executable( ft_containers
+                main.cpp
+                ft_containers_tests/functions.hpp
+                ft_containers_tests/general.hpp
+                Stack.hpp
+                Map.hpp
+                Vector.hpp
+                Iterator.hpp
+                Node.hpp
+                Algorithm.hpp oldNode.hpp)

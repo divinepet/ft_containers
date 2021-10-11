@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/elaronda/Desktop/ft_containers
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/divinepet/Desktop/ft_containers
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/elaronda/Desktop/ft_containers/cmake-build-debug
+-- Build files have been written to: /Users/divinepet/Desktop/ft_containers/cmake-build-debug

@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/divinepet/Desktop/ft_containers/Node.hpp
+iostream
+-
+
+/Users/divinepet/Desktop/ft_containers/main.cpp
+map
+-
+Node.hpp
+/Users/divinepet/Desktop/ft_containers/Node.hpp
+
