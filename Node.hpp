@@ -14,11 +14,11 @@ template <class T, class V>
 class Node_Base {
 	typedef Node_Base<T, V> *node_ptr;
 	friend class Node<T, V>;
-	friend class node_iterator<Node_Base<T, V> >;
+//	friend class node_iterator<Node_Base<T, V> >;
+public:
 	node_ptr left, right, parent, prior, next;
 	Color color;
-public:
-	typedef node_iterator<Node_Base<T, V> > iterator;
+//	typedef node_iterator< Node_Base<T, V> > node_iterator;
 	T first;
 	V second;
 
@@ -32,7 +32,7 @@ class node_iterator {
 private:
 	T* node;
 public:
-	node_iterator(T* value = nullptr) : node(value)						{}
+	node_iterator(T* value = nullptr) : node(value)						{};
 	~node_iterator()													{};
 	node_iterator(const node_iterator &temp)							{ *this = temp; }
 	node_iterator	&operator=(const node_iterator &obj) 				{ node = obj.node; return *this; }
@@ -55,16 +55,16 @@ class Node {
 	friend class Node_Base<T, V>;
 	typedef Node_Base<T, V>* node_ptr;
 	friend class node_iterator<Node_Base<T, V> >;
+public:
 	node_ptr header;
 	node_ptr root;
-	node_ptr NIL;
 	node_ptr _prior;
 	node_ptr _next;
-public:
-	typedef node_iterator<Node_Base<T, V> > iterator;
+	node_ptr NIL;
+	typedef node_iterator< Node_Base<T, V> > node_iterator;
 	Node() {
 		header = new Node_Base<T, V>(0, 0);
-		NIL = new Node_Base<T, V>(-1, -1);
+		NIL = new Node_Base<T, V>(0, 0);
 		NIL->color = header->color = BLACK;
 		root = NIL;
 		root->parent = header;
@@ -79,8 +79,8 @@ public:
 	bool isEmptyNode() 		{ return root == NIL; };
 	T getMax() 				{ return header->prior->first; };
 	T getMin() 				{ return header->next->first; };
-	iterator begin() 	{ return header->next; }
-	iterator end() 	{ return header; }
+	node_iterator begin() 	{ return header->next; }
+	node_iterator end() 	{ return header; }
 
 	node_ptr insertNode(T x, V v) {
 		node_ptr n = new Node_Base<T, V>(x, v, NIL, NIL);
@@ -140,20 +140,20 @@ public:
 			node_ptr a = BranchMin(x->right);
 			a_color = a->color;
 			b = a->right;
-			if (a->parent == x) { //case 2: replace node is son of x
+			if (a->parent == x) { // case 2: replace node is son of x
 				b->parent = a; // case NIL
 			} else {
-				Transplante(a, a->right);//a break away from there
+				Transplante(a, a->right); // a break away from there
 				a->right = x->right;
 				a->right->parent = a;
 			}
-			Transplante (x, a); // Заменить ветвь старого узла новой ветвью узла
+			Transplante (x, a); // replace old node for new node
 			a->left = x->left;
 			a->left->parent = a;
 			a->color = x->color;
 		}
 		delete x;
-		if (a_color == BLACK) // case 3: Нарушение правил красного и черного, количество черных узлов на пути разное
+		if (a_color == BLACK) // case 3: black-red rule break
 			deleteFix(b);
 		leftOrRight();
 		return true;
@@ -177,12 +177,14 @@ public:
 		cout << endl;
 	};
 
-	void Iterator_visit(iterator begin, iterator end) {
-		iterator temp = begin;
-		while (temp != end) {
-			cout << "key: " << temp->first << ", value: " << temp->second << endl;
+	size_t sizeNode() {
+		node_iterator temp = begin();
+		size_t count = 0;
+		while (temp != end()) {
+			count++;
 			temp = temp->next;
 		}
+		return count;
 	}
 
 private:
@@ -218,16 +220,16 @@ private:
 	};
 
 	void rotateLeft(node_ptr x) {
-		if (x-> right == NIL) // Правое поддерево не может быть левым, чтобы избежать неправильной операции по очистке дерева
+		if (x-> right == NIL) // right subtree cant be left, so return to avoid a wrong tree-clean
 			return;
 		node_ptr x_r=x->right;
 		x->right = x_r->left;
-		if (x_r-> left != NIL) // Избегайте разрушения характеристик пустых узлов: родительский узел указывает на себя
+		if (x_r-> left != NIL) // avoid a destruct empty nodes: parent point to himself
 			x_r->left->parent = x;
 		x_r->parent = x->parent;
-		if (x_r-> parent == header) {// корневой узел
+		if (x_r-> parent == header) {// root node
 			root = x_r;
-		} else if (x-> parent-> left == x) {// Обновляем родительский узел
+		} else if (x-> parent-> left == x) { // update parent node
 			x->parent->left = x_r;
 		}else if(x->parent->right == x){
 			x->parent->right = x_r;

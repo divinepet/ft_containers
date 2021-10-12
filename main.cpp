@@ -1,25 +1,38 @@
-#include <map>
-#include "Map.hpp"
-#include <vector>
-#include "Vector.hpp"
 #include "Node.hpp"
-#include "ft_containers_tests/general.hpp"
 
 int main(int argc, char **argv) {
 
-	ft::Map<int, int> mp;
-	ft::pair<ft::Map<int, int>::iterator, bool> pair;
-	pair = mp.insert(ft::make_pair(7, 22));
-	cout << pair.first->first << endl;
-	cout << pair.second << endl;
-	cout << mp.at(7);
+	Node<int, int> t;
+	t.insertNode(6, 6);
+	t.insertNode(5, 5);
+//	t.insertNode(7, 7);
 
+	cout << t.header->next->first << endl;
+	cout << t.header->first << endl;
+	cout << t.root->first << endl;
+
+
+//	Node<int, int>::node_iterator it = t.begin();
+
+
+//	cout << it->first << endl;
+
+//	ft::Map<int, int> mp;
+//	ft::pair<ft::Map<int, int>::iterator, bool> pair;
+//	pair = mp.insert(ft::make_pair(5, 22));
+//	cout << "key: " << pair.first->first << ", value: " << pair.first->second << endl;
+//	cout << mp.at(7) << endl;
+//	cout << mp[17] << endl;
+//	ft::Map<int, int>::iterator it = mp.begin();
+//	cout << it->first << endl;
+
+//
 //	std::map<int,int > mp;
 //	std::pair<std::map<int, int>::iterator, bool> pair;
-//	pair = mp.insert(std::make_pair(7, 22));
-//	cout << pair.first->first << endl;
-//	cout << pair.second << endl;
-//	cout << mp.at(7) << endl;
+//	pair = mp.insert(std::make_pair(0, 22));
+//	cout << "key: " << pair.first->first << ", value: " << pair.first->second << endl;
+//	cout << mp.at(0) << endl;
+//	cout << mp[17] << endl;
 
 
 
