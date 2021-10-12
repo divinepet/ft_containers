@@ -4,11 +4,6 @@
 
 int main(int argc, char **argv) {
 
-	ft::Map<int, int > mp;
-	mp.insert(ft::make_pair(3, 3));
-//	mp.insert(ft::make_pair(2, 2));
-	ft::Map<int, int >::iterator it = mp.begin();
-	cout << it->first << endl;
 
 
 //	Node<int, int> t;

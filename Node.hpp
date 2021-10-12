@@ -1,24 +1,23 @@
 #pragma once
 
 #include <iostream>
+#include "Iterator.hpp"
 using std::cout;
 using std::endl;
 
 template <class T, class V>
 class Node;
-template <class T>
-class node_iterator;
 enum Color { RED = 0, BLACK = 1};
 
 template <class T, class V>
 class Node_Base {
 	typedef Node_Base<T, V> *node_ptr;
 	friend class Node<T, V>;
-	friend class node_iterator<Node_Base<T, V> >;
+	friend class ft::node_iterator<Node_Base<T, V> >;
+public:
 	node_ptr left, right, parent, prior, next;
 	Color color;
-public:
-	typedef node_iterator< Node_Base<T, V> > node_iterator;
+//	typedef ft::node_iterator< Node_Base<T, V> > node_iterator;
 	T first;
 	V second;
 
@@ -27,41 +26,18 @@ public:
 
 };
 
-template <class T>
-class node_iterator {
-private:
-	T* node;
-public:
-	node_iterator(T* value = nullptr) : node(value)						{};
-	~node_iterator()													{};
-	node_iterator(const node_iterator &temp)							{ *this = temp; }
-	node_iterator	&operator=(const node_iterator &obj) 				{ node = obj.node; return *this; }
-	node_iterator	operator++(int)										{ node = node->next; return *this; }
-	node_iterator	&operator++() 										{ node = node->next; return *this; }
-	node_iterator	operator--(int)										{ node = node->parent; return *this; }
-	node_iterator	&operator--() 										{ node = node->parent; return *this; }
-	T& 				operator*() const 									{ return *node; }
-	T*			 	operator->() const 									{ return &(*node); }
-	bool			operator==(node_iterator const &obj) const 			{ return node == obj.node; };
-	bool			operator!=(node_iterator const &obj) const 			{ return node != obj.node; };
-	bool 			operator<(node_iterator const &obj) const 			{ return node < obj.node; };
-	bool 			operator>(node_iterator const &obj) const 			{ return node > obj.node; };
-	bool 			operator<=(node_iterator const &obj) const 			{ return node <= obj.node; };
-	bool 			operator>=(node_iterator const &obj) const 			{ return node >= obj.node; };
-};
-
 template <class T, class V>
 class Node {
 	friend class Node_Base<T, V>;
 	typedef Node_Base<T, V>* node_ptr;
-	friend class node_iterator<Node_Base<T, V> >;
+	friend class ft::node_iterator<Node_Base<T, V> >;
 public:
 	node_ptr header;
 	node_ptr root;
 	node_ptr _prior;
 	node_ptr _next;
 	node_ptr NIL;
-	typedef node_iterator< Node_Base<T, V> > node_iterator;
+//	typedef ft::node_iterator< Node_Base<T, V> > node_iterator;
 	Node() {
 		header = new Node_Base<T, V>(0, 0);
 		NIL = new Node_Base<T, V>(0, 0);
@@ -79,8 +55,8 @@ public:
 	bool isEmptyNode() 		{ return root == NIL; };
 	T getMax() 				{ return header->prior->first; };
 	T getMin() 				{ return header->next->first; };
-	node_iterator begin() 	{ return (header->next == NIL) ? root : header->next; }
-	node_iterator end() 	{ return header; }
+//	node_iterator begin() 	{ return (header->next == NIL) ? root : header->next; }
+//	node_iterator end() 	{ return header; }
 
 	node_ptr insertNode(T x, V v) {
 		node_ptr n = new Node_Base<T, V>(x, v, NIL, NIL);
@@ -177,15 +153,15 @@ public:
 		cout << endl;
 	};
 
-	size_t sizeNode() {
-		node_iterator temp = begin();
-		size_t count = 0;
-		while (temp != end()) {
-			count++;
-			temp = temp->next;
-		}
-		return count;
-	}
+//	size_t sizeNode() {
+//		node_iterator temp = begin();
+//		size_t count = 0;
+//		while (temp != end()) {
+//			count++;
+//			temp = temp->next;
+//		}
+//		return count;
+//	}
 
 private:
 
