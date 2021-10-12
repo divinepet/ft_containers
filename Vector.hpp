@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Iterator.hpp"
-#include "Algorithm.hpp"
 
 namespace ft {
 	template < class T, class A = std::allocator<T> >
@@ -15,10 +14,10 @@ public:
 	typedef const value_type&											const_reference;
 	typedef T*															pointer;
 	typedef const T*													const_pointer;
-	typedef ft::iterator<T> 											iterator;
-	typedef ft::iterator<T const>										const_iterator;
-	typedef ft::reverse_iterator<T> 									reverse_iterator;
-	typedef ft::reverse_iterator<T const>								const_reverse_iterator;
+	typedef ft::iterator<T*> 											iterator;
+	typedef ft::iterator<const T*>										const_iterator;
+	typedef ft::reverse_iterator<T*> 									reverse_iterator;
+	typedef ft::reverse_iterator<const T*>								const_reverse_iterator;
 private:
 	pointer																buffer;
 	size_type 															_capacity;
@@ -32,7 +31,7 @@ public:
 
 	explicit Vector(const A& alloc = A()) : buffer(0), _size(0), _capacity(0) { allocator = alloc; };
 
-	explicit Vector(size_type count, const_reference value = value_type(), const A& alloc = A()) {
+	Vector(size_type count, const_reference value = value_type(), const A& alloc = A()) {
 		if (count < 0)
 			throw std::out_of_range("Vector");
 		allocator = alloc;
@@ -44,7 +43,7 @@ public:
 
 	//todo make constructors better
 	//todo complete exceptions
-	Vector(iterator first, iterator last, const A& alloc = A()) : allocator(alloc), _capacity(0), _size(0) {
+	explicit Vector(iterator first, iterator last, const A& alloc = A()) : allocator(alloc), _capacity(0), _size(0) {
 		buffer = allocator.allocate(_capacity);
 		this->assign(first, last);
 	};
