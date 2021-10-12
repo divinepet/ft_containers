@@ -1,20 +1,24 @@
-#include "Node.hpp"
+//#include "Node.hpp"
+#include <map>
+#include "Map.hpp"
 
 int main(int argc, char **argv) {
 
-	Node<int, int> t;
-	t.insertNode(6, 6);
-	t.insertNode(5, 5);
-//	t.insertNode(7, 7);
-
-	cout << t.header->next->first << endl;
-	cout << t.header->first << endl;
-	cout << t.root->first << endl;
+	ft::Map<int, int > mp;
+	mp.insert(ft::make_pair(3, 3));
+//	mp.insert(ft::make_pair(2, 2));
+	ft::Map<int, int >::iterator it = mp.begin();
+	cout << it->first << endl;
 
 
+//	Node<int, int> t;
+//	t.insertNode(6, 6);
+//	t.insertNode(5, 5);
+//
+//
 //	Node<int, int>::node_iterator it = t.begin();
-
-
+//
+//
 //	cout << it->first << endl;
 
 //	ft::Map<int, int> mp;

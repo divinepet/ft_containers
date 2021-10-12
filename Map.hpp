@@ -21,7 +21,8 @@ public:
 	typedef const value_type&										const_reference;
 	typedef typename allocator_type::pointer						pointer;
 	typedef typename allocator_type::const_pointer					const_pointer;
-	typedef typename Node_Base<Key, T>::iterator 					iterator;
+	typedef typename Node<Key, T>::node_iterator 					iterator;
+//	typedef typename Node_Base<Key, T>::const_iterator 				iterator;
 	// const_iterator
 	// reverse_iterator
 	// reverse_const_iterator

@@ -14,11 +14,11 @@ template <class T, class V>
 class Node_Base {
 	typedef Node_Base<T, V> *node_ptr;
 	friend class Node<T, V>;
-//	friend class node_iterator<Node_Base<T, V> >;
-public:
+	friend class node_iterator<Node_Base<T, V> >;
 	node_ptr left, right, parent, prior, next;
 	Color color;
-//	typedef node_iterator< Node_Base<T, V> > node_iterator;
+public:
+	typedef node_iterator< Node_Base<T, V> > node_iterator;
 	T first;
 	V second;
 
@@ -79,7 +79,7 @@ public:
 	bool isEmptyNode() 		{ return root == NIL; };
 	T getMax() 				{ return header->prior->first; };
 	T getMin() 				{ return header->next->first; };
-	node_iterator begin() 	{ return header->next; }
+	node_iterator begin() 	{ return (header->next == NIL) ? root : header->next; }
 	node_iterator end() 	{ return header; }
 
 	node_ptr insertNode(T x, V v) {
