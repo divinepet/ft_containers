@@ -4,7 +4,7 @@ time_t g_end1;
 time_t g_end2;
 
 const std::string GREEN = "\x1B[1;32m";
-const std::string RED = "\x1B[1;31m";
+const std::string REDD = "\x1B[1;31m";
 const std::string YELLOW = "\x1B[1;33m";
 const std::string RESET = "\033[0m";
 
@@ -1022,7 +1022,7 @@ void leaks_test() {
 
 void printElement(const std::string& t) {
 	if (t == "OK") { cout << GREEN; }
-	else if (t == "FAILED") { cout << RED; }
+	else if (t == "FAILED") { cout << REDD; }
 	cout << std::left << std::setw(25) << std::setfill(' ') << t;
 	cout << RESET;
 }

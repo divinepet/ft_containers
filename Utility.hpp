@@ -60,7 +60,7 @@ template< class InputIt1, class InputIt2, class BinaryPredicate >
 		return (first1 == last1) && (first2 != last2);
 	}
 
-	template <class T1, class T2>
+	template <class T1, typename T2>
 	struct pair {
 		typedef T1 first_type;
 		typedef T2 second_type;
@@ -114,6 +114,10 @@ template< class InputIt1, class InputIt2, class BinaryPredicate >
 		return !(y < x);
 	}
 
+	template <class T1, class T2>
+	inline pair<T1, T2> make_pair(T1 x, T2 y) {
+		return pair<T1, T2>(x, y);
+	}
 }
 
 namespace std {

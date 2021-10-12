@@ -1,22 +1,57 @@
 #include <map>
-//#include "Map.hpp"
+#include "Map.hpp"
+#include <vector>
+#include "Vector.hpp"
 #include "Node.hpp"
+#include "ft_containers_tests/general.hpp"
 
 int main(int argc, char **argv) {
-	Node<int, char> t;
-	t.insertNode(6, '6');
-	t.insertNode(4, '4');
-	t.insertNode(3, '3');
-	t.insertNode(5, '5');
-//	ft::Map<int, char>::iterator it;
+
+	ft::Map<int, int> mp;
+	ft::pair<ft::Map<int, int>::iterator, bool> pair;
+	pair = mp.insert(ft::make_pair(7, 22));
+	cout << pair.first->first << endl;
+	cout << pair.second << endl;
+	cout << mp.at(7);
+
+//	std::map<int,int > mp;
+//	std::pair<std::map<int, int>::iterator, bool> pair;
+//	pair = mp.insert(std::make_pair(7, 22));
+//	cout << pair.first->first << endl;
+//	cout << pair.second << endl;
+//	cout << mp.at(7) << endl;
+
+
+
+//	Node_Base<int, char>::iterator it;
+//	Node_Base<int, char>::iterator it2;
+
+//	cout << (it == it2) << endl;
+
+
 //	it->
 //	cout << *it << endl;
 //	Node<int> t;
 //	t.insertNode(3);
 //	cout << "create Tree: ";
 //	t.printElements();
+//	std::map<int, int>::iterator  it;
+//	it->
+//	std::map<int, int>::iterator ittt;
+//	ittt.
+//	std::vector<int>::iterator  itt;
+//	itt
 
-//	Node<int, char>::node_iterator it = t.begin();
+
+//std::vector<int>::iterator itvec;
+//itvec.
+//	Node<int, char>::iterator it = t.begin();
+//	it++;
+//	Node<int, char>::iterator it2 = t.begin();
+//	cout << (it == it2) << endl;
+//	std::map<int, char>::iterator::
+//	itmap.
+//	cout << it->first << endl;
 //	cout << it->val << endl;
 //	t.Iterator_visit(it, t.end());
 //	cout << endl;
@@ -82,5 +117,5 @@ int main(int argc, char **argv) {
 //	for (it=mp.begin(); it != mp.end(); it++)
 //		std::cout << "key: " << it->first << " value: " << it->second << "\n";
 
-
+//	start_tests();
 }

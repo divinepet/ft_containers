@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Utility.hpp"
+
 namespace ft {
 
 	template <class Iter>
@@ -25,74 +27,82 @@ namespace ft {
 	template <class T>
 	class iterator {
 	private:
-		T* count;
+		T value;
 	public:
-		typedef T*															iterator_type;
+		typedef T															iterator_type;
 		typedef typename iterator_traits<iterator_type>::iterator_category	iterator_category;
 		typedef typename iterator_traits<iterator_type>::value_type       	value_type;
 		typedef typename iterator_traits<iterator_type>::difference_type  	difference_type;
 		typedef typename iterator_traits<iterator_type>::pointer          	pointer;
 		typedef typename iterator_traits<iterator_type>::reference        	reference;
 
-		iterator(T* value = nullptr) : count(value)			{}
+		iterator(T value = NULL) : value(value)				{}
 		~iterator()											{};
-		iterator(const iterator &temp)						{ *this = temp; }
-		iterator	&operator=(const iterator &obj) 		{ this->count = obj.count; return *this; }
-		iterator	operator++(int)							{ count++; return *this; }
-		iterator	operator--(int) 						{ count--; return *this; }
-		iterator	&operator++() 							{ count++; return *this; }
-		iterator	&operator--() 							{ count--; return *this; }
-		int			operator-(iterator const &obj) const 	{ return count - obj.count; }
-		int			operator+(iterator const &obj) const 	{ return count + obj.count; }
-		iterator	operator-(int n) const 					{ return iterator(this->count - n); }
-		iterator	operator+(int n) const 					{ return iterator(this->count + n); }
-		iterator	&operator-=(int n) 						{ this->count -= n; return (*this); }
-		iterator	&operator+=(int n) 						{ this->count += n; return (*this); }
-		T& 			operator*() const 						{ return *this->count; }
-		T&		 	operator[](const unsigned int index) 	{ return *this->count[index]; }
-		bool		operator==(iterator const &obj) const 	{ return count == obj.count; };
-		bool		operator!=(iterator const &obj) const 	{ return count != obj.count; };
-		bool 		operator<(iterator const &obj) const 	{ return count < obj.count; };
-		bool 		operator>(iterator const &obj) const 	{ return count > obj.count; };
-		bool 		operator<=(iterator const &obj) const 	{ return count <= obj.count; };
-		bool 		operator>=(iterator const &obj) const 	{ return count >= obj.count; };
+		template <class U> iterator(const iterator<U>& other,
+				typename ft::enable_if<std::is_convertible<U, iterator_type>::value>::type* = 0)
+						: value(other.base()) 				{};
+		T			base() const 							{ return value; }
+		iterator	&operator=(const iterator &obj) 		{ this->value = obj.value; return *this; }
+		iterator	operator++(int)							{ value++; return *this; }
+		iterator	operator--(int) 						{ value--; return *this; }
+		iterator	&operator++() 							{ value++; return *this; }
+		iterator	&operator--() 							{ value--; return *this; }
+		int			operator-(iterator const &obj) const 	{ return value - obj.value; }
+		int			operator+(iterator const &obj) const 	{ return value + obj.value; }
+		iterator	operator-(int n) const 					{ return iterator(this->value - n); }
+		iterator	operator+(int n) const 					{ return iterator(this->value + n); }
+		iterator	&operator-=(int n) 						{ this->value -= n; return (*this); }
+		iterator	&operator+=(int n) 						{ this->value += n; return (*this); }
+		reference 	operator*() const 						{ return *value; }
+		pointer 	operator->() const 						{ return &(*value); }
+		reference 	operator[](const unsigned int index) 	{ return *this->value[index]; }
+		bool		operator==(iterator const &obj) const 	{ return value == obj.value; };
+		bool		operator!=(iterator const &obj) const 	{ return value != obj.value; };
+		bool 		operator<(iterator const &obj) const 	{ return value < obj.value; };
+		bool 		operator>(iterator const &obj) const 	{ return value > obj.value; };
+		bool 		operator<=(iterator const &obj) const 	{ return value <= obj.value; };
+		bool 		operator>=(iterator const &obj) const 	{ return value >= obj.value; };
 	};
 
 
 	template <class T>
 	class reverse_iterator {
 	private:
-		T* count;
+		T value;
 	public:
-		typedef T*                                                     		iterator_type;
+		typedef T                                                     		iterator_type;
 		typedef typename iterator_traits<iterator_type>::iterator_category	iterator_category;
 		typedef typename iterator_traits<iterator_type>::value_type       	value_type;
 		typedef typename iterator_traits<iterator_type>::difference_type  	difference_type;
 		typedef typename iterator_traits<iterator_type>::pointer          	pointer;
 		typedef typename iterator_traits<iterator_type>::reference        	reference;
 
-		reverse_iterator(T* value = nullptr) : count(value)					{}
-		~reverse_iterator() {};
-		reverse_iterator(const reverse_iterator &temp)						{ *this = temp; }
-		reverse_iterator	&operator=(const reverse_iterator &obj) { count = obj.count; return *this; }
-		reverse_iterator	operator++(int) { count--; return *this; }
-		reverse_iterator	operator--(int) { count++; return *this; }
-		reverse_iterator	&operator++() { count--; return *this; }
-		reverse_iterator	&operator--() { count++; return *this; }
-		int					operator-(reverse_iterator const &obj) const { return count + obj.count; }
-		int					operator+(reverse_iterator const &obj) const { return count - obj.count; }
-		reverse_iterator	operator-(int n) const { return reverse_iterator(this->count + n); }
-		reverse_iterator	operator+(int n) const { return reverse_iterator(this->count - n); }
-		reverse_iterator	&operator-=(int n) { this->count += n; return (*this); }
-		reverse_iterator	&operator+=(int n) { this->count -= n; return (*this); }
-		T&					operator*() const { return *this->count; }
-		T&					operator[] (const unsigned int index) { return *this->count[index]; }
-		bool				operator== (reverse_iterator const &obj) const { return count == obj.count; };
-		bool				operator!= (reverse_iterator const &obj) const { return count != obj.count; };
-		bool				operator< (reverse_iterator const &obj) const { return count > obj.count; };
-		bool				operator> (reverse_iterator const &obj) const { return count < obj.count; };
-		bool				operator<= (reverse_iterator const &obj) const { return count >= obj.count; };
-		bool				operator>= (reverse_iterator const &obj) const { return count <= obj.count; };
+		reverse_iterator(T value = NULL) : value(value)						{}
+		~reverse_iterator() 												{};
+		template <class U> reverse_iterator(const iterator<U>& other,
+				typename ft::enable_if<std::is_convertible<U, iterator_type>::value>::type* = 0)
+						: value(other.base()) 								{};
+		T					base() const 									{ return value; }
+		reverse_iterator	&operator=(const reverse_iterator &obj) 		{ value = obj.value; return *this; }
+		reverse_iterator	operator++(int) 								{ value--; return *this; }
+		reverse_iterator	operator--(int) 								{ value++; return *this; }
+		reverse_iterator	&operator++() 									{ value--; return *this; }
+		reverse_iterator	&operator--() 									{ value++; return *this; }
+		int					operator-(reverse_iterator const &obj) const 	{ return value + obj.value; }
+		int					operator+(reverse_iterator const &obj) const 	{ return value - obj.value; }
+		reverse_iterator	operator-(int n) const 							{ return reverse_iterator(this->value + n); }
+		reverse_iterator	operator+(int n) const 							{ return reverse_iterator(this->value - n); }
+		reverse_iterator	&operator-=(int n) 								{ this->value += n; return (*this); }
+		reverse_iterator	&operator+=(int n) 								{ this->value -= n; return (*this); }
+		reference 			operator*() const 								{ return *value; }
+		pointer 			operator->() const 								{ return &(*value); }
+		reference 			operator[](const unsigned int index) 			{ return *this->value[index]; }
+		bool				operator== (reverse_iterator const &obj) const 	{ return value == obj.value; };
+		bool				operator!= (reverse_iterator const &obj) const 	{ return value != obj.value; };
+		bool				operator< (reverse_iterator const &obj) const	{ return value > obj.value; };
+		bool				operator> (reverse_iterator const &obj) const 	{ return value < obj.value; };
+		bool				operator<= (reverse_iterator const &obj) const 	{ return value >= obj.value; };
+		bool				operator>= (reverse_iterator const &obj) const 	{ return value <= obj.value; };
 	};
 
 }

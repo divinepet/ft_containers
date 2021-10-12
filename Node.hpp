@@ -1,40 +1,67 @@
-#include <iostream>
 #pragma once
+
+#include <iostream>
 using std::cout;
 using std::endl;
 
 template <class T, class V>
 class Node;
+template <class T>
+class node_iterator;
 enum Color { RED = 0, BLACK = 1};
 
 template <class T, class V>
 class Node_Base {
 	typedef Node_Base<T, V> *node_ptr;
 	friend class Node<T, V>;
-public:
-	typedef Node_Base<T, V> *node_iterator;
-	node_ptr left, right, parent;
-	node_ptr prior, next;
+	friend class node_iterator<Node_Base<T, V> >;
+	node_ptr left, right, parent, prior, next;
 	Color color;
-	T val;
-	V val2;
-	
-	explicit Node_Base(T value, V value2) : left(this), right(this), parent(this), val(value), val2(value2), color(RED) {}
-	Node_Base(T value, V value2, node_ptr l, node_ptr r) : val(value), val2(value2), left(l), right(r), parent(this), color(RED) {}
+public:
+	typedef node_iterator<Node_Base<T, V> > iterator;
+	T first;
+	V second;
+
+	explicit Node_Base(T first, V second) : left(this), right(this), parent(this), first(first), second(second), color(RED) {}
+	Node_Base(T first, V second, node_ptr l, node_ptr r) : first(first), second(second), left(l), right(r), parent(this), color(RED) {}
+
+};
+
+template <class T>
+class node_iterator {
+private:
+	T* node;
+public:
+	node_iterator(T* value = nullptr) : node(value)						{}
+	~node_iterator()													{};
+	node_iterator(const node_iterator &temp)							{ *this = temp; }
+	node_iterator	&operator=(const node_iterator &obj) 				{ node = obj.node; return *this; }
+	node_iterator	operator++(int)										{ node = node->next; return *this; }
+	node_iterator	&operator++() 										{ node = node->next; return *this; }
+	node_iterator	operator--(int)										{ node = node->parent; return *this; }
+	node_iterator	&operator--() 										{ node = node->parent; return *this; }
+	T& 				operator*() const 									{ return *node; }
+	T*			 	operator->() const 									{ return &(*node); }
+	bool			operator==(node_iterator const &obj) const 			{ return node == obj.node; };
+	bool			operator!=(node_iterator const &obj) const 			{ return node != obj.node; };
+	bool 			operator<(node_iterator const &obj) const 			{ return node < obj.node; };
+	bool 			operator>(node_iterator const &obj) const 			{ return node > obj.node; };
+	bool 			operator<=(node_iterator const &obj) const 			{ return node <= obj.node; };
+	bool 			operator>=(node_iterator const &obj) const 			{ return node >= obj.node; };
 };
 
 template <class T, class V>
 class Node {
 	friend class Node_Base<T, V>;
 	typedef Node_Base<T, V>* node_ptr;
+	friend class node_iterator<Node_Base<T, V> >;
 	node_ptr header;
 	node_ptr root;
 	node_ptr NIL;
 	node_ptr _prior;
 	node_ptr _next;
 public:
-	typedef Node_Base<T, V>* node_iterator;
-
+	typedef node_iterator<Node_Base<T, V> > iterator;
 	Node() {
 		header = new Node_Base<T, V>(0, 0);
 		NIL = new Node_Base<T, V>(-1, -1);
@@ -50,43 +77,44 @@ public:
 	}
 
 	bool isEmptyNode() 		{ return root == NIL; };
-	T getMax() 				{ return header->prior->val; };
-	T getMin() 				{ return header->next->val; };
-	node_iterator begin() 	{ return header->next; }
-	node_iterator end() 	{ return header; }
+	T getMax() 				{ return header->prior->first; };
+	T getMin() 				{ return header->next->first; };
+	iterator begin() 	{ return header->next; }
+	iterator end() 	{ return header; }
 
-	void insertNode(T x, V v) {
+	node_ptr insertNode(T x, V v) {
 		node_ptr n = new Node_Base<T, V>(x, v, NIL, NIL);
-		insertNode(n);
+		return insertNode(n);
 	};
 
-	void insertNode(node_ptr x) {
-		node_ptr first, second;
-		first = second = root;
+	node_ptr insertNode(node_ptr x) {
+		node_ptr one, two;
+		one = two = root;
 		if(root == NIL) {
 			root = x;
 			header->right = x;
 			x->parent = header;
 			x->color = BLACK;
-			return;
+			return x;
 		}
-		while (first != NIL) {
-			second = first;
-			if (first->val > x->val)
-				first = first->left;
-			else if (first->val < x->val)
-				first = first->right;
+		while (one != NIL) {
+			two = one;
+			if (one->first > x->first)
+				one = one->left;
+			else if (one->first < x->first)
+				one = one->right;
 			else
-				return ;
+				return x;
 		}
-		x->parent = second;
-		if(second->val > x->val){
-			second->left = x;
-		}else{
-			second->right = x;
+		x->parent = two;
+		if (two->first > x->first) {
+			two->left = x;
+		} else {
+			two->right = x;
 		}
 		insertFix(x);
 		leftOrRight();
+		return x;
 	};
 
 	bool deleteNode(T x) {
@@ -133,10 +161,10 @@ public:
 
 	node_ptr searchNode(T x) {
 		node_ptr temp = root;
-		while(temp != NIL) {
-			if (temp->val > x)
+		while (temp != NIL) {
+			if (temp->first > x)
 				temp = temp->left;
-			else if (temp->val < x)
+			else if (temp->first < x)
 				temp = temp->right;
 			else
 				return temp;
@@ -149,10 +177,10 @@ public:
 		cout << endl;
 	};
 
-	void Iterator_visit(node_iterator begin, node_iterator end) {
-		node_iterator temp = begin;
+	void Iterator_visit(iterator begin, iterator end) {
+		iterator temp = begin;
 		while (temp != end) {
-			cout << "key: " << temp->val << ", value: " << temp->val2 << endl;
+			cout << "key: " << temp->first << ", value: " << temp->second << endl;
 			temp = temp->next;
 		}
 	}
@@ -183,7 +211,7 @@ private:
 		if(c->left != NIL){
 			printElements(c->left);
 		}
-		cout << "key: " << c->val << ", value: " << c->val2 << endl;
+		cout << "key: " << c->first << ", value: " << c->second << endl;
 		if(c->right != NIL){
 			printElements(c->right);
 		}
