@@ -32,18 +32,40 @@ public:
 									/* CONSTRUCTORS AND DESTRUCTORS */
 									/********************************/
 
-	Map() {};
+	Map() : _size(0) {};
 
 	explicit Map( const Compare& comp, const A& alloc = A()) {};
 
 	template< class InputIt >
 	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) {};
 
-	Map(const Map& other) {};
+	Map(const Map& other) : _size(other._size) {
+		_node = other._node;
+	};
 
 	~Map() {};
 
-	Map& operator=(const Map& other) {};
+	Map& operator=(const Map& other) {
+		if (this == &other)
+			return *this;
+		_node = other._node;
+		_size = other._size;
+		return *this;
+	};
+
+//	Vector& operator=(const Vector& other) {
+//		if (this == &other)
+//			return *this;
+//		this->clear();
+//		allocator.deallocate(buffer, _capacity);
+//		_capacity = other._capacity;
+//		_size = other._size;
+//		buffer = allocator.allocate(_capacity);
+//		for (int i = 0; i < _size; ++i) {
+//			buffer[i] = other.buffer[i];
+//		}
+//		return *this;
+//	};
 
 	allocator_type get_allocator() const { return _allocator; };
 
@@ -71,8 +93,14 @@ public:
 
 	//todo check unique key incoming
 	ft::pair<iterator, bool> insert(const value_type& value) {
-		_size++;
-		iterator it = _node.insertNode(value.first, value.second);
+		iterator it;
+		bool isAdded = false;
+		if (_node.searchNode(value.first) == _node.NIL) {
+			it = _node.insertNode(value.first, value.second);
+			_size++;
+			isAdded = true;
+		} else
+			it = _node.searchNode(value.first);
 		return ft::pair<iterator, bool>(it, true);
 	};
 

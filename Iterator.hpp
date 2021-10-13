@@ -43,8 +43,8 @@ namespace ft {
 						: value(other.base()) 				{};
 		T			base() const 							{ return value; }
 		iterator	&operator=(const iterator &obj) 		{ this->value = obj.value; return *this; }
-		iterator	operator++(int)							{ value++; return *this; }
-		iterator	operator--(int) 						{ value--; return *this; }
+		iterator	operator++(int)							{ iterator tmp(*this); value++; return tmp; }
+		iterator	operator--(int) 						{ iterator tmp(*this); value--; return tmp; }
 		iterator	&operator++() 							{ value++; return *this; }
 		iterator	&operator--() 							{ value--; return *this; }
 		int			operator-(iterator const &obj) const 	{ return value - obj.value; }
@@ -84,8 +84,8 @@ namespace ft {
 						: value(other.base()) 								{};
 		T					base() const 									{ return value; }
 		reverse_iterator	&operator=(const reverse_iterator &obj) 		{ value = obj.value; return *this; }
-		reverse_iterator	operator++(int) 								{ value--; return *this; }
-		reverse_iterator	operator--(int) 								{ value++; return *this; }
+		reverse_iterator	operator++(int) 								{ reverse_iterator tmp(*this); value--; return tmp; }
+		reverse_iterator	operator--(int) 								{ reverse_iterator tmp(*this); value++; return tmp; }
 		reverse_iterator	&operator++() 									{ value--; return *this; }
 		reverse_iterator	&operator--() 									{ value++; return *this; }
 		int					operator-(reverse_iterator const &obj) const 	{ return value + obj.value; }
@@ -112,16 +112,17 @@ namespace ft {
 	public:
 		node_iterator(T value = nullptr) : node(value)						{};
 		~node_iterator()													{};
-//		node_iterator(const node_iterator &temp)							{ *this = temp; }
 		template <class U> node_iterator(const node_iterator<U>& other,
 				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
 						: node(other.base()) 								{};
 		T					base() const 									{ return node; }
 		node_iterator	&operator=(const node_iterator &obj) 				{ node = obj.node; return *this; }
-		node_iterator	operator++(int)										{ node = node->next; return *this; }
-		node_iterator	&operator++() 										{ node = node->next; return *this; }
-		node_iterator	operator--(int)										{ node = node->parent; return *this; }
-		node_iterator	&operator--() 										{ node = node->parent; return *this; }
+		node_iterator	operator++(int)										{ node_iterator tmp(*this); node = node->get_begin(node); return tmp; }
+		node_iterator	&operator++() 										{ node = node->increment(node); return *this; }
+//		node_iterator	operator++(int)										{ node_iterator tmp(*this); node = node->next; return tmp; }
+//		node_iterator	&operator++() 										{ node = node->next; return *this; }
+		node_iterator	operator--(int)										{ return *this; }
+		node_iterator	&operator--() 										{ return *this; }
 		T& 				operator*() const 									{ return *node; }
 		T			 	operator->() const 									{ return &(*node); }
 		bool			operator==(node_iterator const &obj) const 			{ return node == obj.node; };

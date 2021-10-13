@@ -10,6 +10,7 @@
 #include <iostream>
 #include "../Utility.hpp" // your utilities
 #include "../Vector.hpp" // your vector
+//#include "../Map.hpp"
 const char* cmd_name = "app"; // your executable program name (for example ./a.out is a.out etc.)
 
 #include "functions.hpp"
@@ -79,6 +80,8 @@ void algorithm_tests() {
 }
 
 void map_tests() {
+	std::map<int, int> map;
+//	ft::Map<int, int> my_map;
 	time_t t1;
 	time_t t2;
 
@@ -86,8 +89,7 @@ void map_tests() {
 	cout << "|                                  MAP                                 |" << endl;
 	cout << "------------------------------------------------------------------------" << endl;
 
-	// iterators equality
-	// pair, make_pair and associated methods
+//	printElement("insert()");(insert_test(map) == insert_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 }
 
 
@@ -97,8 +99,8 @@ void start_tests() {
 	cout << "*                    ft_containers TESTS by @elaronda                  *" << endl;
 	cout << "*                                                                      *" << endl;
 	cout << "************************************************************************" << endl;
-	vector_tests();
-	algorithm_tests();
+//	vector_tests();
+//	algorithm_tests();
 	map_tests();
 	leaks_test();
 }

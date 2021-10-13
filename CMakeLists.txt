@@ -14,4 +14,4 @@ add_executable( ft_containers
                 Vector.hpp
                 Iterator.hpp
                 Node.hpp
-        Utility.hpp oldNode.hpp)
+        Utility.hpp oldNode.hpp originalNode.hpp badNode.hpp)

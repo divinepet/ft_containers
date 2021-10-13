@@ -17,7 +17,6 @@ class Node_Base {
 public:
 	node_ptr left, right, parent, prior, next;
 	Color color;
-//	typedef ft::node_iterator< Node_Base<T, V> > node_iterator;
 	T first;
 	V second;
 

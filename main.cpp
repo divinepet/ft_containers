@@ -1,10 +1,165 @@
 //#include "Node.hpp"
 #include <map>
-#include "Map.hpp"
+//#include "Map.hpp"
+//#include "ft_containers_tests/general.hpp"
+//#include "originalNode.hpp"
+#include <iostream>
+using std::cout;
+using std::endl;
+#include "oldNode.hpp"
+#include "Iterator.hpp"
+//#include "Map.hpp"
+
+//template <class T, class V>
+//void print(std::map<T, V> map) {
+//	typename std::map<T, V>::iterator it = map.begin();
+//	for (; it != map.end(); ++it) {
+//		cout << "key: " << it->first << ", value: " << it->second << endl;
+//	}
+//}
+//
+//template <class T, class V>
+//void print(ft::Map<T, V> map) {
+//	typename ft::Map<T, V>::iterator it = map.begin();
+//	for (; it != map.end(); ++it) {
+//		cout << "key: " << it->first << ", value: " << it->second << endl;
+//	}
+//}
 
 int main(int argc, char **argv) {
+//	std::map<int, int > mp(std::is_integral<int>);
+//	ft::Map<int, int> m(std::isalpha(4));
 
 
+
+	Tree<int> tree;
+
+
+
+	tree.insertNode(4);
+	tree.insertNode(10);
+
+	tree.iterator = tree.get_begin();
+	cout << tree.iterator->data << endl;
+
+
+//	t = insertNode(2);
+//	t = insertNode(13);
+//	t = insertNode(15);
+//	t = insertNode(11);
+//	t = insertNode(6);
+//	t = insertNode(12);
+//	t = insertNode(1) ;
+//	t = insertNode(17);
+//	t = insertNode(7) ;
+//	t = insertNode(18);
+//	t = insertNode(8) ;
+//	t = insertNode(19);
+//
+//
+//
+
+
+
+//	cout << root->right->left->data << endl;
+//	cout << root->right->right->data << endl;
+
+
+
+//	ft::Map<int, int > mp;
+//	mp.insert(ft::make_pair(12, 3));
+//	mp.insert(ft::make_pair(18, 3));
+//	mp.insert(ft::make_pair(6, 3));
+//	mp.insert(ft::make_pair(13, 3));
+//	mp.insert(ft::make_pair(19, 3));
+//	mp.insert(ft::make_pair(15, 3));
+//	mp.insert(ft::make_pair(17, 3));
+//	mp.insert(ft::make_pair(11, 3));
+//	mp.insert(ft::make_pair(8, 3));
+//	mp.insert(ft::make_pair(2, 3));
+//	mp.insert(ft::make_pair(7, 3));
+//	mp.insert(ft::make_pair(1, 3));
+
+
+
+
+//	RBTree<int> rb;
+//	g_start1 = timer();
+//	for(int i = 0; i < 15000; ++i)
+//		rb.Insert(i);
+//	g_end1 = timer();
+
+//	cout << g_end1 - g_start1 << "ms" << endl;
+
+
+
+
+//	ft::Map<int, int> mp;
+//	mp.insert(ft::make_pair(3, 3));
+//	mp.insert(ft::make_pair(2, 2));
+//
+//	ft::Map<int, int> mp2;
+//	mp2.insert(ft::make_pair(333, 333));
+//	mp2.insert(ft::make_pair(777, 777));
+//
+//	ft::Map<int, int> mp3(mp2);
+////	print(mp3);
+//
+//	mp = mp2;
+//
+//	print(mp);
+
+//	mp.insert(ft::make_pair(35, 1));
+//	mp.insert(ft::make_pair(44, 1));
+//	mp.insert(ft::make_pair(89, 1));
+//	mp.insert(ft::make_pair(127, 1));
+//	mp.insert(ft::make_pair(444, 1));
+//
+//
+//
+//	ft::Map<int, int>::iterator it = mp.begin();
+//	it++;
+//	it++;
+//	it++;
+//	it++;
+//	it--;
+//	it--;
+//	it--;
+//	it--;
+//	cout << it->first << endl;
+
+//	std::map<int, int > m;
+//	m.insert(std::make_pair(3, 3));
+//	m.insert(std::make_pair(4, 4));
+//	m.insert(std::make_pair(5, 5));
+//
+//	std::map<int, int >::iterator i = m.begin();
+//
+//	while (i++ != m.end()) {
+//		cout << i->first << endl;
+//	}
+
+
+//	std::map<int, int > mp;
+//	mp.insert(std::make_pair(3, 4));
+//	mp.insert(std::make_pair(7, 7));
+//	mp.insert(std::make_pair(9, 9));
+//	std::pair<std::map<int, int>::iterator , bool> pair = mp.insert(std::make_pair(9, 9));
+//
+//	std::map<int, int>::iterator it = pair.first;
+
+//	cout << it->first << endl;
+
+//	ft::Map<int, int> mp;
+//	mp.insert(ft::make_pair(3, 3));
+
+
+//	mp.insert(ft::make_pair(3, 3));
+
+//	std::map<int, int>::iterator it = mp.begin();
+//	for (; it != mp.end(); ++it) {
+//		cout << "key: " << it->first << ", value: " << it->second << endl;
+//	}
 
 //	Node<int, int> t;
 //	t.insertNode(6, 6);
@@ -129,5 +284,4 @@ int main(int argc, char **argv) {
 //	for (it=mp.begin(); it != mp.end(); it++)
 //		std::cout << "key: " << it->first << " value: " << it->second << "\n";
 
-//	start_tests();
 }
