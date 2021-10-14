@@ -1,13 +1,11 @@
-//#include "Node.hpp"
 #include <map>
-//#include "Map.hpp"
-//#include "ft_containers_tests/general.hpp"
-//#include "originalNode.hpp"
 #include <iostream>
 using std::cout;
 using std::endl;
-#include "oldNode.hpp"
-#include "Iterator.hpp"
+#include "Map.hpp"
+//#include "ft_containers_tests/general.hpp"
+//#include "oldNode.hpp"
+
 //#include "Map.hpp"
 
 //template <class T, class V>
@@ -27,21 +25,74 @@ using std::endl;
 //}
 
 int main(int argc, char **argv) {
-//	std::map<int, int > mp(std::is_integral<int>);
-//	ft::Map<int, int> m(std::isalpha(4));
+
+	ft::Map<int, int> mp;
+	mp.insert(ft::make_pair(3, 3));
+	mp.insert(ft::make_pair(5, 5));
+
+	ft::Map<int, int>::iterator it = mp.begin();
+
+	cout << it->first << endl;
+	cout << it->second << endl;
+
+//	ft::Map<int, int> mp;
+//	ft::Map<int, int>::const_iterator it = mp.begin();
+
+
+//
+//	Tree<int, int> tree;
+////
+//	tree.insertNode(3, 3);
+//	tree.insertNode(11, 11);
+//	tree.insertNode(1, 1);
+////
+//	tree.iterator = tree.get_begin();
+////
+////
+//	tree.iterator = tree.decrement(tree.iterator);
+//	tree.iterator = tree.increment(tree.iterator);
+//	tree.iterator = tree.increment(tree.iterator);
+
+//	tree.iterator = tree.get_end(); // 3
+
+//	tree.iterator = tree.decrement(tree.iterator);
+//
+//	cout << tree.iterator->first << endl;
 
 
 
-	Tree<int> tree;
+
+//	std::map<int, int> m;
+//
+//	m.insert(std::make_pair(3, 3));
+//	m.insert(std::make_pair(5, 5));
+//	std::map<int, int>::iterator it = m.begin();
+//	it++;
+//	it++;
+//	it++;
+//	cout << it->first << endl;
 
 
 
-	tree.insertNode(4);
-	tree.insertNode(10);
 
-	tree.iterator = tree.get_begin();
-	cout << tree.iterator->data << endl;
 
+//	cout << m.max_size() << endl;
+//	cout << m[0] << endl;
+
+
+
+
+
+
+
+
+
+
+
+//	ft::node_iterator<Tree<int, int>::Node_*> it;
+//	it = tree.get_begin();
+//
+//	cout << it->first << endl;
 
 //	t = insertNode(2);
 //	t = insertNode(13);

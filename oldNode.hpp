@@ -6,26 +6,34 @@
 typedef enum { BLACK, RED } nodeColor;
 
 
-template <class T>
+template <class T, class V>
 class Tree {
 public:
 	struct Node_ {
+	private:
 		struct Node_ *left;
 		struct Node_ *right;
 		struct Node_ *parent;
-		nodeColor color;
-		T data;
+		bool color;
+		friend class Tree<T, V>;
+	public:
+		T first;
+		V second;
 	};
 	Node_ sentinel;
 	Node_ *root;
-	Node_ *begin;
 	Node_ *iterator;
+	Node_ *begin;
+	Node_ *last;
 	Tree() {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
-		sentinel.data = 0;
+		sentinel.first = T();
+		sentinel.second = V();
+		last = &sentinel;
+		begin = &sentinel;
 		root = &sentinel;
 	}
 
@@ -47,18 +55,11 @@ public:
 	}
 
 	void rotateRight(Node_ *x) {
-
-		/****************************
-		 *  rotate node x to right  *
-		 ****************************/
-
 		Node_ *y = x->left;
 
-		/* establish x->left link */
 		x->left = y->right;
 		if (y->right != &sentinel) y->right->parent = x;
 
-		/* establish y->parent link */
 		if (y != &sentinel) y->parent = x->parent;
 		if (x->parent) {
 			if (x == x->parent->right)
@@ -69,58 +70,36 @@ public:
 			root = y;
 		}
 
-		/* link x and y */
 		y->right = x;
 		if (x != &sentinel) x->parent = y;
 	}
 
 	void insertFixup(Node_ *x) {
-
-		/*************************************
-		 *  maintain Red-Black tree balance  *
-		 *  after inserting node x           *
-		 *************************************/
-
-		/* check Red-Black properties */
 		while (x != root && x->parent->color == RED) {
-			/* we have a violation */
 			if (x->parent == x->parent->parent->left) {
 				Node_ *y = x->parent->parent->right;
 				if (y->color == RED) {
-
-					/* uncle is RED */
 					x->parent->color = BLACK;
 					y->color = BLACK;
 					x->parent->parent->color = RED;
 					x = x->parent->parent;
 				} else {
-
-					/* uncle is BLACK */
 					if (x == x->parent->right) {
-						/* make x a left child */
 						x = x->parent;
 						rotateLeft(x);
 					}
-
-					/* recolor and rotate */
 					x->parent->color = BLACK;
 					x->parent->parent->color = RED;
 					rotateRight(x->parent->parent);
 				}
 			} else {
-
-				/* mirror image of above code */
 				Node_ *y = x->parent->parent->left;
 				if (y->color == RED) {
-
-					/* uncle is RED */
 					x->parent->color = BLACK;
 					y->color = BLACK;
 					x->parent->parent->color = RED;
 					x = x->parent->parent;
 				} else {
-
-					/* uncle is BLACK */
 					if (x == x->parent->left) {
 						x = x->parent;
 						rotateRight(x);
@@ -134,34 +113,28 @@ public:
 		root->color = BLACK;
 	}
 
-	Node_ *insertNode(T data) {
+	Node_ *insertNode(T first, V second) {
 		Node_ *current, *parent, *x;
 
-		/***********************************************
-		 *  allocate node for data and insert in tree  *
-		 ***********************************************/
-
-		/* find where node belongs */
 		current = root;
 		parent = 0;
 		while (current != &sentinel) {
-			if (compEQ(data, current->data)) return (current);
+			if (compEQ(first, current->first)) return (current);
 			parent = current;
-			current = compLT(data, current->data) ?
+			current = compLT(first, current->first) ?
 					current->left : current->right;
 		}
 
-		/* setup new node */
 		x = new Node_();
-		x->data = data;
+		x->first = first;
+		x->second = second;
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
 		x->color = RED;
 
-		/* insert node in tree */
-		if(parent) {
-			if(compLT(data, parent->data))
+		if (parent) {
+			if(compLT(first, parent->first))
 				parent->left = x;
 			else
 				parent->right = x;
@@ -169,17 +142,13 @@ public:
 			root = x;
 		}
 
+		if (last->first < x->first) last = x;
+		if (begin->first > x->first) begin = x;
 		insertFixup(x);
 		return(x);
 	}
 
 	void deleteFixup(Node_ *x) {
-
-		/*************************************
-		 *  maintain Red-Black tree balance  *
-		 *  after deleting node x            *
-		 *************************************/
-
 		while (x != root && x->color == BLACK) {
 			if (x == x->parent->left) {
 				Node_ *w = x->parent->right;
@@ -238,87 +207,91 @@ public:
 		Node_ *x, *y;
 		if (!z || z == &sentinel) return;
 
+		if (z == last) last = decrement(last);
+		if (z == begin) begin = increment(begin);
+
 		if (z->left == &sentinel || z->right == &sentinel) {
-			/* y has a &sentinel node as a child */
 			y = z;
 		} else {
-			/* find tree successor with a &sentinel node as a child */
 			y = z->right;
-			while (y->left != &sentinel) y = y->left;
+			while (y->left != &sentinel)
+				y = y->left;
 		}
 
-		/* x is y's only child */
 		if (y->left != &sentinel)
 			x = y->left;
 		else
 			x = y->right;
 
-		/* remove y from the parent chain */
 		x->parent = y->parent;
 		if (y->parent)
 			if (y == y->parent->left)
 				y->parent->left = x;
 			else
 				y->parent->right = x;
-			else
-				root = x;
+		else
+			root = x;
+		if (y != z) {
+			z->first = y->first;
+			z->second = y->second;
+		}
 
-			if (y != z) z->data = y->data;
-
-
-			if (y->color == BLACK)
-				deleteFixup (x);
-
-			free (y);
+		if (y->color == BLACK)
+			deleteFixup (x);
+		free (y);
 	}
 
-	Node_ *findNode(T data) {
+	Node_ *findNode(T first) {
 		Node_ *current = root;
-		while (current != &sentinel)
-			if(compEQ(data, current->data))
+
+		while (current != &sentinel) {
+			if(compEQ(first, current->first))
 				return (current);
 			else
-				current = compLT (data, current->data) ?
-						current->left : current->right;
-			return(0);
+				current = compLT (first, current->first) ? current->left : current->right;
+		}
+		return &sentinel;
 	}
 
 	void printElem(Node_ *t) {
 		if (t->left != &sentinel)
 			printElem(t->left);
-		cout << t->data << endl;
+		cout << t->first << endl;
 		if (t->right != &sentinel)
 			printElem(t->right);
 	}
 
-	Node_* get_begin() {
-		Node_* tmp = root;
-		return tmp;
-	}
+	Node_* get_begin() { return begin; }
+
+	Node_* get_end() { return last->right + 1; }
 
 	Node_* increment(Node_ *t) {
+		if (t == last)
+			return last->right + 1;
 		if (t->right != &sentinel) {
 			t = t->right;
 			while (t->left != &sentinel)
 				t = t->left;
 			return t;
 		}
-		T value = t->data;
-		while (value >= t->data) {
+		T value = t->first;
+		while (value >= t->first) {
 			t = t->parent;
+			if (t == NULL) break;
 		}
 		return t;
 	}
 
 	Node_* decrement(Node_ *t) {
+		if (t == begin) return begin->left - 1;
 		if (t->left != &sentinel) {
 			t = t->left;
 			while (t->right != &sentinel)
 				t = t->right;
 			return t;
 		}
-		T value = t->data;
-		while (value <= t->data) {
+		T value = t->first;
+		while (value <= t->first ) {
 			t = t->parent;
 		}
 		return t;
