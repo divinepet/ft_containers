@@ -105,30 +105,60 @@ namespace ft {
 		bool				operator>= (reverse_iterator const &obj) const 	{ return value <= obj.value; };
 	};
 
+
 	template <class T>
 	class node_iterator {
 	private:
 		T node;
+		void next() {
+			if (node->right->left != node->right && node->right->right != node->right) {
+				cout << "left" << endl;
+				node = node->right;
+				while (node->left->left != node->left && node->left->right != node->left)
+					node = node->left;
+			}
+			else {
+				cout << "right" << endl;
+				T tmp = node;
+				while (tmp->first >= node->first) {
+					node = node->parent;
+					if (node->parent && node->parent->left && node->parent->right) { node = tmp + 1; }
+				}
+			}
+		}
+		void prev() {
+			if (node->left != node->left->left && node->left != node->left->right) {
+				node = node->left;
+				while (node->right != node->right->left && node->right != node->right->right)
+					node = node->right;
+			} else {
+				T tmp = node;
+				while (tmp->first <= node->first) {
+					node = node->parent;
+					if (node->parent && node->parent->left && node->parent->right) { cout << "stop it" << endl; node = tmp->left - 1; }
+				}
+			}
+		}
 	public:
 		node_iterator(T value = nullptr) : node(value)						{};
 		~node_iterator()													{};
 		template <class U> node_iterator(const node_iterator<U>& other,
 				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
 						: node(other.base()) 								{};
-		T					base() const 									{ return node; }
+		T					base() const 									{ return *node; }
 		node_iterator	&operator=(const node_iterator &obj) 				{ node = obj.node; return *this; }
-		node_iterator	operator++(int)										{ node_iterator tmp(*this); node = node->increment(node); return tmp; }
-		node_iterator	&operator++() 										{ node = node->increment(node); return *this; }
-		node_iterator	operator--(int)										{ node_iterator tmp(*this); node = node->decrement(node); return tmp; }
-		node_iterator	&operator--() 										{ node = node->decrement(node); return *this; }
+		node_iterator	operator++(int)										{ node_iterator tmp(*this); next(); return tmp; }
+		node_iterator	&operator++() 										{ next(); return *this; }
+		node_iterator	operator--(int)										{ node_iterator tmp(*this); prev(); return tmp; }
+		node_iterator	&operator--() 										{ prev(); return *this; }
 		T& 				operator*() const 									{ return *node; }
 		T			 	operator->() const 									{ return &(*node); }
-		bool			operator==(node_iterator const &obj) const 			{ return node->first == obj.node->first; };
-		bool			operator!=(node_iterator const &obj) const 			{ return node->first != obj.node->first; };
-		bool 			operator<(node_iterator const &obj) const 			{ return node->first < obj.node->first; };
-		bool 			operator>(node_iterator const &obj) const 			{ return node->first > obj.node->first; };
-		bool 			operator<=(node_iterator const &obj) const 			{ return node->first <= obj.node->first; };
-		bool 			operator>=(node_iterator const &obj) const 			{ return node->first >= obj.node->first; };
+		bool			operator==(node_iterator const &obj) const 			{ return &node == &obj.node; };
+//		bool			operator!=(node_iterator const &obj) const 			{ return node->first != obj.node->first; };
+//		bool 			operator<(node_iterator const &obj) const 			{ return node->first < obj.node->first; };
+//		bool 			operator>(node_iterator const &obj) const 			{ return node->first > obj.node->first; };
+//		bool 			operator<=(node_iterator const &obj) const 			{ return node->first <= obj.node->first; };
+//		bool 			operator>=(node_iterator const &obj) const 			{ return node->first >= obj.node->first; };
 	};
 
 }

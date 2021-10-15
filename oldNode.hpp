@@ -1,30 +1,37 @@
 #pragma once
 
+#include "Iterator.hpp"
+
 #define compLT(a,b) (a < b)
 #define compEQ(a,b) (a == b)
 
 typedef enum { BLACK, RED } nodeColor;
 
+template <class T, class V>
+class Tree;
+
+template <class T, class V>
+struct Node_ {
+private:
+	friend class Tree<T, V>;
+	bool color;
+	struct Node_ *left;
+	struct Node_ *right;
+	struct Node_ *parent;
+public:
+	T first;
+	V second;
+};
+
 
 template <class T, class V>
 class Tree {
 public:
-	struct Node_ {
-	private:
-		struct Node_ *left;
-		struct Node_ *right;
-		struct Node_ *parent;
-		bool color;
-		friend class Tree<T, V>;
-	public:
-		T first;
-		V second;
-	};
-	Node_ sentinel;
-	Node_ *root;
-	Node_ *iterator;
-	Node_ *begin;
-	Node_ *last;
+	Node_<T, V> sentinel;
+	Node_<T, V> *root;
+	Node_<T, V> *i;
+	Node_<T, V> *begin;
+	Node_<T, V> *last;
 	Tree() {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
@@ -37,8 +44,8 @@ public:
 		root = &sentinel;
 	}
 
-	void rotateLeft(Node_ *x) {
-		Node_ *y = x->right;
+	void rotateLeft(Node_<T, V> *x) {
+		Node_<T, V> *y = x->right;
 		x->right = y->left;
 		if (y->left != &sentinel) y->left->parent = x;
 		if (y != &sentinel) y->parent = x->parent;
@@ -54,8 +61,8 @@ public:
 		if (x != &sentinel) x->parent = y;
 	}
 
-	void rotateRight(Node_ *x) {
-		Node_ *y = x->left;
+	void rotateRight(Node_<T, V> *x) {
+		Node_<T, V> *y = x->left;
 
 		x->left = y->right;
 		if (y->right != &sentinel) y->right->parent = x;
@@ -74,10 +81,10 @@ public:
 		if (x != &sentinel) x->parent = y;
 	}
 
-	void insertFixup(Node_ *x) {
+	void insertFixup(Node_<T, V> *x) {
 		while (x != root && x->parent->color == RED) {
 			if (x->parent == x->parent->parent->left) {
-				Node_ *y = x->parent->parent->right;
+				Node_<T, V> *y = x->parent->parent->right;
 				if (y->color == RED) {
 					x->parent->color = BLACK;
 					y->color = BLACK;
@@ -93,7 +100,7 @@ public:
 					rotateRight(x->parent->parent);
 				}
 			} else {
-				Node_ *y = x->parent->parent->left;
+				Node_<T, V> *y = x->parent->parent->left;
 				if (y->color == RED) {
 					x->parent->color = BLACK;
 					y->color = BLACK;
@@ -113,8 +120,8 @@ public:
 		root->color = BLACK;
 	}
 
-	Node_ *insertNode(T first, V second) {
-		Node_ *current, *parent, *x;
+	Node_<T, V> *insertNode(T first, V second) {
+		Node_<T, V> *current, *parent, *x;
 
 		current = root;
 		parent = 0;
@@ -125,7 +132,7 @@ public:
 					current->left : current->right;
 		}
 
-		x = new Node_();
+		x = new Node_<T, V>();
 		x->first = first;
 		x->second = second;
 		x->parent = parent;
@@ -142,16 +149,19 @@ public:
 			root = x;
 		}
 
-		if (last->first < x->first) last = x;
-		if (begin->first > x->first) begin = x;
+		if (last == &sentinel || last->first < x->first)
+			last = x;
+		if (begin == &sentinel || begin->first > x->first)
+			begin = x;
+
 		insertFixup(x);
 		return(x);
 	}
 
-	void deleteFixup(Node_ *x) {
+	void deleteFixup(Node_<T, V> *x) {
 		while (x != root && x->color == BLACK) {
 			if (x == x->parent->left) {
-				Node_ *w = x->parent->right;
+				Node_<T, V> *w = x->parent->right;
 				if (w->color == RED) {
 					w->color = BLACK;
 					x->parent->color = RED;
@@ -175,7 +185,7 @@ public:
 					x = root;
 				}
 			} else {
-				Node_ *w = x->parent->left;
+				Node_<T, V> *w = x->parent->left;
 				if (w->color == RED) {
 					w->color = BLACK;
 					x->parent->color = RED;
@@ -203,8 +213,8 @@ public:
 		x->color = BLACK;
 	}
 
-	void deleteNode(Node_ *z) {
-		Node_ *x, *y;
+	void deleteNode(Node_<T, V> *z) {
+		Node_<T, V> *x, *y;
 		if (!z || z == &sentinel) return;
 
 		if (z == last) last = decrement(last);
@@ -241,10 +251,10 @@ public:
 		free (y);
 	}
 
-	Node_ *findNode(T first) {
-		Node_ *current = root;
+	Node_<T, V>* findNode(T first) {
+		Node_<T, V> *current = root;
 
-		while (current != &sentinel) {
+		while (current) {
 			if(compEQ(first, current->first))
 				return (current);
 			else
@@ -253,7 +263,7 @@ public:
 		return &sentinel;
 	}
 
-	void printElem(Node_ *t) {
+	void printElem(Node_<T, V> *t) {
 		if (t->left != &sentinel)
 			printElem(t->left);
 		cout << t->first << endl;
@@ -261,13 +271,12 @@ public:
 			printElem(t->right);
 	}
 
-	Node_* get_begin() { return begin; }
+	Node_<T, V>* get_begin() { return begin; }
 
-	Node_* get_end() { return last->right + 1; }
+	Node_<T, V>* get_end() { return last->right + 1; }
 
-	Node_* increment(Node_ *t) {
-		if (t == last)
-			return last->right + 1;
+	Node_<T, V>* increment(Node_<T, V> *t) {
+		if (t == last) { return begin->right + 1; }
 		if (t->right != &sentinel) {
 			t = t->right;
 			while (t->left != &sentinel)
@@ -277,12 +286,12 @@ public:
 		T value = t->first;
 		while (value >= t->first) {
 			t = t->parent;
-			if (t == NULL) break;
+			if (t == &sentinel) break;
 		}
 		return t;
 	}
 
-	Node_* decrement(Node_ *t) {
+	Node_<T, V>* decrement(Node_<T, V> *t) {
 		if (t == begin) return begin->left - 1;
 		if (t->left != &sentinel) {
 			t = t->left;

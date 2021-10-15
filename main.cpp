@@ -26,14 +26,128 @@ using std::endl;
 
 int main(int argc, char **argv) {
 
-	ft::Map<int, int> mp;
-	mp.insert(ft::make_pair(3, 3));
-	mp.insert(ft::make_pair(5, 5));
+	Tree<int, int> tree;
+	tree.i = tree.insertNode(4, 4);
 
-	ft::Map<int, int>::iterator it = mp.begin();
+	tree.i = tree.get_begin();
 
+	tree.i = tree.increment(tree.i);
+//	tree.i = tree.decrement(tree.i);
+
+	cout << tree.i->first << endl;
+
+	std::map<int, int > map;
+	map.insert(std::make_pair(4, 4));
+	std::map<int, int>::iterator it = map.begin();
+	it++;
 	cout << it->first << endl;
-	cout << it->second << endl;
+
+//	ft::Map<int, int> mp;
+
+//	mp.insert(ft::make_pair(3, 3));
+//	mp.insert(ft::make_pair(5, 3));
+//	mp.insert(ft::make_pair(15, 3));
+//	mp.insert(ft::make_pair(77, 3));
+//	mp.insert(ft::make_pair(2, 3));
+
+//	ft::Map<int, int>::iterator it = mp.find(2);
+
+//	it--;
+//	it++;
+
+//	cout << it->first << endl;
+
+//	ft::Map<int, int> mp;
+//
+//	mp.insert(ft::make_pair(7, 7));
+//	mp.insert(ft::make_pair(3, 3));
+//	mp.insert(ft::make_pair(13, 3));
+//	mp.insert(ft::make_pair(6, 3));
+//	mp.insert(ft::make_pair(5, 3));
+//	ft::Map<int, int>::iterator it = mp.begin();
+//
+//	it++;
+//	it++;
+//
+//	cout << it->first << endl;
+
+//	Tree<int, int> tree;
+//
+//	tree.insertNode(7, 7);
+//	tree.insertNode(11, 11);
+//	tree.insertNode(4, 4);
+//
+//	tree.iterator = tree.findNode(4);
+//	tree.iterator = tree.increment(tree.iterator);
+//
+//	cout << tree.iterator->first << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//	Tree<int, int > tree;
+//	tree.insertNode(4, 4);
+//	tree.insertNode(5, 5);
+//	tree.iterator = tree.increment(tree.begin);
+//	cout << tree.iterator->first << endl;
+
+//	ft::pair<int, int > a;
+//	ft::pair<int, int > b;
+//	cout << (a == b) << endl;
+//	Tree<int, int> tree;
+//	tree.insertNode(4, 4);
+//	tree.insertNode(5, 5);
+//	tree.iterator = tree.get_begin();
+//	tree.iterator = tree.increment(tree.iterator);
+//	cout << tree.iterator->first << endl;
+
+//	mp.insert(ft::make_pair(7, 5));
+//	mp.insert(ft::make_pair(9, 5));
+//	mp.insert(ft::make_pair(11, 5));
+//	mp.insert(ft::make_pair(5, 5));
+//	mp.insert(ft::make_pair(1, 1));
+//	ft::Map<int, int>::iterator it = mp.begin();
+//	it++;
+//	ft::Map<int, int>::iterator it2 = mp.begin();
+//	cout << (*it == *it2) << endl;
+//	cout << it->operator==(it2) << endl;
+//	cout << it->first << endl;
+
+
+
+//	cout << it->first << endl;
+
+
+
+//
+//	tree.insertNode(3, 3);
+//	tree.insertNode(5, 5);
+//	tree.iterator = tree.get_begin();
+//
+//	cout << tree.iterator->first << endl;
+//	ft::Map<int, int> mp;
+//	mp.insert(ft::make_pair(3, 3));
+//	mp.insert(ft::make_pair(5, 5));
+//
+//	ft::Map<int, int>::iterator it = mp.begin();
+//
+//	cout << it->first << endl;
+//	cout << it->second << endl;
 
 //	ft::Map<int, int> mp;
 //	ft::Map<int, int>::const_iterator it = mp.begin();
@@ -52,7 +166,6 @@ int main(int argc, char **argv) {
 //	tree.iterator = tree.decrement(tree.iterator);
 //	tree.iterator = tree.increment(tree.iterator);
 //	tree.iterator = tree.increment(tree.iterator);
-
 //	tree.iterator = tree.get_end(); // 3
 
 //	tree.iterator = tree.decrement(tree.iterator);
