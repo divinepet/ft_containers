@@ -20,38 +20,6 @@ oldNode.hpp
 
 /Users/elaronda/Desktop/ft_containers/Utility.hpp
 
-/Users/elaronda/Desktop/ft_containers/Vector.hpp
-Iterator.hpp
-/Users/elaronda/Desktop/ft_containers/Iterator.hpp
-
-/Users/elaronda/Desktop/ft_containers/ft_containers_tests/functions.hpp
-
-/Users/elaronda/Desktop/ft_containers/ft_containers_tests/general.hpp
-vector
--
-fstream
--
-execinfo.h
--
-iomanip
--
-sys/time.h
--
-sstream
--
-unistd.h
--
-iostream
--
-../Utility.hpp
-/Users/elaronda/Desktop/ft_containers/Utility.hpp
-../Vector.hpp
-/Users/elaronda/Desktop/ft_containers/Vector.hpp
-../Map.hpp
-/Users/elaronda/Desktop/ft_containers/Map.hpp
-functions.hpp
-/Users/elaronda/Desktop/ft_containers/ft_containers_tests/functions.hpp
-
 /Users/elaronda/Desktop/ft_containers/main.cpp
 iostream
 -
@@ -59,8 +27,6 @@ map
 -
 Map.hpp
 /Users/elaronda/Desktop/ft_containers/Map.hpp
-ft_containers_tests/general.hpp
-/Users/elaronda/Desktop/ft_containers/ft_containers_tests/general.hpp
 
 /Users/elaronda/Desktop/ft_containers/oldNode.hpp
 Iterator.hpp

@@ -20,9 +20,17 @@ protected:
 	struct Node_ *right;
 	struct Node_ *parent;
 public:
-//	Node_(const Node_& other) : left(NULL), right(NULL), parent(NULL), color(other.color), first(other.first), second(other.second) {
-//		cout << "Node const" << endl;
-//	};
+	Node_() {};
+	Node_(const Node_ &other) { cout << "copy" << endl; };
+	Node_& operator=(const Node_& other) {
+//		left = other.left;
+//		right = other.right;
+//		parent = other.parent;
+		color = other.color;
+		first = other.first;
+		second = other.second;
+		return *this;
+	};
 	T first;
 	V second;
 };
@@ -32,7 +40,7 @@ class Tree {
 public:
 	Node_<T, V> sentinel;
 	Node_<T, V> *root;
-	Node_<T, V> *i;
+	Node_<T, V> *it;
 	Node_<T, V> *begin;
 	Node_<T, V> *last;
 	Tree() {
@@ -42,34 +50,54 @@ public:
 		sentinel.color = BLACK;
 		sentinel.first = T();
 		sentinel.second = V();
-		last = &sentinel;
-		begin = &sentinel;
+		last = NULL;
+		begin = NULL;
 		root = &sentinel;
 	}
 
+//	~Tree() {};
+
 	Tree(const Tree &other) {
 		cout << "Tree copy " << endl;
-//		if (other.root == other.last)
-//			return ;
-//		this->m_root = new Node_<T, V>(*other.root);
-//		if (other.m_root->left) {
-//			this->copy_node_recurse(&this->m_root->left, other.m_root->left, other.m_end);
-//			this->m_root->left->parent = this->m_root;
-//		}
-//		if (other.m_root->right) {
-//			this->copy_node_recurse(&this->m_root->right, other.m_root->right, other.m_end);
-//			this->m_root->right->parent = this->m_root;
-//		}
-//		this->repair_bounds();
+		sentinel.left = &sentinel;
+		sentinel.right = &sentinel;
+		sentinel.parent = 0;
+		sentinel.color = BLACK;
+		sentinel.first = T();
+		sentinel.second = V();
+		last = NULL;
+		begin = NULL;
+		root = &sentinel;
+		fillTree(other.root, other);
+	}
+
+	void fillTree(Node_<T, V> *t, const Tree &other) {
+		if (t->left != &other.sentinel)
+			fillTree(t->left, other);
+		insertNode(t->first, t->second);
+		if (t->right != &other.sentinel)
+			fillTree(t->right, other);
+	}
+
+	void delTree(Node_<T, V> *t) {
+		if (t->left != &sentinel)
+			delTree(t->left);
+		deleteNode(t);
+		if (t->right != &sentinel)
+			delTree(t->right);
 	}
 
 	Tree& operator=(const Tree& other) {
 		cout << "Tree operator==" << endl;
 		if (this == &other)
 			return *this;
+//		delTree(root);
+//		fillTree(other.root, other);
 		root = other.root;
 		begin = other.begin;
 		last = other.last;
+		sentinel = other.sentinel;
+		it = other.it;
 		return *this;
 	};
 
@@ -178,9 +206,9 @@ public:
 			root = x;
 		}
 
-		if (last == &sentinel || last->first < x->first)
+		if (last == NULL || last->first < x->first)
 			last = x;
-		if (begin == &sentinel || begin->first > x->first)
+		if (begin == NULL || begin->first > x->first)
 			begin = x;
 
 		insertFixup(x);
@@ -290,14 +318,6 @@ public:
 				current = compLT (first, current->first) ? current->left : current->right;
 		}
 		return &sentinel;
-	}
-
-	void printElem(Node_<T, V> *t) {
-		if (t->left != &sentinel)
-			printElem(t->left);
-		cout << t->first << endl;
-		if (t->right != &sentinel)
-			printElem(t->right);
 	}
 
 	Node_<T, V>* get_begin() { return begin; }

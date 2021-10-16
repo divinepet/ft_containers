@@ -3,36 +3,53 @@ using std::cout;
 using std::endl;
 #include <map>
 #include "Map.hpp"
-#include "ft_containers_tests/general.hpp"
+//#include "ft_containers_tests/general.hpp"
 
 #define compMT(a,b) (a > b)
 
-template <class T, class V>
-void print(std::map<T, V> map) {
-	typename std::map<T, V>::iterator it = map.begin();
-	for (; it != map.end(); ++it) {
-		cout << "key: " << it->first << ", value: " << it->second << endl;
-	}
-}
+//template <class T, class V>
+//void print(std::map<T, V> map) {
+//	typename std::map<T, V>::iterator it = map.begin();
+//	for (; it != map.end(); ++it) {
+//		cout << "key: " << it->first << ", value: " << it->second << endl;
+//	}
+//}
+//
+//template <class T, class V>
+//void print(ft::Map<T, V> map) {
+//	typename ft::Map<T, V>::iterator it = map.begin();
+//	for (; it != map.end(); ++it) {
+//		cout << "key: " << it->first << ", value: " << it->second << endl;
+//	}
+//}
 
-template <class T, class V>
-void print(ft::Map<T, V> map) {
-	typename ft::Map<T, V>::iterator it = map.begin();
-	for (; it != map.end(); ++it) {
-		cout << "key: " << it->first << ", value: " << it->second << endl;
-	}
-}
 
 
-void foo (Tree<int, int> tree) {
-//	tree.insertNode(5, 5);
+
+
+Tree<int, int> foo (Tree<int, int> tree) {
+	tree.insertNode(5, 5);
+	tree.insertNode(3, 3);
+	tree.it = tree.begin;
+	cout << " >>>>>" <<  tree.it->first << endl;
+	return tree;
 }
 
 int main(int argc, char **argv) {
 
 	Tree<int, int> tree;
-	tree.insertNode(4, 4);
-	foo(tree);
+
+	tree = foo(tree);
+
+//	tree.it = tree.last;
+//	cout << tree.it->first << endl;
+
+
+//	Tree<int, int> tree;
+//
+//	tree.insertNode(4, 4);
+//
+//	cout << tree.begin->first << endl;
 
 
 
