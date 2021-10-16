@@ -12,17 +12,20 @@ class Tree;
 
 template <class T, class V>
 struct Node_ {
-private:
+protected:
 	friend class Tree<T, V>;
+	friend class ft::node_iterator<Node_<T, V>* >;
 	bool color;
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
 public:
+//	Node_(const Node_& other) : left(NULL), right(NULL), parent(NULL), color(other.color), first(other.first), second(other.second) {
+//		cout << "Node const" << endl;
+//	};
 	T first;
 	V second;
 };
-
 
 template <class T, class V>
 class Tree {
@@ -43,6 +46,32 @@ public:
 		begin = &sentinel;
 		root = &sentinel;
 	}
+
+	Tree(const Tree &other) {
+		cout << "Tree copy " << endl;
+//		if (other.root == other.last)
+//			return ;
+//		this->m_root = new Node_<T, V>(*other.root);
+//		if (other.m_root->left) {
+//			this->copy_node_recurse(&this->m_root->left, other.m_root->left, other.m_end);
+//			this->m_root->left->parent = this->m_root;
+//		}
+//		if (other.m_root->right) {
+//			this->copy_node_recurse(&this->m_root->right, other.m_root->right, other.m_end);
+//			this->m_root->right->parent = this->m_root;
+//		}
+//		this->repair_bounds();
+	}
+
+	Tree& operator=(const Tree& other) {
+		cout << "Tree operator==" << endl;
+		if (this == &other)
+			return *this;
+		root = other.root;
+		begin = other.begin;
+		last = other.last;
+		return *this;
+	};
 
 	void rotateLeft(Node_<T, V> *x) {
 		Node_<T, V> *y = x->right;
@@ -276,7 +305,7 @@ public:
 	Node_<T, V>* get_end() { return last->right + 1; }
 
 	Node_<T, V>* increment(Node_<T, V> *t) {
-		if (t == last) { return begin->right + 1; }
+		if (t == last) { return t->right + 1; }
 		if (t->right != &sentinel) {
 			t = t->right;
 			while (t->left != &sentinel)
@@ -286,13 +315,14 @@ public:
 		T value = t->first;
 		while (value >= t->first) {
 			t = t->parent;
-			if (t == &sentinel) break;
+			cout << t->first << endl;
+			if (t == &sentinel) { break; }
 		}
 		return t;
 	}
 
 	Node_<T, V>* decrement(Node_<T, V> *t) {
-		if (t == begin) return begin->left - 1;
+		if (t == begin) { return t->left - 1; }
 		if (t->left != &sentinel) {
 			t = t->left;
 			while (t->right != &sentinel)

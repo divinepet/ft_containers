@@ -915,9 +915,9 @@ bool operator_less_test() {
 	return result == result_2;
 }
 
-//template <class T, class V>
-//std::vector<int> insert_test(std::map<T, V> mp) {
-//	std::vector<int> v;
+template <class T, class V>
+std::vector<int> insert_test(std::map<T, V> mp) {
+	std::vector<int> v;
 //	std::pair<std::map<int, int>::iterator , bool> pair = mp.insert(std::make_pair(7, 7));
 //	std::map<int, int>::iterator it = mp.begin();
 //	v.push_back(it->first);
@@ -939,13 +939,13 @@ bool operator_less_test() {
 //	}
 //	g_end1 = timer();
 //	v.push_back(mp.size());
-//	return v;
-//}
-//
-//template <class T, class V>
-//std::vector<int> insert_test(ft::Map<T, V> mp) {
-//	std::vector<int> v;
-//	ft::pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(ft::make_pair(7, 7));
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> insert_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	ft::pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(ft::make_pair(7, 7));
 //	ft::Map<int, int>::iterator it = mp.begin();
 //	v.push_back(it->first);
 //	v.push_back(it->second);
@@ -966,8 +966,8 @@ bool operator_less_test() {
 //	}
 //	g_end2 = timer();
 //	v.push_back(mp.size());
-//	return v;
-//}
+	return v;
+}
 
 int is_integral_test_() {
 	std::vector<int> v;

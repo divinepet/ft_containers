@@ -1,61 +1,54 @@
-#include <map>
 #include <iostream>
 using std::cout;
 using std::endl;
+#include <map>
 #include "Map.hpp"
-//#include "ft_containers_tests/general.hpp"
-//#include "oldNode.hpp"
+#include "ft_containers_tests/general.hpp"
 
-//#include "Map.hpp"
+#define compMT(a,b) (a > b)
 
-//template <class T, class V>
-//void print(std::map<T, V> map) {
-//	typename std::map<T, V>::iterator it = map.begin();
-//	for (; it != map.end(); ++it) {
-//		cout << "key: " << it->first << ", value: " << it->second << endl;
-//	}
-//}
-//
-//template <class T, class V>
-//void print(ft::Map<T, V> map) {
-//	typename ft::Map<T, V>::iterator it = map.begin();
-//	for (; it != map.end(); ++it) {
-//		cout << "key: " << it->first << ", value: " << it->second << endl;
-//	}
-//}
+template <class T, class V>
+void print(std::map<T, V> map) {
+	typename std::map<T, V>::iterator it = map.begin();
+	for (; it != map.end(); ++it) {
+		cout << "key: " << it->first << ", value: " << it->second << endl;
+	}
+}
+
+template <class T, class V>
+void print(ft::Map<T, V> map) {
+	typename ft::Map<T, V>::iterator it = map.begin();
+	for (; it != map.end(); ++it) {
+		cout << "key: " << it->first << ", value: " << it->second << endl;
+	}
+}
+
+
+void foo (Tree<int, int> tree) {
+//	tree.insertNode(5, 5);
+}
 
 int main(int argc, char **argv) {
 
 	Tree<int, int> tree;
-	tree.i = tree.insertNode(4, 4);
+	tree.insertNode(4, 4);
+	foo(tree);
 
-	tree.i = tree.get_begin();
 
-	tree.i = tree.increment(tree.i);
-//	tree.i = tree.decrement(tree.i);
 
-	cout << tree.i->first << endl;
-
-	std::map<int, int > map;
-	map.insert(std::make_pair(4, 4));
-	std::map<int, int>::iterator it = map.begin();
-	it++;
-	cout << it->first << endl;
+//	start_tests();
 
 //	ft::Map<int, int> mp;
-
 //	mp.insert(ft::make_pair(3, 3));
-//	mp.insert(ft::make_pair(5, 3));
-//	mp.insert(ft::make_pair(15, 3));
-//	mp.insert(ft::make_pair(77, 3));
-//	mp.insert(ft::make_pair(2, 3));
+//	foo(mp);
 
-//	ft::Map<int, int>::iterator it = mp.find(2);
 
-//	it--;
-//	it++;
 
-//	cout << it->first << endl;
+
+
+
+
+
 
 //	ft::Map<int, int> mp;
 //
