@@ -111,30 +111,34 @@ namespace ft {
 	private:
 		T node;
 		void next() {
-			if (node->right->parent) {
+			if (!node->right->NIL) {
 				node = node->right;
-				while (node->left->parent)
+				while (!node->left->NIL)
 					node = node->left;
 			}
 			else {
 				T tmp = node;
 				while (tmp->first >= node->first) {
-					if (!node->parent) { node = tmp->right + 1; break; }
+					if (!node->parent) { node = tmp->right; break; }
 					node = node->parent;
 				}
 			}
 		}
 
 		void prev() {
-			if (node->left && node->left->parent) {
+			if (node->NIL) {
+				node = node->parent;
+				return;
+			}
+			if (!node->left->NIL) {
 				node = node->left;
-				while (node->right->parent)
+				while (!node->right->NIL)
 					node = node->right;
 			} else {
 				T tmp = node;
 				while (tmp->first <= node->first) {
+					if (!node->parent) { node = node->left - 1; break; }
 					node = node->parent;
-					if (!node->parent) break;
 				}
 			}
 		}
@@ -152,7 +156,7 @@ namespace ft {
 		node_iterator	&operator--() 										{ prev(); return *this; }
 		T& 				operator*() const 									{ return *node; }
 		T			 	operator->() const 									{ return &(*node); }
-		bool			operator==(node_iterator const &obj) const 			{ return node->first == &obj.node->first; };
+		bool			operator==(node_iterator const &obj) const 			{ return node->first == obj.node->first; };
 		bool			operator!=(node_iterator const &obj) const 			{ return node->first != obj.node->first; };
 		bool 			operator<(node_iterator const &obj) const 			{ return node->first < obj.node->first; };
 		bool 			operator>(node_iterator const &obj) const 			{ return node->first > obj.node->first; };

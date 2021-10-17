@@ -3,7 +3,7 @@ using std::cout;
 using std::endl;
 #include <map>
 #include "Map.hpp"
-//#include "ft_containers_tests/general.hpp"
+#include "ft_containers_tests/general.hpp"
 
 #define compMT(a,b) (a > b)
 
@@ -23,42 +23,46 @@ using std::endl;
 //	}
 //}
 
-template <class T>
-struct A {
-public:
-	T a;
-//	A() { a = T(); }
-};
 
-
-ft::Map<int, int> f(ft::Map<int, int> mp) {
-	mp.insert(ft::make_pair(3, 3));
-	ft::Map<int, int >::iterator it = mp.begin();
-	cout << it->first << endl;
-	return mp;
-}
 
 int main(int argc, char **argv) {
+//	start_tests();
 
-	ft::Map<int, int > mp;
-//	mp.insert(ft::make_pair(1, 1));
-//	ft::Map<int, int >::iterator it = mp.begin();
+	ft::Map<int, int> mp;
+	mp.insert(ft::make_pair(1, 3));
+	mp.insert(ft::make_pair(3, 3));
+	mp.insert(ft::make_pair(8, 3));
+	mp.insert(ft::make_pair(10, 3));
+
+
+	ft::Map<int, int> mp2;
+	mp2.insert(ft::make_pair(7, 3));
+	mp2.insert(ft::make_pair(3, 3));
+	mp2.insert(ft::make_pair(8, 3));
+	mp2 = mp;
+
+
+//	while (true) {};
+
+//	mp.insert(ft::make_pair(9, 9));
 //
+//	ft::pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(ft::make_pair(9, 9));
+//	cout << pair.second << endl;
 
-	mp = f(mp);
-	ft::Map<int, int >::iterator it = mp.begin();
-	cout << it->first << endl;
-
-
-
-
-
-
+//	std::map<int, int> mp2;
+//	mp2.insert(std::make_pair(9, 9));
+//
+//	std::pair<std::map<int, int>::iterator , bool> pair2 = mp2.insert(std::make_pair(9, 9));
+//	cout << pair2.second << endl;
 
 
 
-//	tree.insertNode(4, 4);
-//	tree.it = tree.get_begin();
+//	ft::Map<int, int> mp;
+//	ft::Map<int, int >::iterator it = mp.find(4);
+//	if (it != mp.end())
+//		cout << "yea" << endl;
+//	else
+//		cout << "no" << endl;
 
 
 //	tree.it = tree.last;

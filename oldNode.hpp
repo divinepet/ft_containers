@@ -37,8 +37,8 @@ public:
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
-		sentinel.first = T();
-		sentinel.second = V();
+//		sentinel.first = T();
+//		sentinel.second = V();
 		sentinel.NIL = true;
 		last = &sentinel;
 		begin = &sentinel;
@@ -48,39 +48,29 @@ public:
 //	~Tree() {};
 
 	Tree(const Tree &other) {
-		cout << "Tree copy " << endl;
-//		sentinel.left = &other.sentinel.left;
-//		sentinel.right = &other.sentinel.right;
-//		sentinel.parent = other.sentinel.parent;
-//		sentinel.color = other.sentinel.color;
-//		sentinel.first = other.sentinel.first;
-//		sentinel.second = other.sentinel.second;
-//		last = other.last;
-//		begin = other.begin;
-//		root = other.root;
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
-		sentinel.first = T();
-		sentinel.second = V();
-		last = &sentinel;
-		begin = &sentinel;
-		root = &sentinel;
-		fillTree(other.root, other);
+//		sentinel.first = T();
+//		sentinel.second = V();
+		last = other.last;
+		begin = other.begin;
+		root = other.root;
+		fillTree(other.root);
 	}
 
-	void fillTree(Node_<T, V> *t, const Tree &other) {
-		if (t->left != &other.sentinel)
-			fillTree(t->left, other);
-		insertNode(t->first, t->second);
-		if (t->right != &other.sentinel)
-			fillTree(t->right, other);
+	void fillTree(Node_<T, V> *t) {
+		if (!t->left->NIL)
+			fillTree(t->left);
+		if (!t->NIL) insertNode(t->first, t->second);
+		if (!t->right->NIL)
+			fillTree(t->right);
 	}
 
 	Tree& operator=(const Tree& other) {
-		cout << "Tree operator==" << endl;
+//		cout << "Tree operator==" << endl;
 		if (this == &other)
 			return *this;
 		root = other.root;
@@ -185,6 +175,8 @@ public:
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
+		x->left->parent = x;
+		x->right->parent = x;
 		x->color = RED;
 
 		if (parent) {
@@ -302,20 +294,18 @@ public:
 	Node_<T, V>* findNode(T first) {
 		Node_<T, V> *current = root;
 
-		while (current) {
+		while (!current->NIL) {
 			if(compEQ(first, current->first))
 				return (current);
 			else
 				current = compLT (first, current->first) ? current->left : current->right;
 		}
-		return &sentinel;
+		return get_end();
 	}
 
-	Node_<T, V>* get_begin() {
-		return begin;
-	}
+	Node_<T, V>* get_begin() { return begin; }
 
-	Node_<T, V>* get_end() { return last->right + 1; }
+	Node_<T, V>* get_end() { return last->right; }
 
 	Node_<T, V>* increment(Node_<T, V> *t) {
 		if (t == last) { return t->right + 1; }
@@ -328,7 +318,6 @@ public:
 		T value = t->first;
 		while (value >= t->first) {
 			t = t->parent;
-			cout << t->first << endl;
 			if (t->NIL) { break; }
 		}
 		return t;

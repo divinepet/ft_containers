@@ -85,15 +85,18 @@ public:
 
 	ft::pair<iterator, bool> insert(const value_type& value) {
 		bool isAdded = false;
-		iterator it = _tree.insertNode(value.first, value.second);
+		iterator it;
 
-		_size++;
-		isAdded = true;
-		return ft::pair<iterator, bool>(it, true);
+		if (_tree.findNode(value.first) == _tree.get_end()) {
+			_size++;
+			isAdded = true;
+		}
+		it = _tree.insertNode(value.first, value.second);
+		return ft::pair<iterator, bool>(it, isAdded);
 	};
 
 	iterator find( const Key& key ) {
-		return iterator(_tree.findNode(key));
+		return _tree.findNode(key);
 	}
 };
 }
