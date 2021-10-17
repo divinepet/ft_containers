@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Iterator.hpp"
-
 #define compLT(a,b) (a < b)
 #define compEQ(a,b) (a == b)
 
@@ -19,21 +17,12 @@ protected:
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
+	bool NIL;
 public:
-	Node_() {};
-	Node_(const Node_ &other) { cout << "copy" << endl; };
-	Node_& operator=(const Node_& other) {
-//		left = other.left;
-//		right = other.right;
-//		parent = other.parent;
-		color = other.color;
-		first = other.first;
-		second = other.second;
-		return *this;
-	};
 	T first;
 	V second;
 };
+
 
 template <class T, class V>
 class Tree {
@@ -50,8 +39,9 @@ public:
 		sentinel.color = BLACK;
 		sentinel.first = T();
 		sentinel.second = V();
-		last = NULL;
-		begin = NULL;
+		sentinel.NIL = true;
+		last = &sentinel;
+		begin = &sentinel;
 		root = &sentinel;
 	}
 
@@ -59,14 +49,24 @@ public:
 
 	Tree(const Tree &other) {
 		cout << "Tree copy " << endl;
+//		sentinel.left = &other.sentinel.left;
+//		sentinel.right = &other.sentinel.right;
+//		sentinel.parent = other.sentinel.parent;
+//		sentinel.color = other.sentinel.color;
+//		sentinel.first = other.sentinel.first;
+//		sentinel.second = other.sentinel.second;
+//		last = other.last;
+//		begin = other.begin;
+//		root = other.root;
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
+		sentinel.NIL = true;
 		sentinel.first = T();
 		sentinel.second = V();
-		last = NULL;
-		begin = NULL;
+		last = &sentinel;
+		begin = &sentinel;
 		root = &sentinel;
 		fillTree(other.root, other);
 	}
@@ -79,20 +79,10 @@ public:
 			fillTree(t->right, other);
 	}
 
-	void delTree(Node_<T, V> *t) {
-		if (t->left != &sentinel)
-			delTree(t->left);
-		deleteNode(t);
-		if (t->right != &sentinel)
-			delTree(t->right);
-	}
-
 	Tree& operator=(const Tree& other) {
 		cout << "Tree operator==" << endl;
 		if (this == &other)
 			return *this;
-//		delTree(root);
-//		fillTree(other.root, other);
 		root = other.root;
 		begin = other.begin;
 		last = other.last;
@@ -104,8 +94,8 @@ public:
 	void rotateLeft(Node_<T, V> *x) {
 		Node_<T, V> *y = x->right;
 		x->right = y->left;
-		if (y->left != &sentinel) y->left->parent = x;
-		if (y != &sentinel) y->parent = x->parent;
+		if (!y->left->NIL) y->left->parent = x;
+		if (!y->NIL) y->parent = x->parent;
 		if (x->parent) {
 			if (x == x->parent->left)
 				x->parent->left = y;
@@ -115,16 +105,16 @@ public:
 			root = y;
 		}
 		y->left = x;
-		if (x != &sentinel) x->parent = y;
+		if (!x->NIL) x->parent = y;
 	}
 
 	void rotateRight(Node_<T, V> *x) {
 		Node_<T, V> *y = x->left;
 
 		x->left = y->right;
-		if (y->right != &sentinel) y->right->parent = x;
+		if (!y->right->NIL) y->right->parent = x;
 
-		if (y != &sentinel) y->parent = x->parent;
+		if (!y->NIL) y->parent = x->parent;
 		if (x->parent) {
 			if (x == x->parent->right)
 				x->parent->right = y;
@@ -135,7 +125,7 @@ public:
 		}
 
 		y->right = x;
-		if (x != &sentinel) x->parent = y;
+		if (!x->NIL) x->parent = y;
 	}
 
 	void insertFixup(Node_<T, V> *x) {
@@ -182,7 +172,7 @@ public:
 
 		current = root;
 		parent = 0;
-		while (current != &sentinel) {
+		while (!current->NIL) {
 			if (compEQ(first, current->first)) return (current);
 			parent = current;
 			current = compLT(first, current->first) ?
@@ -206,10 +196,11 @@ public:
 			root = x;
 		}
 
-		if (last == NULL || last->first < x->first)
+		if (last->NIL || last->first < x->first)
 			last = x;
-		if (begin == NULL || begin->first > x->first)
+		if (begin->NIL || begin->first > x->first) {
 			begin = x;
+		}
 
 		insertFixup(x);
 		return(x);
@@ -272,20 +263,20 @@ public:
 
 	void deleteNode(Node_<T, V> *z) {
 		Node_<T, V> *x, *y;
-		if (!z || z == &sentinel) return;
+		if (!z || z->NIL) return;
 
 		if (z == last) last = decrement(last);
 		if (z == begin) begin = increment(begin);
 
-		if (z->left == &sentinel || z->right == &sentinel) {
+		if (z->left->NIL || z->right->NIL) {
 			y = z;
 		} else {
 			y = z->right;
-			while (y->left != &sentinel)
+			while (!y->left->NIL)
 				y = y->left;
 		}
 
-		if (y->left != &sentinel)
+		if (!y->left->NIL)
 			x = y->left;
 		else
 			x = y->right;
@@ -320,15 +311,17 @@ public:
 		return &sentinel;
 	}
 
-	Node_<T, V>* get_begin() { return begin; }
+	Node_<T, V>* get_begin() {
+		return begin;
+	}
 
 	Node_<T, V>* get_end() { return last->right + 1; }
 
 	Node_<T, V>* increment(Node_<T, V> *t) {
 		if (t == last) { return t->right + 1; }
-		if (t->right != &sentinel) {
+		if (!t->right->NIL) {
 			t = t->right;
-			while (t->left != &sentinel)
+			while (!t->left->NIL)
 				t = t->left;
 			return t;
 		}
@@ -336,16 +329,16 @@ public:
 		while (value >= t->first) {
 			t = t->parent;
 			cout << t->first << endl;
-			if (t == &sentinel) { break; }
+			if (t->NIL) { break; }
 		}
 		return t;
 	}
 
 	Node_<T, V>* decrement(Node_<T, V> *t) {
 		if (t == begin) { return t->left - 1; }
-		if (t->left != &sentinel) {
+		if (!t->left->NIL) {
 			t = t->left;
-			while (t->right != &sentinel)
+			while (!t->right->NIL)
 				t = t->right;
 			return t;
 		}

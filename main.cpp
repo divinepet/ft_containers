@@ -23,23 +23,43 @@ using std::endl;
 //	}
 //}
 
+template <class T>
+struct A {
+public:
+	T a;
+//	A() { a = T(); }
+};
 
 
-
-
-Tree<int, int> foo (Tree<int, int> tree) {
-	tree.insertNode(5, 5);
-	tree.insertNode(3, 3);
-	tree.it = tree.begin;
-	cout << " >>>>>" <<  tree.it->first << endl;
-	return tree;
+ft::Map<int, int> f(ft::Map<int, int> mp) {
+	mp.insert(ft::make_pair(3, 3));
+	ft::Map<int, int >::iterator it = mp.begin();
+	cout << it->first << endl;
+	return mp;
 }
 
 int main(int argc, char **argv) {
 
-	Tree<int, int> tree;
+	ft::Map<int, int > mp;
+//	mp.insert(ft::make_pair(1, 1));
+//	ft::Map<int, int >::iterator it = mp.begin();
+//
 
-	tree = foo(tree);
+	mp = f(mp);
+	ft::Map<int, int >::iterator it = mp.begin();
+	cout << it->first << endl;
+
+
+
+
+
+
+
+
+
+//	tree.insertNode(4, 4);
+//	tree.it = tree.get_begin();
+
 
 //	tree.it = tree.last;
 //	cout << tree.it->first << endl;

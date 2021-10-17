@@ -28,7 +28,7 @@ private:
 	Tree<Key, T>													_tree;
 	A			 													_allocator;
 	size_t															_size;
-	key_compare 													cmp;
+	key_compare 													_comp;
 public:
 
 
@@ -38,22 +38,23 @@ public:
 
 	Map() : _size(0) {};
 
-	explicit Map( const Compare& comp, const A& alloc = A()) {}; // assign comp to tree
+	// assign comp to tree
+	explicit Map( const Compare& comp, const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {};
 
 	template< class InputIt >
-			Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) {};
+	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) {};
 
-	Map(const Map& other) : _size(other._size) {
-		_tree = other._tree;
-	};
+	Map(const Map &other) : _size(other._size), _tree(other._tree), _comp(other._comp), _allocator(other._allocator) {};
 
 	~Map() {};
 
 	Map& operator=(const Map& other) {
 		if (this == &other)
 			return *this;
-		_tree = other._tree;
 		_size = other._size;
+		_tree = other._tree;
+		_comp = other._comp;
+		_allocator = other._allocator;
 		return *this;
 	};
 
