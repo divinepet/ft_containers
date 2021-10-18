@@ -23,24 +23,39 @@ using std::endl;
 //	}
 //}
 
-
+void t(ft::Map<int, int> mp) {
+	mp.insert(ft::make_pair(1, 1));
+	ft::Map<int, int>::iterator it = mp.begin();
+	cout << it->first << endl;
+}
 
 int main(int argc, char **argv) {
 //	start_tests();
 
-	ft::Map<int, int> mp;
-	mp.insert(ft::make_pair(1, 3));
+//	ft::Map<int, int, std::greater<int> > mp;
+//
+//	mp.insert(ft::make_pair(13, 3));
+//	mp.insert(ft::make_pair(5, 3));
+//	mp.insert(ft::make_pair(9, 3));
+//	mp.insert(ft::make_pair(7, 3));
+//
+//	ft::Map<int, int>::iterator it = mp.begin();
+//
+//	cout << it->first << endl;
+
+	//todo doesnt work iterator
+	ft::Map<int ,int> mp;
 	mp.insert(ft::make_pair(3, 3));
-	mp.insert(ft::make_pair(8, 3));
-	mp.insert(ft::make_pair(10, 3));
-
-
-	ft::Map<int, int> mp2;
-	mp2.insert(ft::make_pair(7, 3));
-	mp2.insert(ft::make_pair(3, 3));
-	mp2.insert(ft::make_pair(8, 3));
-	mp2 = mp;
-
+//	mp.insert(ft::make_pair(7, 3));
+//	mp.insert(ft::make_pair(13, 3));
+//	mp.insert(ft::make_pair(5, 5));
+//	mp.insert(ft::make_pair(8, 5));
+//	mp.insert(ft::make_pair(9, 5));
+//	mp.erase(13);
+//
+	ft::Map<int, int>::iterator it = mp.begin();
+	it--;
+//	cout << it->first << endl;
 
 //	while (true) {};
 

@@ -10,6 +10,7 @@ class Map : public Tree<Key, T> {
 public:
 	friend class Tree<Key, T>;
 	typedef Key														key_type;
+	typedef Node_<Key, T>*											node_ptr;
 	typedef T														mapped_type;
 	typedef ft::pair<const Key, T>									value_type;
 	typedef std::size_t												size_type;
@@ -61,42 +62,48 @@ public:
 	allocator_type get_allocator() const { return _allocator; };
 
 	T& at(const Key& key) {
-		iterator tmp = _tree.findNode(key);
-		return (tmp == &_tree.sentinel) ? throw std::out_of_range("key not found") : tmp->second;
+		iterator tmp = _tree.findNode(key, _comp);
+		return (tmp == _tree.get_end()) ? throw std::out_of_range("key not found") : tmp->second;
 	};
 
 	const T& at( const Key& key ) const { return static_cast<const T>(at(key)); };
 
-	T&			       		operator[](const Key& key)			{ return _tree.findNode(key)->second; };
+	T&			       		operator[](const Key& key)			{ return _tree.findNode(key, _comp)->second; };
 	iterator 				begin()								{ return _tree.get_begin(); };
 	const_iterator 			begin() const						{ return _tree.get_begin(); };
 	iterator 				end()								{ return _tree.get_end(); };
 	const_iterator 			end() const							{ return _tree.get_end(); };
-//	reverse_iterator 		rbegin()							{ return reverse_iterator(buffer + _size - 1); };
-//	const_reverse_iterator 	rbegin() const						{ return const_reverse_iterator(buffer + _size - 1); };
-//	reverse_iterator 		rend()								{ return reverse_iterator(buffer - 1); };
-//	const_reverse_iterator 	rend() const						{ return const_reverse_iterator(buffer - 1); };
+/*
+ *
+ * 	reverse iterator
+ *
+ */
 	bool 					empty() const						{ return _size == 0; };
 	size_type				size() const 						{ return _size; };
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
 																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T>) + sizeof(T*)))); };
 
 
-
 	ft::pair<iterator, bool> insert(const value_type& value) {
 		bool isAdded = false;
 		iterator it;
 
-		if (_tree.findNode(value.first) == _tree.get_end()) {
+		if (_tree.findNode(value.first, _comp) == _tree.get_end()) {
 			_size++;
 			isAdded = true;
 		}
-		it = _tree.insertNode(value.first, value.second);
+		it = _tree.insertNode(value.first, value.second, _comp);
 		return ft::pair<iterator, bool>(it, isAdded);
 	};
 
 	iterator find( const Key& key ) {
-		return _tree.findNode(key);
+		return _tree.findNode(key, _comp);
+	}
+
+	size_type erase( const key_type& key ) {
+//		iterator it = _tree.findNode(key, _comp);
+		_tree.deleteNode(_tree.findNode(key, _comp), _comp);
+		return 1;
 	}
 };
 }

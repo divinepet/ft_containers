@@ -1,6 +1,5 @@
 #pragma once
 
-#define compLT(a,b) (a < b)
 #define compEQ(a,b) (a == b)
 
 typedef enum { BLACK, RED } nodeColor;
@@ -58,7 +57,8 @@ public:
 		last = other.last;
 		begin = other.begin;
 		root = other.root;
-		fillTree(other.root);
+		// todo working without fill
+//		fillTree(other.root);
 	}
 
 	void fillTree(Node_<T, V> *t) {
@@ -157,7 +157,8 @@ public:
 		root->color = BLACK;
 	}
 
-	Node_<T, V> *insertNode(T first, V second) {
+	template<class Compare>
+	Node_<T, V> *insertNode(T first, V second, Compare comp) {
 		Node_<T, V> *current, *parent, *x;
 
 		current = root;
@@ -165,7 +166,7 @@ public:
 		while (!current->NIL) {
 			if (compEQ(first, current->first)) return (current);
 			parent = current;
-			current = compLT(first, current->first) ?
+			current = comp(first, current->first) ?
 					current->left : current->right;
 		}
 
@@ -180,7 +181,7 @@ public:
 		x->color = RED;
 
 		if (parent) {
-			if(compLT(first, parent->first))
+			if (comp(first, parent->first))
 				parent->left = x;
 			else
 				parent->right = x;
@@ -188,9 +189,9 @@ public:
 			root = x;
 		}
 
-		if (last->NIL || last->first < x->first)
+		if (last->NIL || comp(last->first, x->first))
 			last = x;
-		if (begin->NIL || begin->first > x->first) {
+		if (begin->NIL || !comp(begin->first,x->first)) {
 			begin = x;
 		}
 
@@ -253,12 +254,23 @@ public:
 		x->color = BLACK;
 	}
 
-	void deleteNode(Node_<T, V> *z) {
+	template<class Compare>
+	void deleteNode(Node_<T, V> *z, Compare comp) {
 		Node_<T, V> *x, *y;
 		if (!z || z->NIL) return;
 
-		if (z == last) last = decrement(last);
-		if (z == begin) begin = increment(begin);
+		if (z == last) {
+			if (comp(1, 2))
+				last = decrement(last);
+			else
+				last = increment(last);
+		}
+		if (z == begin){
+			if (comp(1, 2))
+				begin = increment(begin);
+			else
+				begin = decrement(begin);
+		}
 
 		if (z->left->NIL || z->right->NIL) {
 			y = z;
@@ -291,14 +303,15 @@ public:
 		free (y);
 	}
 
-	Node_<T, V>* findNode(T first) {
+	template<class Compare>
+	Node_<T, V>* findNode(T first, Compare comp) {
 		Node_<T, V> *current = root;
 
 		while (!current->NIL) {
 			if(compEQ(first, current->first))
 				return (current);
 			else
-				current = compLT (first, current->first) ? current->left : current->right;
+				current = comp (first, current->first) ? current->left : current->right;
 		}
 		return get_end();
 	}
@@ -308,7 +321,8 @@ public:
 	Node_<T, V>* get_end() { return last->right; }
 
 	Node_<T, V>* increment(Node_<T, V> *t) {
-		if (t == last) { return t->right + 1; }
+		if (t == last)
+			return t->right;
 		if (!t->right->NIL) {
 			t = t->right;
 			while (!t->left->NIL)
@@ -318,13 +332,14 @@ public:
 		T value = t->first;
 		while (value >= t->first) {
 			t = t->parent;
-			if (t->NIL) { break; }
 		}
 		return t;
 	}
 
 	Node_<T, V>* decrement(Node_<T, V> *t) {
-		if (t == begin) { return t->left - 1; }
+		if (t->NIL) return t->parent;
+		// todo check case does it need or not
+//		if (t == begin) { return t->left - 1; }
 		if (!t->left->NIL) {
 			t = t->left;
 			while (!t->right->NIL)
