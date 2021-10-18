@@ -1,12 +1,13 @@
 CC=clang++
 CFLAGS=-std=c++98 -c #-Wall -Werror -Wextra
 SOURCES=$(wildcard *.cpp)
+HEADERS=$(wildcard *.hpp)
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=app
 
 all: $(SOURCES) $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS)
+$(EXECUTABLE): $(OBJECTS) $(HEADERS)
 	@echo 'Ready'`$(CC) $(OBJECTS) -o $@`''
 
 .cpp.o:

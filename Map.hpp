@@ -10,7 +10,7 @@ class Map : public Tree<Key, T> {
 public:
 	friend class Tree<Key, T>;
 	typedef Key														key_type;
-	typedef Node_<Key, T>*											node_ptr;
+	typedef Node_<Key, T, Compare>*									node_ptr;
 	typedef T														mapped_type;
 	typedef ft::pair<const Key, T>									value_type;
 	typedef std::size_t												size_type;
@@ -21,12 +21,12 @@ public:
 	typedef const value_type&										const_reference;
 	typedef typename allocator_type::pointer						pointer;
 	typedef typename allocator_type::const_pointer					const_pointer;
-	typedef ft::node_iterator<Node_<Key, T>*>						iterator;
-	typedef ft::node_iterator<const Node_<Key, T>*>					const_iterator;
+	typedef ft::node_iterator<Node_<Key, T, Compare>*>				iterator;
+	typedef ft::node_iterator<const Node_<Key, T, Compare>*>		const_iterator;
 	//	reverse_iterator
 	//	reverse_const_iterator
-private:
 	Tree<Key, T>													_tree;
+private:
 	A			 													_allocator;
 	size_t															_size;
 	key_compare 													_comp;
@@ -47,7 +47,9 @@ public:
 
 	Map(const Map &other) : _size(other._size), _tree(other._tree), _comp(other._comp), _allocator(other._allocator) {};
 
-	~Map() {};
+	~Map() {
+		_tree.deleteAll(_tree.root);
+	};
 
 	Map& operator=(const Map& other) {
 		if (this == &other)
@@ -61,14 +63,14 @@ public:
 
 	allocator_type get_allocator() const { return _allocator; };
 
-	T& at(const Key& key) {
-		iterator tmp = _tree.findNode(key, _comp);
+	mapped_type& at(const Key& key) {
+		iterator tmp = _tree.findNode(key);
 		return (tmp == _tree.get_end()) ? throw std::out_of_range("key not found") : tmp->second;
 	};
 
 	const T& at( const Key& key ) const { return static_cast<const T>(at(key)); };
 
-	T&			       		operator[](const Key& key)			{ return _tree.findNode(key, _comp)->second; };
+	T&			       		operator[](const Key& key)			{ return _tree.findNode(key)->second; };
 	iterator 				begin()								{ return _tree.get_begin(); };
 	const_iterator 			begin() const						{ return _tree.get_begin(); };
 	iterator 				end()								{ return _tree.get_end(); };
@@ -81,28 +83,28 @@ public:
 	bool 					empty() const						{ return _size == 0; };
 	size_type				size() const 						{ return _size; };
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
-																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T>) + sizeof(T*)))); };
+																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T, Compare>) + sizeof(T*)))); };
 
 
 	ft::pair<iterator, bool> insert(const value_type& value) {
 		bool isAdded = false;
 		iterator it;
 
-		if (_tree.findNode(value.first, _comp) == _tree.get_end()) {
+		if (_tree.findNode(value.first) == _tree.get_end()) {
 			_size++;
 			isAdded = true;
 		}
-		it = _tree.insertNode(value.first, value.second, _comp);
+		it = _tree.insertNode(value.first, value.second);
 		return ft::pair<iterator, bool>(it, isAdded);
 	};
 
 	iterator find( const Key& key ) {
-		return _tree.findNode(key, _comp);
+		return _tree.findNode(key);
 	}
 
 	size_type erase( const key_type& key ) {
 //		iterator it = _tree.findNode(key, _comp);
-		_tree.deleteNode(_tree.findNode(key, _comp), _comp);
+		_tree.deleteNode(_tree.findNode(key));
 		return 1;
 	}
 };

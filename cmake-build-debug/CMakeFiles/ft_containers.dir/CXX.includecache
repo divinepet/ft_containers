@@ -6,27 +6,27 @@
 
 #IncludeRegexTransform: 
 
-/Users/divinepet/Desktop/ft_containers/Iterator.hpp
+/Users/elaronda/Desktop/ft_containers/Iterator.hpp
 Utility.hpp
-/Users/divinepet/Desktop/ft_containers/Utility.hpp
+/Users/elaronda/Desktop/ft_containers/Utility.hpp
 
-/Users/divinepet/Desktop/ft_containers/Map.hpp
+/Users/elaronda/Desktop/ft_containers/Map.hpp
 Utility.hpp
-/Users/divinepet/Desktop/ft_containers/Utility.hpp
+/Users/elaronda/Desktop/ft_containers/Utility.hpp
 Iterator.hpp
-/Users/divinepet/Desktop/ft_containers/Iterator.hpp
+/Users/elaronda/Desktop/ft_containers/Iterator.hpp
 oldNode.hpp
-/Users/divinepet/Desktop/ft_containers/oldNode.hpp
+/Users/elaronda/Desktop/ft_containers/oldNode.hpp
 
-/Users/divinepet/Desktop/ft_containers/Utility.hpp
+/Users/elaronda/Desktop/ft_containers/Utility.hpp
 
-/Users/divinepet/Desktop/ft_containers/Vector.hpp
+/Users/elaronda/Desktop/ft_containers/Vector.hpp
 Iterator.hpp
-/Users/divinepet/Desktop/ft_containers/Iterator.hpp
+/Users/elaronda/Desktop/ft_containers/Iterator.hpp
 
-/Users/divinepet/Desktop/ft_containers/ft_containers_tests/functions.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_tests/functions.hpp
 
-/Users/divinepet/Desktop/ft_containers/ft_containers_tests/general.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_tests/general.hpp
 vector
 -
 fstream
@@ -44,23 +44,25 @@ unistd.h
 iostream
 -
 ../Utility.hpp
-/Users/divinepet/Desktop/ft_containers/Utility.hpp
+/Users/elaronda/Desktop/ft_containers/Utility.hpp
 ../Vector.hpp
-/Users/divinepet/Desktop/ft_containers/Vector.hpp
+/Users/elaronda/Desktop/ft_containers/Vector.hpp
 ../Map.hpp
-/Users/divinepet/Desktop/ft_containers/Map.hpp
+/Users/elaronda/Desktop/ft_containers/Map.hpp
 functions.hpp
-/Users/divinepet/Desktop/ft_containers/ft_containers_tests/functions.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_tests/functions.hpp
 
-/Users/divinepet/Desktop/ft_containers/main.cpp
+/Users/elaronda/Desktop/ft_containers/main.cpp
 iostream
 -
 map
 -
 Map.hpp
-/Users/divinepet/Desktop/ft_containers/Map.hpp
+/Users/elaronda/Desktop/ft_containers/Map.hpp
 ft_containers_tests/general.hpp
-/Users/divinepet/Desktop/ft_containers/ft_containers_tests/general.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_tests/general.hpp
 
-/Users/divinepet/Desktop/ft_containers/oldNode.hpp
+/Users/elaronda/Desktop/ft_containers/oldNode.hpp
+vector
+-
 

@@ -1,50 +1,68 @@
 #pragma once
 
 #define compEQ(a,b) (a == b)
+#include <vector>
 
 typedef enum { BLACK, RED } nodeColor;
 
-template <class T, class V>
+template <class T, class V, class Compare>
 class Tree;
 
-template <class T, class V>
+template <class T, class V, class Compare>
 struct Node_ {
 protected:
-	friend class Tree<T, V>;
-	friend class ft::node_iterator<Node_<T, V>* >;
+	friend class Tree<T, V, Compare>;
+	friend class ft::node_iterator<Node_<T, V, Compare>* >;
 	bool color;
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
 	bool NIL;
 public:
+//	~Node_() {
+//		delete parent;
+//	};
 	T first;
 	V second;
 };
 
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal1;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal2;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal3;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal4;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal5;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal6;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal7;
+//template <class T, class V, class Compare>
+//Node_<T, V, Compare>* saveArrayGlobal8;
 
-template <class T, class V>
+template <class T, class V, class Compare = std::less<T> >
 class Tree {
 public:
-	Node_<T, V> sentinel;
-	Node_<T, V> *root;
-	Node_<T, V> *it;
-	Node_<T, V> *begin;
-	Node_<T, V> *last;
+	Node_<T, V, Compare> sentinel;
+	Node_<T, V, Compare> *root;
+	Node_<T, V, Compare> *it;
+	Node_<T, V, Compare> *begin;
+	Node_<T, V, Compare> *last;
+	Compare comp;
 	Tree() {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
-		sentinel.parent = 0;
 		sentinel.color = BLACK;
-//		sentinel.first = T();
-//		sentinel.second = V();
 		sentinel.NIL = true;
 		last = &sentinel;
 		begin = &sentinel;
 		root = &sentinel;
 	}
 
-//	~Tree() {};
+	~Tree() {};
 
 	Tree(const Tree &other) {
 		sentinel.left = &sentinel;
@@ -52,16 +70,16 @@ public:
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
-//		sentinel.first = T();
-//		sentinel.second = V();
-		last = other.last;
-		begin = other.begin;
-		root = other.root;
-		// todo working without fill
-//		fillTree(other.root);
+		last = &sentinel;
+		begin = &sentinel;
+		root = &sentinel;
+//		last = other.last;
+//		begin = other.begin;
+//		root = other.root;
+		fillTree(other.root);
 	}
 
-	void fillTree(Node_<T, V> *t) {
+	void fillTree(Node_<T, V, Compare> *t) {
 		if (!t->left->NIL)
 			fillTree(t->left);
 		if (!t->NIL) insertNode(t->first, t->second);
@@ -77,29 +95,38 @@ public:
 		begin = other.begin;
 		last = other.last;
 		sentinel = other.sentinel;
-		it = other.it;
+//		it = other.it;
 		return *this;
 	};
 
-	void rotateLeft(Node_<T, V> *x) {
-		Node_<T, V> *y = x->right;
+	void rotateLeft(Node_<T, V, Compare> *x) {
+		Node_<T, V, Compare> *y = x->right;
+//		Node_<T, V, Compare> *copy_x_right = y;
+		// todo костыль ебаный
+//		saveArrayGlobal2<T, V, Compare> = y;
 		x->right = y->left;
-		if (!y->left->NIL) y->left->parent = x;
-		if (!y->NIL) y->parent = x->parent;
+
+		if (!y->left->NIL)  y->left->parent = x;
+		if (!y->NIL) {
+			y->parent = x->parent;
+		}   //****
 		if (x->parent) {
-			if (x == x->parent->left)
+			if (x == x->parent->left) {
 				x->parent->left = y;
-			else
+			}
+			else {
 				x->parent->right = y;
+			}
 		} else {
 			root = y;
 		}
 		y->left = x;
 		if (!x->NIL) x->parent = y;
+//		deleteAll(copy_x_right);
 	}
 
-	void rotateRight(Node_<T, V> *x) {
-		Node_<T, V> *y = x->left;
+	void rotateRight(Node_<T, V, Compare> *x) {
+		Node_<T, V, Compare> *y = x->left;
 
 		x->left = y->right;
 		if (!y->right->NIL) y->right->parent = x;
@@ -118,10 +145,10 @@ public:
 		if (!x->NIL) x->parent = y;
 	}
 
-	void insertFixup(Node_<T, V> *x) {
+	void insertFixup(Node_<T, V, Compare> *x) {
 		while (x != root && x->parent->color == RED) {
 			if (x->parent == x->parent->parent->left) {
-				Node_<T, V> *y = x->parent->parent->right;
+				Node_<T, V, Compare> *y = x->parent->parent->right;
 				if (y->color == RED) {
 					x->parent->color = BLACK;
 					y->color = BLACK;
@@ -137,7 +164,7 @@ public:
 					rotateRight(x->parent->parent);
 				}
 			} else {
-				Node_<T, V> *y = x->parent->parent->left;
+				Node_<T, V, Compare> *y = x->parent->parent->left;
 				if (y->color == RED) {
 					x->parent->color = BLACK;
 					y->color = BLACK;
@@ -157,9 +184,8 @@ public:
 		root->color = BLACK;
 	}
 
-	template<class Compare>
-	Node_<T, V> *insertNode(T first, V second, Compare comp) {
-		Node_<T, V> *current, *parent, *x;
+	Node_<T, V, Compare> *insertNode(T first, V second) {
+		Node_<T, V, Compare> *current, *parent, *x;
 
 		current = root;
 		parent = 0;
@@ -170,7 +196,7 @@ public:
 					current->left : current->right;
 		}
 
-		x = new Node_<T, V>();
+		x = new Node_<T, V, Compare>();
 		x->first = first;
 		x->second = second;
 		x->parent = parent;
@@ -199,10 +225,10 @@ public:
 		return(x);
 	}
 
-	void deleteFixup(Node_<T, V> *x) {
+	void deleteFixup(Node_<T, V, Compare> *x) {
 		while (x != root && x->color == BLACK) {
 			if (x == x->parent->left) {
-				Node_<T, V> *w = x->parent->right;
+				Node_<T, V, Compare> *w = x->parent->right;
 				if (w->color == RED) {
 					w->color = BLACK;
 					x->parent->color = RED;
@@ -226,7 +252,7 @@ public:
 					x = root;
 				}
 			} else {
-				Node_<T, V> *w = x->parent->left;
+				Node_<T, V, Compare> *w = x->parent->left;
 				if (w->color == RED) {
 					w->color = BLACK;
 					x->parent->color = RED;
@@ -254,22 +280,21 @@ public:
 		x->color = BLACK;
 	}
 
-	template<class Compare>
-	void deleteNode(Node_<T, V> *z, Compare comp) {
-		Node_<T, V> *x, *y;
+	void deleteNode(Node_<T, V, Compare> *z) {
+		Node_<T, V, Compare> *x, *y;
 		if (!z || z->NIL) return;
 
+		if (z == begin) {
+			if (comp(1, 2))
+				begin = increment(begin);
+			else
+				begin = decrement(begin);
+		}
 		if (z == last) {
 			if (comp(1, 2))
 				last = decrement(last);
 			else
 				last = increment(last);
-		}
-		if (z == begin){
-			if (comp(1, 2))
-				begin = increment(begin);
-			else
-				begin = decrement(begin);
 		}
 
 		if (z->left->NIL || z->right->NIL) {
@@ -303,9 +328,18 @@ public:
 		free (y);
 	}
 
-	template<class Compare>
-	Node_<T, V>* findNode(T first, Compare comp) {
-		Node_<T, V> *current = root;
+	void deleteAll(Node_<T, V, Compare> *tmp) {
+		if (tmp->NIL)
+			return;
+
+		if (!tmp->left->NIL) deleteAll(tmp->left);
+		if (!tmp->right->NIL) deleteAll(tmp->right);
+
+		deleteNode(tmp);
+	}
+
+	Node_<T, V, Compare>* findNode(T first) {
+		Node_<T, V, Compare> *current = root;
 
 		while (!current->NIL) {
 			if(compEQ(first, current->first))
@@ -316,11 +350,11 @@ public:
 		return get_end();
 	}
 
-	Node_<T, V>* get_begin() { return begin; }
+	Node_<T, V, Compare>* get_begin() { return begin; }
 
-	Node_<T, V>* get_end() { return last->right; }
+	Node_<T, V, Compare>* get_end() { return last->right; }
 
-	Node_<T, V>* increment(Node_<T, V> *t) {
+	Node_<T, V, Compare>* increment(Node_<T, V, Compare> *t) {
 		if (t == last)
 			return t->right;
 		if (!t->right->NIL) {
@@ -336,9 +370,9 @@ public:
 		return t;
 	}
 
-	Node_<T, V>* decrement(Node_<T, V> *t) {
+	Node_<T, V, Compare>* decrement(Node_<T, V, Compare> *t) {
 		if (t->NIL) return t->parent;
-		// todo check case does it need or not
+		// todo check this case: reverse compare can break it
 //		if (t == begin) { return t->left - 1; }
 		if (!t->left->NIL) {
 			t = t->left;
@@ -348,6 +382,7 @@ public:
 		}
 		T value = t->first;
 		while (value <= t->first ) {
+			if (!t->parent) return t->right;
 			t = t->parent;
 		}
 		return t;
