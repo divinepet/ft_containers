@@ -76,7 +76,6 @@ public:
 	}
 
 	Tree& operator=(const Tree<T, V, Compare>& other) {
-		cout << "Tree operator==" << endl;
 		if (this == &other)
 			return *this;
 		deleteAll(root);

@@ -156,12 +156,12 @@ namespace ft {
 		node_iterator	&operator--() 										{ prev(); return *this; }
 		T& 				operator*() const 									{ return *node; }
 		T			 	operator->() const 									{ return &(*node); }
-		bool			operator==(node_iterator const &obj) const 			{ return node->first == obj.node->first; };
-		bool			operator!=(node_iterator const &obj) const 			{ return node->first != obj.node->first; };
-		bool 			operator<(node_iterator const &obj) const 			{ return node->first < obj.node->first; };
-		bool 			operator>(node_iterator const &obj) const 			{ return node->first > obj.node->first; };
-		bool 			operator<=(node_iterator const &obj) const 			{ return node->first <= obj.node->first; };
-		bool 			operator>=(node_iterator const &obj) const 			{ return node->first >= obj.node->first; };
+		bool			operator==(node_iterator const &obj) const 			{ return node == obj.node; };
+		bool			operator!=(node_iterator const &obj) const 			{ return node != obj.node; };
+		bool 			operator<(node_iterator const &obj) const 			{ return node < obj.node; };
+		bool 			operator>(node_iterator const &obj) const 			{ return node > obj.node; };
+		bool 			operator<=(node_iterator const &obj) const 			{ return node <= obj.node; };
+		bool 			operator>=(node_iterator const &obj) const 			{ return node >= obj.node; };
 	};
 
 }

@@ -1064,14 +1064,14 @@ std::vector<int> iterators_test(ft::Map<T, V> mp) {
 template <class T, class V>
 std::vector<int> copy_constructor_test(std::map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = 0, j = 10; i < 1000000; ++i, ++j) {
+	for (int i = 0, j = 10; i < 300000; ++i, ++j) {
 		mp.insert(std::make_pair(i, j));
 	}
 	g_start1 = timer();
 	std::map<int, int> mp2(mp.begin(), mp.end());
 	g_end1 = timer();
 	std::map<int, int>::iterator it = mp2.begin();
-	for (int i = 0; i < 3; ++i, it++) {
+	for (int i = 0; i < 300000; ++i, it++) {
 		v.push_back(it->first);
 		v.push_back(it->second);
 	}
@@ -1081,15 +1081,52 @@ std::vector<int> copy_constructor_test(std::map<T, V> mp) {
 template <class T, class V>
 std::vector<int> copy_constructor_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = 0, j = 10; i < 1000000; ++i, ++j) {
+	for (int i = 0, j = 10; i < 300000; ++i, ++j) {
 		mp.insert(ft::make_pair(i, j));
 	}
 	g_start2 = timer();
 	ft::Map<int, int> mp2(mp.begin(), mp.end());
 	g_end2 = timer();
 	ft::Map<int, int>::iterator it = mp2.begin();
-	for (int i = 0; i < 3; ++i, it++) {
-		cout << "key: " << it->first << ", value: " << it->second << endl;
+	for (int i = 0; i < 300000; ++i, it++) {
+		v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> assign_overload_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 200000; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	std::map<T, V> mp2;
+	for (int i = 200000, j = 200010; i < 400000; ++i, ++j)
+		mp2.insert(std::make_pair(i, j));
+	g_start1 = timer();
+	mp2 = mp;
+	g_end1 = timer();
+	typename std::map<T, V>::iterator it = mp2.begin();
+	for (; it != mp2.end(); it++) {
+		v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> assign_overload_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 200000; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+	ft::Map<T, V> mp2;
+	for (int i = 200000, j = 200010; i < 400000; ++i, ++j)
+		mp2.insert(ft::make_pair(i, j));
+	g_start2 = timer();
+	mp2 = mp;
+	g_end2 = timer();
+	typename ft::Map<T, V>::iterator it = mp2.begin();
+	for (; it != mp2.end(); it++) {
 		v.push_back(it->first);
 		v.push_back(it->second);
 	}

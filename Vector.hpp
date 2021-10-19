@@ -94,9 +94,9 @@ public:
 
 	allocator_type get_allocator() const { return this->allocator; };
 
-									/*********************/
-									/* MEMBERS FUNCTIONS */
-									/*********************/
+									/********************************/
+									/*       MEMBER FUNCTIONS       */
+									/********************************/
 
 	reference at( size_type pos ) {
 		if (pos >= _size)

@@ -6,11 +6,10 @@
 
 namespace ft {
 template <class Key, class T, class Compare = std::less<Key>, class A = std::allocator<std::pair<const Key, T> > >
-class Map : public Tree<Key, T, Compare> {
+class Map {//: public Tree<Key, T, Compare> {
 public:
-	friend class Tree<Key, T, Compare>;
+//	friend class Tree<Key, T, Compare>;
 	typedef Key														key_type;
-//	typedef Node_<Key, T, Compare>*									node_ptr;
 	typedef T														mapped_type;
 	typedef ft::pair<const Key, T>									value_type;
 	typedef std::size_t												size_type;
@@ -37,39 +36,43 @@ public:
 										/* CONSTRUCTORS AND DESTRUCTORS */
 										/********************************/
 
-	Map() : _size(0) {
-		_tree = new Tree<Key, T, Compare>();
-	};
+	Map() : _size(0) { _tree = new Tree<Key, T, Compare>(); };
 
 	explicit Map( const Compare& comp, const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
 		_tree = new Tree<Key, T, Compare>();
 	};
 
-	template< class InputIt >
+	template <class InputIt>
 	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
 		_tree = new Tree<Key, T, Compare>();
-		for (; first != last; first++) {
+		for (; first != last; first++)
 			_tree->insertNode(first->first, first->second);
-		}
 	};
 
 	Map(const Map &other) : _size(other._size), _comp(other._comp), _allocator(other._allocator) {
 		_tree = new Tree<Key, T, Compare>(*(other._tree));
 	};
 
-	~Map() { delete _tree; };
-
 	Map& operator=(const Map& other) {
 		if (this == &other)
 			return *this;
 		_comp = other._comp;
-		_tree->fillTree(other._tree->root);
 		_size = other._size;
 		_allocator = other._allocator;
+		delete _tree;
+		_tree = new Tree<Key, T, Compare>(*(other._tree));
+//		_tree->fillTree(other._tree->root);
 		return *this;
 	};
 
 	allocator_type get_allocator() const { return _allocator; };
+
+	~Map() { delete _tree; };
+
+										/********************************/
+										/*       MEMBER FUNCTIONS       */
+										/********************************/
+
 
 	mapped_type& at(const Key& key) {
 		iterator tmp = _tree->findNode(key);
@@ -94,6 +97,7 @@ public:
 																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T, Compare>) + sizeof(T*)))); };
 
 
+	// todo check if false iterator returns wrong value in pair in tests
 	ft::pair<iterator, bool> insert(const value_type& value) {
 		bool isAdded = false;
 		iterator it;
