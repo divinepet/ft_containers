@@ -85,19 +85,16 @@ void map_tests() {
 	time_t t1;
 	time_t t2;
 
-//	cout << "------------------------------------------------------------------------" << endl;
-//	cout << "|                                  MAP                                 |" << endl;
-//	cout << "------------------------------------------------------------------------" << endl;
-//	printElement("Function");
-//	printElement("Result");
-//	printElement("ft time       std time");
-//	cout << endl;
-//	std::vector<int> al;
+	cout << "------------------------------------------------------------------------" << endl;
+	cout << "|                                  MAP                                 |" << endl;
+	cout << "------------------------------------------------------------------------" << endl;
+	printElement("Function");
+	printElement("Result");
+	printElement("ft time       std time");
+	cout << endl;
 
-	insert_test(my_map);
-	at_test(my_map);
-//	printElement("insert()");(insert_test(my_map) == al) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
-//	printElement("at()");(at_test(my_map) == al) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
+	printElement("insert()");(insert_test(map) == insert_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
+	printElement("at()");(at_test(map) == at_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 }
 
 

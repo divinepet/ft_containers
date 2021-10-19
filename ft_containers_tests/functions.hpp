@@ -945,25 +945,25 @@ std::vector<int> insert_test(std::map<T, V> mp) {
 template <class T, class V>
 std::vector<int> insert_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
-//	ft::pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(ft::make_pair(7, 7));
-//	ft::Map<int, int>::iterator it = mp.begin();
-//	v.push_back(it->first);
-//	v.push_back(it->second);
-//	v.push_back(pair.first->first);
-//	v.push_back(pair.first->second);
-//	v.push_back(pair.second);
-//	mp.insert(ft::make_pair(9, 9));
-//	ft::pair<ft::Map<int, int>::iterator , bool> pair2 = mp.insert(ft::make_pair(9, 9));
-//	ft::Map<int, int>::iterator it2 = pair.first;
-//	v.push_back(it2->first);
-//	v.push_back(it2->second);
-//	v.push_back(pair2.first->first);
-//	v.push_back(pair2.first->second);
-//	v.push_back(pair2.second);
-//	g_start2 = timer();
-//	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
-//		mp.insert(ft::make_pair(i, j));
-//	}
+	ft::pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(ft::make_pair(7, 7));
+	ft::Map<int, int>::iterator it = mp.begin();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	v.push_back(pair.first->first);
+	v.push_back(pair.first->second);
+	v.push_back(pair.second);
+	mp.insert(ft::make_pair(9, 9));
+	ft::pair<ft::Map<int, int>::iterator , bool> pair2 = mp.insert(ft::make_pair(9, 9));
+	ft::Map<int, int>::iterator it2 = pair.first;
+	v.push_back(it2->first);
+	v.push_back(it2->second);
+	v.push_back(pair2.first->first);
+	v.push_back(pair2.first->second);
+	v.push_back(pair2.second);
+	g_start2 = timer();
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp.insert(ft::make_pair(i, j));
+	}
 //	g_end2 = timer();
 //	v.push_back(mp.size());
 	return v;
@@ -972,24 +972,24 @@ std::vector<int> insert_test(ft::Map<T, V> mp) {
 template <class T, class V>
 std::vector<int> at_test(std::map<T, V> mp) {
 	std::vector<int> v;
-//	for (int i = 0, j = 10; i < 20; ++i, ++j)
-//		mp.insert(std::make_pair(i, j));
-//	g_start2 = timer();
-//	try {
-//		v.push_back(mp.at(160000));
-//		v.push_back(mp.at(1011000));
-//	} catch (std::exception &e) {
-//		v.push_back(1);
-//	}
-//	g_end2 = timer();
+	for (int i = 0, j = 10; i < 300000; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	g_start2 = timer();
+	try {
+		v.push_back(mp.at(160000));
+		v.push_back(mp.at(1011000));
+	} catch (std::exception &e) {
+		v.push_back(1);
+	}
+	g_end2 = timer();
 	return v;
 }
 
 template <class T, class V>
 std::vector<int> at_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = 0, j = 10; i < 8; ++i, ++j)
-		mp.insert(ft::make_pair(i, j));
+//	for (int i = 0, j = 10; i < 8; ++i, ++j)
+//		mp.insert(ft::make_pair(i, j));
 //	g_start1 = timer();
 //	try {
 //		v.push_back(mp.at(160000));

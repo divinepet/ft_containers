@@ -55,25 +55,36 @@ void ft_leaks() {
 
 
 
+//template <class T, class V>
+//ft::Map<T, V>
 
+//template <class T, class V>
+//ft::Map<T, V> f1(ft::Map<T, V> mp) {
+//	mp.insert(ft::make_pair(4, 4));
+//	ft::Map<int ,int>::iterator it = mp.begin();
+//	cout << it->first << endl;
+//	return mp;
+//}
 
+//template <class T, class V>
+//std::vector<int> f1(Tree<T ,V> tree) {
+//	std::vector<int> v;
+//	for (int i = 0, j = 10; i < 300000; ++i, ++j)
+//		tree.insertNode(i, j);
+//	return v;
+//}
 
-template <class T, class V>
-std::vector<int> f2(ft::Map<T, V> mp) {
-	std::vector<int> v;
-	for (int i = 0, j = 10; i < 8; ++i, ++j)
-		mp.insert(ft::make_pair(i, j));
-	return v;
-}
-
-
-void ft_map_tests() {
-	ft::Map<int, int> mp;
-	f2(mp);
-}
+//void ft_map_tests() {
+//	ft::Map<int, int> mp;
+//	mp.insert(ft::make_pair(8, 8));
+//	mp = f1(mp);
+//	ft::Map<int ,int>::iterator it = mp.begin();
+//	cout << it->first << endl;
+//}
 
 int main(int argc, char **argv) {
-	ft_map_tests();
-	ft_leaks();
 
+	start_tests();
+//	ft_map_tests();
+//ft_leaks();
 }

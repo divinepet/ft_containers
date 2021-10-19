@@ -19,52 +19,19 @@ protected:
 	struct Node_ *parent;
 	bool NIL;
 public:
-//	~Node_() {
-//		delete parent;
-//	};
 	T first;
 	V second;
 };
-
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal1;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal2;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal3;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal4;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal5;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal6;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal7;
-//template <class T, class V, class Compare>
-//Node_<T, V, Compare>* saveArrayGlobal8;
 
 template <class T, class V, class Compare = std::less<T> >
 class Tree {
 public:
 	Node_<T, V, Compare> sentinel;
 	Node_<T, V, Compare> *root;
-	Node_<T, V, Compare> *it;
 	Node_<T, V, Compare> *begin;
 	Node_<T, V, Compare> *last;
 	Compare comp;
 	Tree() {
-		sentinel.left = &sentinel;
-		sentinel.right = &sentinel;
-		sentinel.color = BLACK;
-		sentinel.NIL = true;
-		last = &sentinel;
-		begin = &sentinel;
-		root = &sentinel;
-	}
-
-	~Tree() {};
-
-	Tree(const Tree &other) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
@@ -73,9 +40,28 @@ public:
 		last = &sentinel;
 		begin = &sentinel;
 		root = &sentinel;
+	}
+
+	~Tree() {
+		deleteAll(root);
+//		deleteAll(begin);
+//		deleteAll(last);
+	};
+
+	Tree(Tree<T, V, Compare> &other) {
+		sentinel.left = &sentinel;
+		sentinel.right = &sentinel;
+		sentinel.parent = 0;
+		sentinel.color = BLACK;
+		sentinel.NIL = true;
+		last = &sentinel;
+		begin = &sentinel;
+		root = &sentinel;
+//		deleteAll(root);
 //		last = other.last;
 //		begin = other.begin;
 //		root = other.root;
+//		cout << other.root->first << endl;
 		fillTree(other.root);
 	}
 
@@ -87,15 +73,28 @@ public:
 			fillTree(t->right);
 	}
 
-	Tree& operator=(const Tree& other) {
-//		cout << "Tree operator==" << endl;
+	void deleteAll(Node_<T, V, Compare> *tmp) {
+		if (tmp->NIL) {
+			return;
+		}
+
+		if (!tmp->left->NIL) deleteAll(tmp->left);
+		if (!tmp->right->NIL) deleteAll(tmp->right);
+
+		deleteNode(tmp);
+	}
+
+	Tree& operator=(const Tree<T, V, Compare>& other) {
+		cout << "Tree operator==" << endl;
 		if (this == &other)
 			return *this;
+		deleteAll(root);
+		deleteAll(last);
+		deleteAll(begin);
 		root = other.root;
 		begin = other.begin;
 		last = other.last;
 		sentinel = other.sentinel;
-//		it = other.it;
 		return *this;
 	};
 
@@ -326,16 +325,6 @@ public:
 		if (y->color == BLACK)
 			deleteFixup (x);
 		free (y);
-	}
-
-	void deleteAll(Node_<T, V, Compare> *tmp) {
-		if (tmp->NIL)
-			return;
-
-		if (!tmp->left->NIL) deleteAll(tmp->left);
-		if (!tmp->right->NIL) deleteAll(tmp->right);
-
-		deleteNode(tmp);
 	}
 
 	Node_<T, V, Compare>* findNode(T first) {
