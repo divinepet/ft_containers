@@ -148,7 +148,7 @@ namespace ft {
 		template <class U> node_iterator(const node_iterator<U>& other,
 				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
 						: node(other.base()) 								{};
-		T					base() const 									{ return *node; }
+		T					base() const 									{ return node; }
 		node_iterator	&operator=(const node_iterator &obj) 				{ node = obj.node; return *this; }
 		node_iterator	operator++(int)										{ node_iterator tmp(*this); next(); return tmp; }
 		node_iterator	&operator++() 										{ next(); return *this; }

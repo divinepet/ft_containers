@@ -42,11 +42,7 @@ public:
 		root = &sentinel;
 	}
 
-	~Tree() {
-		deleteAll(root);
-//		deleteAll(begin);
-//		deleteAll(last);
-	};
+	~Tree() { deleteAll(root); };
 
 	Tree(Tree<T, V, Compare> &other) {
 		sentinel.left = &sentinel;
@@ -57,11 +53,6 @@ public:
 		last = &sentinel;
 		begin = &sentinel;
 		root = &sentinel;
-//		deleteAll(root);
-//		last = other.last;
-//		begin = other.begin;
-//		root = other.root;
-//		cout << other.root->first << endl;
 		fillTree(other.root);
 	}
 
@@ -81,7 +72,7 @@ public:
 		if (!tmp->left->NIL) deleteAll(tmp->left);
 		if (!tmp->right->NIL) deleteAll(tmp->right);
 
-		deleteNode(tmp);
+		delete tmp;
 	}
 
 	Tree& operator=(const Tree<T, V, Compare>& other) {

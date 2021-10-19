@@ -10,7 +10,7 @@ class Map : public Tree<Key, T, Compare> {
 public:
 	friend class Tree<Key, T, Compare>;
 	typedef Key														key_type;
-	typedef Node_<Key, T, Compare>*									node_ptr;
+//	typedef Node_<Key, T, Compare>*									node_ptr;
 	typedef T														mapped_type;
 	typedef ft::pair<const Key, T>									value_type;
 	typedef std::size_t												size_type;
@@ -41,21 +41,23 @@ public:
 		_tree = new Tree<Key, T, Compare>();
 	};
 
-//	 assign comp to tree
 	explicit Map( const Compare& comp, const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
 		_tree = new Tree<Key, T, Compare>();
 	};
 
 	template< class InputIt >
-	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) {};
+	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
+		_tree = new Tree<Key, T, Compare>();
+		for (; first != last; first++) {
+			_tree->insertNode(first->first, first->second);
+		}
+	};
 
 	Map(const Map &other) : _size(other._size), _comp(other._comp), _allocator(other._allocator) {
 		_tree = new Tree<Key, T, Compare>(*(other._tree));
 	};
 
-	~Map() {
-		delete _tree;
-	};
+	~Map() { delete _tree; };
 
 	Map& operator=(const Map& other) {
 		if (this == &other)

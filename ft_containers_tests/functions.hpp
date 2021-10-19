@@ -964,20 +964,36 @@ std::vector<int> insert_test(ft::Map<T, V> mp) {
 	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
 		mp.insert(ft::make_pair(i, j));
 	}
-//	g_end2 = timer();
-//	v.push_back(mp.size());
+	g_end2 = timer();
+	v.push_back(mp.size());
 	return v;
 }
 
 template <class T, class V>
 std::vector<int> at_test(std::map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = 0, j = 10; i < 300000; ++i, ++j)
+	for (int i = 0, j = 10; i < 700000; ++i, ++j)
 		mp.insert(std::make_pair(i, j));
+	g_start1 = timer();
+	try {
+		v.push_back(mp.at(400000));
+		v.push_back(mp.at(400001));
+	} catch (std::exception &e) {
+		v.push_back(1);
+	}
+	g_end1 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> at_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 700000; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
 	g_start2 = timer();
 	try {
-		v.push_back(mp.at(160000));
-		v.push_back(mp.at(1011000));
+		v.push_back(mp.at(400000));
+		v.push_back(mp.at(400001));
 	} catch (std::exception &e) {
 		v.push_back(1);
 	}
@@ -986,20 +1002,100 @@ std::vector<int> at_test(std::map<T, V> mp) {
 }
 
 template <class T, class V>
-std::vector<int> at_test(ft::Map<T, V> mp) {
+std::vector<int> iterators_test(std::map<T, V> mp) {
 	std::vector<int> v;
-//	for (int i = 0, j = 10; i < 8; ++i, ++j)
-//		mp.insert(ft::make_pair(i, j));
-//	g_start1 = timer();
-//	try {
-//		v.push_back(mp.at(160000));
-//		v.push_back(mp.at(1011000));
-//	} catch (std::exception &e) {
-//		v.push_back(1);
-//	}
-//	g_end1 = timer();
+	for (int i = 0, j = 10; i < 5; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	typename std::map<T, V>::iterator it = mp.begin();
+	typename std::map<T, V>::iterator it2 = mp.end();
+	typename std::map<T, V>::const_iterator it3 = mp.begin();
+	g_start1 = timer();
+	v.push_back(it->first);
+	it++;
+	it++;
+	it++;
+	it++;
+	v.push_back(it->first);
+	it++;
+	it--;
+	v.push_back(it->first);
+	it2--;
+	v.push_back(it2->first);
+	v.push_back(it2 == it);
+	v.push_back((--it2)->first);
+	v.push_back((it2--)->first);
+	v.push_back((it2++)->first);
+	v.push_back((++it2)->first);
+	g_end1 = timer();
 	return v;
 }
+
+// todo дополнить тест итераторов реверсами
+template <class T, class V>
+std::vector<int> iterators_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 5; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+	typename ft::Map<T, V>::iterator it = mp.begin();
+	typename ft::Map<T, V>::iterator it2 = mp.end();
+	typename ft::Map<T, V>::const_iterator it3 = mp.begin();
+	g_start2 = timer();
+	v.push_back(it->first);
+	it++;
+	it++;
+	it++;
+	it++;
+	v.push_back(it->first);
+	it++;
+	it--;
+	v.push_back(it->first);
+	it2--;
+	v.push_back(it2->first);
+	v.push_back(it2 == it);
+	v.push_back((--it2)->first);
+	v.push_back((it2--)->first);
+	v.push_back((it2++)->first);
+	v.push_back((++it2)->first);
+	g_end2 = timer();
+	return v;
+}
+
+
+template <class T, class V>
+std::vector<int> copy_constructor_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 1000000; ++i, ++j) {
+		mp.insert(std::make_pair(i, j));
+	}
+	g_start1 = timer();
+	std::map<int, int> mp2(mp.begin(), mp.end());
+	g_end1 = timer();
+	std::map<int, int>::iterator it = mp2.begin();
+	for (int i = 0; i < 3; ++i, it++) {
+		v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> copy_constructor_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 1000000; ++i, ++j) {
+		mp.insert(ft::make_pair(i, j));
+	}
+	g_start2 = timer();
+	ft::Map<int, int> mp2(mp.begin(), mp.end());
+	g_end2 = timer();
+	ft::Map<int, int>::iterator it = mp2.begin();
+	for (int i = 0; i < 3; ++i, it++) {
+		cout << "key: " << it->first << ", value: " << it->second << endl;
+		v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	return v;
+}
+
 
 
 int is_integral_test_() {
