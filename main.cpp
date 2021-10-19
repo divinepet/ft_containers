@@ -21,59 +21,59 @@ using std::endl;
 //	}
 //}
 
+std::string ft_exec(const char* cmd) {
+	char buffer[128];
+	std::string result = "";
+	FILE* pipe = popen(cmd, "r");
+	if (!pipe) throw std::runtime_error("popen() failed!");
+	try {
+		while (fgets(buffer, sizeof buffer, pipe) != NULL) {
+			result += buffer;
+		}
+	} catch (...) { pclose(pipe); throw; }
+	pclose(pipe);
+	return result;
+}
+
+std::string ft_get_leak_string(std::string s) {
+	std::string tmp;
+	int idx = s.find("total leaked bytes");
+	for (; s[idx] != '\n' ; --idx) {}
+	int edx = idx + 1;
+	for (; s[edx] != '\n' ; ++edx) {}
+	return s.substr(++idx, edx - 101);
+}
+
+void ft_leaks() {
+	string a = "leaks ";
+	a += cmd_name;
+	usleep(50);
+	string s = ft_get_leak_string(ft_exec(a.c_str()));
+	cout << YELLOW + s.substr(0, s.length() - 2) + RESET << endl;
+}
 
 
+
+
+
+
+
+template <class T, class V>
+std::vector<int> f2(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 10; i < 8; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+	return v;
+}
+
+
+void ft_map_tests() {
+	ft::Map<int, int> mp;
+	f2(mp);
+}
 
 int main(int argc, char **argv) {
-
-	ft::Map<int, int> mp;
-	Tree<int, int> tree;
-//	mp.insert(ft::make_pair(7, 7));
-//	mp.insert(ft::make_pair(2, 2));
-//	mp.insert(ft::make_pair(4, 4));
-//	mp.insert(ft::make_pair(6, 6));
-
-
-//	start_tests();
-//	ft::Map<int, int> mp;
-//	mp.insert(ft::make_pair(1, 1));
-//	mp.insert(ft::make_pair(4, 4));
-//
-//
-//
-//	ft::Map<int, int> mp2(mp);
-//
-//	// 1, 3,
-//	mp2.insert(ft::make_pair(3, 3));
-//	mp2.erase(4);
-//
-//
-//	ft::Map<int, int>::iterator it = mp2.begin();
-//
-//	cout << it->first << endl;
-
-
-
-
-
-
-
-
-
-
-
-
-
-//	cout << it->first << endl;
-//
-//	ft::Map<int, int>::iterator it2 = mp2.begin();
-//	cout << it2->first << endl;
-
-
-
-//	start_tests();
-//	mp.erase(3);
-//	ft::Map<int, int>::iterator it = mp.begin();
-//	cout << it->first << endl;
+	ft_map_tests();
+	ft_leaks();
 
 }

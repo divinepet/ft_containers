@@ -45,13 +45,17 @@ public:
 	template< class InputIt >
 	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) {};
 
-	Map(const Map &other) : _size(other._size), _tree(other._tree), _comp(other._comp), _allocator(other._allocator) {};
+	Map(const Map &other) : _size(other._size), _comp(other._comp), _allocator(other._allocator) {
+		_tree.deleteAll(_tree.root);
+		_tree = other._tree;
+	};
 
 	~Map() {
 		_tree.deleteAll(_tree.root);
 	};
 
 	Map& operator=(const Map& other) {
+		cout << "==== Map <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
 		if (this == &other)
 			return *this;
 		_size = other._size;
