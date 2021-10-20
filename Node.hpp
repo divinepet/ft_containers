@@ -1,14 +1,13 @@
 #pragma once
 
 #define compEQ(a,b) (a == b)
-#include <vector>
 
 typedef enum { BLACK, RED } nodeColor;
 
 template <class T, class V, class Compare>
 class Tree;
 
-template <class T, class V, class Compare>
+template <class T, class V, class Compare >
 struct Node_ {
 protected:
 	friend class Tree<T, V, Compare>;
@@ -23,7 +22,7 @@ public:
 	V second;
 };
 
-template <class T, class V, class Compare = std::less<T> >
+template <class T, class V, class Compare >
 class Tree {
 public:
 	Node_<T, V, Compare> sentinel;
@@ -31,12 +30,13 @@ public:
 	Node_<T, V, Compare> *begin;
 	Node_<T, V, Compare> *last;
 	Compare comp;
-	Tree() {
+	Tree(Compare comparator = Compare()) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
+		comp = comparator;
 		last = &sentinel;
 		begin = &sentinel;
 		root = &sentinel;
@@ -53,6 +53,7 @@ public:
 		last = &sentinel;
 		begin = &sentinel;
 		root = &sentinel;
+		comp = other.comp;
 		fillTree(other.root);
 	}
 

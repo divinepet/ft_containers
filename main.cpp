@@ -5,22 +5,6 @@ using std::endl;
 #include "Map.hpp"
 #include "ft_containers_tests/general.hpp"
 
-//template <class T, class V>
-//void print(std::map<T, V> map) {
-//	typename std::map<T, V>::iterator it = map.begin();
-//	for (; it != map.end(); ++it) {
-//		cout << "key: " << it->first << ", value: " << it->second << endl;
-//	}
-//}
-//
-//template <class T, class V>
-//void print(ft::Map<T, V> map) {
-//	typename ft::Map<T, V>::iterator it = map.begin();
-//	for (; it != map.end(); ++it) {
-//		cout << "key: " << it->first << ", value: " << it->second << endl;
-//	}
-//}
-
 std::string ft_exec(const char* cmd) {
 	char buffer[128];
 	std::string result = "";
@@ -53,8 +37,6 @@ void ft_leaks() {
 }
 
 
-#include <type_traits>
-
 //template <class T, class V>
 //ft::Map<T, V>
 
@@ -84,9 +66,16 @@ void ft_leaks() {
 //}
 
 int main(int argc, char **argv) {
-	start_tests();
-	std::map<int ,int> mp;
-	mp.value_comp();
+	ft::Map<int, int, std::greater<int> > mp1;
+	mp1.insert(ft::make_pair(17, 17));
+	mp1.insert(ft::make_pair(7, 7));
+	mp1.insert(ft::make_pair(3, 3));
+	mp1.insert(ft::make_pair(14, 14));
+//	ft::Map<int, int>::iterator it = mp1.begin();
+
+//	start_tests();
+//	std::map<int ,int> mp;
+//	mp.value_comp();
 
 //	ft_leaks();
 }

@@ -15,8 +15,10 @@ Utility.hpp
 /Users/divinepet/Desktop/ft_containers/Utility.hpp
 Iterator.hpp
 /Users/divinepet/Desktop/ft_containers/Iterator.hpp
-oldNode.hpp
-/Users/divinepet/Desktop/ft_containers/oldNode.hpp
+Node.hpp
+/Users/divinepet/Desktop/ft_containers/Node.hpp
+
+/Users/divinepet/Desktop/ft_containers/Node.hpp
 
 /Users/divinepet/Desktop/ft_containers/Utility.hpp
 
@@ -61,10 +63,4 @@ Map.hpp
 /Users/divinepet/Desktop/ft_containers/Map.hpp
 ft_containers_tests/general.hpp
 /Users/divinepet/Desktop/ft_containers/ft_containers_tests/general.hpp
-type_traits
--
-
-/Users/divinepet/Desktop/ft_containers/oldNode.hpp
-vector
--
 

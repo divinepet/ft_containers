@@ -86,6 +86,9 @@
 		<Unit filename="/Users/divinepet/Desktop/ft_containers/Map.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Node.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/divinepet/Desktop/ft_containers/Stack.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
@@ -102,9 +105,6 @@
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/divinepet/Desktop/ft_containers/main.cpp">
-			<Option target="ft_containers"/>
-		</Unit>
-		<Unit filename="/Users/divinepet/Desktop/ft_containers/oldNode.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/divinepet/Desktop/ft_containers/CMakeLists.txt">

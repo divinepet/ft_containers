@@ -2,7 +2,7 @@
 
 #include "Utility.hpp"
 #include "Iterator.hpp"
-#include "oldNode.hpp"
+#include "Node.hpp"
 
 namespace ft {
 template <class Key, class T, class Compare = std::less<Key>, class A = std::allocator<std::pair<const Key, T> > >
@@ -20,7 +20,7 @@ public:
 	typedef const value_type&										const_reference;
 	typedef typename allocator_type::pointer						pointer;
 	typedef typename allocator_type::const_pointer					const_pointer;
-	typedef ft::node_iterator<Node_<Key, T, Compare>*>				iterator;
+	typedef ft::node_iterator<Node_<Key, T, Compare>* >				iterator;
 	typedef ft::node_iterator<const Node_<Key, T, Compare>*>		const_iterator;
 	//	reverse_iterator
 	//	reverse_const_iterator
@@ -36,10 +36,10 @@ public:
 										/* CONSTRUCTORS AND DESTRUCTORS */
 										/********************************/
 
-	Map() : _size(0) { _tree = new Tree<Key, T, Compare>(); };
+	Map() : _size(0) { _tree = new Tree<Key, T, Compare>(_comp); };
 
 	explicit Map( const Compare& comp, const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
-		_tree = new Tree<Key, T, Compare>();
+		_tree = new Tree<Key, T, Compare>(_comp);
 	};
 
 	template <class InputIt>
@@ -61,7 +61,6 @@ public:
 		_allocator = other._allocator;
 		delete _tree;
 		_tree = new Tree<Key, T, Compare>(*(other._tree));
-//		_tree->fillTree(other._tree->root);
 		return *this;
 	};
 

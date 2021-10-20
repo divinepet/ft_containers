@@ -1133,6 +1133,44 @@ std::vector<int> assign_overload_test(ft::Map<T, V> mp) {
 	return v;
 }
 
+template <class T, class V>
+std::vector<int> comparator_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	std::map<int, int, std::greater<int> > mp1;
+	mp1.insert(std::make_pair(17, 17));
+	mp1.insert(std::make_pair(7, 7));
+	mp1.insert(std::make_pair(3, 3));
+	mp1.insert(std::make_pair(14, 14));
+	g_start1 = timer();
+	std::map<int, int>::iterator it = mp1.begin();
+	v.push_back(it->first);
+	mp1.erase(17);
+	v.push_back(it->first);
+	mp1.erase(14);
+	v.push_back(it->first);
+	g_end1 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> comparator_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	ft::Map<int, int, std::greater<int> > mp1;
+	mp1.insert(ft::make_pair(17, 17));
+	mp1.insert(ft::make_pair(7, 7));
+	mp1.insert(ft::make_pair(3, 3));
+	mp1.insert(ft::make_pair(14, 14));
+//	ft::Map<int, int >::iterator it = mp1.begin();
+//	g_start2 = timer();
+//	v.push_back(it->first);
+//	mp1.erase(17);
+//	v.push_back(it->first);
+//	mp1.erase(14);
+//	v.push_back(it->first);
+//	g_end2 = timer();
+	return v;
+}
+
 
 
 int is_integral_test_() {
