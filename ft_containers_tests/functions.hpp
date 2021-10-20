@@ -945,15 +945,15 @@ std::vector<int> insert_test(std::map<T, V> mp) {
 template <class T, class V>
 std::vector<int> insert_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
-	ft::pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(ft::make_pair(7, 7));
+	_pair<ft::Map<int, int>::iterator , bool> pair = mp.insert(_make_pair(7, 7));
 	ft::Map<int, int>::iterator it = mp.begin();
 	v.push_back(it->first);
 	v.push_back(it->second);
 	v.push_back(pair.first->first);
 	v.push_back(pair.first->second);
 	v.push_back(pair.second);
-	mp.insert(ft::make_pair(9, 9));
-	ft::pair<ft::Map<int, int>::iterator , bool> pair2 = mp.insert(ft::make_pair(9, 9));
+	mp.insert(_make_pair(9, 9));
+	_pair<ft::Map<int, int>::iterator , bool> pair2 = mp.insert(_make_pair(9, 9));
 	ft::Map<int, int>::iterator it2 = pair.first;
 	v.push_back(it2->first);
 	v.push_back(it2->second);
@@ -962,7 +962,7 @@ std::vector<int> insert_test(ft::Map<T, V> mp) {
 	v.push_back(pair2.second);
 	g_start2 = timer();
 	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
-		mp.insert(ft::make_pair(i, j));
+		mp.insert(_make_pair(i, j));
 	}
 	g_end2 = timer();
 	v.push_back(mp.size());
@@ -989,7 +989,7 @@ template <class T, class V>
 std::vector<int> at_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
 	for (int i = 0, j = 10; i < 700000; ++i, ++j)
-		mp.insert(ft::make_pair(i, j));
+		mp.insert(_make_pair(i, j));
 	g_start2 = timer();
 	try {
 		v.push_back(mp.at(400000));
@@ -1035,7 +1035,7 @@ template <class T, class V>
 std::vector<int> iterators_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
 	for (int i = 0, j = 10; i < 5; ++i, ++j)
-		mp.insert(ft::make_pair(i, j));
+		mp.insert(_make_pair(i, j));
 	typename ft::Map<T, V>::iterator it = mp.begin();
 	typename ft::Map<T, V>::iterator it2 = mp.end();
 	typename ft::Map<T, V>::const_iterator it3 = mp.begin();
@@ -1082,7 +1082,7 @@ template <class T, class V>
 std::vector<int> copy_constructor_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
 	for (int i = 0, j = 10; i < 300000; ++i, ++j) {
-		mp.insert(ft::make_pair(i, j));
+		mp.insert(_make_pair(i, j));
 	}
 	g_start2 = timer();
 	ft::Map<int, int> mp2(mp.begin(), mp.end());
@@ -1111,6 +1111,7 @@ std::vector<int> assign_overload_test(std::map<T, V> mp) {
 		v.push_back(it->first);
 		v.push_back(it->second);
 	}
+	v.push_back(mp2.size());
 	return v;
 }
 
@@ -1118,10 +1119,10 @@ template <class T, class V>
 std::vector<int> assign_overload_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
 	for (int i = 0, j = 10; i < 200000; ++i, ++j)
-		mp.insert(ft::make_pair(i, j));
+		mp.insert(_make_pair(i, j));
 	ft::Map<T, V> mp2;
 	for (int i = 200000, j = 200010; i < 400000; ++i, ++j)
-		mp2.insert(ft::make_pair(i, j));
+		mp2.insert(_make_pair(i, j));
 	g_start2 = timer();
 	mp2 = mp;
 	g_end2 = timer();
@@ -1130,6 +1131,7 @@ std::vector<int> assign_overload_test(ft::Map<T, V> mp) {
 		v.push_back(it->first);
 		v.push_back(it->second);
 	}
+	v.push_back(mp2.size());
 	return v;
 }
 
@@ -1148,7 +1150,10 @@ std::vector<int> comparator_test(std::map<T, V> mp) {
 	v.push_back(it->first);
 	mp1.erase(14);
 	v.push_back(it->first);
+	std::map<int, int>::iterator it2 = mp1.begin();
+	v.push_back(it2->first);
 	g_end1 = timer();
+	v.push_back(mp1.size());
 	return v;
 }
 
@@ -1156,51 +1161,98 @@ template <class T, class V>
 std::vector<int> comparator_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
 	ft::Map<int, int, std::greater<int> > mp1;
-	mp1.insert(ft::make_pair(17, 17));
-	mp1.insert(ft::make_pair(7, 7));
-	mp1.insert(ft::make_pair(3, 3));
-	mp1.insert(ft::make_pair(14, 14));
-//	ft::Map<int, int >::iterator it = mp1.begin();
-//	g_start2 = timer();
-//	v.push_back(it->first);
-//	mp1.erase(17);
-//	v.push_back(it->first);
-//	mp1.erase(14);
-//	v.push_back(it->first);
-//	g_end2 = timer();
+	mp1.insert(_make_pair(17, 17));
+	mp1.insert(_make_pair(7, 7));
+	mp1.insert(_make_pair(3, 3));
+	mp1.insert(_make_pair(14, 14));
+	ft::Map<int, int >::iterator it = mp1.begin();
+	g_start2 = timer();
+	v.push_back(it->first);
+	mp1.erase(17);
+	v.push_back(it->first);
+	mp1.erase(14);
+	v.push_back(it->first);
+	ft::Map<int, int>::iterator it2 = mp1.begin();
+	v.push_back(it2->first);
+	g_end2 = timer();
+	v.push_back(mp1.size());
 	return v;
 }
 
+template <class T, class V>
+std::vector<int> operator_sq_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	mp.insert(std::make_pair(3, 3));
+	typename std::map<T, V>::iterator it = mp.begin();
+	g_start1 = timer();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	mp[3] = 10;
+	v.push_back(it->first);
+	v.push_back(it->second);
+	mp[2] = 9;
+	it = mp.begin();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	it++;
+	v.push_back(it->first);
+	v.push_back(it->second);
+	v.push_back(mp.size());
+	g_end1 = timer();
+	return v;
+}
 
+template <class T, class V>
+std::vector<int> operator_sq_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	mp.insert(_make_pair(3, 3));
+	typename ft::Map<T, V>::iterator it = mp.begin();
+	g_start2 = timer();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	mp[3] = 10;
+	v.push_back(it->first);
+	v.push_back(it->second);
+	mp[2] = 9;
+	it = mp.begin();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	it++;
+	v.push_back(it->first);
+	v.push_back(it->second);
+	v.push_back(mp.size());
+	g_end2 = timer();
+	return v;
+}
 
 int is_integral_test_() {
 	std::vector<int> v;
 	int res = 0;
 	g_start2 = timer(); g_end2 = timer(); g_start1 = timer(); g_end1 = timer();
-	(ft::is_integral<float>() == std::is_integral<float>()) ? 0 : res = 1;
-	(ft::is_integral<int>() == std::is_integral<int>()) ? 0 : res = 1;
-	(ft::is_integral<bool>() == std::is_integral<bool>()) ? 0 : res = 1;
-	(ft::is_integral<char>() == std::is_integral<char>()) ? 0 : res = 1;
-	(ft::is_integral<signed char>() == std::is_integral<signed char>()) ? 0 : res = 1;
-	(ft::is_integral<unsigned char>() == std::is_integral<unsigned char>()) ? 0 : res = 1;
-	(ft::is_integral<wchar_t>() == std::is_integral<wchar_t>()) ? 0 : res = 1;
-	(ft::is_integral<char16_t>() == std::is_integral<char16_t>()) ? 0 : res = 1;
-	(ft::is_integral<short>() == std::is_integral<short>()) ? 0 : res = 1;
-	(ft::is_integral<unsigned short>() == std::is_integral<unsigned short>()) ? 0 : res = 1;
-	(ft::is_integral<unsigned int>() == std::is_integral<unsigned int>()) ? 0 : res = 1;
-	(ft::is_integral<long>() == std::is_integral<long>()) ? 0 : res = 1;
-	(ft::is_integral<unsigned long>() == std::is_integral<unsigned long>()) ? 0 : res = 1;
-	(ft::is_integral<long long>() == std::is_integral<long long>()) ? 0 : res = 1;
-	(ft::is_integral<unsigned long long>() == std::is_integral<unsigned long long>()) ? 0 : res = 1;
+	(_is_integral<float>() == std::is_integral<float>()) ? 0 : res = 1;
+	(_is_integral<int>() == std::is_integral<int>()) ? 0 : res = 1;
+	(_is_integral<bool>() == std::is_integral<bool>()) ? 0 : res = 1;
+	(_is_integral<char>() == std::is_integral<char>()) ? 0 : res = 1;
+	(_is_integral<signed char>() == std::is_integral<signed char>()) ? 0 : res = 1;
+	(_is_integral<unsigned char>() == std::is_integral<unsigned char>()) ? 0 : res = 1;
+	(_is_integral<wchar_t>() == std::is_integral<wchar_t>()) ? 0 : res = 1;
+	(_is_integral<char16_t>() == std::is_integral<char16_t>()) ? 0 : res = 1;
+	(_is_integral<short>() == std::is_integral<short>()) ? 0 : res = 1;
+	(_is_integral<unsigned short>() == std::is_integral<unsigned short>()) ? 0 : res = 1;
+	(_is_integral<unsigned int>() == std::is_integral<unsigned int>()) ? 0 : res = 1;
+	(_is_integral<long>() == std::is_integral<long>()) ? 0 : res = 1;
+	(_is_integral<unsigned long>() == std::is_integral<unsigned long>()) ? 0 : res = 1;
+	(_is_integral<long long>() == std::is_integral<long long>()) ? 0 : res = 1;
+	(_is_integral<unsigned long long>() == std::is_integral<unsigned long long>()) ? 0 : res = 1;
 	return res;
 }
 
-template <class T> typename ft::enable_if< std::is_unsigned<T>::value >::type
+template <class T> typename _enable_if< std::is_unsigned<T>::value >::type
 		foo(T) {
 	g_start1 = -20;
 }
 
-template <class T> typename ft::enable_if< std::is_signed<T>::value >::type
+template <class T> typename _enable_if< std::is_signed<T>::value >::type
 		foo(T) {
 	g_start2 = -20;
 }
@@ -1272,7 +1324,7 @@ std::string get_leak_string(std::string s) {
 
 void leaks_test() {
 	string a = "leaks ";
-	a += cmd_name;
+	a += _exec_name;
 	usleep(50);
 	string s = get_leak_string(exec(a.c_str()));
 	cout << YELLOW + s.substr(0, s.length() - 2) + RESET << endl;

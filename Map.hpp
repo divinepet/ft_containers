@@ -20,15 +20,15 @@ public:
 	typedef const value_type&										const_reference;
 	typedef typename allocator_type::pointer						pointer;
 	typedef typename allocator_type::const_pointer					const_pointer;
-	typedef ft::node_iterator<Node_<Key, T, Compare>* >				iterator;
-	typedef ft::node_iterator<const Node_<Key, T, Compare>*>		const_iterator;
+	typedef ft::node_iterator<Node_<Key, T>* >						iterator;
+	typedef ft::node_iterator<const Node_<Key, T>*>					const_iterator;
 	//	reverse_iterator
 	//	reverse_const_iterator
-	Tree<Key, T, Compare>*											_tree;
+	Tree<Key, T>*													_tree;
 private:
 	A			 													_allocator;
 	size_t															_size;
-	key_compare 													_comp;
+	Compare		 													_comp;
 public:
 
 
@@ -36,21 +36,25 @@ public:
 										/* CONSTRUCTORS AND DESTRUCTORS */
 										/********************************/
 
-	Map() : _size(0) { _tree = new Tree<Key, T, Compare>(_comp); };
+	Map() : _size(0) {
+		_tree = new Tree<Key, T>();
+	};
 
 	explicit Map( const Compare& comp, const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
-		_tree = new Tree<Key, T, Compare>(_comp);
+		_tree = new Tree<Key, T>();
 	};
 
 	template <class InputIt>
 	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
-		_tree = new Tree<Key, T, Compare>();
-		for (; first != last; first++)
-			_tree->insertNode(first->first, first->second);
+		_tree = new Tree<Key, T>();
+		for (; first != last; first++) {
+			insert(ft::make_pair(first->first, first->second));
+		}
 	};
 
 	Map(const Map &other) : _size(other._size), _comp(other._comp), _allocator(other._allocator) {
-		_tree = new Tree<Key, T, Compare>(*(other._tree));
+		_tree = new Tree<Key, T>(*(other._tree));
+		_tree->fillTree(other._tree->root, _comp);
 	};
 
 	Map& operator=(const Map& other) {
@@ -60,7 +64,8 @@ public:
 		_size = other._size;
 		_allocator = other._allocator;
 		delete _tree;
-		_tree = new Tree<Key, T, Compare>(*(other._tree));
+		_tree = new Tree<Key, T>(*(other._tree));
+		_tree->fillTree(other._tree->root, _comp);
 		return *this;
 	};
 
@@ -74,13 +79,13 @@ public:
 
 
 	mapped_type& at(const Key& key) {
-		iterator tmp = _tree->findNode(key);
+		iterator tmp = _tree->findNode(key, _comp);
 		return (tmp == _tree->get_end()) ? throw std::out_of_range("key not found") : tmp->second;
 	};
 
 	const T& at( const Key& key ) const { return static_cast<const T>(at(key)); };
 
-	T&			       		operator[](const Key& key)			{ return _tree->findNode(key)->second; };
+	T&	operator[](const Key& key) 								{ return insert(ft::make_pair(key, T())).first->second;}
 	iterator 				begin()								{ return _tree->get_begin(); };
 	const_iterator 			begin() const						{ return _tree->get_begin(); };
 	iterator 				end()								{ return _tree->get_end(); };
@@ -93,7 +98,7 @@ public:
 	bool 					empty() const						{ return _size == 0; };
 	size_type				size() const 						{ return _size; };
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
-																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T, Compare>) + sizeof(T*)))); };
+																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T>) + sizeof(T*)))); };
 
 
 	// todo check if false iterator returns wrong value in pair in tests
@@ -101,21 +106,22 @@ public:
 		bool isAdded = false;
 		iterator it;
 
-		if (_tree->findNode(value.first) == _tree->get_end()) {
+		if (_tree->findNode(value.first, _comp) == _tree->get_end()) {
 			_size++;
 			isAdded = true;
 		}
-		it = _tree->insertNode(value.first, value.second);
+		it = _tree->insertNode(value.first, value.second, _comp);
 		return ft::pair<iterator, bool>(it, isAdded);
 	};
 
 	iterator find( const Key& key ) {
-		return _tree->findNode(key);
+		return _tree->findNode(key, _comp);
 	}
 
 	size_type erase( const key_type& key ) {
 //		iterator it = _tree.findNode(key, _comp);
-		_tree->deleteNode(_tree->findNode(key));
+		_tree->deleteNode(_tree->findNode(key, _comp), _comp);
+		_size--;
 		return 1;
 	}
 };

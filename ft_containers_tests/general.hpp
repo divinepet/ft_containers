@@ -8,12 +8,36 @@
 #include <sstream>
 #include <unistd.h>
 #include <iostream>
-#include "../Utility.hpp" // your utilities
-#include "../Vector.hpp" // your vector
-#include "../Map.hpp"
-const char* cmd_name = "app"; // your executable program name (for example ./a.out is a.out etc.)
+void vector_tests();
+void algorithm_tests();
+void map_tests();
+
+/*******************************************************************************************************************/
+/*							YOUR TEMPLATE NAMES							            							   */
+#include 					"../Utility.hpp"
+#include 					"../Vector.hpp"
+#include 					"../Map.hpp"
+#define	_is_integral 		ft::is_integral
+#define	_enable_if 			ft::enable_if
+#define	_pair 				ft::pair
+#define	_make_pair 			ft::make_pair
+#define _exec_name 			"app"
+/*******************************************************************************************************************/
 
 #include "functions.hpp"
+
+void start_tests() {
+	cout << "************************************************************************" << endl;
+	cout << "*                                                                      *" << endl;
+	cout << "*                    ft_containers TESTS by @elaronda                  *" << endl;
+	cout << "*                                                                      *" << endl;
+	cout << "************************************************************************" << endl;
+//	vector_tests();
+//	algorithm_tests();
+	map_tests();
+	leaks_test();
+}
+
 void vector_tests() {
 	std::vector<int> vector;
 	ft::Vector<int> my_vector;
@@ -96,20 +120,8 @@ void map_tests() {
 	printElement("constructor(InputIt)");(copy_constructor_test(map) == copy_constructor_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 	printElement("assign overload (=)");(assign_overload_test(map) == assign_overload_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 	printElement("iterators");(iterators_test(map) == iterators_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
-	printElement("comparator");(comparator_test(map) == comparator_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
+	printElement("class compare");(comparator_test(map) == comparator_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 	printElement("insert()");(insert_test(map) == insert_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 	printElement("at()");(at_test(map) == at_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
-}
-
-
-void start_tests() {
-	cout << "************************************************************************" << endl;
-	cout << "*                                                                      *" << endl;
-	cout << "*                    ft_containers TESTS by @elaronda                  *" << endl;
-	cout << "*                                                                      *" << endl;
-	cout << "************************************************************************" << endl;
-//	vector_tests();
-//	algorithm_tests();
-	map_tests();
-	leaks_test();
+	printElement("operator[]");(operator_sq_test(map) == operator_sq_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 }
