@@ -110,6 +110,24 @@ namespace ft {
 	class node_iterator {
 	private:
 		T node;
+
+		bool compare(T tmp, T node, bool it) {
+			if (!node->parent) return true;
+			if (node->parent->left == node) {
+				if (node->parent->first < node->first) {
+					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater<T>
+				} else {
+					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less<T>
+				}
+			} else {
+				if (node->parent->first < node->first) {
+					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less<T>
+				} else {
+					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater<T>
+				}
+			}
+		}
+
 		void next() {
 			if (!node->right->NIL) {
 				node = node->right;
@@ -118,7 +136,7 @@ namespace ft {
 			}
 			else {
 				T tmp = node;
-				while (tmp->first >= node->first) {
+				while (compare(tmp, node, 1) || tmp->first == node->first) {
 					if (!node->parent) { node = tmp->right; break; }
 					node = node->parent;
 				}
@@ -136,7 +154,7 @@ namespace ft {
 					node = node->right;
 			} else {
 				T tmp = node;
-				while (tmp->first <= node->first) {
+				while (compare(tmp, node, 0) || tmp->first == node->first) {
 					if (!node->parent) { node = node->left - 1; break; }
 					node = node->parent;
 				}

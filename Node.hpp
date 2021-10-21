@@ -11,7 +11,7 @@ template <class T, class V >
 struct Node_ {
 protected:
 	friend class Tree<T, V>;
-	friend class ft::node_iterator<Node_<T, V>* >;
+	friend class ft::node_iterator<Node_<T, V>*>;
 	bool color;
 	struct Node_ *left;
 	struct Node_ *right;
@@ -294,6 +294,7 @@ public:
 
 		if (y->color == BLACK)
 			deleteFixup (x);
+		// todo delete free
 		free (y);
 	}
 
@@ -332,8 +333,6 @@ public:
 
 	Node_<T, V>* decrement(Node_<T, V> *t) {
 		if (t->NIL) return t->parent;
-		// todo check this case: reverse compare can break it
-//		if (t == begin) { return t->left - 1; }
 		if (!t->left->NIL) {
 			t = t->left;
 			while (!t->right->NIL)

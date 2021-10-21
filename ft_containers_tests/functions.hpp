@@ -1225,6 +1225,108 @@ std::vector<int> operator_sq_test(ft::Map<T, V> mp) {
 	return v;
 }
 
+template <class T, class V>
+std::vector<int> empty_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	g_start1 = timer();
+	v.push_back(mp.empty());
+	mp.insert(std::make_pair(3, 3));
+	v.push_back(mp.empty());
+	g_end1 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> empty_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	g_start2 = timer();
+	v.push_back(mp.empty());
+	mp.insert(ft::make_pair(3, 3));
+	v.push_back(mp.empty());
+	g_end2 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> size_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 0; i < 100000; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	g_start1 = timer();
+	v.push_back(mp.size());
+	g_end1 = timer();
+	for (int i = 0; i < 43; ++i)
+		mp.erase(i);
+	v.push_back(mp.size());
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> size_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 0; i < 100000; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+	g_start2 = timer();
+	v.push_back(mp.size());
+	g_end2 = timer();
+	for (int i = 0; i < 43; ++i)
+		mp.erase(i);
+	v.push_back(mp.size());
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> max_size_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	g_start1 = timer();
+	v.push_back(mp.max_size());
+	g_end1 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> max_size_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	g_start2 = timer();
+	v.push_back(mp.max_size());
+	g_end2 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> clear_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	mp.clear();
+	for (int i = 0, j = 0; i < 250000; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	v.push_back(mp.size());
+	g_start1 = timer();
+	mp.clear();
+	g_end1 = timer();
+	v.push_back(mp.size());
+	typename std::map<T, V>::iterator it = mp.begin();
+	if (it == mp.end())
+		v.push_back(1);
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> clear_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	mp.clear();
+	for (int i = 0, j = 0; i < 250000; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+	v.push_back(mp.size());
+	g_start2 = timer();
+	mp.clear();
+	g_end2 = timer();
+	v.push_back(mp.size());
+	typename ft::Map<T, V>::iterator it = mp.begin();
+	if (it == mp.end())
+		v.push_back(1);
+	return v;
+}
+
 int is_integral_test_() {
 	std::vector<int> v;
 	int res = 0;

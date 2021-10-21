@@ -5,47 +5,51 @@ using std::endl;
 #include "Map.hpp"
 #include "ft_containers_tests/general.hpp"
 
-std::string ft_exec(const char* cmd) {
-	char buffer[128];
-	std::string result = "";
-	FILE* pipe = popen(cmd, "r");
-	if (!pipe) throw std::runtime_error("popen() failed!");
-	try {
-		while (fgets(buffer, sizeof buffer, pipe) != NULL) {
-			result += buffer;
-		}
-	} catch (...) { pclose(pipe); throw; }
-	pclose(pipe);
-	return result;
-}
-
-std::string ft_get_leak_string(std::string s) {
-	std::string tmp;
-	int idx = s.find("total leaked bytes");
-	for (; s[idx] != '\n' ; --idx) {}
-	int edx = idx + 1;
-	for (; s[edx] != '\n' ; ++edx) {}
-	return s.substr(++idx, edx - 101);
-}
-
-void ft_leaks() {
-	string a = "leaks ";
-	a += _exec_name;
-	usleep(50);
-	string s = ft_get_leak_string(ft_exec(a.c_str()));
-	cout << YELLOW + s.substr(0, s.length() - 2) + RESET << endl;
-}
-
-
-
-
-
-
-
-
-
-
 int main(int argc, char **argv) {
+	ft::Map<int, int > mp1;
+
+	mp1.insert(ft::make_pair(17, 17));
+	mp1.insert(ft::make_pair(7, 7));
+	mp1.insert(ft::make_pair(3, 3));
+	mp1.insert(ft::make_pair(14, 14));
+
+	ft::Map<int, int>::iterator it = mp1.begin();
+
+	for (; it != mp1.end(); it++) {
+		std::cout << it->first << std::endl;
+	}
+//	std::map<int , int> mp;
+//	std::map<int, int>::iterator it = mp.end();
+//
+//	g_start1 = timer();
+//	for (int i = 0, j = 0; i < 600000; ++i, ++j) {
+//		mp.insert(it, std::make_pair(i, j));
+////		mp.insert(std::make_pair(i, j));
+//	}
+//	g_end1 = timer();
+//
+//	cout << g_end1 - g_start1 << "ms" << endl;
+
+//	std::map<int, int>::iterator it2 = mp.begin();
+//	for (; it2 != mp.end(); it2++) {
+//		cout << "key: " << it2->first << ", value: " << it2->second << endl;
+//	}
+
+
+
+
+//	std::map<int , int> mp;
+//	std::map<int, int>::iterator it = mp.begin();
+//
+//	g_start1 = timer();
+//	for (int i = 0, j = 0; i < 600000; ++i, ++j) {
+//		it = mp.insert(it, std::make_pair(i, j));
+////		mp.insert(std::make_pair(i, j));
+//	}
+//	g_end1 = timer();
+//
+//	cout << g_end1 - g_start1 << "ms" << endl;
+
 //	start_tests();
 //	ft_leaks();
 }
