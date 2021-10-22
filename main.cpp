@@ -6,7 +6,7 @@ using std::endl;
 #include "ft_containers_tests/general.hpp"
 
 int main(int argc, char **argv) {
-	ft::Map<int, int > mp1;
+	ft::Map<int, int, std::less<int> > mp1;
 
 	mp1.insert(ft::make_pair(17, 17));
 	mp1.insert(ft::make_pair(7, 7));
@@ -15,9 +15,12 @@ int main(int argc, char **argv) {
 
 	ft::Map<int, int>::iterator it = mp1.begin();
 
+	// todo протестировать на 0, 1, 2 и больше значений
 	for (; it != mp1.end(); it++) {
 		std::cout << it->first << std::endl;
 	}
+
+	// todo реалзиовать insert с хинтом
 //	std::map<int , int> mp;
 //	std::map<int, int>::iterator it = mp.end();
 //

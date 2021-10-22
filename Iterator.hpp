@@ -111,19 +111,29 @@ namespace ft {
 	private:
 		T node;
 
+		/*
+		 *	This method is replacement of Compare class
+		 *	which define on what basis RBTree constructed (less or greater)
+		 *	Another way is pass the Compare in node_iterator
+		 */
 		bool compare(T tmp, T node, bool it) {
-			if (!node->parent) return true;
+			if (!node->parent) {
+				if ((!node->left->NIL && node->first < node->left->first) || (!node->right->NIL && node->first > node->right->first))
+					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater case;
+				else
+					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less case
+			}
 			if (node->parent->left == node) {
 				if (node->parent->first < node->first) {
-					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater<T>
+					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater case
 				} else {
-					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less<T>
+					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less case
 				}
 			} else {
 				if (node->parent->first < node->first) {
-					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less<T>
+					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less case
 				} else {
-					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater<T>
+					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater case
 				}
 			}
 		}

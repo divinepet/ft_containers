@@ -8,108 +8,106 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/elaronda/Desktop/ft_containers/cmake-build-debug"/>
+				<Option working_dir="/Users/divinepet/Desktop/ft_containers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/elaronda/Desktop/ft_containers/cmake-build-debug"/>
+				<Option working_dir="/Users/divinepet/Desktop/ft_containers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/elaronda/Desktop/ft_containers/cmake-build-debug"/>
+				<Option working_dir="/Users/divinepet/Desktop/ft_containers/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ft_containers">
-				<Option output="/Users/elaronda/Desktop/ft_containers/cmake-build-debug/ft_containers" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/elaronda/Desktop/ft_containers/cmake-build-debug"/>
+				<Option output="/Users/divinepet/Desktop/ft_containers/cmake-build-debug/ft_containers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/divinepet/Desktop/ft_containers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/elaronda/Desktop/ft_containers/."/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Users/divinepet/Desktop/ft_containers/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_containers"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_containers"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="ft_containers/fast">
-				<Option output="/Users/elaronda/Desktop/ft_containers/cmake-build-debug/ft_containers" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/elaronda/Desktop/ft_containers/cmake-build-debug"/>
+				<Option output="/Users/divinepet/Desktop/ft_containers/cmake-build-debug/ft_containers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/divinepet/Desktop/ft_containers/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="/Users/elaronda/Desktop/ft_containers/."/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Users/divinepet/Desktop/ft_containers/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_containers/fast"/>
-					<CompileFile command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j6 -f &quot;/Users/elaronda/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 ft_containers/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/divinepet/Desktop/ft_containers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/Iterator.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Iterator.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/Map.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Map.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/Node.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Node.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/Stack.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Stack.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/Utility.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Utility.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/Vector.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/Vector.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/functions.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/ft_containers_tests/functions.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/general.hpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/ft_containers_tests/general.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/main.cpp">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/main.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/CMakeLists.txt">
+		<Unit filename="/Users/divinepet/Desktop/ft_containers/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
