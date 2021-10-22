@@ -7,9 +7,9 @@ typedef enum { BLACK, RED } nodeColor;
 template <class T, class V>
 class Tree;
 
-template <class T, class V >
+template <class T, class V>
 struct Node_ {
-protected:
+public:
 	friend class Tree<T, V>;
 	friend class ft::node_iterator<Node_<T, V>*>;
 	bool color;
@@ -27,16 +27,16 @@ class Tree : public Node_<T, V> {
 public:
 	Node_<T, V> sentinel;
 	Node_<T, V> *root;
-	Node_<T, V> *begin;
-	Node_<T, V> *last;
+//	Node_<T, V> *begin;
+//	Node_<T, V> *last;
 	Tree() {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
-		last = &sentinel;
-		begin = &sentinel;
+//		last = &sentinel;
+//		begin = &sentinel;
 		root = &sentinel;
 	}
 
@@ -48,8 +48,8 @@ public:
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
-		last = &sentinel;
-		begin = &sentinel;
+//		last = &sentinel;
+//		begin = &sentinel;
 		root = &sentinel;
 	}
 
@@ -73,11 +73,11 @@ public:
 		if (this == &other)
 			return *this;
 		deleteAll(root);
-		deleteAll(last);
-		deleteAll(begin);
+//		deleteAll(last);
+//		deleteAll(begin);
 		root = other.root;
-		begin = other.begin;
-		last = other.last;
+//		begin = other.begin;
+//		last = other.last;
 		sentinel = other.sentinel;
 		return *this;
 	};
@@ -178,8 +178,9 @@ public:
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
-		x->left->parent = x;
-		x->right->parent = x;
+//		sentinel.parent = x;
+//		x->left->parent = x;
+//		x->right->parent = x;
 		x->color = RED;
 
 		if (parent) {
@@ -191,15 +192,51 @@ public:
 			root = x;
 		}
 
-		if (last->NIL || comp(last->first, x->first))
-			last = x;
-		if (begin->NIL || !comp(begin->first,x->first)) {
-			begin = x;
+		insertFixup(x);
+
+		if (x == get_last()) { sentinel.parent = x; }
+		return(x);
+	}
+
+	template <class Compare>
+	Node_<T, V> *insertNode(Node_<T, V>* pos, T first, V second, Compare comp) {
+		Node_<T, V> *current, *parent, *x;
+
+		current = pos;
+		parent = 0;
+		while (!current->NIL) {
+			if (compEQ(first, current->first)) return (current);
+			parent = current;
+			current = comp(first, current->first) ?
+					current->left : current->right;
+		}
+
+		x = new Node_<T, V>();
+		x->first = first;
+		x->second = second;
+		x->parent = parent;
+		x->left = &sentinel;
+		x->right = &sentinel;
+		//		sentinel.parent = x;
+		//		x->left->parent = x;
+		//		x->right->parent = x;
+		x->color = RED;
+
+		if (parent) {
+			if (comp(first, parent->first))
+				parent->left = x;
+			else
+				parent->right = x;
+		} else {
+			root = x;
 		}
 
 		insertFixup(x);
+
+		if (x == get_last()) { sentinel.parent = x; }
 		return(x);
 	}
+
 
 	void deleteFixup(Node_<T, V> *x) {
 		while (x != root && x->color == BLACK) {
@@ -261,10 +298,28 @@ public:
 		Node_<T, V> *x, *y;
 		if (!z || z->NIL) return;
 
-		if (z == begin)
-			begin = (comp(1, 2)) ? increment(begin) : decrement(begin);
-		if (z == last)
-			last = (comp(1, 2)) ? decrement(last) : increment(last);
+//		if (z == begin)
+//			begin = (comp(1, 2)) ? increment(begin) : decrement(begin);
+//		if (z == last)
+//			last = (comp(1, 2)) ? decrement(last) : increment(last);
+
+//		if (z == get_last()) {
+////			if (z->NIL) node = node->parent;
+//			if (!z->left->NIL) {
+//				z = z->left;
+//				while (!z->right->NIL)
+//					z = z->right;
+//			} else {
+//				T tmp = z;
+//				if (!z->parent )
+//				z = z->parent;
+//				while (node->right != tmp) {
+//					tmp = node;
+//					if (!node->parent) { node = tmp->left - 1; break; }
+//					node = node->parent;
+//				}
+//			}
+//		}
 
 		if (z->left->NIL || z->right->NIL) {
 			y = z;
@@ -294,6 +349,7 @@ public:
 
 		if (y->color == BLACK)
 			deleteFixup (x);
+		sentinel.parent = get_last();
 		// todo delete free
 		free (y);
 	}
@@ -311,12 +367,32 @@ public:
 		return get_end();
 	}
 
-	Node_<T, V>* get_begin() { return begin; }
+	Node_<T, V>* get_begin() {
+		Node_<T, V>* tmp = root;
+		while (!tmp->left->NIL) {
+			tmp = tmp->left;
+		}
+		return tmp;
+	}
 
-	Node_<T, V>* get_end() { return last->right; }
+	Node_<T, V>* get_last() {
+		Node_<T, V>* tmp = root;
+		while (!tmp->right->NIL) {
+			tmp = tmp->right;
+		}
+		return tmp;
+	}
+
+	Node_<T, V>* get_end() {
+		Node_<T, V>* tmp = root;
+		while (!tmp->right->NIL) {
+			tmp = tmp->right;
+		}
+		return tmp->right;
+	}
 
 	Node_<T, V>* increment(Node_<T, V> *t) {
-		if (t == last)
+		if (t == get_end()->parent)
 			return t->right;
 		if (!t->right->NIL) {
 			t = t->right;

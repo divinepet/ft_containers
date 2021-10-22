@@ -120,6 +120,11 @@ public:
 
 	iterator insert(iterator hint, const value_type& value) {
 
+//		if (_tree->findNode(value.first, _comp) == _tree->get_end()) {
+//			_size++;
+//		}
+		iterator it = _tree->insertNode(hint.base(), value.first, value.second, _comp);
+		return it;
 	}
 
 	iterator find( const Key& key ) {

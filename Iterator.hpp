@@ -110,34 +110,6 @@ namespace ft {
 	class node_iterator {
 	private:
 		T node;
-
-		/*
-		 *	This method is replacement of Compare class
-		 *	which define on what basis RBTree constructed (less or greater)
-		 *	Another way is pass the Compare in node_iterator
-		 */
-		bool compare(T tmp, T node, bool it) {
-			if (!node->parent) {
-				if ((!node->left->NIL && node->first < node->left->first) || (!node->right->NIL && node->first > node->right->first))
-					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater case;
-				else
-					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less case
-			}
-			if (node->parent->left == node) {
-				if (node->parent->first < node->first) {
-					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater case
-				} else {
-					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less case
-				}
-			} else {
-				if (node->parent->first < node->first) {
-					return (it) ? tmp->first > node->first : tmp->first < node->first; // std::less case
-				} else {
-					return (it) ? tmp->first < node->first : tmp->first > node->first; // std::greater case
-				}
-			}
-		}
-
 		void next() {
 			if (!node->right->NIL) {
 				node = node->right;
@@ -145,27 +117,29 @@ namespace ft {
 					node = node->left;
 			}
 			else {
+				T current = node;
 				T tmp = node;
-				while (compare(tmp, node, 1) || tmp->first == node->first) {
-					if (!node->parent) { node = tmp->right; break; }
+				node = node->parent;
+				while (node->left != tmp) {
+					if (!node->parent) { node = current->right; break; }
+					tmp = node;
 					node = node->parent;
 				}
 			}
 		}
 
 		void prev() {
-			if (node->NIL) {
-				node = node->parent;
-				return;
-			}
-			if (!node->left->NIL) {
+			if (node->NIL) node = node->parent;
+			else if (!node->left->NIL) {
 				node = node->left;
 				while (!node->right->NIL)
 					node = node->right;
 			} else {
 				T tmp = node;
-				while (compare(tmp, node, 0) || tmp->first == node->first) {
-					if (!node->parent) { node = node->left - 1; break; }
+				node = node->parent;
+				while (node->right != tmp) {
+					tmp = node;
+					if (!node->parent) { node = tmp->left - 1; break; }
 					node = node->parent;
 				}
 			}

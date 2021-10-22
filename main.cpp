@@ -5,28 +5,40 @@ using std::endl;
 #include "Map.hpp"
 #include "ft_containers_tests/general.hpp"
 
+
+
+
 int main(int argc, char **argv) {
-	ft::Map<int, int, std::less<int> > mp1;
 
-	mp1.insert(ft::make_pair(17, 17));
-	mp1.insert(ft::make_pair(7, 7));
-	mp1.insert(ft::make_pair(3, 3));
-	mp1.insert(ft::make_pair(14, 14));
 
-	ft::Map<int, int>::iterator it = mp1.begin();
+//	start_tests();
+	ft::Map<int, int> mp;
 
-	// todo протестировать на 0, 1, 2 и больше значений
-	for (; it != mp1.end(); it++) {
-		std::cout << it->first << std::endl;
-	}
 
-	// todo реалзиовать insert с хинтом
+	mp.insert(ft::make_pair(1, 1));
+	ft::Map<int, int>::iterator it = mp.begin();
+	mp.insert(it, ft::make_pair(7, 7));
+	mp.insert(it, ft::make_pair(3, 3));
+	mp.insert(it, ft::make_pair(11, 11));
+	mp.insert(it, ft::make_pair(18, 18));
+	mp.insert(it, ft::make_pair(14, 14));
+	mp.insert(it, ft::make_pair(5, 5));
+	mp.insert(it, ft::make_pair(21, 21));
+	mp.insert(it, ft::make_pair(31, 31));
+	mp.insert(it, ft::make_pair(77, 77));
+
+	mp.find(7);
+
+
+
+
+//	// todo реалзиовать insert с хинтом
 //	std::map<int , int> mp;
 //	std::map<int, int>::iterator it = mp.end();
 //
 //	g_start1 = timer();
 //	for (int i = 0, j = 0; i < 600000; ++i, ++j) {
-//		mp.insert(it, std::make_pair(i, j));
+//		it = mp.insert(it, std::make_pair(i, j));
 ////		mp.insert(std::make_pair(i, j));
 //	}
 //	g_end1 = timer();
