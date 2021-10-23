@@ -11,23 +11,40 @@ using std::endl;
 int main(int argc, char **argv) {
 
 
-//	start_tests();
-	ft::Map<int, int> mp;
+	start_tests();
 
 
-	mp.insert(ft::make_pair(1, 1));
-	ft::Map<int, int>::iterator it = mp.begin();
-	mp.insert(it, ft::make_pair(7, 7));
-	mp.insert(it, ft::make_pair(3, 3));
-	mp.insert(it, ft::make_pair(11, 11));
-	mp.insert(it, ft::make_pair(18, 18));
-	mp.insert(it, ft::make_pair(14, 14));
-	mp.insert(it, ft::make_pair(5, 5));
-	mp.insert(it, ft::make_pair(21, 21));
-	mp.insert(it, ft::make_pair(31, 31));
-	mp.insert(it, ft::make_pair(77, 77));
+//	std::map<int, int, std::less<int> > mp;
+//	mp.insert(std::make_pair(10, 10));
+//	mp.insert(std::make_pair(20, 20));
+////	mp.insert(ft::make_pair(-10, 10));
+////	mp.insert(ft::make_pair(-20, 20));
+//	mp.insert(std::make_pair(30, 30));
+//	mp.insert(std::make_pair(40, 40));
+//	mp.insert(std::make_pair(50, 50));
+//	mp.insert(std::make_pair(60, 60));
+//
+//	std::pair<std::map<int, int>::iterator , std::map<int, int>::iterator> pair = mp.equal_range(13);
+//	cout << pair.first->first << endl;
+//	cout << pair.second->first << endl;
 
-	mp.find(7);
+
+//	ft::Map<int, int> mp;
+//	mp.insert(ft::make_pair(10, 10));
+//	mp.insert(ft::make_pair(20, 20));
+//	mp.insert(ft::make_pair(30, 30));
+//	mp.insert(ft::make_pair(40, 40));
+//	mp.insert(ft::make_pair(50, 50));
+//	mp.insert(ft::make_pair(60, 60));
+//
+//	mp = const_cast<const ft::Map<int, int>& >(mp);
+//
+//	const ft::pair<ft::Map<int, int>::const_iterator , ft::Map<int, int>::const_iterator>& pair = mp.equal_range(10);
+//	cout << pair.first->first << endl;
+//	cout << pair.second->first << endl;
+
+
+
 
 
 

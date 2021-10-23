@@ -160,6 +160,31 @@ public:
 	}
 
 	template <class Compare>
+	// 										  25      15
+	Node_<T, V> *insertWithHint(Node_<T, V> *hint, T first, V second, Compare comp) {
+		Node_<T, V> *current_hint = hint;
+		Node_<T, V> *tmp = hint;
+
+		while (hint->parent) {
+			hint = hint->parent;
+			if (comp(first, hint->first)) {
+				if (hint->left == current_hint) {
+					continue;
+				} else
+					return;
+			} else {
+				if (hint->right == current_hint) {
+					continue; // здесь мы понимаем, что подсказка правильная
+				} else {
+					return;
+				}
+			}
+
+		}
+	}
+
+
+	template <class Compare>
 	Node_<T, V> *insertNode(T first, V second, Compare comp) {
 		Node_<T, V> *current, *parent, *x;
 
@@ -178,9 +203,6 @@ public:
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
-//		sentinel.parent = x;
-//		x->left->parent = x;
-//		x->right->parent = x;
 		x->color = RED;
 
 		if (parent) {

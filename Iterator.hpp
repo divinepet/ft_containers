@@ -120,6 +120,7 @@ namespace ft {
 				T current = node;
 				T tmp = node;
 				node = node->parent;
+				if (!node) { node = current->right; return; }
 				while (node->left != tmp) {
 					if (!node->parent) { node = current->right; break; }
 					tmp = node;

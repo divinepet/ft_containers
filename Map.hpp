@@ -118,13 +118,81 @@ public:
 		return ft::pair<iterator, bool>(it, isAdded);
 	}
 
-	iterator insert(iterator hint, const value_type& value) {
+//	iterator insert(iterator hint, const value_type& value) {
+//
+////		if (_tree->findNode(value.first, _comp) == _tree->get_end()) {
+////			_size++;
+////		}
+//		iterator it = _tree->insertNode(hint.base(), value.first, value.second, _comp);
+//		return it;
+//	}
 
-//		if (_tree->findNode(value.first, _comp) == _tree->get_end()) {
-//			_size++;
-//		}
-		iterator it = _tree->insertNode(hint.base(), value.first, value.second, _comp);
-		return it;
+	iterator lower_bound(const Key& key) {
+		Node_<Key, T> *current = _tree->root;
+
+		while (!current->NIL) {
+			if (key == current->first)
+				return iterator(current);
+			else {
+				if (_comp(key, current->first)) {
+					if (!current->left->NIL)
+						current = current->left;
+					else
+						return iterator(current);
+				}
+				else {
+					if (!current->right->NIL)
+						current = current->right;
+					else
+						return ++iterator(current);
+				}
+			}
+		}
+		return end();
+	}
+
+	const_iterator lower_bound( const Key& key ) const {
+		Node_<Key, T> *current = _tree->root;
+
+		while (!current->NIL) {
+			if (key == current->first)
+				return const_iterator(current);
+			else {
+				if (_comp(key, current->first)) {
+					if (!current->left->NIL)
+						current = current->left;
+					else
+						return const_iterator(current);
+				}
+				else {
+					if (!current->right->NIL)
+						current = current->right;
+					else
+						return ++const_iterator(current);
+				}
+			}
+		}
+		return end();
+	}
+
+	iterator upper_bound(const Key& key) {
+		iterator tmp = lower_bound(key);
+
+		return (tmp == end()) ? tmp : (_comp(key, tmp->first)) ? tmp : ++tmp;
+	}
+
+	const_iterator upper_bound( const Key& key ) const {
+		const_iterator tmp = lower_bound(key);
+
+		return (tmp == end()) ? tmp : (_comp(key, tmp->first)) ? tmp : ++tmp;
+	}
+
+	ft::pair<iterator,iterator> equal_range( const Key& key ) {
+		return ft::pair<iterator, iterator>(lower_bound(key), upper_bound(key));
+	}
+
+	ft::pair<const_iterator,const_iterator> equal_range( const Key& key ) const {
+		return ft::pair<const_iterator, const_iterator>(lower_bound(key), upper_bound(key));
 	}
 
 	iterator find( const Key& key ) {

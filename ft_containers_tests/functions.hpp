@@ -1002,8 +1002,12 @@ std::vector<int> at_test(ft::Map<T, V> mp) {
 }
 
 template <class T, class V>
-std::vector<int> iterators_test(std::map<T, V> mp) {
+std::vector<int>    iterators_test(std::map<T, V> mp) {
 	std::vector<int> v;
+	std::map<int, int> mp0;
+	std::map<int, int>::iterator ii = mp0.insert(std::make_pair(3, 3)).first;
+	ii++;
+	v.push_back((--ii)->first);
 	for (int i = 0, j = 10; i < 5; ++i, ++j)
 		mp.insert(std::make_pair(i, j));
 	typename std::map<T, V>::iterator it = mp.begin();
@@ -1033,6 +1037,10 @@ std::vector<int> iterators_test(std::map<T, V> mp) {
 template <class T, class V>
 std::vector<int> iterators_test(ft::Map<T, V> mp) {
 	std::vector<int> v;
+	ft::Map<int, int> mp0;
+	ft::Map<int, int>::iterator ii = mp0.insert(ft::make_pair(3, 3)).first;
+	ii++;
+	v.push_back((--ii)->first);
 	for (int i = 0, j = 10; i < 5; ++i, ++j)
 		mp.insert(_make_pair(i, j));
 	typename ft::Map<T, V>::iterator it = mp.begin();
@@ -1402,6 +1410,228 @@ std::vector<int> clear_test(ft::Map<T, V> mp) {
 	typename ft::Map<T, V>::iterator it = mp.begin();
 	if (it == mp.end())
 		v.push_back(1);
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> lower_bound_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	std::map<int, int, std::greater<int> > mp2;
+	mp.insert(std::make_pair(10, 10));
+	mp2.insert(std::make_pair(10, 10));
+	if (mp.lower_bound(11) == mp.end())
+		v.push_back(1);
+	if (mp2.lower_bound(1) == mp2.end())
+		v.push_back(1);
+	mp.insert(std::make_pair(20, 20));
+	mp.insert(std::make_pair(30, 30));
+	mp.insert(std::make_pair(40, 40));
+	mp.insert(std::make_pair(50, 50));
+	mp.insert(std::make_pair(60, 60));
+	mp2.insert(std::make_pair(20, 20));
+	mp2.insert(std::make_pair(30, 30));
+	mp2.insert(std::make_pair(40, 40));
+	mp2.insert(std::make_pair(50, 50));
+	mp2.insert(std::make_pair(60, 60));
+	std::map<int, int>::iterator it;
+	for (int i = 1; i < 60; i += 10) {
+		it = mp.lower_bound(i);
+		v.push_back(it->first);
+	}
+	for (int i = 11; i < 70; i += 10) {
+		it = mp2.lower_bound(i);
+		v.push_back(it->first);
+	}
+	std::map<int, int> mp3;
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp3.insert(std::make_pair(i, j));
+	}
+	g_start1 = timer();
+	mp3.lower_bound(490000);
+	g_end1 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> lower_bound_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	ft::Map<int, int, std::greater<int> > mp2;
+	mp.insert(ft::make_pair(10, 10));
+	mp2.insert(ft::make_pair(10, 10));
+	if (mp.lower_bound(11) == mp.end())
+		v.push_back(1);
+	if (mp2.lower_bound(1) == mp2.end())
+		v.push_back(1);
+	mp.insert(ft::make_pair(20, 20));
+	mp.insert(ft::make_pair(30, 30));
+	mp.insert(ft::make_pair(40, 40));
+	mp.insert(ft::make_pair(50, 50));
+	mp.insert(ft::make_pair(60, 60));
+	mp2.insert(ft::make_pair(20, 20));
+	mp2.insert(ft::make_pair(30, 30));
+	mp2.insert(ft::make_pair(40, 40));
+	mp2.insert(ft::make_pair(50, 50));
+	mp2.insert(ft::make_pair(60, 60));
+	ft::Map<int, int>::iterator it;
+	for (int i = 1; i < 60; i += 10) {
+		it = mp.lower_bound(i);
+		v.push_back(it->first);
+	}
+	for (int i = 11; i < 70; i += 10) {
+		it = mp2.lower_bound(i);
+		v.push_back(it->first);
+	}
+	ft::Map<int, int> mp3;
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp3.insert(ft::make_pair(i, j));
+	}
+	g_start2 = timer();
+	mp3.lower_bound(490000);
+	g_end2 = timer();
+	return v;
+}
+
+template <class T, class V>
+		std::vector<int> upper_bound_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	std::map<int, int, std::greater<int> > mp2;
+	mp.insert(std::make_pair(10, 10));
+	mp2.insert(std::make_pair(10, 10));
+	if (mp.upper_bound(11) == mp.end())
+		v.push_back(1);
+	if (mp2.upper_bound(1) == mp2.end())
+		v.push_back(1);
+	mp.insert(std::make_pair(20, 20));
+	mp.insert(std::make_pair(30, 30));
+	mp.insert(std::make_pair(40, 40));
+	mp.insert(std::make_pair(50, 50));
+	mp.insert(std::make_pair(60, 60));
+	mp2.insert(std::make_pair(20, 20));
+	mp2.insert(std::make_pair(30, 30));
+	mp2.insert(std::make_pair(40, 40));
+	mp2.insert(std::make_pair(50, 50));
+	mp2.insert(std::make_pair(60, 60));
+	std::map<int, int>::iterator it;
+	for (int i = 1; i < 60; i += 10) {
+		it = mp.upper_bound(i);
+		v.push_back(it->first);
+	}
+	for (int i = 11; i < 70; i += 10) {
+		it = mp2.upper_bound(i);
+		v.push_back(it->first);
+	}
+	std::map<int, int> mp3;
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp3.insert(std::make_pair(i, j));
+	}
+	std::map<int, int> mp4;
+	mp.insert(std::make_pair(-10, 10));
+	mp.insert(std::make_pair(-20, 20));
+	v.push_back((--mp.upper_bound(0))->first);
+	g_start1 = timer();
+	mp3.upper_bound(490000);
+	g_end1 = timer();
+	return v;
+}
+
+template <class T, class V>
+		std::vector<int> upper_bound_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	ft::Map<int, int, std::greater<int> > mp2;
+	mp.insert(ft::make_pair(10, 10));
+	mp2.insert(ft::make_pair(10, 10));
+	if (mp.upper_bound(11) == mp.end())
+		v.push_back(1);
+	if (mp2.upper_bound(1) == mp2.end())
+		v.push_back(1);
+	mp.insert(ft::make_pair(20, 20));
+	mp.insert(ft::make_pair(30, 30));
+	mp.insert(ft::make_pair(40, 40));
+	mp.insert(ft::make_pair(50, 50));
+	mp.insert(ft::make_pair(60, 60));
+	mp2.insert(ft::make_pair(20, 20));
+	mp2.insert(ft::make_pair(30, 30));
+	mp2.insert(ft::make_pair(40, 40));
+	mp2.insert(ft::make_pair(50, 50));
+	mp2.insert(ft::make_pair(60, 60));
+	ft::Map<int, int>::iterator it;
+	for (int i = 1; i < 60; i += 10) {
+		it = mp.upper_bound(i);
+		v.push_back(it->first);
+	}
+	for (int i = 11; i < 70; i += 10) {
+		it = mp2.upper_bound(i);
+		v.push_back(it->first);
+	}
+	ft::Map<int, int> mp3;
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp3.insert(ft::make_pair(i, j));
+	}
+	ft::Map<int, int> mp4;
+	mp.insert(ft::make_pair(-10, 10));
+	mp.insert(ft::make_pair(-20, 20));
+	v.push_back((--mp.upper_bound(0))->first);
+	g_start2 = timer();
+	mp3.upper_bound(490000);
+	g_end2 = timer();
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> equal_range_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	mp.insert(std::make_pair(10, 10));
+	mp.insert(std::make_pair(20, 20));
+	mp.insert(std::make_pair(30, 30));
+	mp.insert(std::make_pair(40, 40));
+	mp.insert(std::make_pair(50, 50));
+	mp.insert(std::make_pair(60, 60));
+	g_start1 = timer();
+	const std::pair<std::map<int, int>::const_iterator , std::map<int, int>::const_iterator>& pair = mp.equal_range(10);
+	const std::pair<std::map<int, int>::const_iterator , std::map<int, int>::const_iterator>& pair2 = mp.equal_range(11);
+	const std::pair<std::map<int, int>::const_iterator , std::map<int, int>::const_iterator>& pair3 = mp.equal_range(1);
+	g_end1 = timer();
+	v.push_back(pair.first->first);
+	v.push_back(pair.first->second);
+	v.push_back(pair.second->first);
+	v.push_back(pair.second->second);
+	v.push_back(pair2.first->first);
+	v.push_back(pair2.first->second);
+	v.push_back(pair2.second->first);
+	v.push_back(pair2.second->second);
+	v.push_back(pair3.first->first);
+	v.push_back(pair3.first->second);
+	v.push_back(pair3.second->first);
+	v.push_back(pair3.second->second);
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> equal_range_test(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	mp.insert(ft::make_pair(10, 10));
+	mp.insert(ft::make_pair(20, 20));
+	mp.insert(ft::make_pair(30, 30));
+	mp.insert(ft::make_pair(40, 40));
+	mp.insert(ft::make_pair(50, 50));
+	mp.insert(ft::make_pair(60, 60));
+	g_start2 = timer();
+	const ft::pair<ft::Map<int, int>::const_iterator , ft::Map<int, int>::const_iterator>& pair = mp.equal_range(10);
+	const ft::pair<ft::Map<int, int>::const_iterator , ft::Map<int, int>::const_iterator>& pair2 = mp.equal_range(11);
+	const ft::pair<ft::Map<int, int>::const_iterator , ft::Map<int, int>::const_iterator>& pair3 = mp.equal_range(1);
+	g_end2 = timer();
+	v.push_back(pair.first->first);
+	v.push_back(pair.first->second);
+	v.push_back(pair.second->first);
+	v.push_back(pair.second->second);
+	v.push_back(pair2.first->first);
+	v.push_back(pair2.first->second);
+	v.push_back(pair2.second->first);
+	v.push_back(pair2.second->second);
+	v.push_back(pair3.first->first);
+	v.push_back(pair3.first->second);
+	v.push_back(pair3.second->first);
+	v.push_back(pair3.second->second);
 	return v;
 }
 
