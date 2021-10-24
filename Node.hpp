@@ -27,16 +27,12 @@ class Tree : public Node_<T, V> {
 public:
 	Node_<T, V> sentinel;
 	Node_<T, V> *root;
-//	Node_<T, V> *begin;
-//	Node_<T, V> *last;
 	Tree() {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
-//		last = &sentinel;
-//		begin = &sentinel;
 		root = &sentinel;
 	}
 
@@ -48,8 +44,6 @@ public:
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
-//		last = &sentinel;
-//		begin = &sentinel;
 		root = &sentinel;
 	}
 
@@ -73,11 +67,7 @@ public:
 		if (this == &other)
 			return *this;
 		deleteAll(root);
-//		deleteAll(last);
-//		deleteAll(begin);
 		root = other.root;
-//		begin = other.begin;
-//		last = other.last;
 		sentinel = other.sentinel;
 		return *this;
 	};
@@ -160,7 +150,6 @@ public:
 	}
 
 	template <class Compare>
-	// 										  25      15
 	Node_<T, V> *insertWithHint(Node_<T, V> *hint, T first, V second, Compare comp) {
 		Node_<T, V> *current_hint = hint;
 		Node_<T, V> *tmp = hint;
@@ -203,45 +192,6 @@ public:
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
-		x->color = RED;
-
-		if (parent) {
-			if (comp(first, parent->first))
-				parent->left = x;
-			else
-				parent->right = x;
-		} else {
-			root = x;
-		}
-
-		insertFixup(x);
-
-		if (x == get_last()) { sentinel.parent = x; }
-		return(x);
-	}
-
-	template <class Compare>
-	Node_<T, V> *insertNode(Node_<T, V>* pos, T first, V second, Compare comp) {
-		Node_<T, V> *current, *parent, *x;
-
-		current = pos;
-		parent = 0;
-		while (!current->NIL) {
-			if (compEQ(first, current->first)) return (current);
-			parent = current;
-			current = comp(first, current->first) ?
-					current->left : current->right;
-		}
-
-		x = new Node_<T, V>();
-		x->first = first;
-		x->second = second;
-		x->parent = parent;
-		x->left = &sentinel;
-		x->right = &sentinel;
-		//		sentinel.parent = x;
-		//		x->left->parent = x;
-		//		x->right->parent = x;
 		x->color = RED;
 
 		if (parent) {
@@ -319,29 +269,6 @@ public:
 	void deleteNode(Node_<T, V> *z, Compare comp) {
 		Node_<T, V> *x, *y;
 		if (!z || z->NIL) return;
-
-//		if (z == begin)
-//			begin = (comp(1, 2)) ? increment(begin) : decrement(begin);
-//		if (z == last)
-//			last = (comp(1, 2)) ? decrement(last) : increment(last);
-
-//		if (z == get_last()) {
-////			if (z->NIL) node = node->parent;
-//			if (!z->left->NIL) {
-//				z = z->left;
-//				while (!z->right->NIL)
-//					z = z->right;
-//			} else {
-//				T tmp = z;
-//				if (!z->parent )
-//				z = z->parent;
-//				while (node->right != tmp) {
-//					tmp = node;
-//					if (!node->parent) { node = tmp->left - 1; break; }
-//					node = node->parent;
-//				}
-//			}
-//		}
 
 		if (z->left->NIL || z->right->NIL) {
 			y = z;

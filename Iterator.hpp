@@ -2,7 +2,6 @@
 
 #include "Utility.hpp"
 
-
 namespace ft {
 
 	template <class Iter>
@@ -165,6 +164,32 @@ namespace ft {
 		bool 			operator>(node_iterator const &obj) const 		{ return node > obj.node; };
 		bool 			operator<=(node_iterator const &obj) const 		{ return node <= obj.node; };
 		bool 			operator>=(node_iterator const &obj) const 		{ return node >= obj.node; };
+	};
+
+	template <class T>
+	class reverse_node_iterator {
+	private:
+		T iterator;
+	public:
+		reverse_node_iterator(T value = nullptr) : iterator(value)					{};
+		~reverse_node_iterator()								{};
+		template <class U> reverse_node_iterator(const reverse_node_iterator<U>& other,
+				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
+						: iterator(other.base()) 						{};
+		T			base() const 						{ return iterator; }
+		reverse_node_iterator		&operator=(const reverse_node_iterator &obj) 			{ iterator = obj.iterator; return *this; }
+		reverse_node_iterator		operator++(int)						{ reverse_node_iterator tmp(iterator); iterator--; return tmp; }
+		reverse_node_iterator		&operator++() 						{ iterator--; return *this; }
+		reverse_node_iterator		operator--(int)						{ reverse_node_iterator tmp(iterator); iterator++; return tmp; }
+		reverse_node_iterator		&operator--() 						{ iterator++; return *this; }
+		T 			operator*() const 					{ return iterator; }
+		T			operator->() const 					{ return (iterator); }
+		bool			operator==(reverse_node_iterator const &obj) const 		{ return iterator == obj.iterator; };
+		bool			operator!=(reverse_node_iterator const &obj) const 		{ return iterator != obj.iterator; };
+		bool 			operator<(reverse_node_iterator const &obj) const 		{ return iterator < obj.iterator; };
+		bool 			operator>(reverse_node_iterator const &obj) const 		{ return iterator > obj.iterator; };
+		bool 			operator<=(reverse_node_iterator const &obj) const 		{ return iterator <= obj.iterator; };
+		bool 			operator>=(reverse_node_iterator const &obj) const 		{ return iterator >= obj.iterator; };
 	};
 
 }

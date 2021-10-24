@@ -22,9 +22,10 @@ public:
 	typedef typename allocator_type::const_pointer					const_pointer;
 	typedef ft::node_iterator<Node_<Key, T>*>						iterator;
 	typedef ft::node_iterator<const Node_<Key, T>*>					const_iterator;
-	//	reverse_iterator
-	//	reverse_const_iterator
+	typedef ft::reverse_node_iterator<iterator>						reverse_iterator;
+	typedef ft::reverse_node_iterator<const_iterator>					const_reverse_iterator;
 	Tree<Key, T>*													_tree;
+	class															value_compare;
 private:
 	A			 													_allocator;
 	size_t															_size;
@@ -90,11 +91,11 @@ public:
 	const_iterator 			begin() const						{ return _tree->get_begin(); }
 	iterator 				end()								{ return _tree->get_end(); }
 	const_iterator 			end() const							{ return _tree->get_end(); }
-/*
- *
- * 	reverse iterator
- *
- */
+	reverse_iterator 		rbegin()							{ return iterator(_tree->sentinel.parent); }
+	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->sentinel.parent); }
+	// todo reverse iterator must return a pre-begin value
+	reverse_iterator 		rend()								{ return iterator(_tree->get_begin()); }
+	const_reverse_iterator 	rend() const						{ return iterator(_tree->get_begin()); }
 	bool 					empty() const						{ return _size == 0; }
 	size_type				size() const 						{ return _size; }
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
@@ -118,14 +119,40 @@ public:
 		return ft::pair<iterator, bool>(it, isAdded);
 	}
 
-//	iterator insert(iterator hint, const value_type& value) {
-//
-////		if (_tree->findNode(value.first, _comp) == _tree->get_end()) {
-////			_size++;
-////		}
-//		iterator it = _tree->insertNode(hint.base(), value.first, value.second, _comp);
-//		return it;
-//	}
+	iterator insert(iterator hint, const value_type& value) {} // need to implement
+
+	template< class InputIt >
+	void insert( InputIt first, InputIt last ) {
+		for (; first != last; first++)
+			insert(ft::make_pair(first->first, first->second));
+	}
+
+	void erase( iterator pos ) {
+
+	} // need to implement
+
+	void erase( iterator first, iterator last ) {} // need to implement
+
+	size_type erase( const key_type& key ) {
+		iterator it = _tree->findNode(key, _comp);
+
+		if (it != end()) {
+			_tree->deleteNode(it.base(), _comp);
+			_size--;
+			return 1;
+		}
+		return 0;
+	}
+
+	void swap( Map& other ) {} // need to imlpement
+
+	size_type count( const Key& key ) const {} // need to implement
+
+	iterator find( const Key& key ) {
+		return _tree->findNode(key, _comp);
+	}
+
+	const_iterator find( const Key& key ) const {} // need to implement
 
 	iterator lower_bound(const Key& key) {
 		Node_<Key, T> *current = _tree->root;
@@ -195,15 +222,9 @@ public:
 		return ft::pair<const_iterator, const_iterator>(lower_bound(key), upper_bound(key));
 	}
 
-	iterator find( const Key& key ) {
-		return _tree->findNode(key, _comp);
-	}
+	key_compare key_comp() const {} // need to implement
 
-	size_type erase( const key_type& key ) {
-//		iterator it = _tree.findNode(key, _comp);
-		_tree->deleteNode(_tree->findNode(key, _comp), _comp);
-		_size--;
-		return 1;
-	}
+	ft::Map<Key, T, Compare, A>::value_compare  value_comp() const {} // need to implement
+
 };
 }
