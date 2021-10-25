@@ -2,46 +2,23 @@
 
 typedef enum { BLACK, RED } nodeColor;
 
-template <class T, class V>
-class Tree;
-
-template <class T, class V>
+template <class value_type>
 struct Node_ {
 public:
-	friend class Tree<T, V>;
-	friend class ft::node_iterator<Node_<T, V>*>;
 	bool color;
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
+	struct Node_ *preBegin;
 	bool NIL;
-//	Node_() {}
-//	Node_<T, V>(const Node_<T, V> &other) {
-////		cout << "wow its copy" << endl;
-//		left = other.left;
-//		right = other.right;
-//		parent = other.parent;
-//		NIL = other.NIL;
-//		color = other.color;
-//		first = other.first;
-//		second = other.second;
-//	}
-//	Node_& operator=(const Node_& other) {
-//		cout << "wow its assign" << endl;
-//		if (this == &other)
-//			return *this;
-//		return *this;
-//	}
-public:
-	T first;
-	V second;
+	value_type pair;
 };
 
-template <class T, class V>
-class Tree : public Node_<T, V> {
+template <class value_type>
+class Tree {
 public:
-	Node_<T, V> sentinel;
-	Node_<T, V> *root;
+	Node_<value_type> sentinel;
+	Node_<value_type> *root;
 	size_t		m_size;
 	Tree() : m_size(0) {
 		sentinel.left = &sentinel;
@@ -54,7 +31,7 @@ public:
 
 	~Tree() { deleteAll(root); };
 
-	Tree(Tree<T, V> &other) : m_size(0) {
+	Tree(Tree<value_type> &other) : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
@@ -64,22 +41,22 @@ public:
 	}
 
 	template <class Compare>
-	void fillTree(Node_<T, V> *t, Compare comp) {
+	void fillTree(Node_<value_type> *t, Compare comp) {
 		if (!t->left->NIL)
 			fillTree(t->left, comp);
-		if (!t->NIL) insertNode(t->first, t->second, comp);
+		if (!t->NIL) insertNode(t->pair, comp);
 		if (!t->right->NIL)
 			fillTree(t->right, comp);
 	}
 
-	void deleteAll(Node_<T, V> *tmp) {
+	void deleteAll(Node_<value_type> *tmp) {
 		if (tmp->NIL) return;
 		if (!tmp->left->NIL) deleteAll(tmp->left);
 		if (!tmp->right->NIL) deleteAll(tmp->right);
 		delete tmp;
 	}
 
-	Tree& operator=(const Tree<T, V>& other) {
+	Tree& operator=(const Tree<value_type>& other) {
 		if (this == &other)
 			return *this;
 		deleteAll(root);
@@ -89,8 +66,8 @@ public:
 		return *this;
 	};
 
-	void rotateLeft(Node_<T, V> *x) {
-		Node_<T, V> *y = x->right;
+	void rotateLeft(Node_<value_type> *x) {
+		Node_<value_type> *y = x->right;
 
 		x->right = y->left;
 		if (!y->left->NIL)  y->left->parent = x;
@@ -109,8 +86,8 @@ public:
 		if (!x->NIL) x->parent = y;
 	}
 
-	void rotateRight(Node_<T, V> *x) {
-		Node_<T, V> *y = x->left;
+	void rotateRight(Node_<value_type> *x) {
+		Node_<value_type> *y = x->left;
 
 		x->left = y->right;
 		if (!y->right->NIL) y->right->parent = x;
@@ -127,10 +104,10 @@ public:
 		if (!x->NIL) x->parent = y;
 	}
 
-	void insertFixup(Node_<T, V> *x) {
+	void insertFixup(Node_<value_type> *x) {
 		while (x != root && x->parent->color == RED) {
 			if (x->parent == x->parent->parent->left) {
-				Node_<T, V> *y = x->parent->parent->right;
+				Node_<value_type> *y = x->parent->parent->right;
 				if (y->color == RED) {
 					x->parent->color = BLACK;
 					y->color = BLACK;
@@ -146,7 +123,7 @@ public:
 					rotateRight(x->parent->parent);
 				}
 			} else {
-				Node_<T, V> *y = x->parent->parent->left;
+				Node_<value_type> *y = x->parent->parent->left;
 				if (y->color == RED) {
 					x->parent->color = BLACK;
 					y->color = BLACK;
@@ -191,28 +168,28 @@ public:
 
 
 	template <class Compare>
-	ft::pair<Node_<T, V> *, bool> insertNode(T first, V second, Compare comp) {
-		Node_<T, V> *current, *parent, *x;
+	ft::pair<Node_<value_type>*, bool> insertNode(value_type pair, Compare comp) {
+		Node_<value_type> *current, *parent, *x;
 
 		current = root;
 		parent = 0;
 		while (!current->NIL) {
-			if (first == current->first) return ft::make_pair(current, false);
+			if (pair.first == current->pair.first) return ft::make_pair(current, false);
 			parent = current;
-			current = comp(first, current->first) ?
+			current = comp(pair.first, current->pair.first) ?
 					current->left : current->right;
 		}
 
-		x = new Node_<T, V>();
-		x->first = first;
-		x->second = second;
+		x = new Node_<value_type>();
+		x->pair.first = pair.first;
+		x->pair.second = pair.second;
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
 		x->color = RED;
 
 		if (parent) {
-			if (comp(first, parent->first))
+			if (comp(pair.first, parent->pair.first))
 				parent->left = x;
 			else
 				parent->right = x;
@@ -223,15 +200,16 @@ public:
 		insertFixup(x);
 
 		if (x == get_last()) { sentinel.parent = x; }
+//		if (x == get_begin()) { sentinel.left = x; }
 		m_size++;
 		return ft::make_pair(x, true);
 	}
 
 
-	void deleteFixup(Node_<T, V> *x) {
+	void deleteFixup(Node_<value_type> *x) {
 		while (x != root && x->color == BLACK) {
 			if (x == x->parent->left) {
-				Node_<T, V> *w = x->parent->right;
+				Node_<value_type> *w = x->parent->right;
 				if (w->color == RED) {
 					w->color = BLACK;
 					x->parent->color = RED;
@@ -255,7 +233,7 @@ public:
 					x = root;
 				}
 			} else {
-				Node_<T, V> *w = x->parent->left;
+				Node_<value_type> *w = x->parent->left;
 				if (w->color == RED) {
 					w->color = BLACK;
 					x->parent->color = RED;
@@ -283,8 +261,8 @@ public:
 		x->color = BLACK;
 	}
 
-	int deleteNode(Node_<T, V> *z) {
-		Node_<T, V> *x, *y;
+	int deleteNode(Node_<value_type> *z) {
+		Node_<value_type> *x, *y;
 		if (!z || z->NIL) return 0;
 
 		if (z->left->NIL || z->right->NIL) {
@@ -309,86 +287,54 @@ public:
 		else
 			root = x;
 		if (y != z) {
-			z->first = y->first;
-			z->second = y->second;
+			z->pair.first = y->pair.first;
+			z->pair.second = y->pair.second;
 		}
 
 		if (y->color == BLACK)
 			deleteFixup (x);
 		sentinel.parent = get_last();
+//		sentinel.left = get_begin();
 		m_size--;
 		// todo delete free
 		free (y);
-//		delete y;
 		return 1;
 	}
 
-	template <class Compare>
-	Node_<T, V>* findNode(T first, Compare comp) {
-		Node_<T, V> *current = root;
+	template <class Key, class Compare>
+	Node_<value_type>* findNode(Key key, Compare comp) {
+		Node_<value_type> *current = root;
 
 		while (!current->NIL) {
-			if(first == current->first)
+			if(key == current->pair.first)
 				return (current);
 			else
-				current = comp (first, current->first) ? current->left : current->right;
+				current = comp (key, current->pair.first) ? current->left : current->right;
 		}
 		return get_end();
 	}
 
-	Node_<T, V>* get_begin() {
-		Node_<T, V>* tmp = root;
+	Node_<value_type>* get_begin() {
+		Node_<value_type>* tmp = root;
 		while (!tmp->left->NIL) {
 			tmp = tmp->left;
 		}
 		return tmp;
 	}
 
-	Node_<T, V>* get_last() {
-		Node_<T, V>* tmp = root;
+	Node_<value_type>* get_last() {
+		Node_<value_type>* tmp = root;
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
 		}
 		return tmp;
 	}
 
-	Node_<T, V>* get_end() {
-		Node_<T, V>* tmp = root;
+	Node_<value_type>* get_end() {
+		Node_<value_type>* tmp = root;
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
 		}
 		return tmp->right;
 	}
-
-//	Node_<T, V>* increment(Node_<T, V> *t) {
-//		if (t == get_end()->parent)
-//			return t->right;
-//		if (!t->right->NIL) {
-//			t = t->right;
-//			while (!t->left->NIL)
-//				t = t->left;
-//			return t;
-//		}
-//		T value = t->first;
-//		while (value >= t->first) {
-//			t = t->parent;
-//		}
-//		return t;
-//	}
-//
-//	Node_<T, V>* decrement(Node_<T, V> *t) {
-//		if (t->NIL) return t->parent;
-//		if (!t->left->NIL) {
-//			t = t->left;
-//			while (!t->right->NIL)
-//				t = t->right;
-//			return t;
-//		}
-//		T value = t->first;
-//		while (value <= t->first ) {
-//			if (!t->parent) { return t->right; }
-//			t = t->parent;
-//		}
-//		return t;
-//	}
 };
