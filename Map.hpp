@@ -23,7 +23,7 @@ public:
 	typedef ft::node_iterator<Node_<Key, T>*>						iterator;
 	typedef ft::node_iterator<const Node_<Key, T>*>					const_iterator;
 	typedef ft::reverse_node_iterator<iterator>						reverse_iterator;
-	typedef ft::reverse_node_iterator<const_iterator>					const_reverse_iterator;
+	typedef ft::reverse_node_iterator<const_iterator>				const_reverse_iterator;
 	Tree<Key, T>*													_tree;
 	class															value_compare;
 private:
@@ -122,7 +122,6 @@ public:
 	}
 
 	void erase( iterator first, iterator last ) {
-		int i = 0;
 		for (; first != last; first++)
 			_tree->deleteNode(first.base());
 	}

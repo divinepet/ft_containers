@@ -19,31 +19,24 @@ void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.beg
 //				   ++ . --
 //				      x 3 5 7
 
+template <class T>
+void test(T type) {
 
-void test(int *n) {
-	*n = 5;
 }
 
+
 int main(int argc, char **argv) {
-//	ft::Map<int, int> mp;
+
+
+	test("asd");
+
+//	start_tests();
+
 //	std::map<int, int> mp;
-
-
-//	mp.insert(std::make_pair(3, 3));
-//	std::map<int, int>::iterator it = mp.begin();
-//	mp.erase(3);
-//	cout << it->first << endl;
-//	for (int i = 0, j = 0; i < 300000; ++i, ++j)
-//		mp.insert(ft::make_pair(i, j));
 //
-//	mp.erase(mp.begin(), --mp.end());;
-//		it++;
-//	}
-
-//	for (; it != mp.end(); ++it)
-//		mp.erase(it);
-//		mp.erase(mp.begin(), --mp.end());
-
-
-	start_tests();
+//	for (int i = 0, j = 0; i < 500000; ++i, ++j)
+//		mp.insert(std::make_pair(i, j));
+//
+//	mp.erase(mp.begin(), --mp.end());
+//	print(mp);
 }

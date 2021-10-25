@@ -15,23 +15,23 @@ public:
 	struct Node_ *right;
 	struct Node_ *parent;
 	bool NIL;
-	Node_() {}
-	Node_<T, V>(const Node_<T, V> &other) {
-//		cout << "wow its copy" << endl;
-		left = other.left;
-		right = other.right;
-		parent = other.parent;
-		NIL = other.NIL;
-		color = other.color;
-		first = other.first;
-		second = other.second;
-	}
-	Node_& operator=(const Node_& other) {
-		cout << "wow its assign" << endl;
-		if (this == &other)
-			return *this;
-		return *this;
-	}
+//	Node_() {}
+//	Node_<T, V>(const Node_<T, V> &other) {
+////		cout << "wow its copy" << endl;
+//		left = other.left;
+//		right = other.right;
+//		parent = other.parent;
+//		NIL = other.NIL;
+//		color = other.color;
+//		first = other.first;
+//		second = other.second;
+//	}
+//	Node_& operator=(const Node_& other) {
+//		cout << "wow its assign" << endl;
+//		if (this == &other)
+//			return *this;
+//		return *this;
+//	}
 public:
 	T first;
 	V second;
@@ -337,7 +337,7 @@ public:
 	}
 
 	Node_<T, V>* get_begin() {
-		Node_<T, V>* tmp = new Node_<T, V>(*root);
+		Node_<T, V>* tmp = root;
 		while (!tmp->left->NIL) {
 			tmp = tmp->left;
 		}
@@ -345,7 +345,7 @@ public:
 	}
 
 	Node_<T, V>* get_last() {
-		Node_<T, V>* tmp = new Node_<T, V>(*root);
+		Node_<T, V>* tmp = root;
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
 		}
@@ -353,7 +353,7 @@ public:
 	}
 
 	Node_<T, V>* get_end() {
-		Node_<T, V>* tmp = new Node_<T, V>(*root);
+		Node_<T, V>* tmp = root;
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
 		}
