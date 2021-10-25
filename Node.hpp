@@ -1,7 +1,5 @@
 #pragma once
 
-#define compEQ(a,b) (a == b)
-
 typedef enum { BLACK, RED } nodeColor;
 
 template <class T, class V>
@@ -17,6 +15,23 @@ public:
 	struct Node_ *right;
 	struct Node_ *parent;
 	bool NIL;
+	Node_() {}
+	Node_<T, V>(const Node_<T, V> &other) {
+//		cout << "wow its copy" << endl;
+		left = other.left;
+		right = other.right;
+		parent = other.parent;
+		NIL = other.NIL;
+		color = other.color;
+		first = other.first;
+		second = other.second;
+	}
+	Node_& operator=(const Node_& other) {
+		cout << "wow its assign" << endl;
+		if (this == &other)
+			return *this;
+		return *this;
+	}
 public:
 	T first;
 	V second;
@@ -27,7 +42,8 @@ class Tree : public Node_<T, V> {
 public:
 	Node_<T, V> sentinel;
 	Node_<T, V> *root;
-	Tree() {
+	size_t		m_size;
+	Tree() : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
@@ -38,7 +54,7 @@ public:
 
 	~Tree() { deleteAll(root); };
 
-	Tree(Tree<T, V> &other) {
+	Tree(Tree<T, V> &other) : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.parent = 0;
@@ -69,6 +85,7 @@ public:
 		deleteAll(root);
 		root = other.root;
 		sentinel = other.sentinel;
+		m_size = other.m_size;
 		return *this;
 	};
 
@@ -149,38 +166,38 @@ public:
 		root->color = BLACK;
 	}
 
+//	template <class Compare>
+//	Node_<T, V> *insertWithHint(Node_<T, V> *hint, T first, V second, Compare comp) {
+//		Node_<T, V> *current_hint = hint;
+//		Node_<T, V> *tmp = hint;
+//
+//		while (hint->parent) {
+//			hint = hint->parent;
+//			if (comp(first, hint->first)) {
+//				if (hint->left == current_hint) {
+//					continue;
+//				} else
+//					return;
+//			} else {
+//				if (hint->right == current_hint) {
+//					continue; // здесь мы понимаем, что подсказка правильная
+//				} else {
+//					return;
+//				}
+//			}
+//
+//		}
+//	}
+
+
 	template <class Compare>
-	Node_<T, V> *insertWithHint(Node_<T, V> *hint, T first, V second, Compare comp) {
-		Node_<T, V> *current_hint = hint;
-		Node_<T, V> *tmp = hint;
-
-		while (hint->parent) {
-			hint = hint->parent;
-			if (comp(first, hint->first)) {
-				if (hint->left == current_hint) {
-					continue;
-				} else
-					return;
-			} else {
-				if (hint->right == current_hint) {
-					continue; // здесь мы понимаем, что подсказка правильная
-				} else {
-					return;
-				}
-			}
-
-		}
-	}
-
-
-	template <class Compare>
-	Node_<T, V> *insertNode(T first, V second, Compare comp) {
+	ft::pair<Node_<T, V> *, bool> insertNode(T first, V second, Compare comp) {
 		Node_<T, V> *current, *parent, *x;
 
 		current = root;
 		parent = 0;
 		while (!current->NIL) {
-			if (compEQ(first, current->first)) return (current);
+			if (first == current->first) return ft::make_pair(current, false);
 			parent = current;
 			current = comp(first, current->first) ?
 					current->left : current->right;
@@ -206,7 +223,8 @@ public:
 		insertFixup(x);
 
 		if (x == get_last()) { sentinel.parent = x; }
-		return(x);
+		m_size++;
+		return ft::make_pair(x, true);
 	}
 
 
@@ -265,10 +283,9 @@ public:
 		x->color = BLACK;
 	}
 
-	template <class Compare>
-	void deleteNode(Node_<T, V> *z, Compare comp) {
+	int deleteNode(Node_<T, V> *z) {
 		Node_<T, V> *x, *y;
-		if (!z || z->NIL) return;
+		if (!z || z->NIL) return 0;
 
 		if (z->left->NIL || z->right->NIL) {
 			y = z;
@@ -299,8 +316,11 @@ public:
 		if (y->color == BLACK)
 			deleteFixup (x);
 		sentinel.parent = get_last();
+		m_size--;
 		// todo delete free
 		free (y);
+//		delete y;
+		return 1;
 	}
 
 	template <class Compare>
@@ -308,7 +328,7 @@ public:
 		Node_<T, V> *current = root;
 
 		while (!current->NIL) {
-			if(compEQ(first, current->first))
+			if(first == current->first)
 				return (current);
 			else
 				current = comp (first, current->first) ? current->left : current->right;
@@ -317,7 +337,7 @@ public:
 	}
 
 	Node_<T, V>* get_begin() {
-		Node_<T, V>* tmp = root;
+		Node_<T, V>* tmp = new Node_<T, V>(*root);
 		while (!tmp->left->NIL) {
 			tmp = tmp->left;
 		}
@@ -325,7 +345,7 @@ public:
 	}
 
 	Node_<T, V>* get_last() {
-		Node_<T, V>* tmp = root;
+		Node_<T, V>* tmp = new Node_<T, V>(*root);
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
 		}
@@ -333,42 +353,42 @@ public:
 	}
 
 	Node_<T, V>* get_end() {
-		Node_<T, V>* tmp = root;
+		Node_<T, V>* tmp = new Node_<T, V>(*root);
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
 		}
 		return tmp->right;
 	}
 
-	Node_<T, V>* increment(Node_<T, V> *t) {
-		if (t == get_end()->parent)
-			return t->right;
-		if (!t->right->NIL) {
-			t = t->right;
-			while (!t->left->NIL)
-				t = t->left;
-			return t;
-		}
-		T value = t->first;
-		while (value >= t->first) {
-			t = t->parent;
-		}
-		return t;
-	}
-
-	Node_<T, V>* decrement(Node_<T, V> *t) {
-		if (t->NIL) return t->parent;
-		if (!t->left->NIL) {
-			t = t->left;
-			while (!t->right->NIL)
-				t = t->right;
-			return t;
-		}
-		T value = t->first;
-		while (value <= t->first ) {
-			if (!t->parent) { return t->right; }
-			t = t->parent;
-		}
-		return t;
-	}
+//	Node_<T, V>* increment(Node_<T, V> *t) {
+//		if (t == get_end()->parent)
+//			return t->right;
+//		if (!t->right->NIL) {
+//			t = t->right;
+//			while (!t->left->NIL)
+//				t = t->left;
+//			return t;
+//		}
+//		T value = t->first;
+//		while (value >= t->first) {
+//			t = t->parent;
+//		}
+//		return t;
+//	}
+//
+//	Node_<T, V>* decrement(Node_<T, V> *t) {
+//		if (t->NIL) return t->parent;
+//		if (!t->left->NIL) {
+//			t = t->left;
+//			while (!t->right->NIL)
+//				t = t->right;
+//			return t;
+//		}
+//		T value = t->first;
+//		while (value <= t->first ) {
+//			if (!t->parent) { return t->right; }
+//			t = t->parent;
+//		}
+//		return t;
+//	}
 };

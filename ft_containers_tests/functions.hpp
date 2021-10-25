@@ -1507,13 +1507,27 @@ std::vector<int> erase_test_1(std::map<T, V> mp) {
 	v.push_back(mp.erase(0));
 	v.push_back(mp.size());
 	v.push_back(it->first);
+	typename std::map<T, V>::iterator it4 = mp.begin();
+	g_start1 = timer();
+	for (; it4 != mp.end(); it4 = mp.begin())
+		mp.erase(it4->first);
+	g_end1 = timer();
 	typename std::map<T, V>::iterator it2 = mp.end();
 	it2--;
 	g_start1 = timer();
 	v.push_back(mp.erase(299999));
 	g_end1 = timer();
 	v.push_back(mp.size());
-	v.push_back(it2->first);
+	std::map<int, int> mp2;
+	for (int i = 0, j = 0; i < 10 ; ++i, ++j)
+		mp2.insert(std::make_pair(i, j));
+	mp2.erase(2);
+	mp2.erase(7);
+	typename std::map<T, V>::iterator it3 = mp2.begin();
+	for (; it3 != mp2.end(); ++it3) {
+		v.push_back(it3->first);
+		v.push_back(it3->second);
+	}
 	return v;
 }
 
@@ -1530,13 +1544,125 @@ std::vector<int> erase_test_1(ft::Map<T, V> mp) {
 	v.push_back(mp.erase(0));
 	v.push_back(mp.size());
 	v.push_back(it->first);
+	typename ft::Map<T, V>::iterator it4 = mp.begin();
+	g_start2 = timer();
+	for (; it4 != mp.end(); it4 = mp.begin())
+		mp.erase(it4->first);
+	g_end2 = timer();
 	typename ft::Map<T, V>::iterator it2 = mp.end();
 	it2--;
 	g_start2 = timer();
 	v.push_back(mp.erase(299999));
 	g_end2 = timer();
 	v.push_back(mp.size());
-	v.push_back(it2->first);
+	ft::Map<int, int> mp2;
+	for (int i = 0, j = 0; i < 10 ; ++i, ++j)
+		mp2.insert(ft::make_pair(i, j));
+	mp2.erase(2);
+	mp2.erase(7);
+	typename ft::Map<T, V>::iterator it3 = mp2.begin();
+	for (; it3 != mp2.end(); ++it3) {
+		v.push_back(it3->first);
+		v.push_back(it3->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> erase_test_2(std::map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 0; i < 300000 ; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	typename std::map<T, V>::iterator it = mp.begin();
+	v.push_back(it->first);
+	mp.erase(it++);
+	v.push_back(mp.size());
+	mp.erase(++it);
+	v.push_back(mp.size());
+	v.push_back(it->first);
+	typename std::map<T, V>::iterator it4 = mp.begin();
+	g_start1 = timer();
+	for (; it4 != mp.end(); it4 = mp.begin())
+		mp.erase(it4);
+	g_end1 = timer();
+	v.push_back(mp.size());
+	std::map<int, int> mp2;
+	for (int i = 0, j = 0; i < 10 ; ++i, ++j)
+		mp2.insert(std::make_pair(i, j));
+	typename std::map<T, V>::iterator ittest = mp2.begin();
+	for (int i = 0; i < 2; ++i) ittest++;
+	mp2.erase(ittest);
+	for (int i = 0; i < 5; ++i) ittest++;
+	mp2.erase(ittest);
+	typename std::map<T, V>::iterator it3 = mp2.begin();
+	for (; it3 != mp2.end(); ++it3) {
+		v.push_back(it3->first);
+		v.push_back(it3->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> erase_test_2(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 0; i < 300000 ; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+	typename ft::Map<T, V>::iterator it = mp.begin();
+	v.push_back(it->first);
+	mp.erase(it++);
+	v.push_back(mp.size());
+	mp.erase(++it);
+	v.push_back(mp.size());
+	v.push_back(it->first);
+	typename ft::Map<T, V>::iterator it4 = mp.begin();
+	g_start2 = timer();
+	for (; it4 != mp.end(); it4 = mp.begin())
+		mp.erase(it4);
+	g_end2 = timer();
+	v.push_back(mp.size());
+	ft::Map<int, int> mp2;
+	for (int i = 0, j = 0; i < 10 ; ++i, ++j)
+		mp2.insert(ft::make_pair(i, j));
+	typename ft::Map<T, V>::iterator ittest = mp2.begin();
+	for (int i = 0; i < 2; ++i) ittest++;
+	mp2.erase(ittest);
+	for (int i = 0; i < 5; ++i) ittest++;
+	mp2.erase(ittest);
+	typename ft::Map<T, V>::iterator it3 = mp2.begin();
+	for (; it3 != mp2.end(); ++it3) {
+		v.push_back(it3->first);
+		v.push_back(it3->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> erase_test_3(std::map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 0; i < 500000; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+
+	std::map<int, int>::iterator it = mp.begin();
+	g_start1 = timer();
+	mp.erase(mp.begin(), --mp.end());
+	g_end1 = timer();
+//	v.push_back(it->first);
+//	v.push_back(mp.begin()->first);
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> erase_test_3(ft::Map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = 0, j = 0; i < 500000; ++i, ++j)
+		mp.insert(ft::make_pair(i, j));
+
+	ft::Map<int, int>::iterator it = mp.begin();
+	g_start2 = timer();
+	mp.erase(mp.begin(), --mp.end());
+	g_end2 = timer();
+//	v.push_back(it->first);
+//	v.push_back(mp.begin()->first);
 	return v;
 }
 

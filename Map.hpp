@@ -28,7 +28,6 @@ public:
 	class															value_compare;
 private:
 	A			 													_allocator;
-	size_t															_size;
 	Compare		 													_comp;
 public:
 
@@ -37,23 +36,23 @@ public:
 										/* CONSTRUCTORS AND DESTRUCTORS */
 										/********************************/
 
-	Map() : _size(0) {
+	Map() {
 		_tree = new Tree<Key, T>();
 	}
 
-	explicit Map( const Compare& comp, const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
+	explicit Map( const Compare& comp, const A& alloc = A()) : _comp(comp), _allocator(alloc) {
 		_tree = new Tree<Key, T>();
 	}
 
 	template <class InputIt>
-	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _size(0), _comp(comp), _allocator(alloc) {
+	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _comp(comp), _allocator(alloc) {
 		_tree = new Tree<Key, T>();
 		for (; first != last; first++) {
 			insert(ft::make_pair(first->first, first->second));
 		}
 	}
 
-	Map(const Map &other) : _size(other._size), _comp(other._comp), _allocator(other._allocator) {
+	Map(const Map &other) : _comp(other._comp), _allocator(other._allocator) {
 		_tree = new Tree<Key, T>(*(other._tree));
 		_tree->fillTree(other._tree->root, _comp);
 	}
@@ -62,7 +61,6 @@ public:
 		if (this == &other)
 			return *this;
 		_comp = other._comp;
-		_size = other._size;
 		_allocator = other._allocator;
 		delete _tree;
 		_tree = new Tree<Key, T>(*(other._tree));
@@ -96,27 +94,18 @@ public:
 	// todo reverse iterator must return a pre-begin value
 	reverse_iterator 		rend()								{ return iterator(_tree->get_begin()); }
 	const_reverse_iterator 	rend() const						{ return iterator(_tree->get_begin()); }
-	bool 					empty() const						{ return _size == 0; }
-	size_type				size() const 						{ return _size; }
+	bool 					empty() const						{ return size() == 0; }
+	size_type				size() const 						{ return _tree->m_size; }
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
 																 std::numeric_limits<size_type>::max() / (sizeof(Node_<Key, T>) + sizeof(T*)))); }
 
 	void clear() {
-		_size = 0;
 		delete _tree;
 		_tree = new Tree<Key, T>();
 	}
 
 	ft::pair<iterator, bool> insert(const value_type& value) {
-		bool isAdded = false;
-		iterator it;
-
-		if (_tree->findNode(value.first, _comp) == _tree->get_end()) {
-			_size++;
-			isAdded = true;
-		}
-		it = _tree->insertNode(value.first, value.second, _comp);
-		return ft::pair<iterator, bool>(it, isAdded);
+		return _tree->insertNode(value.first, value.second, _comp);
 	}
 
 	iterator insert(iterator hint, const value_type& value) {} // need to implement
@@ -127,21 +116,19 @@ public:
 			insert(ft::make_pair(first->first, first->second));
 	}
 
+	// todo doesnt work erase with iterators
 	void erase( iterator pos ) {
+		_tree->deleteNode(pos.base());
+	}
 
-	} // need to implement
-
-	void erase( iterator first, iterator last ) {} // need to implement
+	void erase( iterator first, iterator last ) {
+		int i = 0;
+		for (; first != last; first++)
+			_tree->deleteNode(first.base());
+	}
 
 	size_type erase( const key_type& key ) {
-		iterator it = _tree->findNode(key, _comp);
-
-		if (it != end()) {
-			_tree->deleteNode(it.base(), _comp);
-			_size--;
-			return 1;
-		}
-		return 0;
+		return _tree->deleteNode(_tree->findNode(key, _comp));
 	}
 
 	void swap( Map& other ) {} // need to imlpement
