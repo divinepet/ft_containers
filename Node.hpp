@@ -6,6 +6,7 @@ template <class value_type>
 struct Node_ {
 public:
 	bool color;
+	struct Node_ *preBegin;
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
@@ -22,6 +23,7 @@ public:
 	Tree() : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
+		sentinel.preBegin = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
@@ -33,6 +35,7 @@ public:
 	Tree(Tree<value_type> &other) : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
+		sentinel.preBegin = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
@@ -43,7 +46,7 @@ public:
 	void fillTree(Node_<value_type> *t, Compare comp) {
 		if (!t->left->NIL)
 			fillTree(t->left, comp);
-		if (!t->NIL) insertNode(t->pair, comp);
+		if (!t->NIL) insertNode(root, t->pair, comp);
 		if (!t->right->NIL)
 			fillTree(t->right, comp);
 	}
@@ -142,35 +145,11 @@ public:
 		root->color = BLACK;
 	}
 
-//	template <class Compare>
-//	Node_<T, V> *insertWithHint(Node_<T, V> *hint, T first, V second, Compare comp) {
-//		Node_<T, V> *current_hint = hint;
-//		Node_<T, V> *tmp = hint;
-//
-//		while (hint->parent) {
-//			hint = hint->parent;
-//			if (comp(first, hint->first)) {
-//				if (hint->left == current_hint) {
-//					continue;
-//				} else
-//					return;
-//			} else {
-//				if (hint->right == current_hint) {
-//					continue; // здесь мы понимаем, что подсказка правильная
-//				} else {
-//					return;
-//				}
-//			}
-//
-//		}
-//	}
-
-
 	template <class Compare>
-	ft::pair<Node_<value_type>*, bool> insertNode(value_type pair, Compare comp) {
+	ft::pair<Node_<value_type>*, bool> insertNode(Node_<value_type>* hint, value_type pair, Compare comp) {
 		Node_<value_type> *current, *parent, *x;
 
-		current = root;
+		current = hint;
 		parent = 0;
 		while (!current->NIL) {
 			if (pair.first == current->pair.first) return ft::make_pair(current, false);
@@ -199,7 +178,7 @@ public:
 		insertFixup(x);
 
 		if (x == getLast()) { sentinel.parent = x; }
-//		if (x == get_begin()) { sentinel.left = x; }
+		if (x == getBegin()) { sentinel.preBegin = x; }
 		m_size++;
 		return ft::make_pair(x, true);
 	}
@@ -292,7 +271,7 @@ public:
 		if (y->color == BLACK)
 			deleteFixup (x);
 		sentinel.parent = getLast();
-//		sentinel.left = get_begin();
+		sentinel.preBegin = getBegin();
 		m_size--;
 		// todo delete free
 		free (y);

@@ -107,13 +107,10 @@ namespace ft {
 
 	template <class T, class Pair>
 	class node_iterator {
-	private:
 		T node;
 		void next() {
-//			if (node->NIL && node->left != node) {
-//				node = node->left;
-//			}
-			if (!node->right->NIL) {
+			if (node->NIL && node->preBegin != node) node = node->preBegin;
+			else if (!node->right->NIL) {
 				node = node->right;
 				while (!node->left->NIL)
 					node = node->left;
@@ -159,20 +156,20 @@ namespace ft {
 		node_iterator		&operator++() 									{ next(); return *this; }
 		node_iterator		operator--(int)									{ node_iterator tmp(*this); prev(); return tmp; }
 		node_iterator		&operator--() 									{ prev(); return *this; }
-		Pair& 				operator*() const 								{ return node->pair; }
+		Pair&				operator*()		 								{ return node->pair; }
+//		const Pair& 		operator*() const 								{ return node->pair; }
 		Pair*				operator->()									{ return &(node->pair); }
 		const Pair*			operator->() const								{ return &(node->pair); }
 		bool				operator==(node_iterator const &obj) const 		{ return node == obj.node; };
 		bool				operator!=(node_iterator const &obj) const 		{ return node != obj.node; };
-		bool 				operator<(node_iterator const &obj) const 		{ return node < obj.node; };
-		bool 				operator>(node_iterator const &obj) const 		{ return node > obj.node; };
-		bool 				operator<=(node_iterator const &obj) const 		{ return node <= obj.node; };
-		bool 				operator>=(node_iterator const &obj) const 		{ return node >= obj.node; };
+		bool 				operator>(node_iterator const &obj) const 		{ return node->pair > obj.node->pair; };
+		bool 				operator<(node_iterator const &obj) const 		{ return !(node->pair > obj.node->pair); };
+		bool 				operator<=(node_iterator const &obj) const 		{ return node->pair <= obj.node->pair; };
+		bool 				operator>=(node_iterator const &obj) const 		{ return node->pair >= obj.node->pair; };
 	};
 
 	template <class T>
 	class reverse_node_iterator {
-	private:
 		T iterator;
 	public:
 		reverse_node_iterator(T value = nullptr) : iterator(value)							{};
@@ -187,7 +184,7 @@ namespace ft {
 		reverse_node_iterator		operator--(int)											{ reverse_node_iterator tmp(iterator); iterator++; return tmp; }
 		reverse_node_iterator		&operator--() 											{ iterator++; return *this; }
 		T 							operator*() const 										{ return iterator; }
-		T							operator->() const 										{ return (iterator); }
+		T							operator->() const 										{ return iterator; }
 		bool						operator==(reverse_node_iterator const &obj) const 		{ return iterator == obj.iterator; };
 		bool						operator!=(reverse_node_iterator const &obj) const 		{ return iterator != obj.iterator; };
 		bool 						operator<(reverse_node_iterator const &obj) const 		{ return iterator < obj.iterator; };

@@ -6,9 +6,8 @@
 
 namespace ft {
 template <class Key, class T, class Compare = std::less<Key>, class A = std::allocator<std::pair<const Key, T> > >
-class Map {//: public Tree<Key, T, Compare> {
+class Map {
 public:
-//	friend class Tree<Key, T, Compare>;
 	typedef Key														key_type;
 	typedef T														mapped_type;
 	typedef ft::pair<const Key, T>									value_type;
@@ -25,7 +24,15 @@ public:
 	typedef ft::reverse_node_iterator<iterator>						reverse_iterator;
 	typedef ft::reverse_node_iterator<const_iterator>				const_reverse_iterator;
 	Tree<value_type >*												_tree;
-	class															value_compare;
+	class value_compare : public std::binary_function<value_type, value_type, bool> {
+	friend class Map;
+	protected:
+		key_compare comp;
+		value_compare(key_compare c) : comp(c) {}
+		public:
+			bool operator()(const value_type& __x, const value_type& __y) const
+			{ return comp(__x.first, __y.first); }
+		};
 private:
 	A			 													_allocator;
 	Compare		 													_comp;
@@ -88,11 +95,10 @@ public:
 	const_iterator 			begin() const						{ return _tree->getBegin(); }
 	iterator 				end()								{ return _tree->getEnd(); }
 	const_iterator 			end() const							{ return _tree->getEnd(); }
-	reverse_iterator 		rbegin()							{ return iterator(_tree->sentinel.parent); }
-	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->sentinel.parent); }
-	// todo reverse iterator must return a pre-begin value
-	reverse_iterator 		rend()								{ return iterator(_tree->getBegin()->left); }
-	const_reverse_iterator 	rend() const						{ return iterator(_tree->getBegin()->left); }
+	reverse_iterator 		rbegin()							{ return iterator(_tree->getLast()); }
+	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->getLast()); }
+	reverse_iterator 		rend()								{ return iterator(_tree->getEnd()); }
+	const_reverse_iterator 	rend() const						{ return iterator(_tree->getEnd()); }
 	bool 					empty() const						{ return size() == 0; }
 	size_type				size() const 						{ return _tree->m_size; }
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
@@ -104,10 +110,28 @@ public:
 	}
 
 	ft::pair<iterator, bool> insert(const value_type& value) {
-		return _tree->insertNode(value, _comp);
+		return _tree->insertNode(_tree->root, value, _comp);
 	}
 
-	iterator insert(iterator hint, const value_type& value) {} // need to implement
+	iterator insert(iterator hint, const value_type& value) {
+		if (hint->first > value.first)
+		{
+			iterator prev = hint;
+			--prev;
+			while (prev != end() && prev->first >= value.first){
+				--hint;
+				--prev;
+			}
+		}else if (hint->first < value.first) {
+			iterator next = hint;
+			++next;
+			while (next != end() && next->first <= value.first) {
+				++hint;
+				++next;
+			}
+		}
+		return _tree->insertNode(hint.base(), value, _comp).first;
+	}
 
 	template< class InputIt >
 	void insert( InputIt first, InputIt last ) {
@@ -134,10 +158,12 @@ public:
 		return _tree->deleteNode(_tree->findNode(key, _comp));
 	}
 
-	void swap( Map& other ) {} // need to implement
+	void swap( Map& other ) {
+		std::swap(_tree, other._tree);
+	}
 
 	size_type count( const Key& key ) const {
-		return (_tree->template findNode(key) == end()) ? 0 : 1;
+		return (_tree->findNode(key, _comp) == _tree->getEnd()) ? 0 : 1;
 	}
 
 	iterator find( const Key& key ) {
@@ -220,7 +246,59 @@ public:
 		return _comp;
 	}
 
-	ft::Map<Key, T, Compare, A>::value_compare  value_comp() const {} // need to implement
+	ft::Map<Key, T, Compare, A>::value_compare value_comp() const {
+		return value_compare(key_comp());
+	}
+
+//	friend bool operator== (const Map &lhs, const Map &rhs) {
+//		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+//	};
+
+//	friend bool operator!= (const Vector &lhs, const Vector &rhs) { return !(lhs == rhs); };
+//
+//	friend bool operator<= (const Vector &lhs, const Vector &rhs) {
+//		if (lhs.size() < rhs.size()) return true;
+//		if (lhs.size() > rhs.size()) return false;
+//
+//		for (int i = 0; i < lhs.size(); ++i) {
+//			if (lhs[i] == rhs[i]) { continue; }
+//			return lhs[i] < rhs[i];
+//		}
+//		return true;
+//	};
+//
+//	friend bool operator>= (const Vector &lhs, const Vector &rhs) {
+//		if (lhs.size() < rhs.size()) return false;
+//		if (lhs.size() > rhs.size()) return true;
+//
+//		for (int i = 0; i < lhs.size(); ++i) {
+//			if (lhs[i] == rhs[i]) { continue; }
+//			return lhs[i] > rhs[i];
+//		}
+//		return true;
+//	};
+//
+//	friend bool operator< (const Vector &lhs, const Vector &rhs) {
+//		if (lhs.size() < rhs.size()) return true;
+//		if (lhs.size() > rhs.size()) return false;
+//
+//		for (int i = 0; i < lhs.size(); ++i) {
+//			if (lhs[i] == rhs[i]) { continue; }
+//			return lhs[i] < rhs[i];
+//		}
+//		return false;
+//	};
+//
+//	friend bool operator> (const Vector &lhs, const Vector &rhs) {
+//		if (lhs.size() > rhs.size()) return true;
+//		if (lhs.size() < rhs.size()) return false;
+//
+//		for (int i = 0; i < lhs.size(); ++i) {
+//			if (lhs[i] == rhs[i]) { continue; }
+//			return lhs[i] > rhs[i];
+//		}
+//		return false;
+//	};
 
 };
 }

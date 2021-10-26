@@ -964,6 +964,11 @@ std::vector<int> insert_test(std::map<T, V> mp) {
 		mp.insert(std::make_pair(i, j));
 	}
 	g_end1 = timer();
+	typename std::map<T, V>::iterator it3 = mp.begin();
+	for (; it3 != mp.end(); ++it3) {
+		v.push_back(it3->first);
+		v.push_back(it3->second);
+	}
 	v.push_back(mp.size());
 	return v;
 }
@@ -991,6 +996,11 @@ std::vector<int> insert_test(_map<T, V> mp) {
 		mp.insert(_make_pair(i, j));
 	}
 	g_end2 = timer();
+	typename _map<T, V>::iterator it3 = mp.begin();
+	for (; it3 != mp.end(); ++it3) {
+		v.push_back(it3->first);
+		v.push_back(it3->second);
+	}
 	v.push_back(mp.size());
 	return v;
 }
@@ -998,24 +1008,68 @@ std::vector<int> insert_test(_map<T, V> mp) {
 template <class T, class V>
 std::vector<int> insert_test_2(std::map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = 0, j = 0; i < 300000; ++i, ++j)
+	for (int i = 0, j = 0; i < 500000; ++i, ++j)
 		mp.insert(std::make_pair(i, j));
 	std::map<int, int> mp2;
 	g_start1 = timer();
 	mp2.insert(mp.begin(), mp.end());
 	g_end1 = timer();
+	typename std::map<T, V>::iterator it2 = mp2.begin();
+	for (; it2 != mp2.end(); ++it2) {
+		v.push_back(it2->first);
+		v.push_back(it2->second);
+	}
 	return v;
 }
 
 template <class T, class V>
 std::vector<int> insert_test_2(_map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = 0, j = 0; i < 300000; ++i, ++j)
+	for (int i = 0, j = 0; i < 500000; ++i, ++j)
 		mp.insert(_make_pair(i, j));
 	_map<int, int> mp2;
 	g_start2 = timer();
 	mp2.insert(mp.begin(), mp.end());
 	g_end2 = timer();
+	typename _map<T, V>::iterator it2 = mp2.begin();
+	for (; it2 != mp2.end(); ++it2) {
+		v.push_back(it2->first);
+		v.push_back(it2->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> insert_test_3(std::map<T, V> mp) {
+	std::vector<int> v;
+	typename std::map<T, V>::iterator it = mp.end();
+	g_start1 = timer();
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp.insert(it, std::make_pair(i, j));
+	}
+	g_end1 = timer();
+	typename std::map<T, V>::iterator it2 = mp.begin();
+	for (; it2 != mp.end(); ++it2) {
+		v.push_back(it2->first);
+		v.push_back(it2->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> insert_test_3(_map<T, V> mp) {
+	std::vector<int> v;
+	typename _map<T, V>::iterator it = mp.end();
+	g_start2 = timer();
+	for (int i = 0, j = 0; i < 500000; ++i, ++j) {
+		mp.insert(it, _make_pair(i, j));
+	}
+	g_end2 = timer();
+	typename _map<T, V>::iterator it2 = mp.begin();
+	for (; it2 != mp.end(); ++it2) {
+		v.push_back(it2->first);
+		v.push_back(it2->second);
+	}
 	return v;
 }
 
@@ -1087,7 +1141,6 @@ std::vector<int>    iterators_test(std::map<T, V> mp) {
 	return v;
 }
 
-// todo дополнить тест итераторов реверсами
 template <class T, class V>
 std::vector<int> iterators_test(_map<T, V> mp) {
 	std::vector<int> v;
@@ -1131,8 +1184,8 @@ std::vector<int>    reverse_iterators_test(std::map<T, V> mp) {
 	mp.insert(std::make_pair(5, 5));
 	mp.insert(std::make_pair(3, 3));
 	mp.insert(std::make_pair(7, 7));
-	typename std::map<T, V>::reverse_iterator rit = mp.rbegin();
-	typename std::map<T, V>::reverse_iterator rit2 = mp.rend();
+	typename std::map<T, V>::reverse_iterator rit = mp.rbegin(); // 7
+	typename std::map<T, V>::reverse_iterator rit2 = mp.rend(); // .
 	v.push_back(rit->first);
 	rit++;
 	rit2--;
@@ -1152,7 +1205,6 @@ std::vector<int>    reverse_iterators_test(std::map<T, V> mp) {
 	return v;
 }
 
-//todo swap and other functions to iterator test
 template <class T, class V>
 std::vector<int> reverse_iterators_test(_map<T, V> mp) {
 	std::vector<int> v;
@@ -1275,33 +1327,33 @@ std::vector<int> comparator_test(std::map<T, V> mp) {
 	mp2.erase(3);
 	if (mp2.begin() == mp2.end())
 		v.push_back(1);
-//	std::map<int, int, std::plus<int> > mp3;
-//	fillMap(mp3);
-//	for (typename std::map<T, V>::iterator it = mp3.begin(); it != mp3.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp3.end(); it != mp3.begin(); it--) { v.push_back(it->first); }
-//	std::map<int, int, std::minus<int> > mp4;
-//	fillMap(mp4);
-//	for (typename std::map<T, V>::iterator it = mp4.begin(); it != mp4.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp4.end(); it != mp4.begin(); it--) { v.push_back(it->first); }
-//	std::map<int, int, std::greater_equal<int> > mp5;
-//	fillMap(mp5);
-//	for (typename std::map<T, V>::iterator it = mp5.begin(); it != mp5.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp5.end(); it != mp5.begin(); it--) { v.push_back(it->first); }
-//	std::map<int, int, std::multiplies<int> > mp6;
-//	fillMap(mp6);
-//	for (typename std::map<T, V>::iterator it = mp6.begin(); it != mp6.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp6.end(); it != mp6.begin(); it--) { v.push_back(it->first); }
-//	std::map<int, int, std::bit_xor<int> > mp7;
-//	fillMap(mp7);
-//	for (typename std::map<T, V>::iterator it = mp7.begin(); it != mp7.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp7.end(); it != mp7.begin(); it--) { v.push_back(it->first); }
-//	std::map<int, int, std::logical_and<int> > mp8;
-//	fillMap(mp8);
-//	for (typename std::map<T, V>::iterator it = mp8.begin(); it != mp8.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp8.end(); it != mp8.begin(); it--) { v.push_back(it->first); }
-//	g_start1 = timer();
-//	g_end1 = timer();
-//	v.push_back(mp1.size());
+	std::map<int, int, std::plus<int> > mp3;
+	fillMap(mp3);
+	for (typename std::map<T, V>::iterator it = mp3.begin(); it != mp3.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp3.end(); it != mp3.begin(); it--) { v.push_back(it->first); }
+	std::map<int, int, std::minus<int> > mp4;
+	fillMap(mp4);
+	for (typename std::map<T, V>::iterator it = mp4.begin(); it != mp4.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp4.end(); it != mp4.begin(); it--) { v.push_back(it->first); }
+	std::map<int, int, std::greater_equal<int> > mp5;
+	fillMap(mp5);
+	for (typename std::map<T, V>::iterator it = mp5.begin(); it != mp5.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp5.end(); it != mp5.begin(); it--) { v.push_back(it->first); }
+	std::map<int, int, std::multiplies<int> > mp6;
+	fillMap(mp6);
+	for (typename std::map<T, V>::iterator it = mp6.begin(); it != mp6.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp6.end(); it != mp6.begin(); it--) { v.push_back(it->first); }
+	std::map<int, int, std::bit_xor<int> > mp7;
+	fillMap(mp7);
+	for (typename std::map<T, V>::iterator it = mp7.begin(); it != mp7.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp7.end(); it != mp7.begin(); it--) { v.push_back(it->first); }
+	std::map<int, int, std::logical_and<int> > mp8;
+	fillMap(mp8);
+	for (typename std::map<T, V>::iterator it = mp8.begin(); it != mp8.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp8.end(); it != mp8.begin(); it--) { v.push_back(it->first); }
+	g_start1 = timer();
+	g_end1 = timer();
+	v.push_back(mp1.size());
 	return v;
 }
 
@@ -1324,33 +1376,33 @@ std::vector<int> comparator_test(_map<T, V> mp) {
 	mp2.erase(3);
 	if (mp2.begin() == mp2.end())
 		v.push_back(1);
-//	_map<int, int, std::plus<int> > mp3;
-//	fillMap(mp3);
-//	for (typename _map<T, V>::iterator it = mp3.begin(); it != mp3.end(); it++) { v.push_back(it->first); }
-//	for (typename _map<T, V>::iterator it = --mp3.end(); it != mp3.begin(); it--) { v.push_back(it->first); }
-//	_map<int, int, std::minus<int> > mp4;
-//	fillMap(mp4);
-//	for (typename _map<T, V>::iterator it = mp4.begin(); it != mp4.end(); it++) { v.push_back(it->first); }
-//	for (typename _map<T, V>::iterator it = --mp4.end(); it != mp4.begin(); it--) { v.push_back(it->first); }
-//	_map<int, int, std::greater_equal<int> > mp5;
-//	fillMap(mp5);
-//	for (typename _map<T, V>::iterator it = mp5.begin(); it != mp5.end(); it++) { v.push_back(it->first); }
-//	for (typename _map<T, V>::iterator it = --mp5.end(); it != mp5.begin(); it--) { v.push_back(it->first); }
-//	_map<int, int, std::multiplies<int> > mp6;
-//	fillMap(mp6);
-//	for (typename _map<T, V>::iterator it = mp6.begin(); it != mp6.end(); it++) { v.push_back(it->first); }
-//	for (typename _map<T, V>::iterator it = --mp6.end(); it != mp6.begin(); it--) { v.push_back(it->first); }
-//	_map<int, int, std::bit_xor<int> > mp7;
-//	fillMap(mp7);
-//	for (typename _map<T, V>::iterator it = mp7.begin(); it != mp7.end(); it++) { v.push_back(it->first); }
-//	for (typename _map<T, V>::iterator it = --mp7.end(); it != mp7.begin(); it--) { v.push_back(it->first); }
-//	std::map<int, int, std::logical_and<int> > mp8;
-//	fillMap(mp8);
-//	for (typename std::map<T, V>::iterator it = mp8.begin(); it != mp8.end(); it++) { v.push_back(it->first); }
-//	for (typename std::map<T, V>::iterator it = --mp8.end(); it != mp8.begin(); it--) { v.push_back(it->first); }
-//	g_start1 = timer();
-//	g_end1 = timer();
-//	v.push_back(mp1.size());
+	_map<int, int, std::plus<int> > mp3;
+	fillMap(mp3);
+	for (typename _map<T, V>::iterator it = mp3.begin(); it != mp3.end(); it++) { v.push_back(it->first); }
+	for (typename _map<T, V>::iterator it = --mp3.end(); it != mp3.begin(); it--) { v.push_back(it->first); }
+	_map<int, int, std::minus<int> > mp4;
+	fillMap(mp4);
+	for (typename _map<T, V>::iterator it = mp4.begin(); it != mp4.end(); it++) { v.push_back(it->first); }
+	for (typename _map<T, V>::iterator it = --mp4.end(); it != mp4.begin(); it--) { v.push_back(it->first); }
+	_map<int, int, std::greater_equal<int> > mp5;
+	fillMap(mp5);
+	for (typename _map<T, V>::iterator it = mp5.begin(); it != mp5.end(); it++) { v.push_back(it->first); }
+	for (typename _map<T, V>::iterator it = --mp5.end(); it != mp5.begin(); it--) { v.push_back(it->first); }
+	_map<int, int, std::multiplies<int> > mp6;
+	fillMap(mp6);
+	for (typename _map<T, V>::iterator it = mp6.begin(); it != mp6.end(); it++) { v.push_back(it->first); }
+	for (typename _map<T, V>::iterator it = --mp6.end(); it != mp6.begin(); it--) { v.push_back(it->first); }
+	_map<int, int, std::bit_xor<int> > mp7;
+	fillMap(mp7);
+	for (typename _map<T, V>::iterator it = mp7.begin(); it != mp7.end(); it++) { v.push_back(it->first); }
+	for (typename _map<T, V>::iterator it = --mp7.end(); it != mp7.begin(); it--) { v.push_back(it->first); }
+	std::map<int, int, std::logical_and<int> > mp8;
+	fillMap(mp8);
+	for (typename std::map<T, V>::iterator it = mp8.begin(); it != mp8.end(); it++) { v.push_back(it->first); }
+	for (typename std::map<T, V>::iterator it = --mp8.end(); it != mp8.begin(); it--) { v.push_back(it->first); }
+	g_start1 = timer();
+	g_end1 = timer();
+	v.push_back(mp1.size());
 	return v;
 }
 
@@ -1669,6 +1721,116 @@ std::vector<int> erase_test_3(_map<T, V> mp) {
 	mp.erase(mp.begin(), --mp.end());
 	g_end2 = timer();
 	v.push_back(mp.begin()->first);
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> swap_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	g_start1 = g_end1 = timer();
+	for (int i = 0, j = 0; i < 250000; ++i, ++j)
+		mp.insert(std::make_pair(i, j));
+	std::map<T, V> mp2;
+	for (int i = 250000, j = 0; i < 350000; ++i, --j)
+		mp.insert(std::make_pair(i, j));
+	mp.swap(mp2);
+	v.push_back(mp2.size());
+	typename std::map<T, V>::iterator it = mp2.begin();
+	for (; it != mp2.end(); ++it) {
+		v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	std::swap(mp, mp2);
+	typename std::map<T, V>::iterator it2 = mp2.begin();
+	for (; it2 != mp2.end(); ++it2) {
+		v.push_back(it2->first);
+		v.push_back(it2->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> swap_test(_map<T, V> mp) {
+	std::vector<int> v;
+	g_start2 = g_end2 = timer();
+	for (int i = 0, j = 0; i < 250000; ++i, ++j)
+		mp.insert(_make_pair(i, j));
+	_map<T, V> mp2;
+	for (int i = 250000, j = 0; i < 350000; ++i, --j)
+		mp.insert(_make_pair(i, j));
+	mp.swap(mp2);
+	v.push_back(mp2.size());
+	typename _map<T, V>::iterator it = mp2.begin();
+	for (; it != mp2.end(); ++it) {
+		v.push_back(it->first);
+		v.push_back(it->second);
+	}
+	std::swap(mp, mp2);
+	typename _map<T, V>::iterator it2 = mp2.begin();
+	for (; it2 != mp2.end(); ++it2) {
+		v.push_back(it2->first);
+		v.push_back(it2->second);
+	}
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> count_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	g_start1 = g_end1 = timer();
+	v.push_back(mp.count(0));
+	mp.insert(std::make_pair(0, 0));
+	v.push_back(mp.count(0));
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> count_test(_map<T, V> mp) {
+	std::vector<int> v;
+	g_start2 = g_end2 = timer();
+	v.push_back(mp.count(0));
+	mp.insert(_make_pair(0, 0));
+	v.push_back(mp.count(0));
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> find_test(std::map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = -1500000, j = 0; i < 1500000; ++i, ++j) {
+		mp.insert(std::make_pair(i, j));
+	}
+	g_start1 = timer();
+	typename std::map<T, V>::iterator it = mp.find(1234567);
+	g_end1 = timer();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	it = mp.find(-1234567);
+	v.push_back(it->first);
+	v.push_back(it->second);
+	it = mp.find(-987654321);
+	if (it == mp.end())
+		v.push_back(1);
+	return v;
+}
+
+template <class T, class V>
+std::vector<int> find_test(_map<T, V> mp) {
+	std::vector<int> v;
+	for (int i = -1500000, j = 0; i < 1500000; ++i, ++j) {
+		mp.insert(_make_pair(i, j));
+	}
+	g_start2 = timer();
+	typename _map<T, V>::iterator it = mp.find(1234567);
+	g_end2 = timer();
+	v.push_back(it->first);
+	v.push_back(it->second);
+	it = mp.find(-1234567);
+	v.push_back(it->first);
+	v.push_back(it->second);
+	it = mp.find(-987654321);
+	if (it == mp.end())
+		v.push_back(1);
 	return v;
 }
 

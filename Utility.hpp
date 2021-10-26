@@ -3,6 +3,8 @@
 namespace ft {
 	template <class T, class A>
 	class Vector;
+	template <class Key, class T, class Compare, class A>
+	class Map;
 
 	template<class T, bool v>
 	struct integral_constant {
@@ -87,7 +89,6 @@ template< class InputIt1, class InputIt2, class BinaryPredicate >
 
 	template <class T1, class T2>
 	inline bool operator==(const pair<T1, T2>& x, const pair<T1, T2>& y) {
-		cout << "bye" << endl;
 		return x.first == y.first && x.second == y.second;
 	}
 
@@ -126,5 +127,10 @@ namespace std {
 	template <class T, class A>
 	void swap(ft::Vector<T, A> &v1, ft::Vector<T, A> &v2 ) {
 		v1.swap(v2);
+	}
+
+	template <class Key, class T, class Compare, class A>
+	void swap(ft::Map<Key, T, Compare, A> &m1, ft::Map<Key, T, Compare, A> &m2 ) {
+		m1.swap(m2);
 	}
 }
