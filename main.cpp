@@ -3,7 +3,8 @@ using std::cout;
 using std::endl;
 #include <map>
 #include "Map.hpp"
-#include "ft_containers_tests/general.hpp"
+#include <unistd.h>
+//#include "ft_containers_tests/general.hpp"
 
 template <class T, class V>
 void print(std::map<T, V> mp) { for (typename std::map<T, V>::iterator it = mp.begin(); it != mp.end(); it++) cout << "key: " << it->first << ", value: " << it->second << endl; }
@@ -24,27 +25,34 @@ void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.beg
  * */
 
 int main(int argc, char **argv) {
-//	const ft::Map<int, int > mp;
-//	ft::Map<int, int >::const_iterator it = mp.begin();
 
-//	const std::map<int, int > mp;
-//	std::map<int, int >::const_iterator it = mp.begin();
+	int* a;
+	pid_t w;
+	pid_t pid = fork();
+	int status;
 
-//	mp.insert(ft::make_pair(3, 3));
-//
+	if (pid == 0) {
+		cout << "!" << endl;
+	} else {
+		w = waitpid(pid, &status, WUNTRACED | WCONTINUED);
+		if (w == -1) {
+			perror("waitpid");
+			exit(EXIT_FAILURE);
+		}
 
-//	std::map<int, int> mp;
-//	mp.insert(std::make_pair(3, 3));
-//	std::map<int, int >::iterator it = mp.begin();
-//	(*it).second = 6;
-//	it->first = 5;
-//
-//	ft::Map<int, int> mp2;
-//	mp2.insert(ft::make_pair(3, 3));
-//
-//	cout << (mp == mp2) << endl;
+		if (WIFEXITED(status)) {
+			printf("exited, status=%d\n", WEXITSTATUS(status));
+		} else if (WIFSIGNALED(status)) {
+			printf("killed by signal %d\n", WTERMSIG(status));
+		} else if (WIFSTOPPED(status)) {
+			printf("stopped by signal %d\n", WSTOPSIG(status));
+		} else if (WIFCONTINUED(status)) {
+			printf("continued\n");
+		}
+	}
+//	waitpid(pid, NULL, 0);
 
-	start_tests();
+
 
 	return 0;
 }

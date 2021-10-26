@@ -5,6 +5,9 @@ typedef enum { BLACK, RED } nodeColor;
 template <class value_type>
 struct Node_ {
 public:
+
+	Node_() {}
+	Node_(value_type pair) : pair(pair) {}
 	bool color;
 	struct Node_ *preBegin;
 	struct Node_ *left;
@@ -158,9 +161,9 @@ public:
 					current->left : current->right;
 		}
 
-		x = new Node_<value_type>();
-		x->pair.first = pair.first;
-		x->pair.second = pair.second;
+		x = new Node_<value_type>(pair);
+//		x->pair.first = pair.first;
+//		x->pair.second = pair.second;
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
