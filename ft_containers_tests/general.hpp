@@ -21,6 +21,8 @@ void map_tests();
 #define	_enable_if 			ft::enable_if
 #define	_pair 				ft::pair
 #define	_make_pair 			ft::make_pair
+#define	_map	 			ft::Map
+#define	_vector 			ft::Vector
 #define _exec_name 			"app"
 /*******************************************************************************************************************/
 
@@ -40,7 +42,7 @@ void start_tests() {
 
 void vector_tests() {
 	std::vector<int> vector;
-	ft::Vector<int> my_vector;
+	_vector<int> my_vector;
 	time_t t1;
 	time_t t2;
 
@@ -105,7 +107,7 @@ void algorithm_tests() {
 
 void map_tests() {
 	std::map<int, int> map;
-	ft::Map<int, int> my_map;
+	_map<int, int> my_map;
 	time_t t1;
 	time_t t2;
 
@@ -136,4 +138,5 @@ void map_tests() {
 	printElement("lower bound");(lower_bound_test(map) == lower_bound_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 	printElement("upper bound");(upper_bound_test(map) == upper_bound_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 	printElement("equal range");(equal_range_test(map) == equal_range_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
+	printElement("key comp()");(key_comp_test(map) == key_comp_test(my_map)) ? printElement("OK") : printElement("FAILED");t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);cout << endl;
 }

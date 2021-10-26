@@ -77,25 +77,22 @@ public:
 										/********************************/
 
 
-	mapped_type& at(const Key& key) {
+	T& at(const Key& key) {
 		iterator tmp = _tree->findNode(key, _comp);
-		return (tmp == _tree->get_end()) ? throw std::out_of_range("key not found") : tmp->second;
+		return (tmp == _tree->getEnd()) ? throw std::out_of_range("key not found") : tmp->second;
 	}
 
-	const T& at( const Key& key ) const { return static_cast<const T>(at(key)); }
-
-	T&	operator[](const Key& key) 								{ return insert(ft::make_pair(key, T())).first->second; }
-	iterator 				begin()								{ return _tree->get_begin(); }
-	const_iterator 			begin() const						{ return _tree->get_begin(); }
-	iterator 				end()								{ return _tree->get_end(); }
-	const_iterator 			end() const							{ return _tree->get_end(); }
+	const T&				at(const Key& key) const			{ return static_cast<const T>(at(key)); }
+	T&						operator[](const Key& key) 			{ return insert(ft::make_pair(key, T())).first->second; }
+	iterator 				begin()								{ return _tree->getBegin(); }
+	const_iterator 			begin() const						{ return _tree->getBegin(); }
+	iterator 				end()								{ return _tree->getEnd(); }
+	const_iterator 			end() const							{ return _tree->getEnd(); }
 	reverse_iterator 		rbegin()							{ return iterator(_tree->sentinel.parent); }
 	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->sentinel.parent); }
 	// todo reverse iterator must return a pre-begin value
-	reverse_iterator 		rend()								{
-		return iterator(_tree->get_begin()->left);
-	}
-	const_reverse_iterator 	rend() const						{ return iterator(_tree->get_begin()->left); }
+	reverse_iterator 		rend()								{ return iterator(_tree->getBegin()->left); }
+	const_reverse_iterator 	rend() const						{ return iterator(_tree->getBegin()->left); }
 	bool 					empty() const						{ return size() == 0; }
 	size_type				size() const 						{ return _tree->m_size; }
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
@@ -118,30 +115,38 @@ public:
 			insert(ft::make_pair(first->first, first->second));
 	}
 
-	// todo doesnt work erase with iterators
 	void erase( iterator pos ) {
-		_tree->deleteNode(pos.base());
+		iterator tmp = pos;
+		_tree->deleteNode(tmp.base());
 	}
 
 	void erase( iterator first, iterator last ) {
-		for (; first != last; first++)
-			cout << first->first << endl;
-//			_tree->deleteNode(first.base());
+		iterator tmp;
+
+		for (; first != last ;) {
+			tmp = first++;
+			_tree->deleteNode(tmp.base());
+		}
+
 	}
 
 	size_type erase( const key_type& key ) {
 		return _tree->deleteNode(_tree->findNode(key, _comp));
 	}
 
-	void swap( Map& other ) {} // need to imlpement
+	void swap( Map& other ) {} // need to implement
 
-	size_type count( const Key& key ) const {} // need to implement
+	size_type count( const Key& key ) const {
+		return (_tree->template findNode(key) == end()) ? 0 : 1;
+	}
 
 	iterator find( const Key& key ) {
 		return _tree->findNode(key, _comp);
 	}
 
-	const_iterator find( const Key& key ) const {} // need to implement
+	const_iterator find( const Key& key ) const {
+		return _tree->findNode(key, _comp);
+	}
 
 	iterator lower_bound(const Key& key) {
 		Node_<value_type> *current = _tree->root;
@@ -211,7 +216,9 @@ public:
 		return ft::pair<const_iterator, const_iterator>(lower_bound(key), upper_bound(key));
 	}
 
-	key_compare key_comp() const {} // need to implement
+	key_compare key_comp() const {
+		return _comp;
+	}
 
 	ft::Map<Key, T, Compare, A>::value_compare  value_comp() const {} // need to implement
 

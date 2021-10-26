@@ -9,7 +9,6 @@ public:
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
-	struct Node_ *preBegin;
 	bool NIL;
 	value_type pair;
 };
@@ -199,12 +198,11 @@ public:
 
 		insertFixup(x);
 
-		if (x == get_last()) { sentinel.parent = x; }
+		if (x == getLast()) { sentinel.parent = x; }
 //		if (x == get_begin()) { sentinel.left = x; }
 		m_size++;
 		return ft::make_pair(x, true);
 	}
-
 
 	void deleteFixup(Node_<value_type> *x) {
 		while (x != root && x->color == BLACK) {
@@ -263,6 +261,7 @@ public:
 
 	int deleteNode(Node_<value_type> *z) {
 		Node_<value_type> *x, *y;
+
 		if (!z || z->NIL) return 0;
 
 		if (z->left->NIL || z->right->NIL) {
@@ -287,13 +286,12 @@ public:
 		else
 			root = x;
 		if (y != z) {
-			z->pair.first = y->pair.first;
-			z->pair.second = y->pair.second;
+			z->pair = y->pair;
 		}
 
 		if (y->color == BLACK)
 			deleteFixup (x);
-		sentinel.parent = get_last();
+		sentinel.parent = getLast();
 //		sentinel.left = get_begin();
 		m_size--;
 		// todo delete free
@@ -311,10 +309,10 @@ public:
 			else
 				current = comp (key, current->pair.first) ? current->left : current->right;
 		}
-		return get_end();
+		return getEnd();
 	}
 
-	Node_<value_type>* get_begin() {
+	Node_<value_type>* getBegin() {
 		Node_<value_type>* tmp = root;
 		while (!tmp->left->NIL) {
 			tmp = tmp->left;
@@ -322,7 +320,7 @@ public:
 		return tmp;
 	}
 
-	Node_<value_type>* get_last() {
+	Node_<value_type>* getLast() {
 		Node_<value_type>* tmp = root;
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
@@ -330,7 +328,7 @@ public:
 		return tmp;
 	}
 
-	Node_<value_type>* get_end() {
+	Node_<value_type>* getEnd() {
 		Node_<value_type>* tmp = root;
 		while (!tmp->right->NIL) {
 			tmp = tmp->right;
