@@ -4,7 +4,9 @@ using std::endl;
 #include <map>
 #include "Map.hpp"
 #include <unistd.h>
-//#include "ft_containers_tests/general.hpp"
+#include <thread>
+#include "ft_containers_tests/general.hpp"
+
 
 template <class T, class V>
 void print(std::map<T, V> mp) { for (typename std::map<T, V>::iterator it = mp.begin(); it != mp.end(); it++) cout << "key: " << it->first << ", value: " << it->second << endl; }
@@ -12,7 +14,7 @@ void print(std::map<T, V> mp) { for (typename std::map<T, V>::iterator it = mp.b
 template <class T, class V>
 void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.begin(); it != mp.end(); it++) cout << "key: " << it->first << ", value: " << it->second << endl; }
 
-
+volatile static int timeout_flag = 0;
 /*
  *
  * 1. П̶е̶р̶е̶п̶и̶с̶а̶т̶ь̶ ̶в̶с̶ё̶ ̶н̶а̶ ̶а̶л̶л̶о̶к̶а̶т̶о̶р
@@ -24,33 +26,32 @@ void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.beg
  *
  * */
 
-int main(int argc, char **argv) {
+void MyAlarm (int a) {
+	timeout_flag = 1;
+}
 
-	int* a;
-	pid_t w;
+int main(int argc, char **argv) {
 	pid_t pid = fork();
 	int status;
-
+	signal(SIGALRM, MyAlarm);
+	alarm (3);
 	if (pid == 0) {
-		cout << "!" << endl;
+		while (!timeout_flag) { }
+		if (timeout_flag) cout << "timeout" << endl;
 	} else {
-		w = waitpid(pid, &status, WUNTRACED | WCONTINUED);
-		if (w == -1) {
-			perror("waitpid");
-			exit(EXIT_FAILURE);
-		}
+
+		pid_t w = waitpid(pid, &status, WUNTRACED | WCONTINUED);
 
 		if (WIFEXITED(status)) {
-			printf("exited, status=%d\n", WEXITSTATUS(status));
+			cout << "OK" << endl;
 		} else if (WIFSIGNALED(status)) {
-			printf("killed by signal %d\n", WTERMSIG(status));
+			cout << "SEGFAULT" << endl;
 		} else if (WIFSTOPPED(status)) {
 			printf("stopped by signal %d\n", WSTOPSIG(status));
 		} else if (WIFCONTINUED(status)) {
 			printf("continued\n");
 		}
 	}
-//	waitpid(pid, NULL, 0);
 
 
 

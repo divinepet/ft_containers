@@ -62,9 +62,9 @@ template< class InputIt1, class InputIt2, class BinaryPredicate >
 		return (first1 == last1) && (first2 != last2);
 	}
 
-	template <class T1, typename T2>
+	template <class TT, typename T2>
 	struct pair {
-		typedef T1 first_type;
+		typedef typename std::remove_cv<TT>::type T1;
 		typedef T2 second_type;
 		T1 first;
 		T2 second;
