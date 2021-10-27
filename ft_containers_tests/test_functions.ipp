@@ -1,16 +1,5 @@
-time_t g_start1;
-time_t g_start2;
-time_t g_end1;
-time_t g_end2;
-
-const std::string GREEN = "\x1B[1;32m";
-const std::string REDD = "\x1B[1;31m";
-const std::string YELLOW = "\x1B[1;33m";
-const std::string RESET = "\033[0m";
-
-using std::string;
-using std::cout;
-using std::endl;
+#pragma once
+//#include "unit_tests.hpp"
 
 time_t timer() {
 	struct timeval start = {};
@@ -1178,7 +1167,7 @@ std::vector<int> iterators_test(_map<T, V> mp) {
 }
 
 template <class T, class V>
-std::vector<int>    reverse_iterators_test(std::map<T, V> mp) {
+std::vector<int>    reverse_iterators_test_std(std::map<T, V> mp) {
 	std::vector<int> v;
 	g_start1 = g_end1 = timer();
 	mp.insert(std::make_pair(5, 5));
@@ -1206,7 +1195,7 @@ std::vector<int>    reverse_iterators_test(std::map<T, V> mp) {
 }
 
 template <class T, class V>
-std::vector<int> reverse_iterators_test(_map<T, V> mp) {
+std::vector<int> reverse_iterators_test_ft(_map<T, V> mp) {
 	std::vector<int> v;
 	g_start2 = g_end2 = timer();
 	mp.insert(_make_pair(5, 5));
@@ -1506,7 +1495,7 @@ template <class T, class V>
 std::vector<int> max_size_test(std::map<T, V> mp) {
 	std::vector<int> v;
 	g_start1 = timer();
-	v.push_back(mp.max_size());
+	v.push_back(1);
 	g_end1 = timer();
 	return v;
 }
@@ -1514,8 +1503,10 @@ std::vector<int> max_size_test(std::map<T, V> mp) {
 template <class T, class V>
 std::vector<int> max_size_test(_map<T, V> mp) {
 	std::vector<int> v;
+	std::map<int, int> std_mp;
 	g_start2 = timer();
-	v.push_back(mp.max_size());
+	if ((std_mp.max_size() / 2) < mp.max_size())
+		v.push_back(1);
 	g_end2 = timer();
 	return v;
 }
@@ -1797,15 +1788,15 @@ std::vector<int> count_test(_map<T, V> mp) {
 template <class T, class V>
 std::vector<int> find_test(std::map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = -1500000, j = 0; i < 1500000; ++i, ++j) {
+	for (int i = -750000, j = 0; i < 750000; ++i, ++j) {
 		mp.insert(std::make_pair(i, j));
 	}
 	g_start1 = timer();
-	typename std::map<T, V>::iterator it = mp.find(1234567);
+	typename std::map<T, V>::iterator it = mp.find(345678);
 	g_end1 = timer();
 	v.push_back(it->first);
 	v.push_back(it->second);
-	it = mp.find(-1234567);
+	it = mp.find(-345678);
 	v.push_back(it->first);
 	v.push_back(it->second);
 	it = mp.find(-987654321);
@@ -1817,15 +1808,15 @@ std::vector<int> find_test(std::map<T, V> mp) {
 template <class T, class V>
 std::vector<int> find_test(_map<T, V> mp) {
 	std::vector<int> v;
-	for (int i = -1500000, j = 0; i < 1500000; ++i, ++j) {
+	for (int i = -750000, j = 0; i < 750000; ++i, ++j) {
 		mp.insert(_make_pair(i, j));
 	}
 	g_start2 = timer();
-	typename _map<T, V>::iterator it = mp.find(1234567);
+	typename _map<T, V>::iterator it = mp.find(345678);
 	g_end2 = timer();
 	v.push_back(it->first);
 	v.push_back(it->second);
-	it = mp.find(-1234567);
+	it = mp.find(-345678);
 	v.push_back(it->first);
 	v.push_back(it->second);
 	it = mp.find(-987654321);
@@ -2080,25 +2071,25 @@ std::vector<int> key_comp_test(_map<T, V> mp) {
 	return v;
 }
 
-int is_integral_test_() {
+bool is_integral_test_() {
 	std::vector<int> v;
-	int res = 0;
+	bool res = 1;
 	g_start2 = timer(); g_end2 = timer(); g_start1 = timer(); g_end1 = timer();
-	(_is_integral<float>() == std::is_integral<float>()) ? 0 : res = 1;
-	(_is_integral<int>() == std::is_integral<int>()) ? 0 : res = 1;
-	(_is_integral<bool>() == std::is_integral<bool>()) ? 0 : res = 1;
-	(_is_integral<char>() == std::is_integral<char>()) ? 0 : res = 1;
-	(_is_integral<signed char>() == std::is_integral<signed char>()) ? 0 : res = 1;
-	(_is_integral<unsigned char>() == std::is_integral<unsigned char>()) ? 0 : res = 1;
-	(_is_integral<wchar_t>() == std::is_integral<wchar_t>()) ? 0 : res = 1;
-	(_is_integral<char16_t>() == std::is_integral<char16_t>()) ? 0 : res = 1;
-	(_is_integral<short>() == std::is_integral<short>()) ? 0 : res = 1;
-	(_is_integral<unsigned short>() == std::is_integral<unsigned short>()) ? 0 : res = 1;
-	(_is_integral<unsigned int>() == std::is_integral<unsigned int>()) ? 0 : res = 1;
-	(_is_integral<long>() == std::is_integral<long>()) ? 0 : res = 1;
-	(_is_integral<unsigned long>() == std::is_integral<unsigned long>()) ? 0 : res = 1;
-	(_is_integral<long long>() == std::is_integral<long long>()) ? 0 : res = 1;
-	(_is_integral<unsigned long long>() == std::is_integral<unsigned long long>()) ? 0 : res = 1;
+	(_is_integral<float>::value == std::is_integral<float>()) ? 0 : res = 0;
+	(_is_integral<int>::value == std::is_integral<int>()) ? 0 : res = 0;
+	(_is_integral<bool>::value == std::is_integral<bool>()) ? 0 : res = 0;
+	(_is_integral<char>::value == std::is_integral<char>()) ? 0 : res = 0;
+	(_is_integral<signed char>::value == std::is_integral<signed char>()) ? 0 : res = 0;
+	(_is_integral<unsigned char>::value == std::is_integral<unsigned char>()) ? 0 : res = 0;
+	(_is_integral<wchar_t>::value == std::is_integral<wchar_t>()) ? 0 : res = 0;
+	(_is_integral<char16_t>::value == std::is_integral<char16_t>()) ? 0 : res = 0;
+	(_is_integral<short>::value == std::is_integral<short>()) ? 0 : res = 0;
+	(_is_integral<unsigned short>::value == std::is_integral<unsigned short>()) ? 0 : res = 0;
+	(_is_integral<unsigned int>::value == std::is_integral<unsigned int>()) ? 0 : res = 0;
+	(_is_integral<long>::value == std::is_integral<long>()) ? 0 : res = 0;
+	(_is_integral<unsigned long>::value == std::is_integral<unsigned long>()) ? 0 : res = 0;
+	(_is_integral<long long>::value == std::is_integral<long long>()) ? 0 : res = 0;
+	(_is_integral<unsigned long long>::value == std::is_integral<unsigned long long>()) ? 0 : res = 0;
 	return res;
 }
 
@@ -2112,28 +2103,28 @@ template <class T> typename _enable_if< std::is_signed<T>::value >::type
 	g_start2 = -20;
 }
 
-int enable_if_test_() {
+bool enable_if_test_() {
 	std::vector<int> v;
-	int res = 0;
+	bool res = 1;
 	unsigned int xx = 5;
 	int x = 5;
 	foo(xx);
 	foo(x);
 	if (g_start1 != -20 && g_start2 != -20)
-		res = 1;
+		res = 0;
 	g_start2 = timer(); g_end2 = timer(); g_start1 = timer(); g_end1 = timer();
 	return res;
 }
 
-int equal_test() {
+bool equal_test() {
 	std::string s = "approvjvorppa";
-	int res = 1;
+	bool res = 0;
 	if (ft::equal(s.begin(), s.begin() + s.size()/2, s.rbegin()) == 1)
-		res = 0;
+		res = 1;
 	return res;
 }
 
-int lexicographical_test() {
+bool lexicographical_test() {
 	std::vector<int> result, result2;
 	std::vector<char> v1, v2;
 	_vector<char> b1, b2;
@@ -2185,9 +2176,123 @@ void leaks_test() {
 	cout << YELLOW + s.substr(0, s.length() - 2) + RESET << endl;
 }
 
+void MyAlarm (int a) { kill(pid, SIGTERM); timeout_flag = 1;  }
+
 void printElement(const std::string& t) {
 	if (t == "OK") { cout << GREEN; }
 	else if (t == "FAILED") { cout << REDD; }
 	cout << std::left << std::setw(25) << std::setfill(' ') << t;
 	cout << RESET;
+}
+
+void run_bool_unit_test(std::string test_name, bool (func1)()) {
+	time_t t1;
+	time_t t2;
+	int status;
+	bool res;
+
+	alarm(7);
+	pid = fork();
+	if (!pid) {
+		printElement(test_name);
+		res = func1();
+		(res) ? printElement("OK") : printElement("FAILED");
+		t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;
+		(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);
+		(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);
+		cout << endl;
+		exit(0);
+	}
+	waitpid(pid, &status, WUNTRACED | WCONTINUED);
+	if (WIFSTOPPED(status)) {
+		printElement(YELLOW + "STOPPED" + RESET);
+	} else if (WIFSIGNALED(status)) {
+		if (timeout_flag) {
+			timeout_flag = 0;
+			printElement(test_name);
+			printElement(YELLOW + "TIMEOUT" + RESET);
+		} else {
+			printElement(test_name);
+			printElement(REDD + "SEGFAULT" + RESET);
+		}
+		cout << endl;
+	}
+}
+
+template <class T>
+void run_vector_unit_test(std::string test_name, std::vector<int> (func1)(std::vector<T>), std::vector<int> (func2)(_vector<T>)) {
+	time_t t1;
+	time_t t2;
+	int status;
+	std::vector<int > res1;
+	std::vector<int > res2;
+	std::vector<int> vector;
+	_vector<int> my_vector;
+
+	alarm(7);
+	pid = fork();
+	if (!pid) {
+		printElement(test_name);
+		res1 = func1(vector);
+		res2 = func2(my_vector);
+		(res1 == res2) ? printElement("OK") : printElement("FAILED");
+		t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;
+		(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);
+		(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);
+		cout << endl;
+		exit(0);
+	}
+	waitpid(pid, &status, WUNTRACED | WCONTINUED);
+	if (WIFSTOPPED(status)) {
+		printElement(YELLOW + "STOPPED" + RESET);
+	} else if (WIFSIGNALED(status)) {
+		if (timeout_flag) {
+			timeout_flag = 0;
+			printElement(test_name);
+			printElement(YELLOW + "TIMEOUT" + RESET);
+		} else {
+			printElement(test_name);
+			printElement(REDD + "SEGFAULT" + RESET);
+		}
+		cout << endl;
+	}
+}
+
+template <class T, class V>
+void run_map_unit_test(std::string test_name, std::vector<int> (func1)(std::map<T, V>), std::vector<int> (func2)(_map<T, V>)) {
+	time_t t1;
+	time_t t2;
+	int status;
+	std::vector<int > res1;
+	std::vector<int > res2;
+	std::map<int, int> map;
+	_map<int, int> my_map;
+
+	alarm(7);
+	pid = fork();
+	if (!pid) {
+		printElement(test_name);
+		res1 = func1(map);
+		res2 = func2(my_map);
+		(res1 == res2) ? printElement("OK") : printElement("FAILED");
+		t1 = g_end1 - g_start1, t2 = g_end2 - g_start2;
+		(t1 >= t2) ? printElement(GREEN + std::to_string(t2) + "ms" + RESET) : printElement(REDD + std::to_string(t2) + "ms" + RESET);
+		(t1 > t2) ? printElement(REDD + std::to_string(t1) + "ms" + RESET) : printElement(GREEN + std::to_string(t1) + "ms" + RESET);
+		cout << endl;
+		exit(0);
+	}
+	waitpid(pid, &status, WUNTRACED | WCONTINUED);
+	if (WIFSTOPPED(status)) {
+		printElement(YELLOW + "STOPPED" + RESET);
+	} else if (WIFSIGNALED(status)) {
+		if (timeout_flag) {
+			timeout_flag = 0;
+			printElement(test_name);
+			printElement(YELLOW + "TIMEOUT" + RESET);
+		} else {
+			printElement(test_name);
+			printElement(REDD + "SEGFAULT" + RESET);
+		}
+		cout << endl;
+	}
 }

@@ -3,7 +3,7 @@ CFLAGS=-std=c++98 -c #-Wall -Werror -Wextra
 SOURCES=$(wildcard *.cpp)
 HEADERS=$(wildcard *.hpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=app
+EXECUTABLE=ap
 
 all: $(SOURCES) $(EXECUTABLE)
 

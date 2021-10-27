@@ -75,6 +75,7 @@ template< class InputIt1, class InputIt2, class BinaryPredicate >
 		pair(const pair<U1, U2>& p) : first(p.first), second(p.second) {}
 
 		pair& operator=(pair const& p) {
+			typename std::remove_cv<T1>::type first;
 			first = p.first;
 			second = p.second;
 			return *this;

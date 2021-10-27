@@ -156,8 +156,8 @@ namespace ft {
 		node_iterator		&operator++() 									{ next(); return *this; }
 		node_iterator		operator--(int)									{ node_iterator tmp(*this); prev(); return tmp; }
 		node_iterator		&operator--() 									{ prev(); return *this; }
-		Pair& operator*() const { return node->pair; }
-//		const Pair& 		operator*() const 								{ return node->pair; }
+//		Pair& 				operator*() const 								{ return *(node->pair); }
+		const Pair& 		operator*()  								{ return (node->pair); }
 		Pair*				operator->()									{ return &(node->pair); }
 		const Pair*			operator->() const								{ return &(node->pair); }
 		bool				operator==(node_iterator const &obj) const 		{ return node == obj.node; };

@@ -8,6 +8,8 @@ public:
 
 //	Node_() {}
 //	Node_(value_type pair) : pair(pair) {}
+//	~Node_() {
+//	}
 	bool color;
 	struct Node_ *preBegin;
 	struct Node_ *left;
@@ -162,6 +164,7 @@ public:
 		}
 
 		x = new Node_<value_type>();
+//		x->pair = pair;
 		x->pair.first = pair.first;
 		x->pair.second = pair.second;
 		x->parent = parent;

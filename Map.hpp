@@ -250,9 +250,9 @@ public:
 		return value_compare(key_comp());
 	}
 
-//	friend bool operator== (const Map &lhs, const Map &rhs) {
-//		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
-//	};
+	friend bool operator== (const Map &lhs, const Map &rhs) {
+		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
+	};
 
 //	friend bool operator!= (const Vector &lhs, const Vector &rhs) { return !(lhs == rhs); };
 //

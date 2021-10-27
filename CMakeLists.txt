@@ -7,10 +7,10 @@ include_directories(./)
 
 add_executable( ft_containers
                 main.cpp
-                ft_containers_tests/functions.hpp
-                ft_containers_tests/general.hpp
+        ft_containers_tests/test_functions.ipp
+        ft_containers_tests/start_tests.hpp
                 Stack.hpp
                 Map.hpp
                 Vector.hpp
                 Iterator.hpp
-        Utility.hpp Node.hpp)
+        Utility.hpp Node.hpp ft_containers_tests/lib.hpp)
