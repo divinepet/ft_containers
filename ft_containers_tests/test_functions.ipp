@@ -2077,6 +2077,197 @@ std::vector<int> key_comp_test(_map<T, V> mp) {
 	return v;
 }
 
+class MapBoolTest {
+public:
+	std::map<int, int> m1, m2, m3, m4;
+	std::map<string, string> m5, m6, m7, m8, m9;
+	_map<int, int> mp1, mp2, mp3, mp4;
+	_map<string, string> mp5, mp6, mp7, mp8, mp9;
+
+	MapBoolTest() {
+		m1.insert(std::make_pair(2, 3)); mp1.insert(ft::make_pair(2, 3));
+		m2.insert(std::make_pair(3, 3)); mp2.insert(ft::make_pair(3, 3));
+		m3.insert(std::make_pair(3, 4)); mp3.insert(ft::make_pair(3, 4));
+		m4.insert(std::make_pair(4, 4)); mp4.insert(ft::make_pair(4, 4));
+		m4.insert(std::make_pair(4, 5)); mp4.insert(ft::make_pair(4, 5));
+		m5.insert(std::make_pair("123", "123")); mp5.insert(ft::make_pair("123", "123"));
+		m6.insert(std::make_pair("123", "124")); mp6.insert(ft::make_pair("123", "124"));
+		m7.insert(std::make_pair("124", "123")); mp7.insert(ft::make_pair("124", "123"));
+		m8.insert(std::make_pair("12", "123")); mp8.insert(ft::make_pair("12", "123"));
+		m9.insert(std::make_pair("123", "12")); mp9.insert(ft::make_pair("123", "12"));
+	}
+};
+
+
+bool map_equal_test() {
+	std::vector<int> result, result2;
+	g_start2 = g_end2 = g_start1 = g_end1 = 0;
+	MapBoolTest mt;
+
+	result.push_back(mt.m1 == mt.m1); result.push_back(mt.m3 == mt.m3); result.push_back(mt.m5 == mt.m9);
+	result.push_back(mt.m1 == mt.m2); result.push_back(mt.m3 == mt.m4); result.push_back(mt.m6 == mt.m6);
+	result.push_back(mt.m1 == mt.m3); result.push_back(mt.m4 == mt.m4); result.push_back(mt.m6 == mt.m7);
+	result.push_back(mt.m1 == mt.m4); result.push_back(mt.m5 == mt.m5); result.push_back(mt.m6 == mt.m8);
+	result.push_back(mt.m2 == mt.m2); result.push_back(mt.m5 == mt.m6); result.push_back(mt.m6 == mt.m9);
+	result.push_back(mt.m2 == mt.m3); result.push_back(mt.m5 == mt.m7); result.push_back(mt.m7 == mt.m7);
+	result.push_back(mt.m2 == mt.m4); result.push_back(mt.m5 == mt.m8); result.push_back(mt.m7 == mt.m8);
+	result.push_back(mt.m7 == mt.m9); result.push_back(mt.m8 == mt.m8); result.push_back(mt.m8 == mt.m9);
+	result.push_back(mt.m9 == mt.m9);
+
+	result2.push_back(mt.mp1 == mt.mp1); result2.push_back(mt.mp3 == mt.mp3); result2.push_back(mt.mp5 == mt.mp9);
+	result2.push_back(mt.mp1 == mt.mp2); result2.push_back(mt.mp3 == mt.mp4); result2.push_back(mt.mp6 == mt.mp6);
+	result2.push_back(mt.mp1 == mt.mp3); result2.push_back(mt.mp4 == mt.mp4); result2.push_back(mt.mp6 == mt.mp7);
+	result2.push_back(mt.mp1 == mt.mp4); result2.push_back(mt.mp5 == mt.mp5); result2.push_back(mt.mp6 == mt.mp8);
+	result2.push_back(mt.mp2 == mt.mp2); result2.push_back(mt.mp5 == mt.mp6); result2.push_back(mt.mp6 == mt.mp9);
+	result2.push_back(mt.mp2 == mt.mp3); result2.push_back(mt.mp5 == mt.mp7); result2.push_back(mt.mp7 == mt.mp7);
+	result2.push_back(mt.mp2 == mt.mp4); result2.push_back(mt.mp5 == mt.mp8); result2.push_back(mt.mp7 == mt.mp8);
+	result2.push_back(mt.mp7 == mt.mp9); result2.push_back(mt.mp8 == mt.mp8); result2.push_back(mt.mp8 == mt.mp9);
+	result2.push_back(mt.mp9 == mt.mp9);
+
+
+	return result == result2;
+}
+
+bool map_not_equal_test() {
+	std::vector<int> result, result2;
+	g_start2 = g_end2 = g_start1 = g_end1 = 0;
+	MapBoolTest mt;
+
+	result.push_back(mt.m1 != mt.m1); result.push_back(mt.m3 != mt.m3); result.push_back(mt.m5 != mt.m9);
+	result.push_back(mt.m1 != mt.m2); result.push_back(mt.m3 != mt.m4); result.push_back(mt.m6 != mt.m6);
+	result.push_back(mt.m1 != mt.m3); result.push_back(mt.m4 != mt.m4); result.push_back(mt.m6 != mt.m7);
+	result.push_back(mt.m1 != mt.m4); result.push_back(mt.m5 != mt.m5); result.push_back(mt.m6 != mt.m8);
+	result.push_back(mt.m2 != mt.m2); result.push_back(mt.m5 != mt.m6); result.push_back(mt.m6 != mt.m9);
+	result.push_back(mt.m2 != mt.m3); result.push_back(mt.m5 != mt.m7); result.push_back(mt.m7 != mt.m7);
+	result.push_back(mt.m2 != mt.m4); result.push_back(mt.m5 != mt.m8); result.push_back(mt.m7 != mt.m8);
+	result.push_back(mt.m7 != mt.m9); result.push_back(mt.m8 != mt.m8); result.push_back(mt.m8 != mt.m9);
+	result.push_back(mt.m9 != mt.m9);
+
+	result2.push_back(mt.mp1 != mt.mp1); result2.push_back(mt.mp3 != mt.mp3); result2.push_back(mt.mp5 != mt.mp9);
+	result2.push_back(mt.mp1 != mt.mp2); result2.push_back(mt.mp3 != mt.mp4); result2.push_back(mt.mp6 != mt.mp6);
+	result2.push_back(mt.mp1 != mt.mp3); result2.push_back(mt.mp4 != mt.mp4); result2.push_back(mt.mp6 != mt.mp7);
+	result2.push_back(mt.mp1 != mt.mp4); result2.push_back(mt.mp5 != mt.mp5); result2.push_back(mt.mp6 != mt.mp8);
+	result2.push_back(mt.mp2 != mt.mp2); result2.push_back(mt.mp5 != mt.mp6); result2.push_back(mt.mp6 != mt.mp9);
+	result2.push_back(mt.mp2 != mt.mp3); result2.push_back(mt.mp5 != mt.mp7); result2.push_back(mt.mp7 != mt.mp7);
+	result2.push_back(mt.mp2 != mt.mp4); result2.push_back(mt.mp5 != mt.mp8); result2.push_back(mt.mp7 != mt.mp8);
+	result2.push_back(mt.mp7 != mt.mp9); result2.push_back(mt.mp8 != mt.mp8); result2.push_back(mt.mp8 != mt.mp9);
+	result2.push_back(mt.mp9 != mt.mp9);
+
+	return result == result2;
+}
+
+bool map_more_than_test() {
+	std::vector<int> result, result2;
+	g_start2 = g_end2 = g_start1 = g_end1 = 0;
+	MapBoolTest mt;
+
+	result.push_back(mt.m1 > mt.m1); result.push_back(mt.m3 > mt.m3); result.push_back(mt.m5 > mt.m9);
+	result.push_back(mt.m1 > mt.m2); result.push_back(mt.m3 > mt.m4); result.push_back(mt.m6 > mt.m6);
+	result.push_back(mt.m1 > mt.m3); result.push_back(mt.m4 > mt.m4); result.push_back(mt.m6 > mt.m7);
+	result.push_back(mt.m1 > mt.m4); result.push_back(mt.m5 > mt.m5); result.push_back(mt.m6 > mt.m8);
+	result.push_back(mt.m2 > mt.m2); result.push_back(mt.m5 > mt.m6); result.push_back(mt.m6 > mt.m9);
+	result.push_back(mt.m2 > mt.m3); result.push_back(mt.m5 > mt.m7); result.push_back(mt.m7 > mt.m7);
+	result.push_back(mt.m2 > mt.m4); result.push_back(mt.m5 > mt.m8); result.push_back(mt.m7 > mt.m8);
+	result.push_back(mt.m7 > mt.m9); result.push_back(mt.m8 > mt.m8); result.push_back(mt.m8 > mt.m9);
+	result.push_back(mt.m9 > mt.m9);
+
+	result2.push_back(mt.mp1 > mt.mp1); result2.push_back(mt.mp3 > mt.mp3); result2.push_back(mt.mp5 > mt.mp9);
+	result2.push_back(mt.mp1 > mt.mp2); result2.push_back(mt.mp3 > mt.mp4); result2.push_back(mt.mp6 > mt.mp6);
+	result2.push_back(mt.mp1 > mt.mp3); result2.push_back(mt.mp4 > mt.mp4); result2.push_back(mt.mp6 > mt.mp7);
+	result2.push_back(mt.mp1 > mt.mp4); result2.push_back(mt.mp5 > mt.mp5); result2.push_back(mt.mp6 > mt.mp8);
+	result2.push_back(mt.mp2 > mt.mp2); result2.push_back(mt.mp5 > mt.mp6); result2.push_back(mt.mp6 > mt.mp9);
+	result2.push_back(mt.mp2 > mt.mp3); result2.push_back(mt.mp5 > mt.mp7); result2.push_back(mt.mp7 > mt.mp7);
+	result2.push_back(mt.mp2 > mt.mp4); result2.push_back(mt.mp5 > mt.mp8); result2.push_back(mt.mp7 > mt.mp8);
+	result2.push_back(mt.mp7 > mt.mp9); result2.push_back(mt.mp8 > mt.mp8); result2.push_back(mt.mp8 > mt.mp9);
+	result2.push_back(mt.mp9 > mt.mp9);
+
+	return result == result2;
+}
+
+bool map_less_than_test() {
+	std::vector<int> result, result2;
+	g_start2 = g_end2 = g_start1 = g_end1 = 0;
+	MapBoolTest mt;
+
+	result.push_back(mt.m1 < mt.m1); result.push_back(mt.m3 < mt.m3); result.push_back(mt.m5 < mt.m9);
+	result.push_back(mt.m1 < mt.m2); result.push_back(mt.m3 < mt.m4); result.push_back(mt.m6 < mt.m6);
+	result.push_back(mt.m1 < mt.m3); result.push_back(mt.m4 < mt.m4); result.push_back(mt.m6 < mt.m7);
+	result.push_back(mt.m1 < mt.m4); result.push_back(mt.m5 < mt.m5); result.push_back(mt.m6 < mt.m8);
+	result.push_back(mt.m2 < mt.m2); result.push_back(mt.m5 < mt.m6); result.push_back(mt.m6 < mt.m9);
+	result.push_back(mt.m2 < mt.m3); result.push_back(mt.m5 < mt.m7); result.push_back(mt.m7 < mt.m7);
+	result.push_back(mt.m2 < mt.m4); result.push_back(mt.m5 < mt.m8); result.push_back(mt.m7 < mt.m8);
+	result.push_back(mt.m7 < mt.m9); result.push_back(mt.m8 < mt.m8); result.push_back(mt.m8 < mt.m9);
+	result.push_back(mt.m9 < mt.m9);
+
+	result2.push_back(mt.mp1 < mt.mp1); result2.push_back(mt.mp3 < mt.mp3); result2.push_back(mt.mp5 < mt.mp9);
+	result2.push_back(mt.mp1 < mt.mp2); result2.push_back(mt.mp3 < mt.mp4); result2.push_back(mt.mp6 < mt.mp6);
+	result2.push_back(mt.mp1 < mt.mp3); result2.push_back(mt.mp4 < mt.mp4); result2.push_back(mt.mp6 < mt.mp7);
+	result2.push_back(mt.mp1 < mt.mp4); result2.push_back(mt.mp5 < mt.mp5); result2.push_back(mt.mp6 < mt.mp8);
+	result2.push_back(mt.mp2 < mt.mp2); result2.push_back(mt.mp5 < mt.mp6); result2.push_back(mt.mp6 < mt.mp9);
+	result2.push_back(mt.mp2 < mt.mp3); result2.push_back(mt.mp5 < mt.mp7); result2.push_back(mt.mp7 < mt.mp7);
+	result2.push_back(mt.mp2 < mt.mp4); result2.push_back(mt.mp5 < mt.mp8); result2.push_back(mt.mp7 < mt.mp8);
+	result2.push_back(mt.mp7 < mt.mp9); result2.push_back(mt.mp8 < mt.mp8); result2.push_back(mt.mp8 < mt.mp9);
+	result2.push_back(mt.mp9 < mt.mp9);
+
+	return result == result2;
+}
+
+bool map_less_or_equal_test() {
+	std::vector<int> result, result2;
+	g_start2 = g_end2 = g_start1 = g_end1 = 0;
+	MapBoolTest mt;
+
+	result.push_back(mt.m1 <= mt.m1); result.push_back(mt.m3 <= mt.m3); result.push_back(mt.m5 <= mt.m9);
+	result.push_back(mt.m1 <= mt.m2); result.push_back(mt.m3 <= mt.m4); result.push_back(mt.m6 <= mt.m6);
+	result.push_back(mt.m1 <= mt.m3); result.push_back(mt.m4 <= mt.m4); result.push_back(mt.m6 <= mt.m7);
+	result.push_back(mt.m1 <= mt.m4); result.push_back(mt.m5 <= mt.m5); result.push_back(mt.m6 <= mt.m8);
+	result.push_back(mt.m2 <= mt.m2); result.push_back(mt.m5 <= mt.m6); result.push_back(mt.m6 <= mt.m9);
+	result.push_back(mt.m2 <= mt.m3); result.push_back(mt.m5 <= mt.m7); result.push_back(mt.m7 <= mt.m7);
+	result.push_back(mt.m2 <= mt.m4); result.push_back(mt.m5 <= mt.m8); result.push_back(mt.m7 <= mt.m8);
+	result.push_back(mt.m7 <= mt.m9); result.push_back(mt.m8 <= mt.m8); result.push_back(mt.m8 <= mt.m9);
+	result.push_back(mt.m9 <= mt.m9);
+
+	result2.push_back(mt.mp1 <= mt.mp1); result2.push_back(mt.mp3 <= mt.mp3); result2.push_back(mt.mp5 <= mt.mp9);
+	result2.push_back(mt.mp1 <= mt.mp2); result2.push_back(mt.mp3 <= mt.mp4); result2.push_back(mt.mp6 <= mt.mp6);
+	result2.push_back(mt.mp1 <= mt.mp3); result2.push_back(mt.mp4 <= mt.mp4); result2.push_back(mt.mp6 <= mt.mp7);
+	result2.push_back(mt.mp1 <= mt.mp4); result2.push_back(mt.mp5 <= mt.mp5); result2.push_back(mt.mp6 <= mt.mp8);
+	result2.push_back(mt.mp2 <= mt.mp2); result2.push_back(mt.mp5 <= mt.mp6); result2.push_back(mt.mp6 <= mt.mp9);
+	result2.push_back(mt.mp2 <= mt.mp3); result2.push_back(mt.mp5 <= mt.mp7); result2.push_back(mt.mp7 <= mt.mp7);
+	result2.push_back(mt.mp2 <= mt.mp4); result2.push_back(mt.mp5 <= mt.mp8); result2.push_back(mt.mp7 <= mt.mp8);
+	result2.push_back(mt.mp7 <= mt.mp9); result2.push_back(mt.mp8 <= mt.mp8); result2.push_back(mt.mp8 <= mt.mp9);
+	result2.push_back(mt.mp9 <= mt.mp9);
+
+	return result == result2;
+}
+
+bool map_more_or_equal_test() {
+	std::vector<int> result, result2;
+	g_start2 = g_end2 = g_start1 = g_end1 = 0;
+	MapBoolTest mt;
+
+	result.push_back(mt.m1 >= mt.m1); result.push_back(mt.m3 >= mt.m3); result.push_back(mt.m5 >= mt.m9);
+	result.push_back(mt.m1 >= mt.m2); result.push_back(mt.m3 >= mt.m4); result.push_back(mt.m6 >= mt.m6);
+	result.push_back(mt.m1 >= mt.m3); result.push_back(mt.m4 >= mt.m4); result.push_back(mt.m6 >= mt.m7);
+	result.push_back(mt.m1 >= mt.m4); result.push_back(mt.m5 >= mt.m5); result.push_back(mt.m6 >= mt.m8);
+	result.push_back(mt.m2 >= mt.m2); result.push_back(mt.m5 >= mt.m6); result.push_back(mt.m6 >= mt.m9);
+	result.push_back(mt.m2 >= mt.m3); result.push_back(mt.m5 >= mt.m7); result.push_back(mt.m7 >= mt.m7);
+	result.push_back(mt.m2 >= mt.m4); result.push_back(mt.m5 >= mt.m8); result.push_back(mt.m7 >= mt.m8);
+	result.push_back(mt.m7 >= mt.m9); result.push_back(mt.m8 >= mt.m8); result.push_back(mt.m8 >= mt.m9);
+	result.push_back(mt.m9 >= mt.m9);
+
+	result2.push_back(mt.mp1 >= mt.mp1); result2.push_back(mt.mp3 >= mt.mp3); result2.push_back(mt.mp5 >= mt.mp9);
+	result2.push_back(mt.mp1 >= mt.mp2); result2.push_back(mt.mp3 >= mt.mp4); result2.push_back(mt.mp6 >= mt.mp6);
+	result2.push_back(mt.mp1 >= mt.mp3); result2.push_back(mt.mp4 >= mt.mp4); result2.push_back(mt.mp6 >= mt.mp7);
+	result2.push_back(mt.mp1 >= mt.mp4); result2.push_back(mt.mp5 >= mt.mp5); result2.push_back(mt.mp6 >= mt.mp8);
+	result2.push_back(mt.mp2 >= mt.mp2); result2.push_back(mt.mp5 >= mt.mp6); result2.push_back(mt.mp6 >= mt.mp9);
+	result2.push_back(mt.mp2 >= mt.mp3); result2.push_back(mt.mp5 >= mt.mp7); result2.push_back(mt.mp7 >= mt.mp7);
+	result2.push_back(mt.mp2 >= mt.mp4); result2.push_back(mt.mp5 >= mt.mp8); result2.push_back(mt.mp7 >= mt.mp8);
+	result2.push_back(mt.mp7 >= mt.mp9); result2.push_back(mt.mp8 >= mt.mp8); result2.push_back(mt.mp8 >= mt.mp9);
+	result2.push_back(mt.mp9 >= mt.mp9);
+
+	return result == result2;
+}
+
 bool is_integral_test_() {
 	std::vector<int> v;
 	bool res = 1;

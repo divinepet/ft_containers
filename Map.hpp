@@ -54,9 +54,8 @@ public:
 	template <class InputIt>
 	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _comp(comp), _allocator(alloc) {
 		_tree = new Tree<value_type>();
-		for (; first != last; first++) {
+		for (; first != last; first++)
 			insert(ft::make_pair(first->first, first->second));
-		}
 	}
 
 	Map(const Map &other) : _comp(other._comp), _allocator(other._allocator) {
@@ -95,10 +94,10 @@ public:
 	const_iterator 			begin() const						{ return _tree->getBegin(); }
 	iterator 				end()								{ return _tree->getEnd(); }
 	const_iterator 			end() const							{ return _tree->getEnd(); }
-	reverse_iterator 		rbegin()							{ return reverse_iterator(iterator(_tree->getLast())); }
+	reverse_iterator 		rbegin()							{ return iterator(_tree->getLast()); }
 	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->getLast()); }
 	reverse_iterator 		rend()								{ return iterator(_tree->getEnd()); }
-	const_reverse_iterator 	rend() const						{ return iterator(_tree->getEnd()); }
+	const_reverse_iterator 	rend() const						{ return const_iterator(_tree->getEnd()); }
 	bool 					empty() const						{ return size() == 0; }
 	size_type				size() const 						{ return _tree->m_size; }
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
@@ -252,53 +251,27 @@ public:
 
 	friend bool operator== (const Map &lhs, const Map &rhs) {
 		return lhs.size() == rhs.size() && ft::equal(lhs.begin(), lhs.end(), rhs.begin());
-	};
+	}
 
-//	friend bool operator!= (const Vector &lhs, const Vector &rhs) { return !(lhs == rhs); };
-//
-//	friend bool operator<= (const Vector &lhs, const Vector &rhs) {
-//		if (lhs.size() < rhs.size()) return true;
-//		if (lhs.size() > rhs.size()) return false;
-//
-//		for (int i = 0; i < lhs.size(); ++i) {
-//			if (lhs[i] == rhs[i]) { continue; }
-//			return lhs[i] < rhs[i];
-//		}
-//		return true;
-//	};
-//
-//	friend bool operator>= (const Vector &lhs, const Vector &rhs) {
-//		if (lhs.size() < rhs.size()) return false;
-//		if (lhs.size() > rhs.size()) return true;
-//
-//		for (int i = 0; i < lhs.size(); ++i) {
-//			if (lhs[i] == rhs[i]) { continue; }
-//			return lhs[i] > rhs[i];
-//		}
-//		return true;
-//	};
-//
-//	friend bool operator< (const Vector &lhs, const Vector &rhs) {
-//		if (lhs.size() < rhs.size()) return true;
-//		if (lhs.size() > rhs.size()) return false;
-//
-//		for (int i = 0; i < lhs.size(); ++i) {
-//			if (lhs[i] == rhs[i]) { continue; }
-//			return lhs[i] < rhs[i];
-//		}
-//		return false;
-//	};
-//
-//	friend bool operator> (const Vector &lhs, const Vector &rhs) {
-//		if (lhs.size() > rhs.size()) return true;
-//		if (lhs.size() < rhs.size()) return false;
-//
-//		for (int i = 0; i < lhs.size(); ++i) {
-//			if (lhs[i] == rhs[i]) { continue; }
-//			return lhs[i] > rhs[i];
-//		}
-//		return false;
-//	};
+	friend bool operator!= (const Map &lhs, const Map &rhs) {
+		return !(lhs == rhs);
+	}
+
+	friend bool operator< (const Map &lhs, const Map &rhs) {
+		return ft::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+	}
+
+	friend bool operator> (const Map &lhs, const Map &rhs) {
+		return rhs < lhs;
+	}
+
+	friend bool operator>= (const Map &lhs, const Map &rhs) {
+		return !(lhs < rhs);
+	}
+
+	friend bool operator<= (const Map &lhs, const Map &rhs) {
+		return !(rhs < lhs);
+	}
 
 };
 }

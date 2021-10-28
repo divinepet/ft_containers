@@ -25,12 +25,9 @@ void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.beg
  * */
 
 
-int main(int argc, char *argv[])
-{
-	ft::Map<int, int> mp;
+int main(int argc, char *argv[]) {
 
-	mp.insert(ft::make_pair(3, 3));
-	ft::Map<int, int>::reverse_iterator rit = mp.rbegin();
-//	start_tests();
+
+	start_tests();
 	return 0;
 }

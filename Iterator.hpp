@@ -29,7 +29,7 @@ namespace ft {
 	private:
 		T value;
 	public:
-		typedef T								iterator_type;
+		typedef T															iterator_type;
 		typedef typename iterator_traits<iterator_type>::iterator_category	iterator_category;
 		typedef typename iterator_traits<iterator_type>::value_type       	value_type;
 		typedef typename iterator_traits<iterator_type>::difference_type  	difference_type;
@@ -65,6 +65,7 @@ namespace ft {
 	};
 
 
+	// todo change vector reverse iterator for other
 	template <class T>
 	class reverse_iterator {
 	private:
@@ -197,7 +198,6 @@ namespace ft {
 
 	template <class T>
 	class reverse_node_iterator {
-	protected:
 		T iterator;
 	public:
 		reverse_node_iterator() : iterator() {};
@@ -207,7 +207,7 @@ namespace ft {
 		template <class U>
 		reverse_node_iterator& 	operator=(const reverse_node_iterator<U>& u)			{ iterator = u.base(); return *this; }
 		T						base() const											{ return iterator; }
-		T&		 				operator*() const										{ T tmp = iterator; return *tmp; }
+		T&		 				operator*() const										{ return *iterator; }
 		T*						operator->() const										{ return &(operator*()); }
 		reverse_node_iterator& 	operator++()											{ --iterator; return *this; }
 		reverse_node_iterator 	operator++(int)											{ reverse_node_iterator tmp(*this); iterator--; return tmp; }
@@ -218,6 +218,5 @@ namespace ft {
 		reverse_node_iterator 	operator-(std::ptrdiff_t n) const						{ return reverse_node_iterator(iterator + n); }
 		reverse_node_iterator& 	operator-=(std::ptrdiff_t n)							{ iterator += n; return *this; }
 		T&						operator[](std::ptrdiff_t n) const						{ return *(*this + n); }
-
 	};
 }
