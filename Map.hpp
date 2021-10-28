@@ -95,7 +95,7 @@ public:
 	const_iterator 			begin() const						{ return _tree->getBegin(); }
 	iterator 				end()								{ return _tree->getEnd(); }
 	const_iterator 			end() const							{ return _tree->getEnd(); }
-	reverse_iterator 		rbegin()							{ return iterator(_tree->getLast()); }
+	reverse_iterator 		rbegin()							{ return reverse_iterator(iterator(_tree->getLast())); }
 	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->getLast()); }
 	reverse_iterator 		rend()								{ return iterator(_tree->getEnd()); }
 	const_reverse_iterator 	rend() const						{ return iterator(_tree->getEnd()); }
@@ -178,10 +178,10 @@ public:
 		Node_<value_type> *current = _tree->root;
 
 		while (!current->NIL) {
-			if (key == current->pair.first)
+			if (key == current->pair->first)
 				return iterator(current);
 			else {
-				if (_comp(key, current->pair.first)) {
+				if (_comp(key, current->pair->first)) {
 					if (!current->left->NIL)
 						current = current->left;
 					else

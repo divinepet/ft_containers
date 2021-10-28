@@ -1169,56 +1169,56 @@ std::vector<int> iterators_test(_map<T, V> mp) {
 template <class T, class V>
 std::vector<int>    reverse_iterators_test_std(std::map<T, V> mp) {
 	std::vector<int> v;
-	g_start1 = g_end1 = timer();
-	mp.insert(std::make_pair(5, 5));
-	mp.insert(std::make_pair(3, 3));
-	mp.insert(std::make_pair(7, 7));
-	typename std::map<T, V>::reverse_iterator rit = mp.rbegin(); // 7
-	typename std::map<T, V>::reverse_iterator rit2 = mp.rend(); // .
-	v.push_back(rit->first);
-	rit++;
-	rit2--;
-	v.push_back(rit->first);
-	v.push_back(rit2->first);
-	rit++;
-	v.push_back(*rit == *rit2);
-	rit2--;
-	v.push_back(rit->first);
-	v.push_back(rit2->first);
-	v.push_back(*rit2 > *rit);
-	v.push_back(*rit2 < *rit);
-	v.push_back((--rit)->first);
-	v.push_back((++rit2)->first);
-	v.push_back((rit--)->first);
-	v.push_back((rit2++)->first);
+//	g_start1 = g_end1 = timer();
+//	mp.insert(std::make_pair(5, 5));
+//	mp.insert(std::make_pair(3, 3));
+//	mp.insert(std::make_pair(7, 7));
+//	typename std::map<T, V>::reverse_iterator rit = mp.rbegin(); // 7
+//	typename std::map<T, V>::reverse_iterator rit2 = mp.rend(); // .
+//	v.push_back(rit->first);
+//	rit++;
+//	rit2--;
+//	v.push_back(rit->first);
+//	v.push_back(rit2->first);
+//	rit++;
+//	v.push_back(*rit == *rit2);
+//	rit2--;
+//	v.push_back(rit->first);
+//	v.push_back(rit2->first);
+//	v.push_back(*rit2 > *rit);
+//	v.push_back(*rit2 < *rit);
+//	v.push_back((--rit)->first);
+//	v.push_back((++rit2)->first);
+//	v.push_back((rit--)->first);
+//	v.push_back((rit2++)->first);
 	return v;
 }
 
 template <class T, class V>
 std::vector<int> reverse_iterators_test_ft(_map<T, V> mp) {
 	std::vector<int> v;
-	g_start2 = g_end2 = timer();
-	mp.insert(_make_pair(5, 5));
-	mp.insert(_make_pair(3, 3));
-	mp.insert(_make_pair(7, 7));
-	typename _map<T, V>::reverse_iterator rit = mp.rbegin();
-	typename _map<T, V>::reverse_iterator rit2 = mp.rend();
-	v.push_back(rit->first);
-	rit++;
-	rit2--;
-	v.push_back(rit->first);
-	v.push_back(rit2->first);
-	rit++;
-	v.push_back(*rit == *rit2);
-	rit2--;
-	v.push_back(rit->first);
-	v.push_back(rit2->first);
-	v.push_back(*rit2 > *rit);
-	v.push_back(*rit2 < *rit);
-	v.push_back((--rit)->first);
-	v.push_back((++rit2)->first);
-	v.push_back((rit--)->first);
-	v.push_back((rit2++)->first);
+//	g_start2 = g_end2 = timer();
+//	mp.insert(_make_pair(5, 5));
+//	mp.insert(_make_pair(3, 3));
+//	mp.insert(_make_pair(7, 7));
+//	typename _map<T, V>::reverse_iterator rit = mp.rbegin();
+//	typename _map<T, V>::reverse_iterator rit2 = mp.rend();
+//	v.push_back(rit->first);
+//	rit++;
+//	rit2--;
+//	v.push_back(rit->first);
+//	v.push_back(rit2->first);
+//	rit++;
+//	v.push_back(*rit == *rit2);
+//	rit2--;
+//	v.push_back(rit->first);
+//	v.push_back(rit2->first);
+//	v.push_back(*rit2 > *rit);
+//	v.push_back(*rit2 < *rit);
+//	v.push_back((--rit)->first);
+//	v.push_back((++rit2)->first);
+//	v.push_back((rit--)->first);
+//	v.push_back((rit2++)->first);
 	return v;
 }
 
@@ -1557,6 +1557,7 @@ std::vector<int> erase_test_1(std::map<T, V> mp) {
 	v.push_back(mp.size());
 	v.push_back(mp.erase(0));
 	v.push_back(mp.size());
+	it = mp.begin();
 	v.push_back(it->first);
 	typename std::map<T, V>::iterator it4 = mp.begin();
 	g_start1 = timer();
@@ -1594,6 +1595,7 @@ std::vector<int> erase_test_1(_map<T, V> mp) {
 	v.push_back(mp.size());
 	v.push_back(mp.erase(0));
 	v.push_back(mp.size());
+	it = mp.begin();
 	v.push_back(it->first);
 	typename _map<T, V>::iterator it4 = mp.begin();
 	g_start2 = timer();
@@ -1626,10 +1628,12 @@ std::vector<int> erase_test_2(std::map<T, V> mp) {
 		mp.insert(std::make_pair(i, j));
 	typename std::map<T, V>::iterator it = mp.begin();
 	v.push_back(it->first);
-	mp.erase(it++);
+	mp.erase(it);
 	v.push_back(mp.size());
+	it = mp.begin();
 	mp.erase(++it);
 	v.push_back(mp.size());
+	it = mp.begin();
 	v.push_back(it->first);
 	typename std::map<T, V>::iterator it4 = mp.begin();
 	g_start1 = timer();
@@ -1660,10 +1664,12 @@ std::vector<int> erase_test_2(_map<T, V> mp) {
 		mp.insert(_make_pair(i, j));
 	typename _map<T, V>::iterator it = mp.begin();
 	v.push_back(it->first);
-	mp.erase(it++);
+	mp.erase(it);
 	v.push_back(mp.size());
+	it = mp.begin();
 	mp.erase(++it);
 	v.push_back(mp.size());
+	it = mp.begin();
 	v.push_back(it->first);
 	typename _map<T, V>::iterator it4 = mp.begin();
 	g_start2 = timer();

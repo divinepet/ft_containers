@@ -109,7 +109,7 @@ namespace ft {
 	class node_iterator {
 		T node;
 		void next() {
-			if (node->NIL && node->preBegin != node) node = node->preBegin;
+			if (node->NIL && node->begin != node) node = node->begin;
 			else if (!node->right->NIL) {
 				node = node->right;
 				while (!node->left->NIL)
@@ -156,41 +156,68 @@ namespace ft {
 		node_iterator		&operator++() 									{ next(); return *this; }
 		node_iterator		operator--(int)									{ node_iterator tmp(*this); prev(); return tmp; }
 		node_iterator		&operator--() 									{ prev(); return *this; }
-//		Pair& 				operator*() const 								{ return *(node->pair); }
-		const Pair& 		operator*()  								{ return (node->pair); }
-		Pair*				operator->()									{ return &(node->pair); }
-		const Pair*			operator->() const								{ return &(node->pair); }
+		Pair& 				operator*()		 								{ return *(node->pair); }
+		Pair*				operator->()									{ return node->pair; }
+		const Pair*			operator->() const								{ return node->pair; }
 		bool				operator==(node_iterator const &obj) const 		{ return node == obj.node; };
 		bool				operator!=(node_iterator const &obj) const 		{ return node != obj.node; };
 		bool 				operator>(node_iterator const &obj) const 		{ return node->pair > obj.node->pair; };
-		bool 				operator<(node_iterator const &obj) const 		{ return !(node->pair > obj.node->pair); };
+		bool 				operator<(node_iterator const &obj) const 		{ return obj.node->pair > node->pair; };
 		bool 				operator<=(node_iterator const &obj) const 		{ return node->pair <= obj.node->pair; };
 		bool 				operator>=(node_iterator const &obj) const 		{ return node->pair >= obj.node->pair; };
 	};
 
+//	template <class T>
+//	class reverse_node_iterator {
+//		T iterator;
+//	public:
+//		reverse_node_iterator(T value = nullptr) : iterator(value)							{};
+//		~reverse_node_iterator()															{};
+//		template <class U> reverse_node_iterator(const reverse_node_iterator<U>& other,
+//				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
+//						: iterator(other.base()) 											{};
+//		T							base() const 											{ return iterator; }
+//		reverse_node_iterator		&operator=(const reverse_node_iterator &obj) 			{ iterator = obj.iterator; return *this; }
+//		reverse_node_iterator		operator++(int)											{ reverse_node_iterator tmp(iterator); iterator--; return tmp; }
+//		reverse_node_iterator		&operator++() 											{ iterator--; return *this; }
+//		reverse_node_iterator		operator--(int)											{ reverse_node_iterator tmp(iterator); iterator++; return tmp; }
+//		reverse_node_iterator		&operator--() 											{ iterator++; return *this; }
+//		const T& 					operator*() const 										{ return iterator; }
+//		T& 							operator*() 											{ return iterator; }
+//		T*							operator->() 											{ return &(operator*()); }
+//		const T*					operator->() const 										{ return &(operator*()); }
+//		bool						operator==(reverse_node_iterator const &obj) const 		{ return iterator == obj.iterator; };
+//		bool						operator!=(reverse_node_iterator const &obj) const 		{ return iterator != obj.iterator; };
+//		bool 						operator<(reverse_node_iterator const &obj) const 		{ return iterator < obj.iterator; };
+//		bool 						operator>(reverse_node_iterator const &obj) const 		{ return iterator > obj.iterator; };
+//		bool 						operator<=(reverse_node_iterator const &obj) const 		{ return iterator <= obj.iterator; };
+//		bool 						operator>=(reverse_node_iterator const &obj) const 		{ return iterator >= obj.iterator; };
+//	};
+
+
 	template <class T>
 	class reverse_node_iterator {
+	protected:
 		T iterator;
 	public:
-		reverse_node_iterator(T value = nullptr) : iterator(value)							{};
-		~reverse_node_iterator()															{};
-		template <class U> reverse_node_iterator(const reverse_node_iterator<U>& other,
-				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
-						: iterator(other.base()) 											{};
-		T							base() const 											{ return iterator; }
-		reverse_node_iterator		&operator=(const reverse_node_iterator &obj) 			{ iterator = obj.iterator; return *this; }
-		reverse_node_iterator		operator++(int)											{ reverse_node_iterator tmp(iterator); iterator--; return tmp; }
-		reverse_node_iterator		&operator++() 											{ iterator--; return *this; }
-		reverse_node_iterator		operator--(int)											{ reverse_node_iterator tmp(iterator); iterator++; return tmp; }
-		reverse_node_iterator		&operator--() 											{ iterator++; return *this; }
-		T 							operator*() const 										{ return iterator; }
-		T							operator->() const 										{ return iterator; }
-		bool						operator==(reverse_node_iterator const &obj) const 		{ return iterator == obj.iterator; };
-		bool						operator!=(reverse_node_iterator const &obj) const 		{ return iterator != obj.iterator; };
-		bool 						operator<(reverse_node_iterator const &obj) const 		{ return iterator < obj.iterator; };
-		bool 						operator>(reverse_node_iterator const &obj) const 		{ return iterator > obj.iterator; };
-		bool 						operator<=(reverse_node_iterator const &obj) const 		{ return iterator <= obj.iterator; };
-		bool 						operator>=(reverse_node_iterator const &obj) const 		{ return iterator >= obj.iterator; };
-	};
+		reverse_node_iterator() : iterator() {};
+		explicit reverse_node_iterator(T _x) : iterator(_x) {};
+		template <class U>
+		reverse_node_iterator(const reverse_node_iterator<U>& u) : iterator(u.base()) {};
+		template <class U>
+		reverse_node_iterator& 	operator=(const reverse_node_iterator<U>& u)			{ iterator = u.base(); return *this; }
+		T						base() const											{ return iterator; }
+		T&		 				operator*() const										{ T tmp = iterator; return *tmp; }
+		T*						operator->() const										{ return &(operator*()); }
+		reverse_node_iterator& 	operator++()											{ --iterator; return *this; }
+		reverse_node_iterator 	operator++(int)											{ reverse_node_iterator tmp(*this); iterator--; return tmp; }
+		reverse_node_iterator& 	operator--()											{ ++iterator; return *this; }
+		reverse_node_iterator 	operator--(int)											{ reverse_node_iterator tmp(*this); iterator++; return tmp; }
+		reverse_node_iterator 	operator+(std::ptrdiff_t n) const						{ return reverse_node_iterator(iterator - n); }
+		reverse_node_iterator& 	operator+=(std::ptrdiff_t n)							{ iterator -= n; return *this; }
+		reverse_node_iterator 	operator-(std::ptrdiff_t n) const						{ return reverse_node_iterator(iterator + n); }
+		reverse_node_iterator& 	operator-=(std::ptrdiff_t n)							{ iterator += n; return *this; }
+		T&						operator[](std::ptrdiff_t n) const						{ return *(*this + n); }
 
+	};
 }

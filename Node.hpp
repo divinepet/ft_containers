@@ -5,18 +5,16 @@ typedef enum { BLACK, RED } nodeColor;
 template <class value_type>
 struct Node_ {
 public:
-
-//	Node_() {}
-//	Node_(value_type pair) : pair(pair) {}
-//	~Node_() {
-//	}
+	Node_() : pair(new value_type()), begin(NULL), left(this), right(this), parent(0), NIL(1), color(0) {}
+	Node_(const value_type& p) : pair(new value_type(p)), begin(NULL), left(this), right(this), parent(0), NIL(0), color(0) {}
+	~Node_() { delete pair; }
 	bool color;
-	struct Node_ *preBegin;
+	struct Node_ *begin;
 	struct Node_ *left;
 	struct Node_ *right;
 	struct Node_ *parent;
 	bool NIL;
-	value_type pair;
+	value_type *pair;
 };
 
 template <class value_type>
@@ -28,7 +26,7 @@ public:
 	Tree() : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
-		sentinel.preBegin = &sentinel;
+		sentinel.begin = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
@@ -40,7 +38,7 @@ public:
 	Tree(Tree<value_type> &other) : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
-		sentinel.preBegin = &sentinel;
+		sentinel.begin = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = BLACK;
 		sentinel.NIL = true;
@@ -51,7 +49,7 @@ public:
 	void fillTree(Node_<value_type> *t, Compare comp) {
 		if (!t->left->NIL)
 			fillTree(t->left, comp);
-		if (!t->NIL) insertNode(root, t->pair, comp);
+		if (!t->NIL) insertNode(root, *t->pair, comp); // todo asd
 		if (!t->right->NIL)
 			fillTree(t->right, comp);
 	}
@@ -151,29 +149,26 @@ public:
 	}
 
 	template <class Compare>
-	ft::pair<Node_<value_type>*, bool> insertNode(Node_<value_type>* hint, value_type pair, Compare comp) {
+	ft::pair<Node_<value_type>*, bool> insertNode(Node_<value_type>* hint, const value_type& pair, Compare comp) {
 		Node_<value_type> *current, *parent, *x;
 
 		current = hint;
 		parent = 0;
 		while (!current->NIL) {
-			if (pair.first == current->pair.first) return ft::make_pair(current, false);
+			if (pair.first == current->pair->first) return ft::make_pair(current, false);
 			parent = current;
-			current = comp(pair.first, current->pair.first) ?
+			current = comp(pair.first, current->pair->first) ?
 					current->left : current->right;
 		}
 
-		x = new Node_<value_type>();
-//		x->pair = pair;
-		x->pair.first = pair.first;
-		x->pair.second = pair.second;
+		x = new Node_<value_type>(pair);
 		x->parent = parent;
 		x->left = &sentinel;
 		x->right = &sentinel;
 		x->color = RED;
 
 		if (parent) {
-			if (comp(pair.first, parent->pair.first))
+			if (comp(pair.first, parent->pair->first))
 				parent->left = x;
 			else
 				parent->right = x;
@@ -184,7 +179,7 @@ public:
 		insertFixup(x);
 
 		if (x == getLast()) { sentinel.parent = x; }
-		if (x == getBegin()) { sentinel.preBegin = x; }
+		if (x == getBegin()) { sentinel.begin = x; }
 		m_size++;
 		return ft::make_pair(x, true);
 	}
@@ -271,13 +266,14 @@ public:
 		else
 			root = x;
 		if (y != z) {
-			z->pair = y->pair;
+			value_type *p = new value_type(*y->pair);
+			z->pair = p;
 		}
 
 		if (y->color == BLACK)
 			deleteFixup (x);
 		sentinel.parent = getLast();
-		sentinel.preBegin = getBegin();
+		sentinel.begin = getBegin();
 		m_size--;
 		// todo delete free
 		free (y);
@@ -289,10 +285,10 @@ public:
 		Node_<value_type> *current = root;
 
 		while (!current->NIL) {
-			if(key == current->pair.first)
+			if(key == current->pair->first)
 				return (current);
 			else
-				current = comp (key, current->pair.first) ? current->left : current->right;
+				current = comp (key, current->pair->first) ? current->left : current->right;
 		}
 		return getEnd();
 	}

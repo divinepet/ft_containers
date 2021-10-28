@@ -100,16 +100,13 @@
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/Vector.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/functions.ipp">
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/lib.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/general.hpp">
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/start_tests.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/service_functions.hpp">
-			<Option target="ft_containers"/>
-		</Unit>
-		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/unit_tests.hpp">
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/test_functions.ipp">
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/main.cpp">
