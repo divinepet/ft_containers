@@ -7,9 +7,10 @@ void start_tests() {
 	cout << "*                    ft_containers TESTS by @elaronda                  *" << endl;
 	cout << "*                                                                      *" << endl;
 	cout << "************************************************************************" << endl;
-//	VECTOR_TESTS();
-//	ALGORITHM_TESTS();
-	MAP_TESTS();
+	signal(SIGALRM, MyAlarm);
+	VECTOR_TESTS();
+	ALGORITHM_TESTS();
+//	MAP_TESTS();
 	leaks_test();
 }
 
@@ -66,7 +67,6 @@ void ALGORITHM_TESTS() {
 }
 
 void MAP_TESTS() {
-	signal(SIGALRM, MyAlarm);
 	cout << "------------------------------------------------------------------------" << endl;
 	cout << "|                                  MAP                                 |" << endl;
 	cout << "------------------------------------------------------------------------" << endl;

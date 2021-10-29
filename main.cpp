@@ -26,8 +26,6 @@ void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.beg
 
 
 int main(int argc, char *argv[]) {
-
-
 	start_tests();
 	return 0;
 }

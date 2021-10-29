@@ -16,8 +16,8 @@ public:
 	typedef const T*													const_pointer;
 	typedef ft::iterator<T*> 											iterator;
 	typedef ft::iterator<const T*>										const_iterator;
-	typedef ft::reverse_iterator<T*> 									reverse_iterator;
-	typedef ft::reverse_iterator<const T*>								const_reverse_iterator;
+	typedef ft::one_more_iterator<iterator> 									reverse_iterator;
+	typedef ft::one_more_iterator<const_iterator>								const_reverse_iterator;
 private:
 	pointer																buffer;
 	size_type 															_capacity;
@@ -122,10 +122,10 @@ public:
 	const_iterator 			begin() const						{ return const_iterator(buffer); };
 	iterator 				end()								{ return iterator(buffer + _size); };
 	const_iterator 			end() const							{ return const_iterator(buffer + _size); };
-	reverse_iterator 		rbegin()							{ return reverse_iterator(buffer + _size - 1); };
-	const_reverse_iterator 	rbegin() const						{ return const_reverse_iterator(buffer + _size - 1); };
-	reverse_iterator 		rend()								{ return reverse_iterator(buffer - 1); };
-	const_reverse_iterator 	rend() const						{ return const_reverse_iterator(buffer - 1); };
+	reverse_iterator 		rbegin()							{ return reverse_iterator(iterator(buffer + _size - 1)); };
+	const_reverse_iterator 	rbegin() const						{ return const_reverse_iterator(const_iterator(buffer + _size - 1)); };
+	reverse_iterator 		rend()								{ return reverse_iterator(iterator(buffer - 1)); };
+	const_reverse_iterator 	rend() const						{ return const_reverse_iterator(const_iterator(buffer - 1)); };
 	bool 					empty() const						{ return _size <= 0; };
 	size_type				size() const						{ return _size; };
 	size_type				capacity() const					{ return _capacity; };

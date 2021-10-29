@@ -9,6 +9,7 @@ namespace ft {
 	public:
 		typedef typename Iter::value_type           value_type;
 		typedef typename Iter::difference_type      difference_type;
+		typedef typename Iter::const_reference      const_reference;
 		typedef typename Iter::pointer              pointer;
 		typedef typename Iter::reference            reference;
 		typedef typename Iter::iterator_category    iterator_category;
@@ -20,6 +21,7 @@ namespace ft {
 		typedef T                                   value_type;
 		typedef T*                                  pointer;
 		typedef T&                                  reference;
+		typedef const T&                            const_reference;
 		typedef ptrdiff_t                           difference_type;
 		typedef std::random_access_iterator_tag     iterator_category;
 	};
@@ -33,6 +35,7 @@ namespace ft {
 		typedef typename iterator_traits<iterator_type>::iterator_category	iterator_category;
 		typedef typename iterator_traits<iterator_type>::value_type       	value_type;
 		typedef typename iterator_traits<iterator_type>::difference_type  	difference_type;
+		typedef typename iterator_traits<iterator_type>::const_reference      const_reference;
 		typedef typename iterator_traits<iterator_type>::pointer          	pointer;
 		typedef typename iterator_traits<iterator_type>::reference        	reference;
 
@@ -199,13 +202,23 @@ namespace ft {
 	template <class T>
 	class reverse_node_iterator {
 		T iterator;
+		typedef T                                                     		iterator_type;
+		typedef typename iterator_traits<iterator_type>::iterator_category	iterator_category;
+		typedef typename iterator_traits<iterator_type>::value_type       	value_type;
+		typedef typename iterator_traits<iterator_type>::difference_type  	difference_type;
+		typedef typename iterator_traits<iterator_type>::pointer          	pointer;
+		typedef typename iterator_traits<iterator_type>::reference        	reference;
 	public:
-		reverse_node_iterator() : iterator() {};
-		explicit reverse_node_iterator(T _x) : iterator(_x) {};
-		template <class U>
-		reverse_node_iterator(const reverse_node_iterator<U>& u) : iterator(u.base()) {};
-		template <class U>
-		reverse_node_iterator& 	operator=(const reverse_node_iterator<U>& u)			{ iterator = u.base(); return *this; }
+		reverse_node_iterator(T value = nullptr) : iterator(value) {};
+		~reverse_node_iterator()															{};
+		template <class U> reverse_node_iterator(const reverse_node_iterator<U>& other,
+				typename ft::enable_if<std::is_convertible<U, T>::value>::type* = 0)
+						: iterator(other.base()) 											{};
+//		template <class U>
+//		reverse_node_iterator(const reverse_node_iterator<U>& u) : iterator(u.base()) {};
+//		template <class U>
+//		reverse_node_iterator& 	operator=(const reverse_node_iterator<U>& u)			{ iterator = u.base(); return *this; }
+		reverse_node_iterator	&operator=(const reverse_node_iterator &obj) 		{ iterator = obj.iterator; return *this; }
 		T						base() const											{ return iterator; }
 		T&		 				operator*() const										{ return *iterator; }
 		T*						operator->() const										{ return &(operator*()); }
@@ -219,4 +232,55 @@ namespace ft {
 		reverse_node_iterator& 	operator-=(std::ptrdiff_t n)							{ iterator += n; return *this; }
 		T&						operator[](std::ptrdiff_t n) const						{ return *(*this + n); }
 	};
+
+
+	template <class Iter>
+			class one_more_iterator /*: public Iterator<typename Iterator_traits<Iter>::iterator_category,
+                                             typename Iterator_traits<Iter>::value_type,
+                                             typename Iterator_traits<Iter>::difference_type,
+                                             typename Iterator_traits<Iter>::reference,
+                                             typename Iterator_traits<Iter>::pointer>*/
+			{
+
+			private:
+				Iter _t;
+
+			protected:
+				Iter _current;
+
+			public:
+				typedef Iter                                                iterator_type;
+				typedef typename iterator_traits<Iter>::difference_type     difference_type;
+				typedef typename iterator_traits<Iter>::reference           reference;
+				typedef typename iterator_traits<Iter>::const_reference     const_reference;
+				typedef typename iterator_traits<Iter>::pointer             pointer;
+
+				one_more_iterator() : _t(), _current() {};
+				explicit one_more_iterator(Iter _x) : _t(_x), _current(_x) {};
+
+				template <class U>
+						one_more_iterator(const one_more_iterator<U>& u) : _t(u.base()), _current(u.base()) {};
+
+				template <class U>
+						one_more_iterator& operator=(const one_more_iterator<U>& u)
+								{ _t = _current = u.base(); return *this; }
+
+								Iter base() const
+								{ return _current; }
+
+								reference operator*() const                         { Iter tmp = _current; return *tmp; } // delete -- prev tmp
+								//        const_reference operator*()                        { Iter tmp = _current; return *tmp; }
+								pointer operator->() const                          { return &(operator*()); }
+								//        const_pointer operator->()                           { return &(operator*()); }
+								one_more_iterator& operator++()                      { --_current; return *this; }
+								one_more_iterator operator++(int)                    { one_more_iterator tmp(*this); _current--; return tmp; }
+								one_more_iterator& operator--()                      { ++_current; return *this; }
+								one_more_iterator operator--(int)                    { one_more_iterator tmp(*this); _current++; return tmp; }
+								one_more_iterator operator+(difference_type n) const { return one_more_iterator(_current - n); }
+								one_more_iterator& operator+=(difference_type n)     { _current -= n; return *this; }
+								one_more_iterator operator-(difference_type n) const { return one_more_iterator(_current + n); }
+								one_more_iterator& operator-=(difference_type n)     { _current += n; return *this; }
+								reference operator[](difference_type n) const       { return *(*this + n); }
+
+			};
 }
