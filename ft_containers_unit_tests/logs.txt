@@ -1,0 +1,8 @@
+clang: error: no such file or directory: '../vector_tests/vector_insert(range).cpp'
+clang: error: no input files
+vector_unit_test<int, int>("assign()", assign_test, assign_test);
+    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../vector_tests/../system/system.ipp:142:6: note: candidate template ignored: substitution failure: too many template arguments for function template 'run_vector_unit_test'
+void run_vector_unit_test(std::string test_name, std::vector<int> (func1)(std::vector<T>), std::vector<int> (func2)(_vector<T>)) {
+     ^
+1 error generated.
