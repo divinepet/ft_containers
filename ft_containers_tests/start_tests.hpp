@@ -8,9 +8,9 @@ void start_tests() {
 	cout << "*                                                                      *" << endl;
 	cout << "************************************************************************" << endl;
 	signal(SIGALRM, MyAlarm);
-	VECTOR_TESTS();
-	ALGORITHM_TESTS();
-//	MAP_TESTS();
+//	VECTOR_TESTS();
+//	ALGORITHM_TESTS();
+	MAP_TESTS();
 	leaks_test();
 }
 
@@ -74,7 +74,7 @@ void MAP_TESTS() {
 	run_map_unit_test<int, int>("constructor(InputIt)", copy_constructor_test, copy_constructor_test);
 	run_map_unit_test<int, int>("assign overload (=)", assign_overload_test, assign_overload_test);
 	run_map_unit_test<int, int>("iterators", iterators_test, iterators_test);
-	run_map_unit_test<int, int>("reverse iterators", reverse_iterators_test_std, reverse_iterators_test_ft);
+	run_map_unit_test<int, int>("reverse iterators", reverse_iterators_test, reverse_iterators_test);
 	run_map_unit_test<int, int>("Compare class", comparator_test, comparator_test);
 	run_map_unit_test<int, int>("insert(pair)", insert_test, insert_test);
 	run_map_unit_test<int, int>("insert(InputIt)", insert_test_2, insert_test_2);

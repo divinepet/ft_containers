@@ -184,6 +184,42 @@ public:
 		return ft::make_pair(x, true);
 	}
 
+	template <class Compare>
+	ft::pair<Node_<value_type>*, bool> insertNodeInSet(Node_<value_type>* hint, const value_type& pair, Compare comp) {
+		Node_<value_type> *current, *parent, *x;
+
+		current = hint;
+		parent = 0;
+		while (!current->NIL) {
+			if (pair == *current->pair) return ft::make_pair(current, false);
+			parent = current;
+			current = comp(pair, *current->pair) ?
+					current->left : current->right;
+		}
+
+		x = new Node_<value_type>(pair);
+		x->parent = parent;
+		x->left = &sentinel;
+		x->right = &sentinel;
+		x->color = RED;
+
+		if (parent) {
+			if (comp(pair, *parent->pair))
+				parent->left = x;
+			else
+				parent->right = x;
+		} else {
+			root = x;
+		}
+
+		insertFixup(x);
+
+		if (x == getLast()) { sentinel.parent = x; }
+		if (x == getBegin()) { sentinel.begin = x; }
+		m_size++;
+		return ft::make_pair(x, true);
+	}
+
 	void deleteFixup(Node_<value_type> *x) {
 		while (x != root && x->color == BLACK) {
 			if (x == x->parent->left) {
@@ -285,10 +321,23 @@ public:
 		Node_<value_type> *current = root;
 
 		while (!current->NIL) {
-			if(key == current->pair->first)
+			if (key == current->pair->first)
 				return (current);
 			else
 				current = comp (key, current->pair->first) ? current->left : current->right;
+		}
+		return getEnd();
+	}
+
+	template <class Key, class Compare>
+	Node_<value_type>* findNodeInSet(Key key, Compare comp) {
+		Node_<value_type> *current = root;
+
+		while (!current->NIL) {
+			if (key == current->pair)
+				return (current);
+			else
+				current = comp (key, current->pair) ? current->left : current->right;
 		}
 		return getEnd();
 	}

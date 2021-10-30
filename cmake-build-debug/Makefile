@@ -113,6 +113,7 @@ preinstall/fast:
 
 # clear depends
 depend:
+	$(CMAKE_COMMAND) -P /Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -128,6 +129,198 @@ ft_containers: cmake_check_build_system
 ft_containers/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/build
 .PHONY : ft_containers/fast
+
+ft_containers_unit_tests/sources/map_tests/map_operator_equal.o: ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_equal.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o
+
+ft_containers_unit_tests/sources/map_tests/map_operator_equal.i: ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_equal.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i
+
+ft_containers_unit_tests/sources/map_tests/map_operator_equal.s: ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_equal.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s
+
+ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.o: ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o
+
+ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.i: ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i
+
+ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.s: ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s
+
+ft_containers_unit_tests/sources/map_tests/map_operator_less_than.o: ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_than.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o
+
+ft_containers_unit_tests/sources/map_tests/map_operator_less_than.i: ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_than.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i
+
+ft_containers_unit_tests/sources/map_tests/map_operator_less_than.s: ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_than.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s
+
+ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.o: ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o
+
+ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.i: ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i
+
+ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.s: ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s
+
+ft_containers_unit_tests/sources/map_tests/map_operator_more_than.o: ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_than.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o
+
+ft_containers_unit_tests/sources/map_tests/map_operator_more_than.i: ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_than.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i
+
+ft_containers_unit_tests/sources/map_tests/map_operator_more_than.s: ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_than.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s
+
+ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.o: ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o
+
+ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.i: ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i
+
+ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.s: ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s
+
+ft_containers_unit_tests/sources/system/map_run.o: ft_containers_unit_tests/sources/system/map_run.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/map_run.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/map_run.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/map_run.cpp.o
+
+ft_containers_unit_tests/sources/system/map_run.i: ft_containers_unit_tests/sources/system/map_run.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/map_run.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/map_run.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/map_run.cpp.i
+
+ft_containers_unit_tests/sources/system/map_run.s: ft_containers_unit_tests/sources/system/map_run.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/map_run.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/map_run.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/map_run.cpp.s
+
+ft_containers_unit_tests/sources/system/vector_run.o: ft_containers_unit_tests/sources/system/vector_run.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/vector_run.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/vector_run.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/vector_run.cpp.o
+
+ft_containers_unit_tests/sources/system/vector_run.i: ft_containers_unit_tests/sources/system/vector_run.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/vector_run.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/vector_run.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/vector_run.cpp.i
+
+ft_containers_unit_tests/sources/system/vector_run.s: ft_containers_unit_tests/sources/system/vector_run.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/vector_run.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/vector_run.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/vector_run.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -162,6 +355,30 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ft_containers"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_equal.o"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_equal.i"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_equal.s"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.o"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.i"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.s"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_less_than.o"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_less_than.i"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_less_than.s"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.o"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.i"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.s"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_more_than.o"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_more_than.i"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_more_than.s"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.o"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.i"
+	@echo "... ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.s"
+	@echo "... ft_containers_unit_tests/sources/system/map_run.o"
+	@echo "... ft_containers_unit_tests/sources/system/map_run.i"
+	@echo "... ft_containers_unit_tests/sources/system/map_run.s"
+	@echo "... ft_containers_unit_tests/sources/system/vector_run.o"
+	@echo "... ft_containers_unit_tests/sources/system/vector_run.i"
+	@echo "... ft_containers_unit_tests/sources/system/vector_run.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -176,6 +393,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
+	$(CMAKE_COMMAND) -P /Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

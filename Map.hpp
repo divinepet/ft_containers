@@ -21,9 +21,8 @@ public:
 	typedef typename allocator_type::const_pointer					const_pointer;
 	typedef ft::node_iterator<Node_<value_type>*, value_type>		iterator;
 	typedef ft::node_iterator<const Node_<value_type>*, value_type>	const_iterator;
-	typedef ft::reverse_node_iterator<iterator>						reverse_iterator;
-	typedef ft::reverse_node_iterator<const_iterator>				const_reverse_iterator;
-	Tree<value_type >*												_tree;
+	typedef ft::reverse_iterator<iterator>						reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 	class value_compare : public std::binary_function<value_type, value_type, bool> {
 	friend class Map;
 	protected:
@@ -36,6 +35,7 @@ public:
 private:
 	A			 													_allocator;
 	Compare		 													_comp;
+	Tree<value_type >*												_tree;
 public:
 
 
@@ -74,9 +74,10 @@ public:
 		return *this;
 	}
 
-	allocator_type get_allocator() const { return _allocator; }
 
-	~Map() { delete _tree; }
+	~Map() {
+		delete _tree;
+	}
 
 										/********************************/
 										/*       MEMBER FUNCTIONS       */
@@ -88,16 +89,17 @@ public:
 		return (tmp == _tree->getEnd()) ? throw std::out_of_range("key not found") : tmp->second;
 	}
 
+	allocator_type 			get_allocator() const 				{ return _allocator; }
 	const T&				at(const Key& key) const			{ return static_cast<const T>(at(key)); }
 	T&						operator[](const Key& key) 			{ return insert(ft::make_pair(key, T())).first->second; }
 	iterator 				begin()								{ return _tree->getBegin(); }
 	const_iterator 			begin() const						{ return _tree->getBegin(); }
 	iterator 				end()								{ return _tree->getEnd(); }
 	const_iterator 			end() const							{ return _tree->getEnd(); }
-	reverse_iterator 		rbegin()							{ return iterator(_tree->getLast()); }
-	const_reverse_iterator 	rbegin() const						{ return const_iterator(_tree->getLast()); }
-	reverse_iterator 		rend()								{ return iterator(_tree->getEnd()); }
-	const_reverse_iterator 	rend() const						{ return const_iterator(_tree->getEnd()); }
+	reverse_iterator 		rbegin()							{ return reverse_iterator(iterator(_tree->getLast())); }
+	const_reverse_iterator 	rbegin() const						{ return const_reverse_iterator(const_iterator(_tree->getLast())); }
+	reverse_iterator 		rend()								{ return reverse_iterator(iterator(_tree->getEnd())); }
+	const_reverse_iterator 	rend() const						{ return const_reverse_iterator(const_iterator(_tree->getEnd())); }
 	bool 					empty() const						{ return size() == 0; }
 	size_type				size() const 						{ return _tree->m_size; }
 	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),

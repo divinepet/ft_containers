@@ -91,6 +91,9 @@
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/Node.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/Set.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/Stack.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
@@ -107,6 +110,33 @@
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_tests/test_functions.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/map_run.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/vector_run.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/main.cpp">

@@ -2,9 +2,11 @@
 using std::cout;
 using std::endl;
 #include <map>
+#include <set>
 #include "Map.hpp"
-#include <unistd.h>
-#include "ft_containers_tests/start_tests.hpp"
+#include "Set.hpp"
+//#sources "ft_containers_tests/start_tests.hpp"
+//#include "ft_containers_unit_tests/start_tests.hpp"
 
 
 template <class T, class V>
@@ -14,18 +16,27 @@ template <class T, class V>
 void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.begin(); it != mp.end(); it++) cout << "key: " << it->first << ", value: " << it->second << endl; }
 
 /*
+ * 1. По окончанию теста подсказать про логи
  *
- * 1. П̶е̶р̶е̶п̶и̶с̶а̶т̶ь̶ ̶в̶с̶ё̶ ̶н̶а̶ ̶а̶л̶л̶о̶к̶а̶т̶о̶р
- * 2. Решить, что делать с pair const
- * 3. v̶a̶l̶u̶e̶ ̶c̶o̶m̶p̶a̶r̶e
- * 4. перегрузка сравнения
- * 5. проверить живой ли вектор
- * 6. проверить выбрасываемые исключения для вектора и мапы
+ * */
+
+/*
+ *
+ * ✅ 1. Переписать всё на аллокатор
+ * ✅ 2. Решить, что делать с pair const
+ * ✅ 3. Реализовать value compare
+ * ✅ 4. перегрузка сравнения
+ * ✅ 5. проверить живой ли вектор
+ * ☑️ 6. проверить выбрасываемые исключения для вектора и мапы
+ * ☑️ 7. Починить insert hint
+ * ☑️ 8. Написать тесты для стека
+ * ☑️ 9. Написать Set
  *
  * */
 
 
 int main(int argc, char *argv[]) {
-	start_tests();
-	return 0;
+
+
+	cout << output << endl;
 }

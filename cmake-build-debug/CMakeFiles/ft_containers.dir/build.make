@@ -79,17 +79,137 @@ CMakeFiles/ft_containers.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/main.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/main.cpp -o CMakeFiles/ft_containers.dir/main.cpp.s
 
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o: ../ft_containers_unit_tests/sources/system/map_run.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/map_run.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/map_run.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/map_run.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o: ../ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o: ../ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o: ../ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o: ../ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o: ../ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o: ../ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.s
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o: CMakeFiles/ft_containers.dir/flags.make
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o: ../ft_containers_unit_tests/sources/system/vector_run.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o -c /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/vector_run.cpp
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/vector_run.cpp > CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.i
+
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/vector_run.cpp -o CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.s
+
 # Object files for target ft_containers
 ft_containers_OBJECTS = \
-"CMakeFiles/ft_containers.dir/main.cpp.o"
+"CMakeFiles/ft_containers.dir/main.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o" \
+"CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o"
 
 # External object files for target ft_containers
 ft_containers_EXTERNAL_OBJECTS =
 
 ft_containers: CMakeFiles/ft_containers.dir/main.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_equal.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_not_equal.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_than.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_than.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_less_or_equal.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/map_operator_more_or_equal.cpp.o
+ft_containers: CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o
 ft_containers: CMakeFiles/ft_containers.dir/build.make
 ft_containers: CMakeFiles/ft_containers.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ft_containers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable ft_containers"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ft_containers.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
