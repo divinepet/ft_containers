@@ -16,8 +16,8 @@ public:
 	typedef const T*													const_pointer;
 	typedef ft::iterator<T*> 											iterator;
 	typedef ft::iterator<const T*>										const_iterator;
-	typedef ft::reverse_iterator<iterator> 									reverse_iterator;
-	typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
+	typedef ft::reverse_iterator<iterator> 								reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
 private:
 	pointer																buffer;
 	size_type 															_capacity;
