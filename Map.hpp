@@ -60,7 +60,7 @@ public:
 
 	Map(const Map &other) : _comp(other._comp), _allocator(other._allocator) {
 		_tree = new Tree<value_type>(*(other._tree));
-		_tree->fillTree(other._tree->root, _comp);
+		fillTree(other._tree->root);
 	}
 
 	Map& operator=(const Map& other) {
@@ -70,7 +70,7 @@ public:
 		_allocator = other._allocator;
 		delete _tree;
 		_tree = new Tree<value_type>(*(other._tree));
-		_tree->fillTree(other._tree->root, _comp);
+		fillTree(other._tree->root);
 		return *this;
 	}
 
@@ -85,8 +85,8 @@ public:
 
 
 	T& at(const Key& key) {
-		iterator tmp = _tree->findNode(key, _comp);
-		return (tmp == _tree->getEnd()) ? throw std::out_of_range("key not found") : tmp->second;
+		iterator tmp = find(key);
+		return (tmp == end()) ? throw std::out_of_range("key not found") : tmp->second;
 	}
 
 	allocator_type 			get_allocator() const 				{ return _allocator; }
@@ -111,27 +111,58 @@ public:
 	}
 
 	ft::pair<iterator, bool> insert(const value_type& value) {
-		return _tree->insertNode(_tree->root, value, _comp);
+		Node_<value_type> *current, *parent, *x;
+
+		current = _tree->root;
+		parent = 0;
+		while (!current->NIL) {
+			if (value.first == current->pair->first) return ft::make_pair(current, false);
+			parent = current;
+			current = _comp(value.first, current->pair->first) ?
+					current->left : current->right;
+		}
+
+		x = new Node_<value_type>(value);
+		x->parent = parent;
+		x->left = &_tree->sentinel;
+		x->right = &_tree->sentinel;
+		x->color = 1;
+
+		if (parent) {
+			if (_comp(value.first, parent->pair->first))
+				parent->left = x;
+			else
+				parent->right = x;
+		} else {
+			_tree->root = x;
+		}
+
+		_tree->insertFixup(x);
+
+		if (x == _tree->getLast()) { _tree->sentinel.parent = x; }
+		if (x == _tree->getBegin()) { _tree->sentinel.begin = x; }
+		_tree->m_size++;
+		return ft::make_pair(x, true);
 	}
 
 	iterator insert(iterator hint, const value_type& value) {
-		if (hint->first > value.first)
-		{
-			iterator prev = hint;
-			--prev;
-			while (prev != end() && prev->first >= value.first){
-				--hint;
-				--prev;
-			}
-		}else if (hint->first < value.first) {
-			iterator next = hint;
-			++next;
-			while (next != end() && next->first <= value.first) {
-				++hint;
-				++next;
-			}
-		}
-		return _tree->insertNode(hint.base(), value, _comp).first;
+//		if (hint->first > value.first)
+//		{
+//			iterator prev = hint;
+//			--prev;
+//			while (prev != end() && prev->first >= value.first){
+//				--hint;
+//				--prev;
+//			}
+//		}else if (hint->first < value.first) {
+//			iterator next = hint;
+//			++next;
+//			while (next != end() && next->first <= value.first) {
+//				++hint;
+//				++next;
+//			}
+//		}
+		return insert(value).first;
 	}
 
 	template< class InputIt >
@@ -152,11 +183,10 @@ public:
 			tmp = first++;
 			_tree->deleteNode(tmp.base());
 		}
-
 	}
 
 	size_type erase( const key_type& key ) {
-		return _tree->deleteNode(_tree->findNode(key, _comp));
+		return _tree->deleteNode(find(key).base());
 	}
 
 	void swap( Map& other ) {
@@ -164,15 +194,32 @@ public:
 	}
 
 	size_type count( const Key& key ) const {
-		return (_tree->findNode(key, _comp) == _tree->getEnd()) ? 0 : 1;
+		return (find(key) == end()) ? 0 : 1;
 	}
 
 	iterator find( const Key& key ) {
-		return _tree->findNode(key, _comp);
+		Node_<value_type> *current = _tree->root;
+
+		while (!current->NIL) {
+			if (key == current->pair->first)
+				return (current);
+			else
+				current = _comp(key, current->pair->first) ? current->left : current->right;
+		}
+		return end();
+//		return _tree->findNode(key, _comp);
 	}
 
 	const_iterator find( const Key& key ) const {
-		return _tree->findNode(key, _comp);
+		Node_<value_type> *current = _tree->root;
+
+		while (!current->NIL) {
+			if (key == current->pair->first)
+				return (current);
+			else
+				current = _comp(key, current->pair->first) ? current->left : current->right;
+		}
+		return end();
 	}
 
 	iterator lower_bound(const Key& key) {
@@ -273,6 +320,16 @@ public:
 
 	friend bool operator<= (const Map &lhs, const Map &rhs) {
 		return !(rhs < lhs);
+	}
+
+private:
+
+	void fillTree(Node_<value_type> *t) {
+		if (!t->left->NIL)
+			fillTree(t->left);
+		if (!t->NIL) insert(*t->pair);
+		if (!t->right->NIL)
+			fillTree(t->right);
 	}
 
 };

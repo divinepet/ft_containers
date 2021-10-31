@@ -1,7 +1,5 @@
 #pragma once
 
-typedef enum { BLACK, RED } nodeColor;
-
 template <class value_type>
 struct Node_ {
 public:
@@ -28,43 +26,34 @@ public:
 		sentinel.right = &sentinel;
 		sentinel.begin = &sentinel;
 		sentinel.parent = 0;
-		sentinel.color = BLACK;
+		sentinel.color = 0;
 		sentinel.NIL = true;
 		root = &sentinel;
 	}
 
-	~Tree() { deleteAll(root); };
+	~Tree() { clearTree(root); };
 
 	Tree(Tree<value_type> &other) : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.begin = &sentinel;
 		sentinel.parent = 0;
-		sentinel.color = BLACK;
+		sentinel.color = 0;
 		sentinel.NIL = true;
 		root = &sentinel;
 	}
 
-	template <class Compare>
-	void fillTree(Node_<value_type> *t, Compare comp) {
-		if (!t->left->NIL)
-			fillTree(t->left, comp);
-		if (!t->NIL) insertNode(root, *t->pair, comp); // todo asd
-		if (!t->right->NIL)
-			fillTree(t->right, comp);
-	}
-
-	void deleteAll(Node_<value_type> *tmp) {
+	void clearTree(Node_<value_type> *tmp) {
 		if (tmp->NIL) return;
-		if (!tmp->left->NIL) deleteAll(tmp->left);
-		if (!tmp->right->NIL) deleteAll(tmp->right);
+		if (!tmp->left->NIL) clearTree(tmp->left);
+		if (!tmp->right->NIL) clearTree(tmp->right);
 		delete tmp;
 	}
 
 	Tree& operator=(const Tree<value_type>& other) {
 		if (this == &other)
 			return *this;
-		deleteAll(root);
+		clearTree(root);
 		root = other.root;
 		sentinel = other.sentinel;
 		m_size = other.m_size;
@@ -110,169 +99,97 @@ public:
 	}
 
 	void insertFixup(Node_<value_type> *x) {
-		while (x != root && x->parent->color == RED) {
+		while (x != root && x->parent->color == 1) {
 			if (x->parent == x->parent->parent->left) {
 				Node_<value_type> *y = x->parent->parent->right;
-				if (y->color == RED) {
-					x->parent->color = BLACK;
-					y->color = BLACK;
-					x->parent->parent->color = RED;
+				if (y->color == 1) {
+					x->parent->color = 0;
+					y->color = 0;
+					x->parent->parent->color = 1;
 					x = x->parent->parent;
 				} else {
 					if (x == x->parent->right) {
 						x = x->parent;
 						rotateLeft(x);
 					}
-					x->parent->color = BLACK;
-					x->parent->parent->color = RED;
+					x->parent->color = 0;
+					x->parent->parent->color = 1;
 					rotateRight(x->parent->parent);
 				}
 			} else {
 				Node_<value_type> *y = x->parent->parent->left;
-				if (y->color == RED) {
-					x->parent->color = BLACK;
-					y->color = BLACK;
-					x->parent->parent->color = RED;
+				if (y->color == 1) {
+					x->parent->color = 0;
+					y->color = 0;
+					x->parent->parent->color = 1;
 					x = x->parent->parent;
 				} else {
 					if (x == x->parent->left) {
 						x = x->parent;
 						rotateRight(x);
 					}
-					x->parent->color = BLACK;
-					x->parent->parent->color = RED;
+					x->parent->color = 0;
+					x->parent->parent->color = 1;
 					rotateLeft(x->parent->parent);
 				}
 			}
 		}
-		root->color = BLACK;
-	}
-
-	template <class Compare>
-	ft::pair<Node_<value_type>*, bool> insertNode(Node_<value_type>* hint, const value_type& pair, Compare comp) {
-		Node_<value_type> *current, *parent, *x;
-
-		current = hint;
-		parent = 0;
-		while (!current->NIL) {
-			if (pair.first == current->pair->first) return ft::make_pair(current, false);
-			parent = current;
-			current = comp(pair.first, current->pair->first) ?
-					current->left : current->right;
-		}
-
-		x = new Node_<value_type>(pair);
-		x->parent = parent;
-		x->left = &sentinel;
-		x->right = &sentinel;
-		x->color = RED;
-
-		if (parent) {
-			if (comp(pair.first, parent->pair->first))
-				parent->left = x;
-			else
-				parent->right = x;
-		} else {
-			root = x;
-		}
-
-		insertFixup(x);
-
-		if (x == getLast()) { sentinel.parent = x; }
-		if (x == getBegin()) { sentinel.begin = x; }
-		m_size++;
-		return ft::make_pair(x, true);
-	}
-
-	template <class Compare>
-	ft::pair<Node_<value_type>*, bool> insertNodeInSet(Node_<value_type>* hint, const value_type& pair, Compare comp) {
-		Node_<value_type> *current, *parent, *x;
-
-		current = hint;
-		parent = 0;
-		while (!current->NIL) {
-			if (pair == *current->pair) return ft::make_pair(current, false);
-			parent = current;
-			current = comp(pair, *current->pair) ?
-					current->left : current->right;
-		}
-
-		x = new Node_<value_type>(pair);
-		x->parent = parent;
-		x->left = &sentinel;
-		x->right = &sentinel;
-		x->color = RED;
-
-		if (parent) {
-			if (comp(pair, *parent->pair))
-				parent->left = x;
-			else
-				parent->right = x;
-		} else {
-			root = x;
-		}
-
-		insertFixup(x);
-
-		if (x == getLast()) { sentinel.parent = x; }
-		if (x == getBegin()) { sentinel.begin = x; }
-		m_size++;
-		return ft::make_pair(x, true);
+		root->color = 0;
 	}
 
 	void deleteFixup(Node_<value_type> *x) {
-		while (x != root && x->color == BLACK) {
+		while (x != root && x->color == 0) {
 			if (x == x->parent->left) {
 				Node_<value_type> *w = x->parent->right;
-				if (w->color == RED) {
-					w->color = BLACK;
-					x->parent->color = RED;
+				if (w->color == 1) {
+					w->color = 0;
+					x->parent->color = 1;
 					rotateLeft (x->parent);
 					w = x->parent->right;
 				}
-				if (w->left->color == BLACK && w->right->color == BLACK) {
-					w->color = RED;
+				if (w->left->color == 0 && w->right->color == 0) {
+					w->color = 1;
 					x = x->parent;
 				} else {
-					if (w->right->color == BLACK) {
-						w->left->color = BLACK;
-						w->color = RED;
+					if (w->right->color == 0) {
+						w->left->color = 0;
+						w->color = 1;
 						rotateRight (w);
 						w = x->parent->right;
 					}
 					w->color = x->parent->color;
-					x->parent->color = BLACK;
-					w->right->color = BLACK;
+					x->parent->color = 0;
+					w->right->color = 0;
 					rotateLeft (x->parent);
 					x = root;
 				}
 			} else {
 				Node_<value_type> *w = x->parent->left;
-				if (w->color == RED) {
-					w->color = BLACK;
-					x->parent->color = RED;
+				if (w->color == 1) {
+					w->color = 0;
+					x->parent->color = 1;
 					rotateRight (x->parent);
 					w = x->parent->left;
 				}
-				if (w->right->color == BLACK && w->left->color == BLACK) {
-					w->color = RED;
+				if (w->right->color == 0 && w->left->color == 0) {
+					w->color = 1;
 					x = x->parent;
 				} else {
-					if (w->left->color == BLACK) {
-						w->right->color = BLACK;
-						w->color = RED;
+					if (w->left->color == 0) {
+						w->right->color = 0;
+						w->color = 1;
 						rotateLeft (w);
 						w = x->parent->left;
 					}
 					w->color = x->parent->color;
-					x->parent->color = BLACK;
-					w->left->color = BLACK;
+					x->parent->color = 0;
+					w->left->color = 0;
 					rotateRight (x->parent);
 					x = root;
 				}
 			}
 		}
-		x->color = BLACK;
+		x->color = 0;
 	}
 
 	int deleteNode(Node_<value_type> *z) {
@@ -302,44 +219,20 @@ public:
 		else
 			root = x;
 		if (y != z) {
+			delete z->pair;
 			value_type *p = new value_type(*y->pair);
 			z->pair = p;
 		}
 
-		if (y->color == BLACK)
+		if (y->color == 0)
 			deleteFixup (x);
 		sentinel.parent = getLast();
 		sentinel.begin = getBegin();
 		m_size--;
 		// todo delete free
-		free (y);
+//		free (y);
+		delete y;
 		return 1;
-	}
-
-	template <class Key, class Compare>
-	Node_<value_type>* findNode(Key key, Compare comp) {
-		Node_<value_type> *current = root;
-
-		while (!current->NIL) {
-			if (key == current->pair->first)
-				return (current);
-			else
-				current = comp (key, current->pair->first) ? current->left : current->right;
-		}
-		return getEnd();
-	}
-
-	template <class Key, class Compare>
-	Node_<value_type>* findNodeInSet(Key key, Compare comp) {
-		Node_<value_type> *current = root;
-
-		while (!current->NIL) {
-			if (key == current->pair)
-				return (current);
-			else
-				current = comp (key, current->pair) ? current->left : current->right;
-		}
-		return getEnd();
 	}
 
 	Node_<value_type>* getBegin() {

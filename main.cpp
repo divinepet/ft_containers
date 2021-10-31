@@ -1,24 +1,13 @@
 #include <iostream>
 using std::cout;
 using std::endl;
+#include <stack>
+#include <list>
 #include <map>
 #include <set>
 #include "Map.hpp"
 #include "Set.hpp"
-//#sources "ft_containers_tests/start_tests.hpp"
-//#include "ft_containers_unit_tests/start_tests.hpp"
-
-
-template <class T, class V>
-void print(std::map<T, V> mp) { for (typename std::map<T, V>::iterator it = mp.begin(); it != mp.end(); it++) cout << "key: " << it->first << ", value: " << it->second << endl; }
-
-template <class T, class V>
-void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.begin(); it != mp.end(); it++) cout << "key: " << it->first << ", value: " << it->second << endl; }
-
-/*
- * 1. По окончанию теста подсказать про логи
- *
- * */
+#include "Vector.hpp"
 
 /*
  *
@@ -29,14 +18,14 @@ void print(ft::Map<T, V> mp) { for (typename ft::Map<T, V>::iterator it = mp.beg
  * ✅ 5. проверить живой ли вектор
  * ☑️ 6. проверить выбрасываемые исключения для вектора и мапы
  * ☑️ 7. Починить insert hint
- * ☑️ 8. Написать тесты для стека
- * ☑️ 9. Написать Set
+ * ✅ 8. Написать тесты для стека
+ * ✅ 9. Написать Set
+ * ☑️ 10. Изменение ключа у мапы!!!
+ * ☑️ 11. Возможность тестировать контейнеры независимо от наличия других
  *
  * */
-
 
 int main(int argc, char *argv[]) {
 
 
-	cout << output << endl;
 }

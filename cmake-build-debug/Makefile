@@ -57,10 +57,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/divinepet/Desktop/ft_containers
+CMAKE_SOURCE_DIR = /Users/elaronda/Desktop/ft_containers
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/divinepet/Desktop/ft_containers/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/elaronda/Desktop/ft_containers/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/divinepet/Desktop/ft_containers/cmake-build-debug/CMakeFiles /Users/divinepet/Desktop/ft_containers/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles /Users/elaronda/Desktop/ft_containers/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/divinepet/Desktop/ft_containers/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -113,7 +113,7 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P /Users/divinepet/Desktop/ft_containers/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -274,101 +274,365 @@ ft_containers_unit_tests/sources/map_tests/operator>$(EQUALS).cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator>=.cpp.s"
 .PHONY : ft_containers_unit_tests/sources/map_tests/operator>$(EQUALS).cpp.s
 
-ft_containers_unit_tests/sources/system/map_run.o: ft_containers_unit_tests/sources/system/map_run.cpp.o
-.PHONY : ft_containers_unit_tests/sources/system/map_run.o
+ft_containers_unit_tests/sources/stack_tests/constructor.o: ft_containers_unit_tests/sources/stack_tests/constructor.cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/constructor.o
 
 # target to build an object file
-ft_containers_unit_tests/sources/system/map_run.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.o
-.PHONY : ft_containers_unit_tests/sources/system/map_run.cpp.o
+ft_containers_unit_tests/sources/stack_tests/constructor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/constructor.cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/constructor.cpp.o
 
-ft_containers_unit_tests/sources/system/map_run.i: ft_containers_unit_tests/sources/system/map_run.cpp.i
-.PHONY : ft_containers_unit_tests/sources/system/map_run.i
+ft_containers_unit_tests/sources/stack_tests/constructor.i: ft_containers_unit_tests/sources/stack_tests/constructor.cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/constructor.i
 
 # target to preprocess a source file
-ft_containers_unit_tests/sources/system/map_run.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.i
-.PHONY : ft_containers_unit_tests/sources/system/map_run.cpp.i
+ft_containers_unit_tests/sources/stack_tests/constructor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/constructor.cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/constructor.cpp.i
 
-ft_containers_unit_tests/sources/system/map_run.s: ft_containers_unit_tests/sources/system/map_run.cpp.s
-.PHONY : ft_containers_unit_tests/sources/system/map_run.s
+ft_containers_unit_tests/sources/stack_tests/constructor.s: ft_containers_unit_tests/sources/stack_tests/constructor.cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/constructor.s
 
 # target to generate assembly for a file
-ft_containers_unit_tests/sources/system/map_run.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/map_run.cpp.s
-.PHONY : ft_containers_unit_tests/sources/system/map_run.cpp.s
+ft_containers_unit_tests/sources/stack_tests/constructor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/constructor.cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/constructor.cpp.s
 
-ft_containers_unit_tests/sources/system/utilits_run.o: ft_containers_unit_tests/sources/system/utilits_run.cpp.o
-.PHONY : ft_containers_unit_tests/sources/system/utilits_run.o
+ft_containers_unit_tests/sources/stack_tests/empty().o: ft_containers_unit_tests/sources/stack_tests/empty().cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/empty().o
 
 # target to build an object file
-ft_containers_unit_tests/sources/system/utilits_run.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/utilits_run.cpp.o
-.PHONY : ft_containers_unit_tests/sources/system/utilits_run.cpp.o
+ft_containers_unit_tests/sources/stack_tests/empty().cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/empty().cpp.o"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/empty().cpp.o
 
-ft_containers_unit_tests/sources/system/utilits_run.i: ft_containers_unit_tests/sources/system/utilits_run.cpp.i
-.PHONY : ft_containers_unit_tests/sources/system/utilits_run.i
+ft_containers_unit_tests/sources/stack_tests/empty().i: ft_containers_unit_tests/sources/stack_tests/empty().cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/empty().i
 
 # target to preprocess a source file
-ft_containers_unit_tests/sources/system/utilits_run.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/utilits_run.cpp.i
-.PHONY : ft_containers_unit_tests/sources/system/utilits_run.cpp.i
+ft_containers_unit_tests/sources/stack_tests/empty().cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/empty().cpp.i"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/empty().cpp.i
 
-ft_containers_unit_tests/sources/system/utilits_run.s: ft_containers_unit_tests/sources/system/utilits_run.cpp.s
-.PHONY : ft_containers_unit_tests/sources/system/utilits_run.s
+ft_containers_unit_tests/sources/stack_tests/empty().s: ft_containers_unit_tests/sources/stack_tests/empty().cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/empty().s
 
 # target to generate assembly for a file
-ft_containers_unit_tests/sources/system/utilits_run.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/utilits_run.cpp.s
-.PHONY : ft_containers_unit_tests/sources/system/utilits_run.cpp.s
+ft_containers_unit_tests/sources/stack_tests/empty().cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/empty().cpp.s"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/empty().cpp.s
 
-ft_containers_unit_tests/sources/system/vector_run.o: ft_containers_unit_tests/sources/system/vector_run.cpp.o
-.PHONY : ft_containers_unit_tests/sources/system/vector_run.o
+ft_containers_unit_tests/sources/stack_tests/pop().o: ft_containers_unit_tests/sources/stack_tests/pop().cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/pop().o
 
 # target to build an object file
-ft_containers_unit_tests/sources/system/vector_run.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.o
-.PHONY : ft_containers_unit_tests/sources/system/vector_run.cpp.o
+ft_containers_unit_tests/sources/stack_tests/pop().cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/pop().cpp.o"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/pop().cpp.o
 
-ft_containers_unit_tests/sources/system/vector_run.i: ft_containers_unit_tests/sources/system/vector_run.cpp.i
-.PHONY : ft_containers_unit_tests/sources/system/vector_run.i
+ft_containers_unit_tests/sources/stack_tests/pop().i: ft_containers_unit_tests/sources/stack_tests/pop().cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/pop().i
 
 # target to preprocess a source file
-ft_containers_unit_tests/sources/system/vector_run.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.i
-.PHONY : ft_containers_unit_tests/sources/system/vector_run.cpp.i
+ft_containers_unit_tests/sources/stack_tests/pop().cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/pop().cpp.i"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/pop().cpp.i
 
-ft_containers_unit_tests/sources/system/vector_run.s: ft_containers_unit_tests/sources/system/vector_run.cpp.s
-.PHONY : ft_containers_unit_tests/sources/system/vector_run.s
+ft_containers_unit_tests/sources/stack_tests/pop().s: ft_containers_unit_tests/sources/stack_tests/pop().cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/pop().s
 
 # target to generate assembly for a file
-ft_containers_unit_tests/sources/system/vector_run.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/vector_run.cpp.s
-.PHONY : ft_containers_unit_tests/sources/system/vector_run.cpp.s
+ft_containers_unit_tests/sources/stack_tests/pop().cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/pop().cpp.s"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/pop().cpp.s
 
-ft_containers_unit_tests/sources/utilits_tests/is_integral.o: ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.o
-.PHONY : ft_containers_unit_tests/sources/utilits_tests/is_integral.o
+ft_containers_unit_tests/sources/stack_tests/push().o: ft_containers_unit_tests/sources/stack_tests/push().cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/push().o
 
 # target to build an object file
-ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.o
-.PHONY : ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.o
+ft_containers_unit_tests/sources/stack_tests/push().cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/push().cpp.o"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/push().cpp.o
 
-ft_containers_unit_tests/sources/utilits_tests/is_integral.i: ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.i
-.PHONY : ft_containers_unit_tests/sources/utilits_tests/is_integral.i
+ft_containers_unit_tests/sources/stack_tests/push().i: ft_containers_unit_tests/sources/stack_tests/push().cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/push().i
 
 # target to preprocess a source file
-ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.i
-.PHONY : ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.i
+ft_containers_unit_tests/sources/stack_tests/push().cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/push().cpp.i"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/push().cpp.i
 
-ft_containers_unit_tests/sources/utilits_tests/is_integral.s: ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.s
-.PHONY : ft_containers_unit_tests/sources/utilits_tests/is_integral.s
+ft_containers_unit_tests/sources/stack_tests/push().s: ft_containers_unit_tests/sources/stack_tests/push().cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/push().s
 
 # target to generate assembly for a file
-ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.s
-.PHONY : ft_containers_unit_tests/sources/utilits_tests/is_integral.cpp.s
+ft_containers_unit_tests/sources/stack_tests/push().cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/push().cpp.s"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/push().cpp.s
+
+ft_containers_unit_tests/sources/stack_tests/size().o: ft_containers_unit_tests/sources/stack_tests/size().cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/size().o
+
+# target to build an object file
+ft_containers_unit_tests/sources/stack_tests/size().cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/size().cpp.o"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/size().cpp.o
+
+ft_containers_unit_tests/sources/stack_tests/size().i: ft_containers_unit_tests/sources/stack_tests/size().cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/size().i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/stack_tests/size().cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/size().cpp.i"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/size().cpp.i
+
+ft_containers_unit_tests/sources/stack_tests/size().s: ft_containers_unit_tests/sources/stack_tests/size().cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/size().s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/stack_tests/size().cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/size().cpp.s"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/size().cpp.s
+
+ft_containers_unit_tests/sources/stack_tests/top().o: ft_containers_unit_tests/sources/stack_tests/top().cpp.o
+.PHONY : ft_containers_unit_tests/sources/stack_tests/top().o
+
+# target to build an object file
+ft_containers_unit_tests/sources/stack_tests/top().cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/top().cpp.o"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/top().cpp.o
+
+ft_containers_unit_tests/sources/stack_tests/top().i: ft_containers_unit_tests/sources/stack_tests/top().cpp.i
+.PHONY : ft_containers_unit_tests/sources/stack_tests/top().i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/stack_tests/top().cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/top().cpp.i"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/top().cpp.i
+
+ft_containers_unit_tests/sources/stack_tests/top().s: ft_containers_unit_tests/sources/stack_tests/top().cpp.s
+.PHONY : ft_containers_unit_tests/sources/stack_tests/top().s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/stack_tests/top().cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/top().cpp.s"
+.PHONY : ft_containers_unit_tests/sources/stack_tests/top().cpp.s
+
+ft_containers_unit_tests/sources/system/run_map.o: ft_containers_unit_tests/sources/system/run_map.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_map.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/run_map.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_map.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_map.cpp.o
+
+ft_containers_unit_tests/sources/system/run_map.i: ft_containers_unit_tests/sources/system/run_map.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_map.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/run_map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_map.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_map.cpp.i
+
+ft_containers_unit_tests/sources/system/run_map.s: ft_containers_unit_tests/sources/system/run_map.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_map.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/run_map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_map.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_map.cpp.s
+
+ft_containers_unit_tests/sources/system/run_set.o: ft_containers_unit_tests/sources/system/run_set.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_set.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/run_set.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_set.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_set.cpp.o
+
+ft_containers_unit_tests/sources/system/run_set.i: ft_containers_unit_tests/sources/system/run_set.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_set.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/run_set.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_set.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_set.cpp.i
+
+ft_containers_unit_tests/sources/system/run_set.s: ft_containers_unit_tests/sources/system/run_set.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_set.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/run_set.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_set.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_set.cpp.s
+
+ft_containers_unit_tests/sources/system/run_stack.o: ft_containers_unit_tests/sources/system/run_stack.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_stack.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/run_stack.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_stack.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_stack.cpp.o
+
+ft_containers_unit_tests/sources/system/run_stack.i: ft_containers_unit_tests/sources/system/run_stack.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_stack.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/run_stack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_stack.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_stack.cpp.i
+
+ft_containers_unit_tests/sources/system/run_stack.s: ft_containers_unit_tests/sources/system/run_stack.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_stack.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/run_stack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_stack.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_stack.cpp.s
+
+ft_containers_unit_tests/sources/system/run_utilities.o: ft_containers_unit_tests/sources/system/run_utilities.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_utilities.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/run_utilities.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utilities.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_utilities.cpp.o
+
+ft_containers_unit_tests/sources/system/run_utilities.i: ft_containers_unit_tests/sources/system/run_utilities.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_utilities.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/run_utilities.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utilities.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_utilities.cpp.i
+
+ft_containers_unit_tests/sources/system/run_utilities.s: ft_containers_unit_tests/sources/system/run_utilities.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_utilities.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/run_utilities.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utilities.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_utilities.cpp.s
+
+ft_containers_unit_tests/sources/system/run_vector.o: ft_containers_unit_tests/sources/system/run_vector.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_vector.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/system/run_vector.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_vector.cpp.o
+.PHONY : ft_containers_unit_tests/sources/system/run_vector.cpp.o
+
+ft_containers_unit_tests/sources/system/run_vector.i: ft_containers_unit_tests/sources/system/run_vector.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_vector.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/system/run_vector.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_vector.cpp.i
+.PHONY : ft_containers_unit_tests/sources/system/run_vector.cpp.i
+
+ft_containers_unit_tests/sources/system/run_vector.s: ft_containers_unit_tests/sources/system/run_vector.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_vector.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/system/run_vector.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_vector.cpp.s
+.PHONY : ft_containers_unit_tests/sources/system/run_vector.cpp.s
+
+ft_containers_unit_tests/sources/utilities_tests/enable_if.o: ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/enable_if.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.o
+
+ft_containers_unit_tests/sources/utilities_tests/enable_if.i: ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/enable_if.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.i
+
+ft_containers_unit_tests/sources/utilities_tests/enable_if.s: ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/enable_if.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.s
+
+ft_containers_unit_tests/sources/utilities_tests/equal.o: ft_containers_unit_tests/sources/utilities_tests/equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/equal.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/utilities_tests/equal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/equal.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/equal.cpp.o
+
+ft_containers_unit_tests/sources/utilities_tests/equal.i: ft_containers_unit_tests/sources/utilities_tests/equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/equal.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/utilities_tests/equal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/equal.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/equal.cpp.i
+
+ft_containers_unit_tests/sources/utilities_tests/equal.s: ft_containers_unit_tests/sources/utilities_tests/equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/equal.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/utilities_tests/equal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/equal.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/equal.cpp.s
+
+ft_containers_unit_tests/sources/utilities_tests/is_integral.o: ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.o
+
+ft_containers_unit_tests/sources/utilities_tests/is_integral.i: ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.i
+
+ft_containers_unit_tests/sources/utilities_tests/is_integral.s: ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s
+
+ft_containers_unit_tests/sources/utilities_tests/lexicographical.o: ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o
+
+ft_containers_unit_tests/sources/utilities_tests/lexicographical.i: ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.i
+
+ft_containers_unit_tests/sources/utilities_tests/lexicographical.s: ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -421,18 +685,51 @@ help:
 	@echo "... ft_containers_unit_tests/sources/map_tests/operator>=.o"
 	@echo "... ft_containers_unit_tests/sources/map_tests/operator>=.i"
 	@echo "... ft_containers_unit_tests/sources/map_tests/operator>=.s"
-	@echo "... ft_containers_unit_tests/sources/system/map_run.o"
-	@echo "... ft_containers_unit_tests/sources/system/map_run.i"
-	@echo "... ft_containers_unit_tests/sources/system/map_run.s"
-	@echo "... ft_containers_unit_tests/sources/system/utilits_run.o"
-	@echo "... ft_containers_unit_tests/sources/system/utilits_run.i"
-	@echo "... ft_containers_unit_tests/sources/system/utilits_run.s"
-	@echo "... ft_containers_unit_tests/sources/system/vector_run.o"
-	@echo "... ft_containers_unit_tests/sources/system/vector_run.i"
-	@echo "... ft_containers_unit_tests/sources/system/vector_run.s"
-	@echo "... ft_containers_unit_tests/sources/utilits_tests/is_integral.o"
-	@echo "... ft_containers_unit_tests/sources/utilits_tests/is_integral.i"
-	@echo "... ft_containers_unit_tests/sources/utilits_tests/is_integral.s"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/constructor.o"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/constructor.i"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/constructor.s"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/empty().o"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/empty().i"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/empty().s"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/pop().o"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/pop().i"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/pop().s"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/push().o"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/push().i"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/push().s"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/size().o"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/size().i"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/size().s"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/top().o"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/top().i"
+	@echo "... ft_containers_unit_tests/sources/stack_tests/top().s"
+	@echo "... ft_containers_unit_tests/sources/system/run_map.o"
+	@echo "... ft_containers_unit_tests/sources/system/run_map.i"
+	@echo "... ft_containers_unit_tests/sources/system/run_map.s"
+	@echo "... ft_containers_unit_tests/sources/system/run_set.o"
+	@echo "... ft_containers_unit_tests/sources/system/run_set.i"
+	@echo "... ft_containers_unit_tests/sources/system/run_set.s"
+	@echo "... ft_containers_unit_tests/sources/system/run_stack.o"
+	@echo "... ft_containers_unit_tests/sources/system/run_stack.i"
+	@echo "... ft_containers_unit_tests/sources/system/run_stack.s"
+	@echo "... ft_containers_unit_tests/sources/system/run_utilities.o"
+	@echo "... ft_containers_unit_tests/sources/system/run_utilities.i"
+	@echo "... ft_containers_unit_tests/sources/system/run_utilities.s"
+	@echo "... ft_containers_unit_tests/sources/system/run_vector.o"
+	@echo "... ft_containers_unit_tests/sources/system/run_vector.i"
+	@echo "... ft_containers_unit_tests/sources/system/run_vector.s"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/enable_if.o"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/enable_if.i"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/enable_if.s"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/equal.o"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/equal.i"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/equal.s"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/is_integral.o"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/is_integral.i"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/is_integral.s"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/lexicographical.o"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/lexicographical.i"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/lexicographical.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -447,7 +744,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P /Users/divinepet/Desktop/ft_containers/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

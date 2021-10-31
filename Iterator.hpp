@@ -131,6 +131,7 @@ namespace ft {
 		node_iterator		operator--(int)										{ node_iterator tmp(*this); prev(); return tmp; }
 		node_iterator		&operator--() 										{ prev(); return *this; }
 		reference 			operator*()		 									{ return *(node->pair); }
+		const_reference 	operator*() const									{ return *(node->pair); }
 		pointer 			operator->()										{ return node->pair; }
 		const_pointer 		operator->() const									{ return node->pair; }
 		bool				operator==(node_iterator const &obj) const 			{ return node == obj.node; };
