@@ -9,7 +9,11 @@ std::vector<int> swap_test(std::map<T, V> mp) {
     std::map<T, V> mp2;
     for (int i = 250000, j = 0; i < 350000; ++i, --j)
         mp.insert(std::make_pair(i, j));
+    long *adr1 = reinterpret_cast<long *>(&mp);
+    long *adr2 = reinterpret_cast<long *>(&mp2);
     mp.swap(mp2);
+    if (reinterpret_cast<long *>(&mp) == adr1 && reinterpret_cast<long *>(&mp2) == adr2)
+    	v.push_back(1);
     v.push_back(mp2.size());
     typename std::map<T, V>::iterator it = mp2.begin();
     for (; it != mp2.end(); ++it) {
@@ -34,7 +38,11 @@ std::vector<int> swap_test(_map<T, V> mp) {
     _map<T, V> mp2;
     for (int i = 250000, j = 0; i < 350000; ++i, --j)
         mp.insert(_make_pair(i, j));
+    long *adr1 = reinterpret_cast<long *>(&mp);
+    long *adr2 = reinterpret_cast<long *>(&mp2);
     mp.swap(mp2);
+    if (reinterpret_cast<long *>(&mp) == adr1 && reinterpret_cast<long *>(&mp2) == adr2)
+    	v.push_back(1);
     v.push_back(mp2.size());
     typename _map<T, V>::iterator it = mp2.begin();
     for (; it != mp2.end(); ++it) {

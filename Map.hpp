@@ -8,58 +8,69 @@ namespace ft {
 template <class Key, class T, class Compare = std::less<Key>, class A = std::allocator<std::pair<const Key, T> > >
 class Map {
 public:
-	typedef Key														key_type;
-	typedef T														mapped_type;
-	typedef ft::pair<const Key, T>									value_type;
-	typedef std::size_t												size_type;
-	typedef std::ptrdiff_t											difference_type;
-	typedef Compare													key_compare;
-	typedef A														allocator_type;
-	typedef value_type&												reference;
-	typedef const value_type&										const_reference;
-	typedef typename allocator_type::pointer						pointer;
-	typedef typename allocator_type::const_pointer					const_pointer;
-	typedef ft::node_iterator<Node_<value_type>*, value_type>		iterator;
-	typedef ft::node_iterator<const Node_<value_type>*, value_type>	const_iterator;
-	typedef ft::reverse_iterator<iterator>						reverse_iterator;
-	typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
+	typedef Key																	key_type;
+	typedef T																	mapped_type;
+	typedef ft::pair<const Key, T>												value_type;
+	typedef std::size_t															size_type;
+	typedef std::ptrdiff_t														difference_type;
+	typedef Compare																key_compare;
+	typedef A																	allocator_type;
+	typedef value_type&															reference;
+	typedef const value_type&													const_reference;
+	typedef typename allocator_type::pointer									pointer;
+	typedef typename allocator_type::const_pointer								const_pointer;
+	typedef ft::node_iterator<Node_<value_type>*, value_type>					iterator;
+	typedef ft::node_iterator<const Node_<value_type>*, value_type>				const_iterator;
+	typedef ft::reverse_iterator<iterator>										reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
+	typedef typename allocator_type::template rebind<Node_<value_type> >::other	allocator_rebind_node;
+	typedef typename allocator_type::template rebind<Tree<value_type> >::other	allocator_rebind_tree;
+
 	class value_compare : public std::binary_function<value_type, value_type, bool> {
 	friend class Map;
 	protected:
 		key_compare comp;
 		value_compare(key_compare c) : comp(c) {}
 		public:
-			bool operator()(const value_type& __x, const value_type& __y) const
-			{ return comp(__x.first, __y.first); }
-		};
+			bool operator()(const value_type& __x, const value_type& __y) const {
+			return comp(__x.first, __y.first);
+		}
+	};
+
 private:
-	A			 													_allocator;
-	Compare		 													_comp;
-	Tree<value_type >*												_tree;
+	allocator_type 																_allocator;
+	allocator_rebind_tree														_allocator_rebind_tree;
+	allocator_rebind_node														_allocator_rebind_node;
+	Compare		 																_comp;
+	Tree<value_type >*															_tree;
+
 public:
-
-
-										/********************************/
-										/* CONSTRUCTORS AND DESTRUCTORS */
-										/********************************/
-
 	Map() {
-		_tree = new Tree<value_type>();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
+//		_tree = new Tree<value_type>();
 	}
 
 	explicit Map( const Compare& comp, const A& alloc = A()) : _comp(comp), _allocator(alloc) {
-		_tree = new Tree<value_type>();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
+//		_tree = new Tree<value_type>();
 	}
 
 	template <class InputIt>
-	Map(InputIt first, InputIt last, const Compare& comp = Compare(), const A& alloc = A()) : _comp(comp), _allocator(alloc) {
-		_tree = new Tree<value_type>();
+	Map(InputIt first, InputIt last,
+		const Compare& comp = Compare(), const A& alloc = A()) : _comp(comp), _allocator(alloc) {
+//		_tree = new Tree<value_type>();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
 		for (; first != last; first++)
 			insert(ft::make_pair(first->first, first->second));
 	}
 
 	Map(const Map &other) : _comp(other._comp), _allocator(other._allocator) {
-		_tree = new Tree<value_type>(*(other._tree));
+//		_tree = new Tree<value_type>(*(other._tree));
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree, *(other._tree));
 		fillTree(other._tree->root);
 	}
 
@@ -68,15 +79,25 @@ public:
 			return *this;
 		_comp = other._comp;
 		_allocator = other._allocator;
-		delete _tree;
-		_tree = new Tree<value_type>(*(other._tree));
+//		delete _tree;
+//		clearTree(_tree->root);
+//		_allocator_rebind_tree.destroy(_tree);
+//		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
+		clearMap();
+//		_tree = new Tree<value_type>(*(other._tree));
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree, *other._tree);
 		fillTree(other._tree->root);
 		return *this;
 	}
 
 
 	~Map() {
-		delete _tree;
+//		delete _tree;
+		clearMap();
+//		clearTree(_tree->root);
+//		_allocator_rebind_tree.destroy(_tree);
+//		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
 	}
 
 										/********************************/
@@ -106,63 +127,43 @@ public:
 																 std::numeric_limits<size_type>::max() / (sizeof(Node_<value_type>) + sizeof(T*)))); }
 
 	void clear() {
-		delete _tree;
-		_tree = new Tree<value_type>();
+//		delete _tree;
+		clearMap();
+//		clearTree(_tree->root);
+//		_allocator_rebind_tree.destroy(_tree);
+//		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
+//		_tree = new Tree<value_type>();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
 	}
 
 	ft::pair<iterator, bool> insert(const value_type& value) {
-		Node_<value_type> *current, *parent, *x;
-
-		current = _tree->root;
-		parent = 0;
-		while (!current->NIL) {
-			if (value.first == current->pair->first) return ft::make_pair(current, false);
-			parent = current;
-			current = _comp(value.first, current->pair->first) ?
-					current->left : current->right;
-		}
-
-		x = new Node_<value_type>(value);
-		x->parent = parent;
-		x->left = &_tree->sentinel;
-		x->right = &_tree->sentinel;
-		x->color = 1;
-
-		if (parent) {
-			if (_comp(value.first, parent->pair->first))
-				parent->left = x;
-			else
-				parent->right = x;
-		} else {
-			_tree->root = x;
-		}
-
-		_tree->insertFixup(x);
-
-		if (x == _tree->getLast()) { _tree->sentinel.parent = x; }
-		if (x == _tree->getBegin()) { _tree->sentinel.begin = x; }
-		_tree->m_size++;
-		return ft::make_pair(x, true);
+		return insertNode(_tree->root, value);
 	}
 
 	iterator insert(iterator hint, const value_type& value) {
-//		if (hint->first > value.first)
-//		{
-//			iterator prev = hint;
-//			--prev;
-//			while (prev != end() && prev->first >= value.first){
-//				--hint;
-//				--prev;
-//			}
-//		}else if (hint->first < value.first) {
-//			iterator next = hint;
-//			++next;
-//			while (next != end() && next->first <= value.first) {
-//				++hint;
-//				++next;
-//			}
-//		}
-		return insert(value).first;
+		if (hint == end()) {
+			return insertNode(_tree->root, value).first;
+		}
+		else {
+			if (hint->first > value.first)
+			{
+				iterator prev = hint;
+				--prev;
+				while (prev != end() && prev->first >= value.first){
+					--hint;
+					--prev;
+				}
+			} else if (hint->first < value.first) {
+				iterator next = hint;
+				++next;
+				while (next != end() && next->first <= value.first) {
+					++hint;
+					++next;
+				}
+			}
+		}
+		return insertNode(hint.base(), value).first;
 	}
 
 	template< class InputIt >
@@ -207,7 +208,6 @@ public:
 				current = _comp(key, current->pair->first) ? current->left : current->right;
 		}
 		return end();
-//		return _tree->findNode(key, _comp);
 	}
 
 	const_iterator find( const Key& key ) const {
@@ -330,6 +330,56 @@ private:
 		if (!t->NIL) insert(*t->pair);
 		if (!t->right->NIL)
 			fillTree(t->right);
+	}
+
+	void clearTree(Node_<value_type> *tmp) {
+		if (tmp->NIL) return;
+		if (!tmp->left->NIL) clearTree(tmp->left);
+		if (!tmp->right->NIL) clearTree(tmp->right);
+		_allocator_rebind_node.destroy(tmp);
+		_allocator_rebind_node.deallocate(tmp, sizeof(Node_<value_type>));
+	}
+
+	void clearMap() {
+		clearTree(_tree->root);
+		_allocator_rebind_tree.destroy(_tree);
+		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
+	}
+
+	ft::pair<iterator, bool> insertNode(Node_<value_type> *hint, const value_type& value) {
+		Node_<value_type> *current, *parent, *x;
+
+		current = hint;
+		parent = 0;
+		while (!current->NIL) {
+			if (value.first == current->pair->first) return ft::make_pair(current, false);
+			parent = current;
+			current = _comp(value.first, current->pair->first) ?
+					  current->left : current->right;
+		}
+
+		x = _allocator_rebind_node.allocate(sizeof(Node_<value_type>));
+		_allocator_rebind_node.construct(x, value);
+		x->parent = parent;
+		x->left = &_tree->sentinel;
+		x->right = &_tree->sentinel;
+		x->color = 1;
+
+		if (parent) {
+			if (_comp(value.first, parent->pair->first))
+				parent->left = x;
+			else
+				parent->right = x;
+		} else {
+			_tree->root = x;
+		}
+
+		_tree->insertFixup(x);
+
+		if (x == _tree->getLast()) { _tree->sentinel.parent = x; }
+		if (x == _tree->getBegin()) { _tree->sentinel.begin = x; }
+		_tree->m_size++;
+		return ft::make_pair(x, true);
 	}
 
 };

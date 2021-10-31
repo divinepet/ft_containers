@@ -1,20 +1,2 @@
-In file included from ../stack_tests/constructor.cpp:1:
-In file included from ../stack_tests/../system/lib.hpp:41:
-../stack_tests/../system/system_methods.ipp:194:15: error: no viable conversion from 'std::set<int>' to 'std::stack<int>'
-        res1 = func1(set);
-                     ^~~
-../stack_tests/constructor.cpp:55:2: note: in instantiation of function template specialization 'run_stack_unit_test<int>' requested here
-        run_stack_unit_test<int>("constructor(InputIt)", copy_constructor_test, copy_constructor_test);
-        ^
-/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1/stack:133:5: note: candidate constructor not viable: no known conversion from 'std::set<int>' to 'const std::__1::stack<int, std::__1::deque<int, std::__1::allocator<int> > > &' for 1st argument
-    stack(const stack& __q) : c(__q.c) {}
-    ^
-In file included from ../stack_tests/constructor.cpp:1:
-In file included from ../stack_tests/../system/lib.hpp:41:
-../stack_tests/../system/system_methods.ipp:195:15: error: no viable conversion from 'ft::Set<int>' to 'ft::Stack<int>'
-        res2 = func2(my_set);
-                     ^~~~~~
-../stack_tests/../system/../../../Stack.hpp:17:3: note: candidate constructor not viable: no known conversion from 'ft::Set<int>' to 'const ft::Stack<int, ft::Vector<int, std::__1::allocator<int> > > &' for 1st argument
-                Stack(const Stack &other)                                                                       { _container = other._container; };
-                ^
-2 errors generated.
+warning: unknown warning option '-Wall -Wextra -Werror' [-Wunknown-warning-option]
+1 warning generated.

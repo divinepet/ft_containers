@@ -9,7 +9,11 @@ std::vector<int> swap_test(std::set<T> st) {
     std::set<T> st2;
     for (int i = 250000; i < 350000; ++i)
         st.insert(i);
+    long *adr1 = reinterpret_cast<long *>(&st);
+    long *adr2 = reinterpret_cast<long *>(&st2);
     st.swap(st2);
+    if (reinterpret_cast<long *>(&st) == adr1 && reinterpret_cast<long *>(&st2) == adr2)
+    	v.push_back(1);
     v.push_back(st2.size());
     typename std::set<T>::iterator it = st2.begin();
     for (; it != st2.end(); ++it) {
@@ -32,7 +36,11 @@ std::vector<int> swap_test(_set<T> st) {
     _set<T> st2;
     for (int i = 250000; i < 350000; ++i)
         st.insert(i);
+    long *adr1 = reinterpret_cast<long *>(&st);
+    long *adr2 = reinterpret_cast<long *>(&st2);
     st.swap(st2);
+    if (reinterpret_cast<long *>(&st) == adr1 && reinterpret_cast<long *>(&st2) == adr2)
+    	v.push_back(1);
     v.push_back(st2.size());
     typename _set<T>::iterator it = st2.begin();
     for (; it != st2.end(); ++it) {

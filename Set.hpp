@@ -8,64 +8,72 @@ namespace ft {
 template <class Key, class Compare = std::less<Key>, class A = std::allocator<Key > >
 class Set {
 public:
-	typedef Key														key_type;
-	typedef Key														value_type;
-	typedef std::size_t												size_type;
-	typedef std::ptrdiff_t											difference_type;
-	typedef Compare													key_compare;
-	typedef Compare													value_compare;
-	typedef A														allocator_type;
-	typedef value_type&												reference;
-	typedef const value_type&										const_reference;
-	typedef typename allocator_type::pointer						pointer;
-	typedef typename allocator_type::const_pointer					const_pointer;
-	typedef ft::node_iterator<Node_<value_type>*, value_type>		iterator;
-	typedef ft::node_iterator<const Node_<value_type>*, value_type>	const_iterator;
-	typedef ft::reverse_iterator<iterator>							reverse_iterator;
-	typedef ft::reverse_iterator<const_iterator>					const_reverse_iterator;
+	typedef Key																	key_type;
+	typedef Key																	value_type;
+	typedef std::size_t															size_type;
+	typedef std::ptrdiff_t														difference_type;
+	typedef Compare																key_compare;
+	typedef Compare																value_compare;
+	typedef A																	allocator_type;
+	typedef value_type&															reference;
+	typedef const value_type&													const_reference;
+	typedef typename allocator_type::pointer									pointer;
+	typedef typename allocator_type::const_pointer								const_pointer;
+	typedef ft::node_iterator<Node_<value_type>*, value_type>					iterator;
+	typedef ft::node_iterator<const Node_<value_type>*, value_type>				const_iterator;
+	typedef ft::reverse_iterator<iterator>										reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
+	typedef typename allocator_type::template rebind<Node_<value_type> >::other	allocator_rebind_node;
+	typedef typename allocator_type::template rebind<Tree<value_type> >::other	allocator_rebind_tree;
 private:
-	A			 													_allocator;
-	Compare		 													_comp;
-	Tree<value_type >*												_tree;
+	A			 																_allocator;
+	allocator_rebind_tree														_allocator_rebind_tree;
+	allocator_rebind_node														_allocator_rebind_node;
+	Compare		 																_comp;
+	Tree<value_type >*															_tree;
 public:
 
 	Set() {
-		_tree = new Tree<value_type>();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
 	}
 
-	explicit Set(const Compare& comp, const A& alloc = A())
-		: _comp(comp), _allocator(alloc) {
-		_tree = new Tree<value_type>();
+	explicit Set(const Compare& comp, const A& alloc = A()) : _comp(comp), _allocator(alloc) {
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
 	}
 
 	template< class InputIt >
 	Set( InputIt first, InputIt last,
-		 const Compare& comp = Compare(), const A& alloc = A() ) {
-			_tree = new Tree<value_type>();
-			for (; first != last; first++)
-				insert(*first);
+		 const Compare& comp = Compare(), const A& alloc = A() ) : _comp(comp), _allocator(alloc) {
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
+		for (; first != last; first++)
+			insert(*first);
 	}
 
 	Set(const Set& other) {
-		_tree = new Tree<value_type>(*(other._tree));
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree, *(other._tree));
 		fillTree(other._tree->root);
 	}
 
-	~Set() {
-		delete _tree;
-	}
 
 	Set& operator=( const Set& other ) {
 		if (this == &other)
 			return *this;
 		_comp = other._comp;
 		_allocator = other._allocator;
-		delete _tree;
-		_tree = new Tree<value_type>(*(other._tree));
+		clearSet();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree, *other._tree);
 		fillTree(other._tree->root);
 		return *this;
 	}
 
+	~Set() {
+		clearSet();
+	}
 
 	allocator_type			get_allocator() const			{ return _allocator; }
 	iterator 				begin()							{ return _tree->getBegin(); }
@@ -81,96 +89,37 @@ public:
 	size_type				max_size() const 				{ return std::numeric_limits<size_type>::max() / sizeof(Node_<value_type>); }
 
 	void clear() {
-		delete _tree;
-		_tree = new Tree<value_type>();
+		clearSet();
+		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
+		_allocator_rebind_tree.construct(_tree);
 	}
 
 	ft::pair<iterator, bool> insert( const value_type& value ) {
-		Node_<value_type> *current, *parent, *x;
-
-		current = _tree->root;
-		parent = 0;
-
-		while (!current->NIL) {
-			if (value == *current->pair) return ft::make_pair(current, false);
-			parent = current;
-			current = _comp(value, *current->pair) ?
-					current->left : current->right;
-		}
-
-		x = new Node_<value_type>(value);
-		x->parent = parent;
-		x->left = &_tree->sentinel;
-		x->right = &_tree->sentinel;
-		x->color = 1;
-
-		if (parent) {
-			if (_comp(value, *parent->pair))
-				parent->left = x;
-			else
-				parent->right = x;
-		} else {
-			_tree->root = x;
-		}
-
-		_tree->insertFixup(x);
-
-		if (x == _tree->getLast()) { _tree->sentinel.parent = x; }
-		if (x == _tree->getBegin()) { _tree->sentinel.begin = x; }
-		_tree->m_size++;
-		return ft::make_pair(x, true);
+		return insertNode(_tree->root, value);
 	}
 
 	iterator insert(iterator hint, const value_type& value) {
-		if (*hint > value)
-		{
-			iterator prev = hint;
-			--prev;
-			while (prev != end() && *prev >= value) {
-				--hint;
-				--prev;
-			}
-		}else if (*hint < value) {
-			iterator next = hint;
-			++next;
-			while (next != end() && *next <= value) {
-				++hint;
-				++next;
-			}
-		}
-		Node_<value_type> *current, *parent, *x;
-
-		current = hint.base();
-		parent = 0;
-
-		while (!current->NIL) {
-			if (value == *current->pair) return current;
-			parent = current;
-			current = _comp(value, *current->pair) ?
-					current->left : current->right;
-		}
-
-		x = new Node_<value_type>(value);
-		x->parent = parent;
-		x->left = &_tree->sentinel;
-		x->right = &_tree->sentinel;
-		x->color = 1;
-
-		if (parent) {
-			if (_comp(value, *parent->pair))
-				parent->left = x;
-			else
-				parent->right = x;
+		if (hint == end()) {
+			return insertNode(_tree->root, value).first;
 		} else {
-			_tree->root = x;
+			if (*hint > value)
+			{
+				iterator prev = hint;
+				--prev;
+				while (prev != end() && *prev >= value) {
+					--hint;
+					--prev;
+				}
+			}else if (*hint < value) {
+				iterator next = hint;
+				++next;
+				while (next != end() && *next <= value) {
+					++hint;
+					++next;
+				}
+			}
 		}
-
-		_tree->insertFixup(x);
-
-		if (x == _tree->getLast()) { _tree->sentinel.parent = x; }
-		if (x == _tree->getBegin()) { _tree->sentinel.begin = x; }
-		_tree->m_size++;
-		return x;
+		return insertNode(hint.base(), value).first;
 	}
 
 	template< class InputIt >
@@ -339,6 +288,54 @@ private:
 			fillTree(t->right);
 	}
 
+	void clearTree(Node_<value_type> *tmp) {
+		if (tmp->NIL) return;
+		if (!tmp->left->NIL) clearTree(tmp->left);
+		if (!tmp->right->NIL) clearTree(tmp->right);
+		_allocator_rebind_node.destroy(tmp);
+		_allocator_rebind_node.deallocate(tmp, sizeof(Node_<value_type>));
+	}
+
+	void clearSet() {
+		clearTree(_tree->root);
+		_allocator_rebind_tree.destroy(_tree);
+		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
+	}
+
+	ft::pair<iterator, bool> insertNode(Node_<value_type> *hint, const value_type& value) {
+		Node_<value_type> *current, *parent, *x;
+
+		current = hint;
+		parent = 0;
+		while (!current->NIL) {
+			if (value == *current->pair) return ft::make_pair(current, false);
+			parent = current;
+			current = _comp(value, *current->pair) ?
+					current->left : current->right;
+		}
+
+		x = _allocator_rebind_node.allocate(sizeof(Node_<value_type>));
+		_allocator_rebind_node.construct(x, value);
+		x->parent = parent;
+		x->left = &_tree->sentinel;
+		x->right = &_tree->sentinel;
+		x->color = 1;
+
+		if (parent) {
+			if (_comp(value, *parent->pair))
+				parent->left = x;
+			else
+				parent->right = x;
+		} else {
+			_tree->root = x;
+		}
+
+		_tree->insertFixup(x);
+		if (x == _tree->getLast()) { _tree->sentinel.parent = x; }
+		if (x == _tree->getBegin()) { _tree->sentinel.begin = x; }
+		_tree->m_size++;
+		return ft::make_pair(x, true);
+	}
 };
 }
 

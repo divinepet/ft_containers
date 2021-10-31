@@ -17,9 +17,8 @@ namespace ft {
 		Stack(const Stack &other) 									{ _container = other._container; };
 		~Stack() 													{};
 		Stack& operator=(const Stack &other)						{ if (this == &other) return *this;
-																	_container = other._container;
-																	return *this; };
-
+																	  _container = other._container;
+																	  return *this; };
 		reference top()												{ return _container.back(); };
 		const_reference top() const									{ return _container.back(); };
 		bool empty() const 											{ return _container.empty(); };

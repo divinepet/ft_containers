@@ -16,8 +16,9 @@ void printElement(const std::string& t) {
 	cout << RESET;
 }
 
+#if defined(_map)
 template <class T, class V, class C>
-		void fillMap(std::map<T, V, C> &mp) {
+void fillMap(std::map<T, V, C> &mp) {
 	mp.insert(std::make_pair(16, 3));
 	mp.insert(std::make_pair(8, 3));
 	mp.insert(std::make_pair(23, 3));
@@ -30,7 +31,7 @@ template <class T, class V, class C>
 }
 
 template <class T, class V, class C>
-		void fillMap(_map<T, V, C> &mp) {
+void fillMap(_map<T, V, C> &mp) {
 	mp.insert(_make_pair(16, 3));
 	mp.insert(_make_pair(8, 3));
 	mp.insert(_make_pair(23, 3));
@@ -41,7 +42,9 @@ template <class T, class V, class C>
 	mp.insert(_make_pair(4, 3));
 	mp.insert(_make_pair(11, 3));
 }
+#endif
 
+#if defined(_set)
 template <class T, class C>
 void fillSet(std::set<T, C> &mp) {
 	mp.insert(16);
@@ -67,6 +70,7 @@ void fillSet(_set<T, C> &mp) {
 	mp.insert(4);
 	mp.insert(11);
 }
+#endif
 
 std::string exec(const char* cmd) {
 	char buffer[128];
@@ -105,6 +109,7 @@ void leaks_test(pid_t pid) {
 		printElement(REDD + "LEAKS" + RESET);
 }
 
+#if defined(_map)
 class MapBoolTest {
 public:
 	std::map<int, int> m1, m2, m3, m4;
@@ -125,7 +130,9 @@ public:
 		m9.insert(std::make_pair("123", "12")); mp9.insert(ft::make_pair("123", "12"));
 	}
 };
+#endif
 
+#if defined(_set)
 class SetBoolTest {
 public:
 	std::set<int> s1, s2, s3, s4;
@@ -146,6 +153,30 @@ public:
 		s9.insert("123"); st9.insert("123");
 	}
 };
+#endif
+
+#if defined(_stack)
+class StackBoolTest {
+public:
+	std::stack<int> s1, s2, s3, s4;
+	std::stack<string> s5, s6, s7, s8, s9;
+	_stack<int> st1, st2, st3, st4;
+	_stack<string> st5, st6, st7, st8, st9;
+
+	StackBoolTest() {
+		s1.push(2); st1.push(2);
+		s2.push(3); st2.push(3);
+		s3.push(3); st3.push(3);
+		s4.push(4); st4.push(4);
+		s4.push(4); st4.push(4);
+		s5.push("122"); st5.push("122");
+		s6.push("123"); st6.push("123");
+		s7.push("124"); st7.push("124");
+		s8.push("12"); st8.push("12");
+		s9.push("123"); st9.push("123");
+	}
+};
+#endif
 
 void run_bool_unit_test(std::string test_name, bool (func1)()) {
     time_t t1;
@@ -161,6 +192,7 @@ void run_bool_unit_test(std::string test_name, bool (func1)()) {
 	cout << endl;
 }
 
+#if defined(_vector)
 template <class T>
 void run_vector_unit_test(std::string test_name, std::vector<int> (func1)(std::vector<T>), std::vector<int> (func2)(_vector<T>)) {
     time_t t1;
@@ -180,7 +212,9 @@ void run_vector_unit_test(std::string test_name, std::vector<int> (func1)(std::v
 	leaks_test(getpid());
 	cout << endl;
 }
+#endif
 
+#if defined(_stack)
 template <class T>
 void run_stack_unit_test(std::string test_name, std::vector<int> (func1)(std::stack<T>), std::vector<int> (func2)(_stack<T>)) {
 	time_t t1;
@@ -200,7 +234,9 @@ void run_stack_unit_test(std::string test_name, std::vector<int> (func1)(std::st
 	leaks_test(getpid());
 	cout << endl;
 }
+#endif
 
+#if defined(_map)
 template <class T, class V>
 void run_map_unit_test(std::string test_name, std::vector<int> (func1)(std::map<T, V>), std::vector<int> (func2)(_map<T, V>)) {
 	time_t t1;
@@ -220,7 +256,9 @@ void run_map_unit_test(std::string test_name, std::vector<int> (func1)(std::map<
 	leaks_test(getpid());
 	cout << endl;
 }
+#endif
 
+#if defined(_set)
 template <class T>
 void run_set_unit_test(std::string test_name, std::vector<int> (func1)(std::set<T>), std::vector<int> (func2)(_set<T>)) {
 	time_t t1;
@@ -240,3 +278,4 @@ void run_set_unit_test(std::string test_name, std::vector<int> (func1)(std::set<
 	leaks_test(getpid());
 	cout << endl;
 }
+#endif

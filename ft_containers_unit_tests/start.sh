@@ -4,27 +4,27 @@ trap 'rm -f a.out test1 ; echo -e "\n"See "\033[1mlogs.txt\033[0m" for more info
 cd sources/system/
 if [[ $1 = -m || $1 = --map ]]
 then
-  cat header
+  cat credits/header
   clang++ run_map.cpp && ./a.out
 elif [[ $1 = -v || $1 = --vector ]]
 then
-  cat header
+  cat credits/header
   clang++ run_vector.cpp && ./a.out
 elif [[ $1 = -s || $1 = --set ]]
 then
-  cat header
+  cat credits/header
   clang++ run_set.cpp && ./a.out
 elif [[ $1 = -u || $1 = --utils ]]
 then
-  cat header
+  cat credits/header
   clang++ run_utilities.cpp && ./a.out
 elif [[ $1 = -st || $1 = --stack ]]
 then
-  cat header
+  cat credits/header
   clang++ run_stack.cpp && ./a.out
 elif [[ $1 = '' ]]
 then
-  cat header
+  cat credits/header
   clang++ run_vector.cpp && ./a.out
   clang++ run_utilities.cpp && ./a.out
   clang++ run_stack.cpp && ./a.out

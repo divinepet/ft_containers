@@ -20,7 +20,7 @@ class Tree {
 public:
 	Node_<value_type> sentinel;
 	Node_<value_type> *root;
-	size_t		m_size;
+	size_t m_size;
 	Tree() : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
@@ -31,7 +31,7 @@ public:
 		root = &sentinel;
 	}
 
-	~Tree() { clearTree(root); };
+//	~Tree() { clearTree(root); };
 
 	Tree(Tree<value_type> &other) : m_size(0) {
 		sentinel.left = &sentinel;
@@ -43,17 +43,16 @@ public:
 		root = &sentinel;
 	}
 
-	void clearTree(Node_<value_type> *tmp) {
-		if (tmp->NIL) return;
-		if (!tmp->left->NIL) clearTree(tmp->left);
-		if (!tmp->right->NIL) clearTree(tmp->right);
-		delete tmp;
-	}
+//	void clearTree(Node_<value_type> *tmp) {
+//		if (tmp->NIL) return;
+//		if (!tmp->left->NIL) clearTree(tmp->left);
+//		if (!tmp->right->NIL) clearTree(tmp->right);
+//		delete tmp;
+//	}
 
 	Tree& operator=(const Tree<value_type>& other) {
 		if (this == &other)
 			return *this;
-		clearTree(root);
 		root = other.root;
 		sentinel = other.sentinel;
 		m_size = other.m_size;
@@ -229,8 +228,6 @@ public:
 		sentinel.parent = getLast();
 		sentinel.begin = getBegin();
 		m_size--;
-		// todo delete free
-//		free (y);
 		delete y;
 		return 1;
 	}

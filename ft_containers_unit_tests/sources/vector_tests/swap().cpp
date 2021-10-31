@@ -9,7 +9,11 @@ std::vector<int> swap_test(std::vector<T> vector) {
     v.push_back(vector[2]);
     v.push_back(vector.size());
     v.push_back(vector.capacity());
+    long *adr1 = reinterpret_cast<long *>(&vector);
+    long *adr2 = reinterpret_cast<long *>(&tmp);
     vector.swap(tmp);
+    if (reinterpret_cast<long *>(&vector) == adr1 && reinterpret_cast<long *>(&tmp) == adr2)
+    	v.push_back(1);
     v.push_back(vector[2]);
     v.push_back(vector.size());
     v.push_back(vector.capacity());
@@ -38,7 +42,11 @@ std::vector<int> swap_test(_vector<T> vector) {
     v.push_back(vector[2]);
     v.push_back(vector.size());
     v.push_back(vector.capacity());
+    long *adr1 = reinterpret_cast<long *>(&vector);
+    long *adr2 = reinterpret_cast<long *>(&tmp);
     vector.swap(tmp);
+    if (reinterpret_cast<long *>(&vector) == adr1 && reinterpret_cast<long *>(&tmp) == adr2)
+    	v.push_back(1);
     v.push_back(vector[2]);
     v.push_back(vector.size());
     v.push_back(vector.capacity());

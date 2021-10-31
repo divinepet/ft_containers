@@ -6,13 +6,14 @@ void testCompile(int *status, const char* func_filename, char **env) {
 
     int     fd_log = open("../../logs.txt", O_RDWR | O_CREAT, 0777);
     pid_t   dip;
-    char**  test_args = (char**)malloc(sizeof(char*) * 5);
+    char**  test_args = (char**)malloc(sizeof(char*) * 6);
 
     test_args[0] = strdup(_CXX);
-    test_args[1] = strdup("-o");
-    test_args[2] = strdup(_EXEC_NAME);
-    test_args[3] = strdup(func_filename);
-    test_args[4] = NULL;
+    test_args[1] = strdup(_CXX_FLAGS);
+    test_args[2] = strdup("-o");
+    test_args[3] = strdup(_EXEC_NAME);
+    test_args[4] = strdup(func_filename);
+    test_args[5] = NULL;
 
     dip = fork();
     if (!dip) {
