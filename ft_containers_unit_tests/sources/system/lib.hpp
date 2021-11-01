@@ -1,6 +1,8 @@
 #ifndef UNIT_TESTS_HPP
 # define UNIT_TESTS_HPP
 
+int _allocator_used = 0;
+
 #include <vector>
 #include <map>
 #include <set>
@@ -16,28 +18,13 @@
 #include <csignal>
 #include <unistd.h>
 #include <fcntl.h>
+#include "output.hpp"
+#include "Alloc.hpp"
 #include "../../config.hpp"
 
 volatile static time_t g_start1;
 volatile static time_t g_start2;
 volatile static time_t g_end1;
 volatile static time_t g_end2;
-
-const std::string GREEN = "\x1B[1;32m";
-const std::string REDD = "\x1B[1;31m";
-const std::string YELLOW = "\x1B[1;33m";
-const std::string RESET = "\033[0m";
-
-using std::string;
-using std::cout;
-using std::endl;
-
-#define _CXX "/usr/bin/clang++"
-#define _CXX_FLAGS "-Wall -Wextra -Werror"
-#define _EXEC_NAME "test1"
-#define _ALARM_TIMEOUT 20
-
-#include "system_methods.ipp"
-#include "engine.ipp"
 
 #endif

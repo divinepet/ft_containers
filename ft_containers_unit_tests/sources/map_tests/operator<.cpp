@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 bool map_less_than_test() {
 	std::vector<int> result, result2;

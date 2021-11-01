@@ -1,4 +1,4 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
 
 template <class T> typename _enable_if< std::is_unsigned<T>::value >::type
 		foo(T) {

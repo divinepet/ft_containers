@@ -9,6 +9,7 @@ using std::endl;
 #include "Map.hpp"
 #include "Set.hpp"
 #include "Vector.hpp"
+#include "Stack.hpp"
 
 /*
  *
@@ -27,5 +28,9 @@ using std::endl;
  *
  * */
 
-int main(int argc, char *argv[]) {
+
+int main (void) {
+	std::deque<int> deq;
+	ft::Stack<int> st(deq);
+	return (0);
 }

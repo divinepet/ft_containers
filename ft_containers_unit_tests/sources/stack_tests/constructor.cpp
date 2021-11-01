@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 template <class T>
 std::vector<int> constructor_test(std::stack<T> stk) {
@@ -28,7 +29,7 @@ std::vector<int> constructor_test(std::stack<T> stk) {
 template <class T>
 std::vector<int> constructor_test(_stack<T> stk) {
 	std::vector<int> v;
-	_vector<int> deque;
+	std::deque<int> deque;
 	for (int i = 0; i < 1000000; ++i)
 		deque.push_back(i);
 	for (int i = 1000000; i < 2000000; ++i)

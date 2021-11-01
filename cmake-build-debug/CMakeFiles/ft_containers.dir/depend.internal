@@ -9,7 +9,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator!=.cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -22,7 +22,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator<.cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -35,7 +35,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator<=.cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -48,7 +48,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator==.cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -61,7 +61,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator>.cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -74,8 +74,86 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator>=.cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/constructor.cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/constructor.cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/empty().cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/empty().cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/pop().cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/pop().cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/push().cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/push().cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/size().cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/size().cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/top().cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/top().cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
@@ -87,7 +165,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_map.cpp
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_map.cpp
@@ -100,10 +178,23 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_set.cpp
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_set.cpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_stack.cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_stack.cpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
 CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utilities.cpp.o
  /Users/elaronda/Desktop/ft_containers/Iterator.hpp
@@ -113,7 +204,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utiliti
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_utilities.cpp
@@ -126,7 +217,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_vector.
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_vector.cpp
@@ -139,7 +230,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/en
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
@@ -152,7 +243,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/eq
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
@@ -165,11 +256,24 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o
+ /Users/elaronda/Desktop/ft_containers/Iterator.hpp
+ /Users/elaronda/Desktop/ft_containers/Map.hpp
+ /Users/elaronda/Desktop/ft_containers/Node.hpp
+ /Users/elaronda/Desktop/ft_containers/Set.hpp
+ /Users/elaronda/Desktop/ft_containers/Stack.hpp
+ /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp
 CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o
  /Users/elaronda/Desktop/ft_containers/Iterator.hpp
  /Users/elaronda/Desktop/ft_containers/Map.hpp
@@ -178,7 +282,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/le
  /Users/elaronda/Desktop/ft_containers/Stack.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
  /Users/elaronda/Desktop/ft_containers/Vector.hpp
- /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+ /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
  /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
@@ -189,4 +293,5 @@ CMakeFiles/ft_containers.dir/main.cpp.o
  /Users/elaronda/Desktop/ft_containers/Node.hpp
  /Users/elaronda/Desktop/ft_containers/Set.hpp
  /Users/elaronda/Desktop/ft_containers/Utility.hpp
+ /Users/elaronda/Desktop/ft_containers/Vector.hpp
  /Users/elaronda/Desktop/ft_containers/main.cpp

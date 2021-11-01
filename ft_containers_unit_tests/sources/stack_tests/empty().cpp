@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 template <class T>
 std::vector<int> empty_test(std::stack<T> stk) {

@@ -41,9 +41,9 @@ public:
 			buffer[i] = value;
 	};
 
-	//todo make constructors better
-	//todo complete exceptions
-	explicit Vector(iterator first, iterator last, const A& alloc = A()) : allocator(alloc), _capacity(0), _size(0) {
+	template <class InputIterator>
+	Vector(InputIterator first, InputIterator last, const A& alloc = A(),
+		  typename ft::enable_if<!ft::is_integral<InputIterator>::value, void>::type* = 0) : allocator(alloc), _capacity(0), _size(0) {
 		buffer = allocator.allocate(_capacity);
 		this->assign(first, last);
 	};
@@ -82,7 +82,10 @@ public:
 			buffer[i] = value;
 	};
 
-	void assign(iterator first, iterator last) {
+
+	template <class InputIterator>
+	typename ft::enable_if<!ft::is_integral<InputIterator>::value, void>::type
+	assign(InputIterator first, InputIterator last) {
 		int range_size = last - first;
 		if (range_size < 0) throw std::length_error("Vector");
 		this->clear();
@@ -133,7 +136,6 @@ public:
 																 std::numeric_limits<size_type>::max() / sizeof(value_type))); };
 
 
-	//todo miss iterator pos when deleting tmp
 	void reserve(size_type size) {
 		if (size > _capacity) {
 			T* tmp = allocator.allocate(size);
@@ -146,8 +148,9 @@ public:
 	};
 
 	void clear() {
-		for (size_type i = 0; i < _size; i++)
+		for (size_type i = 0; i < _size; i++) {
 			allocator.destroy(buffer + i);
+		}
 		_size = 0;
 	};
 
@@ -182,16 +185,20 @@ public:
 		return iterator(buffer + index);
 	};
 
-	void insert( iterator pos, iterator first, iterator last) {
-		size_t count = last - first;
-		size_t max_size = _size + count;
-		int last_index = (pos - begin()) + count - 1;
+	template <class InputIt>
+	typename ft::enable_if<!ft::is_integral<InputIt>::value, void>::type
+	insert( iterator pos, InputIt first, InputIt last) {
+		size_t range_size = last - first;
+		if (!validate_iterator_values(first, last, range_size))
+			throw std::exception();
+		size_t new_size = _size + range_size;
 
-		if (count >= _capacity) {
-			reserve(_capacity + count);
-			_size = max_size;
+		int last_index = (pos - begin()) + range_size - 1;
+		if (range_size >= _capacity) {
+			reserve(_capacity + range_size);
+			_size = new_size;
 		} else {
-			while (_size != max_size) {
+			while (_size != new_size) {
 				if (_size == _capacity)
 					reserve(_capacity * 2);
 				_size++;
@@ -199,15 +206,15 @@ public:
 		}
 		for (int i = _size - 1; i >= 0; --i) {
 			if (i == last_index) {
-				for (; count > 0; --count, --i)
+				for (; range_size > 0; --range_size, --i) {
 					buffer[i] = *--last;
+				}
 				return;
 			}
-			buffer[i] = buffer[i - count];
+			buffer[i] = buffer[i - range_size];
 		}
 	};
 
-	//todo make correct return
 	iterator erase( iterator pos ) {
 		int index = pos - begin();
 		for (size_t i = index; i < _size; ++i) {
@@ -315,5 +322,23 @@ public:
 		}
 		return false;
 	};
+
+private:
+
+	template<class InputIt>
+	typename ft::enable_if<!ft::is_integral<InputIt>::value, bool>::type
+	validate_iterator_values(InputIt first, InputIt last, size_t range) {
+		pointer reserved_buffer;
+		reserved_buffer = allocator.allocate(range);
+		bool result = true;
+		size_t i = 0;
+
+		for (;first != last; ++first, ++i) {
+			try { reserved_buffer[i] = *first; }
+			catch (...) { result = false; break; }
+		}
+		allocator.deallocate(reserved_buffer, range);
+		return result;
+	}
 };
 }

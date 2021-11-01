@@ -9,7 +9,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/map_tests/operator!$(EQUALS).cpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
@@ -22,7 +22,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/map_tests/operator<.cpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
@@ -35,7 +35,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/map_tests/operator<$(EQUALS).cpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
@@ -48,7 +48,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/map_tests/operator$(EQUALS)$(EQUALS).cpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
@@ -61,7 +61,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/map_tests/operator>.cpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
@@ -74,8 +74,86 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/map_tests/operator
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/map_tests/operator>$(EQUALS).cpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/constructor.cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/stack_tests/constructor.cpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/empty().cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/stack_tests/empty().cpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/pop().cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/stack_tests/pop().cpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/push().cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/stack_tests/push().cpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/size().cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/stack_tests/size().cpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/stack_tests/top().cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/stack_tests/top().cpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/system_methods.ipp
@@ -87,7 +165,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_map.cpp
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/run_map.cpp \
@@ -100,10 +178,23 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_set.cpp
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/run_set.cpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_stack.cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/run_stack.cpp \
  ../ft_containers_unit_tests/sources/system/system_methods.ipp
 CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utilities.cpp.o: \
  ../Iterator.hpp \
@@ -113,7 +204,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_utiliti
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/run_utilities.cpp \
@@ -126,7 +217,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/system/run_vector.
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/run_vector.cpp \
@@ -139,7 +230,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/en
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/system_methods.ipp \
@@ -152,7 +243,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/eq
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/system_methods.ipp \
@@ -165,11 +256,24 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/system_methods.ipp \
  ../ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp
+CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o: \
+ ../Iterator.hpp \
+ ../Map.hpp \
+ ../Node.hpp \
+ ../Set.hpp \
+ ../Stack.hpp \
+ ../Utility.hpp \
+ ../Vector.hpp \
+ ../ft_containers_unit_tests/config.hpp \
+ ../ft_containers_unit_tests/sources/system/engine.ipp \
+ ../ft_containers_unit_tests/sources/system/lib.hpp \
+ ../ft_containers_unit_tests/sources/system/system_methods.ipp \
+ ../ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp
 CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o: \
  ../Iterator.hpp \
  ../Map.hpp \
@@ -178,7 +282,7 @@ CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/le
  ../Stack.hpp \
  ../Utility.hpp \
  ../Vector.hpp \
- ../ft_containers_unit_tests/UserNames.hpp \
+ ../ft_containers_unit_tests/config.hpp \
  ../ft_containers_unit_tests/sources/system/engine.ipp \
  ../ft_containers_unit_tests/sources/system/lib.hpp \
  ../ft_containers_unit_tests/sources/system/system_methods.ipp \
@@ -189,4 +293,5 @@ CMakeFiles/ft_containers.dir/main.cpp.o: \
  ../Node.hpp \
  ../Set.hpp \
  ../Utility.hpp \
+ ../Vector.hpp \
  ../main.cpp

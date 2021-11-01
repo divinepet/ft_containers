@@ -610,6 +610,30 @@ ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s
 .PHONY : ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.s
 
+ft_containers_unit_tests/sources/utilities_tests/iterator_traits.o: ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/iterator_traits.o
+
+# target to build an object file
+ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o
+
+ft_containers_unit_tests/sources/utilities_tests/iterator_traits.i: ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/iterator_traits.i
+
+# target to preprocess a source file
+ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.i
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.i
+
+ft_containers_unit_tests/sources/utilities_tests/iterator_traits.s: ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/iterator_traits.s
+
+# target to generate assembly for a file
+ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ft_containers.dir/build.make CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.s
+.PHONY : ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.s
+
 ft_containers_unit_tests/sources/utilities_tests/lexicographical.o: ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o
 .PHONY : ft_containers_unit_tests/sources/utilities_tests/lexicographical.o
 
@@ -727,6 +751,9 @@ help:
 	@echo "... ft_containers_unit_tests/sources/utilities_tests/is_integral.o"
 	@echo "... ft_containers_unit_tests/sources/utilities_tests/is_integral.i"
 	@echo "... ft_containers_unit_tests/sources/utilities_tests/is_integral.s"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/iterator_traits.o"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/iterator_traits.i"
+	@echo "... ft_containers_unit_tests/sources/utilities_tests/iterator_traits.s"
 	@echo "... ft_containers_unit_tests/sources/utilities_tests/lexicographical.o"
 	@echo "... ft_containers_unit_tests/sources/utilities_tests/lexicographical.i"
 	@echo "... ft_containers_unit_tests/sources/utilities_tests/lexicographical.s"

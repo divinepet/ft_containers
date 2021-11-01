@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 bool operator_more_equal_test() {
     std::vector<int> result, result_2;

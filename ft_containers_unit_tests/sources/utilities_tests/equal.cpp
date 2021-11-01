@@ -1,4 +1,4 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
 
 bool equal_test() {
 	std::string s = "approvjvorppa";

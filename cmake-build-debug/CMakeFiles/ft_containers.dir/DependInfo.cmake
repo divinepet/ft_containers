@@ -28,6 +28,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp" "/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.o"
   "/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/equal.cpp" "/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/equal.cpp.o"
   "/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp" "/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.o"
+  "/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp" "/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o"
   "/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp" "/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o"
   "/Users/elaronda/Desktop/ft_containers/main.cpp" "/Users/elaronda/Desktop/ft_containers/cmake-build-debug/CMakeFiles/ft_containers.dir/main.cpp.o"
   )

@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 template <class T, class V>
 std::vector<int> count_test(std::map<T, V> mp) {
@@ -21,8 +22,6 @@ std::vector<int> count_test(_map<T, V> mp) {
 }
 
 int main() {
-
     run_map_unit_test<int, int>("count()", count_test, count_test);
-
     return (0);
 }

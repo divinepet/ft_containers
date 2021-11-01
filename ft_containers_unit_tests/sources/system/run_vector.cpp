@@ -1,10 +1,12 @@
 #include "lib.hpp"
+#include "engine.ipp"
 
 int main(int argc, char* argv[], char* env[]) {
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	cout << "|                                       VECTOR                                    |" << endl;
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	printElement("Function"); printElement("Result"); printElement("ft time       std time      leaks"); cout << endl;
+	cout << "--------------------------------------------------------------------------------------------" << endl;
+	cout << "|                                            VECTOR                                        |" << endl;
+	cout << "--------------------------------------------------------------------------------------------" << endl;
+	printElement("FUNCTION"); printElement(WHITE + "RESULT" + RESET); printElement(WHITE + "FT TIME" + RESET); printElement(WHITE + "STD TIME" + RESET);
+	printElement(WHITE + "LEAKS" + RESET); cout << endl;
 
 	runFunctionTest("../vector_tests/constructor.cpp", argv, env);
 	runFunctionTest("../vector_tests/constructor(std_iter).cpp", argv, env);
@@ -36,6 +38,7 @@ int main(int argc, char* argv[], char* env[]) {
 	runFunctionTest("../vector_tests/swap().cpp", argv, env);
 	runFunctionTest("../vector_tests/clear().cpp", argv, env);
 	runFunctionTest("../vector_tests/data().cpp", argv, env);
+	runFunctionTest("../vector_tests/using_allocator.cpp", argv, env);
 	runFunctionTest("../vector_tests/operator==.cpp", argv, env);
 	runFunctionTest("../vector_tests/operator!=.cpp", argv, env);
 	runFunctionTest("../vector_tests/operator<.cpp", argv, env);

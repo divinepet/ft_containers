@@ -19,6 +19,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/enable_if.cpp.o"
   "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/equal.cpp.o"
   "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp.o"
+  "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp.o"
   "CMakeFiles/ft_containers.dir/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp.o"
   "CMakeFiles/ft_containers.dir/main.cpp.o"
   "ft_containers"

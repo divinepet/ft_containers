@@ -13,7 +13,8 @@ namespace ft {
 		typedef typename Container::reference						reference;
 		typedef typename Container::const_reference					const_reference;
 
-		explicit Stack(const Container &cont = Container())			{ _container = cont; };
+		template<class Cont>
+		explicit Stack(Cont &cont = Cont())							{ _container = cont; };
 		Stack(const Stack &other) 									{ _container = other._container; };
 		~Stack() 													{};
 		Stack& operator=(const Stack &other)						{ if (this == &other) return *this;

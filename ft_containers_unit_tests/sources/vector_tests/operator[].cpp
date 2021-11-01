@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 template <typename T>
 std::vector<int> operator1_test(std::vector<T> vector) {

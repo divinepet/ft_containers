@@ -38,17 +38,17 @@ Vector.hpp
 Iterator.hpp
 /Users/elaronda/Desktop/ft_containers/Iterator.hpp
 
-/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
 ../Vector.hpp
 /Users/elaronda/Desktop/ft_containers/Vector.hpp
-../Utility.hpp
-/Users/elaronda/Desktop/ft_containers/Utility.hpp
 ../Stack.hpp
 /Users/elaronda/Desktop/ft_containers/Stack.hpp
 ../Map.hpp
 /Users/elaronda/Desktop/ft_containers/Map.hpp
 ../Set.hpp
 /Users/elaronda/Desktop/ft_containers/Set.hpp
+../Utility.hpp
+/Users/elaronda/Desktop/ft_containers/Utility.hpp
 
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator!=.cpp
 ../system/lib.hpp
@@ -74,6 +74,30 @@ Iterator.hpp
 ../system/lib.hpp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
 
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/constructor.cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/empty().cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/pop().cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/push().cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/size().cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/top().cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/engine.ipp
 lib.hpp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -84,6 +108,10 @@ vector
 map
 -
 set
+-
+stack
+-
+deque
 -
 fstream
 -
@@ -101,14 +129,12 @@ iostream
 -
 csignal
 -
-csetjmp
--
 unistd.h
 -
 fcntl.h
 -
-../../UserNames.hpp
-/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/UserNames.hpp
+../../config.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/config.hpp
 system_methods.ipp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/system_methods.ipp
 engine.ipp
@@ -119,6 +145,10 @@ lib.hpp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
 
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_set.cpp
+lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_stack.cpp
 lib.hpp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
 
@@ -146,6 +176,10 @@ lib.hpp
 ../system/lib.hpp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
 
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp
+../system/lib.hpp
+/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
+
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp
 ../system/lib.hpp
 /Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/lib.hpp
@@ -153,7 +187,13 @@ lib.hpp
 /Users/elaronda/Desktop/ft_containers/main.cpp
 iostream
 -
+stack
+-
+list
+-
 map
+-
+vector
 -
 set
 -
@@ -161,4 +201,6 @@ Map.hpp
 /Users/elaronda/Desktop/ft_containers/Map.hpp
 Set.hpp
 /Users/elaronda/Desktop/ft_containers/Set.hpp
+Vector.hpp
+/Users/elaronda/Desktop/ft_containers/Vector.hpp
 

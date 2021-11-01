@@ -1,4 +1,5 @@
-#include "../system/lib.hpp"
+#include "../system/system_methods.ipp"
+#include "__service.ipp"
 
 bool operator_equal_test() {
     g_start2 = timer(); g_end2 = timer(); g_start1 = timer(); g_end1 = timer();

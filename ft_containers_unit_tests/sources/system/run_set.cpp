@@ -1,10 +1,12 @@
 #include "lib.hpp"
+#include "engine.ipp"
 
 int main(int argc, char* argv[], char* env[]) {
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	cout << "|                                       SET                                       |" << endl;
-	cout << "-----------------------------------------------------------------------------------" << endl;
-	printElement("Function"); printElement("Result"); printElement("ft time       std time      leaks"); cout << endl;
+	cout << "--------------------------------------------------------------------------------------------" << endl;
+	cout << "|                                             SET                                          |" << endl;
+	cout << "--------------------------------------------------------------------------------------------" << endl;
+	printElement("FUNCTION"); printElement(WHITE + "RESULT" + RESET); printElement(WHITE + "FT TIME" + RESET); printElement(WHITE + "STD TIME" + RESET);
+	printElement(WHITE + "LEAKS" + RESET); cout << endl;
 
 	runFunctionTest("../set_tests/constructor.cpp", argv, env);
 	runFunctionTest("../set_tests/assign_overload.cpp", argv, env);
@@ -28,6 +30,7 @@ int main(int argc, char* argv[], char* env[]) {
 	runFunctionTest("../set_tests/upper_bound.cpp", argv, env);
 	runFunctionTest("../set_tests/equal_range.cpp", argv, env);
 	runFunctionTest("../set_tests/key_comp.cpp", argv, env);
+	runFunctionTest("../set_tests/using_allocator.cpp", argv, env);
 	runFunctionTest("../set_tests/operator==.cpp", argv, env);
 	runFunctionTest("../set_tests/operator!=.cpp", argv, env);
 	runFunctionTest("../set_tests/operator<.cpp", argv, env);

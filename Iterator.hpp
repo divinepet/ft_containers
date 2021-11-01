@@ -117,7 +117,7 @@ namespace ft {
 		typedef const Pair&                                     				const_reference;
 		typedef Pair*                                           				pointer;
 		typedef const Pair*                                     				const_pointer;
-		typedef std::bidirectional_iterator_tag                 				iterator_category;
+		typedef typename iterator_traits<iterator_type>::iterator_category  	iterator_category;
 
 		node_iterator(T value = nullptr) : node(value)							{};
 		~node_iterator()														{};
@@ -148,10 +148,12 @@ namespace ft {
 	public:
 		typedef T                                                			iterator_type;
 		typedef typename iterator_traits<T>::difference_type     			difference_type;
+		typedef typename iterator_traits<T>::value_type         			value_type;
 		typedef typename iterator_traits<T>::reference           			reference;
 		typedef typename iterator_traits<T>::const_reference     			const_reference;
 		typedef typename iterator_traits<T>::pointer             			pointer;
 		typedef typename iterator_traits<T>::const_pointer       			const_pointer;
+		typedef typename iterator_traits<T>::iterator_category  			iterator_category;
 
 		reverse_iterator(iterator_type value = nullptr) : iterator(value) 		{};
 		~reverse_iterator()														{};

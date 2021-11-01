@@ -103,6 +103,9 @@
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/Vector.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/__service.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator!=.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
@@ -121,6 +124,12 @@
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/map_tests/operator&gt;=.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/set_tests/__service.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/__service.ipp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/constructor.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
@@ -137,6 +146,9 @@
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/top().cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/output.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/run_map.cpp">
@@ -166,7 +178,13 @@
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/is_integral.cpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/iterator_traits.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/utilities_tests/lexicographical.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/vector_tests/__service.ipp">
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/main.cpp">

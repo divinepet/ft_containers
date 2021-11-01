@@ -48,19 +48,16 @@ public:
 	Map() {
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
-//		_tree = new Tree<value_type>();
 	}
 
 	explicit Map( const Compare& comp, const A& alloc = A()) : _comp(comp), _allocator(alloc) {
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
-//		_tree = new Tree<value_type>();
 	}
 
 	template <class InputIt>
 	Map(InputIt first, InputIt last,
 		const Compare& comp = Compare(), const A& alloc = A()) : _comp(comp), _allocator(alloc) {
-//		_tree = new Tree<value_type>();
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
 		for (; first != last; first++)
@@ -68,7 +65,6 @@ public:
 	}
 
 	Map(const Map &other) : _comp(other._comp), _allocator(other._allocator) {
-//		_tree = new Tree<value_type>(*(other._tree));
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree, *(other._tree));
 		fillTree(other._tree->root);
@@ -79,12 +75,7 @@ public:
 			return *this;
 		_comp = other._comp;
 		_allocator = other._allocator;
-//		delete _tree;
-//		clearTree(_tree->root);
-//		_allocator_rebind_tree.destroy(_tree);
-//		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
 		clearMap();
-//		_tree = new Tree<value_type>(*(other._tree));
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree, *other._tree);
 		fillTree(other._tree->root);
@@ -93,11 +84,7 @@ public:
 
 
 	~Map() {
-//		delete _tree;
 		clearMap();
-//		clearTree(_tree->root);
-//		_allocator_rebind_tree.destroy(_tree);
-//		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
 	}
 
 										/********************************/
@@ -127,12 +114,7 @@ public:
 																 std::numeric_limits<size_type>::max() / (sizeof(Node_<value_type>) + sizeof(T*)))); }
 
 	void clear() {
-//		delete _tree;
 		clearMap();
-//		clearTree(_tree->root);
-//		_allocator_rebind_tree.destroy(_tree);
-//		_allocator_rebind_tree.deallocate(_tree, sizeof(Tree<value_type>));
-//		_tree = new Tree<value_type>();
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
 	}
