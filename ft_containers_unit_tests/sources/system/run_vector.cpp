@@ -7,6 +7,7 @@ int main(int argc, char* argv[], char* env[]) {
 	printElement("Function"); printElement("Result"); printElement("ft time       std time      leaks"); cout << endl;
 
 	runFunctionTest("../vector_tests/constructor.cpp", argv, env);
+	runFunctionTest("../vector_tests/constructor(std_iter).cpp", argv, env);
 	runFunctionTest("../vector_tests/iterators.cpp", argv, env);
 	runFunctionTest("../vector_tests/begin().cpp", argv, env);
 	runFunctionTest("../vector_tests/end().cpp", argv, env);
@@ -23,11 +24,13 @@ int main(int argc, char* argv[], char* env[]) {
 	runFunctionTest("../vector_tests/front().cpp", argv, env);
 	runFunctionTest("../vector_tests/back().cpp", argv, env);
 	runFunctionTest("../vector_tests/assign().cpp", argv, env);
+	runFunctionTest("../vector_tests/assign(std_iter).cpp", argv, env);
 	runFunctionTest("../vector_tests/push_back().cpp", argv, env);
 	runFunctionTest("../vector_tests/pop_back().cpp", argv, env);
 	runFunctionTest("../vector_tests/insert(single).cpp", argv, env);
 	runFunctionTest("../vector_tests/insert(fill).cpp", argv, env);
 	runFunctionTest("../vector_tests/insert(range).cpp", argv, env);
+	runFunctionTest("../vector_tests/insert(std_iter).cpp", argv, env);
 	runFunctionTest("../vector_tests/erase(value).cpp", argv, env);
 	runFunctionTest("../vector_tests/erase(range).cpp", argv, env);
 	runFunctionTest("../vector_tests/swap().cpp", argv, env);

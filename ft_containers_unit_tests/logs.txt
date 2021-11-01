@@ -1,2 +1,19 @@
 warning: unknown warning option '-Wall -Wextra -Werror' [-Wunknown-warning-option]
 1 warning generated.
+ructor(std_iter).cpp:24:15: error: no matching constructor for initialization of 'ft::Vector<int>'
+        _vector<int> tmp2(tmp.begin(), tmp.end());
+                     ^    ~~~~~~~~~~~~~~~~~~~~~~
+../vector_tests/../system/../../../Vector.hpp:34:2: note: candidate constructor not viable: no known conversion from 'std::__1::vector<int, std::__1::allocator<int> >::iterator' (aka '__wrap_iter<int *>') to 'ft::Vector::size_type' (aka 'unsigned long') for 1st argument
+        Vector(size_type count, const_reference value = value_type(), const A& alloc = A()) {
+        ^
+../vector_tests/../system/../../../Vector.hpp:46:11: note: candidate constructor not viable: no known conversion from 'std::__1::vector<int, std::__1::allocator<int> >::iterator' (aka '__wrap_iter<int *>') to 'ft::Vector<int, std::__1::allocator<int> >::iterator' (aka 'iterator<int *>') for 1st argument
+        explicit Vector(iterator first, iterator last, const A& alloc = A()) : allocator(alloc), _capacity(0), _size(0) {
+                 ^
+../vector_tests/../system/../../../Vector.hpp:32:11: note: candidate constructor not viable: allows at most single argument 'alloc', but 2 arguments were provided
+        explicit Vector(const A& alloc = A()) : buffer(0), _size(0), _capacity(0) { allocator = alloc; };
+                 ^
+../vector_tests/../system/../../../Vector.hpp:51:2: note: candidate constructor not viable: requires single argument 'other', but 2 arguments were provided
+        Vector(const Vector& other) : buffer(0), _capacity(other._capacity), _size(other._size), allocator(other.get_allocator()) {
+        ^
+1 warning and 1 error generated.
+ted.
