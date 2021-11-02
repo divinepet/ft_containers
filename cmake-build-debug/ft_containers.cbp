@@ -148,6 +148,9 @@
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/stack_tests/top().cpp">
 			<Option target="ft_containers"/>
 		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/bass24/banner.hpp">
+			<Option target="ft_containers"/>
+		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/ft_containers_unit_tests/sources/system/output.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
@@ -188,6 +191,9 @@
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/main.cpp">
+			<Option target="ft_containers"/>
+		</Unit>
+		<Unit filename="/Users/elaronda/Desktop/ft_containers/max/sources/system/bass24/banner.hpp">
 			<Option target="ft_containers"/>
 		</Unit>
 		<Unit filename="/Users/elaronda/Desktop/ft_containers/CMakeLists.txt">
