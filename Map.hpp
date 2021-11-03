@@ -8,23 +8,23 @@ namespace ft {
 template <class Key, class T, class Compare = std::less<Key>, class A = std::allocator<std::pair<const Key, T> > >
 class Map {
 public:
-	typedef Key																	key_type;
-	typedef T																	mapped_type;
-	typedef ft::pair<const Key, T>												value_type;
-	typedef std::size_t															size_type;
-	typedef std::ptrdiff_t														difference_type;
-	typedef Compare																key_compare;
-	typedef A																	allocator_type;
-	typedef value_type&															reference;
-	typedef const value_type&													const_reference;
-	typedef typename allocator_type::pointer									pointer;
-	typedef typename allocator_type::const_pointer								const_pointer;
+	typedef Key											key_type;
+	typedef T											mapped_type;
+	typedef ft::pair<const Key, T>									value_type;
+	typedef std::size_t										size_type;
+	typedef std::ptrdiff_t										difference_type;
+	typedef Compare											key_compare;
+	typedef A											allocator_type;
+	typedef value_type&										reference;
+	typedef const value_type&									const_reference;
+	typedef typename allocator_type::pointer							pointer;
+	typedef typename allocator_type::const_pointer							const_pointer;
 	typedef ft::node_iterator<Node_<value_type>*, value_type>					iterator;
-	typedef ft::node_iterator<const Node_<value_type>*, value_type>				const_iterator;
-	typedef ft::reverse_iterator<iterator>										reverse_iterator;
-	typedef ft::reverse_iterator<const_iterator>								const_reverse_iterator;
-	typedef typename allocator_type::template rebind<Node_<value_type> >::other	allocator_rebind_node;
-	typedef typename allocator_type::template rebind<Tree<value_type> >::other	allocator_rebind_tree;
+	typedef ft::node_iterator<const Node_<value_type>*, value_type>					const_iterator;
+	typedef ft::reverse_iterator<iterator>								reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>							const_reverse_iterator;
+	typedef typename allocator_type::template rebind<Node_<value_type> >::other			allocator_rebind_node;
+	typedef typename allocator_type::template rebind<Tree<value_type> >::other			allocator_rebind_tree;
 
 	class value_compare : public std::binary_function<value_type, value_type, bool> {
 	friend class Map;
@@ -38,11 +38,11 @@ public:
 	};
 
 private:
-	allocator_type 																_allocator;
-	allocator_rebind_tree														_allocator_rebind_tree;
-	allocator_rebind_node														_allocator_rebind_node;
-	Compare		 																_comp;
-	Tree<value_type >*															_tree;
+	allocator_type 											_allocator;
+	allocator_rebind_tree										_allocator_rebind_tree;
+	allocator_rebind_node										_allocator_rebind_node;
+	Compare		 										_comp;
+	Tree<value_type >*										_tree;
 
 public:
 	Map() {
@@ -97,21 +97,21 @@ public:
 		return (tmp == end()) ? throw std::out_of_range("key not found") : tmp->second;
 	}
 
-	allocator_type 			get_allocator() const 				{ return _allocator; }
-	const T&				at(const Key& key) const			{ return static_cast<const T>(at(key)); }
-	T&						operator[](const Key& key) 			{ return insert(ft::make_pair(key, T())).first->second; }
-	iterator 				begin()								{ return _tree->getBegin(); }
-	const_iterator 			begin() const						{ return _tree->getBegin(); }
-	iterator 				end()								{ return _tree->getEnd(); }
+	allocator_type 			get_allocator() const 						{ return _allocator; }
+	const T&			at(const Key& key) const					{ return static_cast<const T>(at(key)); }
+	T&				operator[](const Key& key) 					{ return insert(ft::make_pair(key, T())).first->second; }
+	iterator 			begin()								{ return _tree->getBegin(); }
+	const_iterator 			begin() const							{ return _tree->getBegin(); }
+	iterator 			end()								{ return _tree->getEnd(); }
 	const_iterator 			end() const							{ return _tree->getEnd(); }
 	reverse_iterator 		rbegin()							{ return reverse_iterator(iterator(_tree->getLast())); }
-	const_reverse_iterator 	rbegin() const						{ return const_reverse_iterator(const_iterator(_tree->getLast())); }
+	const_reverse_iterator 		rbegin() const							{ return const_reverse_iterator(const_iterator(_tree->getLast())); }
 	reverse_iterator 		rend()								{ return reverse_iterator(iterator(_tree->getEnd())); }
-	const_reverse_iterator 	rend() const						{ return const_reverse_iterator(const_iterator(_tree->getEnd())); }
-	bool 					empty() const						{ return size() == 0; }
-	size_type				size() const 						{ return _tree->m_size; }
-	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
-																 std::numeric_limits<size_type>::max() / (sizeof(Node_<value_type>) + sizeof(T*)))); }
+	const_reverse_iterator 		rend() const							{ return const_reverse_iterator(const_iterator(_tree->getEnd())); }
+	bool 				empty() const							{ return size() == 0; }
+	size_type			size() const 							{ return _tree->m_size; }
+	size_type			max_size() const 						{ return (std::min((size_type) std::numeric_limits<difference_type>::max(),
+													std::numeric_limits<size_type>::max() / (sizeof(Node_<value_type>) + sizeof(T*)))); }
 
 	void clear() {
 		clearMap();
