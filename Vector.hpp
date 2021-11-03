@@ -6,30 +6,30 @@ namespace ft {
 	template < class T, class A = std::allocator<T> >
 class Vector {
 public:
-	typedef T															value_type;
-	typedef A															allocator_type;
-	typedef std::size_t 												size_type;
-	typedef std::ptrdiff_t												difference_type;
-	typedef value_type&													reference;
-	typedef const value_type&											const_reference;
-	typedef T*															pointer;
-	typedef const T*													const_pointer;
-	typedef ft::iterator<T*> 											iterator;
-	typedef ft::iterator<const T*>										const_iterator;
+	typedef T											value_type;
+	typedef A											allocator_type;
+	typedef std::size_t 										size_type;
+	typedef std::ptrdiff_t										difference_type;
+	typedef value_type&										reference;
+	typedef const value_type&									const_reference;
+	typedef T*											pointer;
+	typedef const T*										const_pointer;
+	typedef ft::iterator<T*> 									iterator;
+	typedef ft::iterator<const T*>									const_iterator;
 	typedef ft::reverse_iterator<iterator> 								reverse_iterator;
-	typedef ft::reverse_iterator<const_iterator>						const_reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>							const_reverse_iterator;
 private:
-	pointer																buffer;
-	size_type 															_capacity;
-	size_type 															_size;
-	allocator_type														allocator;
+	pointer												buffer;
+	size_type 											_capacity;
+	size_type 											_size;
+	allocator_type											allocator;
 public:
 
 									/********************************/
 									/* CONSTRUCTORS AND DESTRUCTORS */
 									/********************************/
 
-	explicit Vector(const A& alloc = A()) : buffer(0), _capacity(0), _size(0) { allocator = alloc; };
+	explicit Vector(const A& alloc = A()) : buffer(0), _capacity(0), _size(0), allocator(alloc) {}
 
 	Vector(size_type count, const_reference value = value_type(), const A& alloc = A()) {
 		if (count < 0)
@@ -113,27 +113,27 @@ public:
 		return buffer[pos];
 	};
 
-	reference       		operator[]( size_type pos )			{ return buffer[pos]; };
-	const_reference 		operator[]( size_type pos ) const	{ return buffer[pos]; };
-	reference				front()								{ return *buffer; };
-	const_reference 		front() const						{ return *buffer; };
-	reference				back()								{ return buffer[_size - 1]; };
-	const_reference			back() const						{ return buffer[_size - 1]; };
-	pointer 				data()								{ return buffer; };
-	const_pointer			data() const						{ return buffer; };
-	iterator 				begin()								{ return iterator(buffer); };
-	const_iterator 			begin() const						{ return const_iterator(buffer); };
-	iterator 				end()								{ return iterator(buffer + _size); };
+	reference       		operator[]( size_type pos )					{ return buffer[pos]; };
+	const_reference 		operator[]( size_type pos ) const				{ return buffer[pos]; };
+	reference			front()								{ return *buffer; };
+	const_reference 		front() const							{ return *buffer; };
+	reference			back()								{ return buffer[_size - 1]; };
+	const_reference			back() const							{ return buffer[_size - 1]; };
+	pointer 			data()								{ return buffer; };
+	const_pointer			data() const							{ return buffer; };
+	iterator 			begin()								{ return iterator(buffer); };
+	const_iterator 			begin() const							{ return const_iterator(buffer); };
+	iterator 			end()								{ return iterator(buffer + _size); };
 	const_iterator 			end() const							{ return const_iterator(buffer + _size); };
 	reverse_iterator 		rbegin()							{ return reverse_iterator(iterator(buffer + _size - 1)); };
-	const_reverse_iterator 	rbegin() const						{ return const_reverse_iterator(const_iterator(buffer + _size - 1)); };
+	const_reverse_iterator 		rbegin() const							{ return const_reverse_iterator(const_iterator(buffer + _size - 1)); };
 	reverse_iterator 		rend()								{ return reverse_iterator(iterator(buffer - 1)); };
-	const_reverse_iterator 	rend() const						{ return const_reverse_iterator(const_iterator(buffer - 1)); };
-	bool 					empty() const						{ return _size <= 0; };
-	size_type				size() const						{ return _size; };
-	size_type				capacity() const					{ return _capacity; };
-	size_type				max_size() const { return (std::min((size_type) std::numeric_limits<difference_type>::max(),
-																 std::numeric_limits<size_type>::max() / sizeof(value_type))); };
+	const_reverse_iterator 		rend() const							{ return const_reverse_iterator(const_iterator(buffer - 1)); };
+	bool 				empty() const							{ return _size <= 0; };
+	size_type			size() const							{ return _size; };
+	size_type			capacity() const						{ return _capacity; };
+	size_type			max_size() const 						{ return (std::min((size_type) std::numeric_limits<difference_type>::max(),
+														std::numeric_limits<size_type>::max() / sizeof(value_type))); };
 
 
 	void reserve(size_type size) {
