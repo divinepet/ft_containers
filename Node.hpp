@@ -3,8 +3,8 @@
 template <class value_type>
 struct Node_ {
 public:
-	Node_() : pair(new value_type()), begin(NULL), left(this), right(this), parent(0), NIL(1), color(0) {}
-	Node_(const value_type& p) : pair(new value_type(p)), begin(NULL), left(this), right(this), parent(0), NIL(0), color(0) {}
+	Node_() : color(0), begin(NULL), left(this), right(this), parent(0), NIL(1), pair(new value_type()) {}
+	Node_(const value_type& p) : color(0), begin(NULL), left(this), right(this), parent(0), NIL(0), pair(new value_type(p)) {}
 	~Node_() { delete pair; }
 	bool color;
 	struct Node_ *begin;
@@ -31,24 +31,15 @@ public:
 		root = &sentinel;
 	}
 
-//	~Tree() { clearTree(root); };
-
 	Tree(Tree<value_type> &other) : m_size(0) {
 		sentinel.left = &sentinel;
 		sentinel.right = &sentinel;
 		sentinel.begin = &sentinel;
 		sentinel.parent = 0;
 		sentinel.color = 0;
-		sentinel.NIL = true;
+		sentinel.NIL = (&other == &other);
 		root = &sentinel;
 	}
-
-//	void clearTree(Node_<value_type> *tmp) {
-//		if (tmp->NIL) return;
-//		if (!tmp->left->NIL) clearTree(tmp->left);
-//		if (!tmp->right->NIL) clearTree(tmp->right);
-//		delete tmp;
-//	}
 
 	Tree& operator=(const Tree<value_type>& other) {
 		if (this == &other)

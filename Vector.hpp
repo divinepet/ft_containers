@@ -29,7 +29,7 @@ public:
 									/* CONSTRUCTORS AND DESTRUCTORS */
 									/********************************/
 
-	explicit Vector(const A& alloc = A()) : buffer(0), _size(0), _capacity(0) { allocator = alloc; };
+	explicit Vector(const A& alloc = A()) : buffer(0), _capacity(0), _size(0) { allocator = alloc; };
 
 	Vector(size_type count, const_reference value = value_type(), const A& alloc = A()) {
 		if (count < 0)
@@ -37,13 +37,13 @@ public:
 		allocator = alloc;
 		_capacity = _size = count;
 		buffer = allocator.allocate(_capacity);
-		for (int i = 0; i < count; ++i)
+		for (size_t i = 0; i < count; ++i)
 			buffer[i] = value;
 	};
 
 	template <class InputIterator>
 	Vector(InputIterator first, InputIterator last, const A& alloc = A(),
-		  typename ft::enable_if<!ft::is_integral<InputIterator>::value, void>::type* = 0) : allocator(alloc), _capacity(0), _size(0) {
+		   typename ft::enable_if<!ft::is_integral<InputIterator>::value, void>::type* = 0) : _capacity(0), _size(0), allocator(alloc) {
 		buffer = allocator.allocate(_capacity);
 		this->assign(first, last);
 	};
@@ -67,7 +67,7 @@ public:
 		_capacity = other._capacity;
 		_size = other._size;
 		buffer = allocator.allocate(_capacity);
-		for (int i = 0; i < _size; ++i) {
+		for (size_t i = 0; i < _size; ++i) {
 			buffer[i] = other.buffer[i];
 		}
 		return *this;
@@ -78,7 +78,7 @@ public:
 			throw std::out_of_range("Vector");
 		this->clear();
 		this->reserve(count);
-		for (int i = 0; i < count; ++i, _size++)
+		for (size_t i = 0; i < count; ++i, _size++)
 			buffer[i] = value;
 	};
 
@@ -270,7 +270,7 @@ public:
 
 	friend bool operator== (const Vector &lhs, const Vector &rhs) {
 		if (lhs.size() != rhs.size()) return false;
-		for (int i = 0; i < lhs.size(); ++i) {
+		for (size_t i = 0; i < lhs.size(); ++i) {
 			if (lhs[i] == rhs[i]) { continue; }
 			return false;
 		}
@@ -283,7 +283,7 @@ public:
 		if (lhs.size() < rhs.size()) return true;
 		if (lhs.size() > rhs.size()) return false;
 
-		for (int i = 0; i < lhs.size(); ++i) {
+		for (size_t i = 0; i < lhs.size(); ++i) {
 			if (lhs[i] == rhs[i]) { continue; }
 			return lhs[i] < rhs[i];
 		}
@@ -294,7 +294,7 @@ public:
 		if (lhs.size() < rhs.size()) return false;
 		if (lhs.size() > rhs.size()) return true;
 
-		for (int i = 0; i < lhs.size(); ++i) {
+		for (size_t i = 0; i < lhs.size(); ++i) {
 			if (lhs[i] == rhs[i]) { continue; }
 			return lhs[i] > rhs[i];
 		}
@@ -305,7 +305,7 @@ public:
 		if (lhs.size() < rhs.size()) return true;
 		if (lhs.size() > rhs.size()) return false;
 
-		for (int i = 0; i < lhs.size(); ++i) {
+		for (size_t i = 0; i < lhs.size(); ++i) {
 			if (lhs[i] == rhs[i]) { continue; }
 			return lhs[i] < rhs[i];
 		}
@@ -316,7 +316,7 @@ public:
 		if (lhs.size() > rhs.size()) return true;
 		if (lhs.size() < rhs.size()) return false;
 
-		for (int i = 0; i < lhs.size(); ++i) {
+		for (size_t i = 0; i < lhs.size(); ++i) {
 			if (lhs[i] == rhs[i]) { continue; }
 			return lhs[i] > rhs[i];
 		}

@@ -38,14 +38,14 @@ public:
 		_allocator_rebind_tree.construct(_tree);
 	}
 
-	explicit Set(const Compare& comp, const A& alloc = A()) : _comp(comp), _allocator(alloc) {
+	explicit Set(const Compare& comp, const A& alloc = A()) : _allocator(alloc), _comp(comp) {
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
 	}
 
 	template< class InputIt >
 	Set( InputIt first, InputIt last,
-		 const Compare& comp = Compare(), const A& alloc = A() ) : _comp(comp), _allocator(alloc) {
+		 const Compare& comp = Compare(), const A& alloc = A() ) : _allocator(alloc), _comp(comp) {
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
 		for (; first != last; first++)

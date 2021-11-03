@@ -57,14 +57,14 @@ public:
 
 	template <class InputIt>
 	Map(InputIt first, InputIt last,
-		const Compare& comp = Compare(), const A& alloc = A()) : _comp(comp), _allocator(alloc) {
+		const Compare& comp = Compare(), const A& alloc = A()) : _allocator(alloc), _comp(comp) {
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree);
 		for (; first != last; first++)
 			insert(ft::make_pair(first->first, first->second));
 	}
 
-	Map(const Map &other) : _comp(other._comp), _allocator(other._allocator) {
+	Map(const Map &other) : _allocator(other._allocator), _comp(other._comp) {
 		_tree = _allocator_rebind_tree.allocate(sizeof(Tree<value_type>));
 		_allocator_rebind_tree.construct(_tree, *(other._tree));
 		fillTree(other._tree->root);
